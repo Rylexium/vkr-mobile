@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.vkr.utils.NonFocusingScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/passport1_scroll_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".activity.registration.ui.passport1.Passport1Fragment">
+
+    <LinearLayout
+        android:id="@+id/passport1_layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true" >
+
+        <Button
+            android:id="@+id/make_passport1_photo"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="9dp"
+            android:background="@drawable/round_btn"
+            android:text="Введите данные и загрузите стр.3 паспорта"
+            android:textColor="@color/white"
+            android:textColorHint="@color/grey"
+            android:textSize="15sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp">
+
+            <LinearLayout
+                android:layout_width="247dp"
+                android:layout_height="wrap_content"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical">
+
+                <android.support.design.widget.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="9dp"
+                    android:hint="Фамилия"
+                    android:textColorHint="@color/grey"
+                    app:boxStrokeColor="@color/blue_700"
+                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+                    >
+
+                    <AutoCompleteTextView
+                        android:textCursorDrawable="@drawable/cursor_black"
+                        android:textColorHighlight="@color/blue_700"
+                        android:id="@+id/textbox_family_reg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:digits="@string/alfavit_for_name"
+                        android:inputType="textPersonName"
+                        android:maxLength="32"
+                        android:textColor="@color/white"
+                        tools:ignore="TouchTargetSizeCheck" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="9dp"
+                    android:hint="Имя"
+                    android:textColorHint="@color/grey"
+                    app:boxStrokeColor="@color/blue_700"
+                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+                    >
+
+                    <AutoCompleteTextView
+                        android:textCursorDrawable="@drawable/cursor_black"
+                        android:textColorHighlight="@color/blue_700"
+                        android:id="@+id/textbox_name_reg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:digits="@string/alfavit_for_name"
+                        android:inputType="textPersonName"
+                        android:maxLength="32"
+                        android:textColor="@color/white"
+                        tools:ignore="TouchTargetSizeCheck" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="9dp"
+                    android:hint="Отчество (при наличиии)"
+                    android:textColorHint="@color/grey"
+                    app:boxStrokeColor="@color/blue_700"
+                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+                    >
+
+                    <AutoCompleteTextView
+                        android:textCursorDrawable="@drawable/cursor_black"
+                        android:textColorHighlight="@color/blue_700"
+                        android:id="@+id/textbox_patronymic_reg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:digits="@string/alfavit_for_name"
+                        android:inputType="textPersonName"
+                        android:maxLength="64"
+                        android:textColor="@color/white"
+                        tools:ignore="TouchTargetSizeCheck" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/imageViewPassport1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="9dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="9dp"
+            android:paddingLeft="9dp"
+            android:paddingBottom="9dp"
+            android:orientation="horizontal">
+
+            <android.support.design.widget.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="190dp"
+                android:layout_height="52dp"
+                android:hint="Дата рождения"
+                android:textColorHint="@color/grey"
+                app:boxStrokeColor="@color/blue_700"
+                app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+                >
+
+                <AutoCompleteTextView
+                    android:textCursorDrawable="@drawable/cursor_black"
+                    android:textColorHighlight="@color/blue_700"
+                    android:id="@+id/textbox_date_of_birth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:digits="@string/only_numbers"
+                    android:inputType="phone"
+                    android:maxLength="10"
+                    android:focusable="false"
+                    android:textColor="@color/white"
+                    android:drawableStart="@drawable/calendar_icon"
+                    android:drawablePadding="8dp"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </android.support.design.widget.TextInputLayout>
+
+            <Switch
+                android:id="@+id/radiobutton_sex"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="9dp"
+                android:layout_marginRight="9dp"
+                android:text="Пол"
+                android:theme="@style/SwitchTheme"
+                android:textColor="@color/grey"
+                android:textSize="18dp" />
+
+        </LinearLayout>
+
+
+        <Spinner
+            android:id="@+id/listbox_nationality"
+            android:layout_marginTop="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textAlignment="center"
+            android:layout_marginRight="9dp"
+            android:layout_marginLeft="9dp"
+            android:background="@color/white"
+            />
+
+    </LinearLayout>
+</com.example.vkr.utils.NonFocusingScrollView>

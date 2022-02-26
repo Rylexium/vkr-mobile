@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.vkr.utils.NonFocusingScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/registration_scroll_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".activity.registration.ui.registration.RegistrationFragment">
+
+    <LinearLayout
+        android:id="@+id/registration_layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true" >
+
+        <TextView
+            android:id="@+id/textViewRegistration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Регистрация"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="35dp"
+            android:paddingTop="35dp"
+            />
+        <android.support.design.widget.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="9dp"
+            android:layout_marginEnd="9dp"
+            android:hint="Номер телефона"
+            android:textColorHint="@color/grey"
+            app:boxStrokeColor="@color/blue_700"
+            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+            >
+
+            <AutoCompleteTextView
+                android:textCursorDrawable="@drawable/cursor_black"
+                android:textColorHighlight="@color/blue_700"
+                android:id="@+id/textbox_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:digits="1234567890 +()-"
+                android:inputType="phone"
+                android:maxLength="15"
+                android:textColor="@color/white"
+                android:drawableStart="@drawable/phone_icon"
+                android:drawablePadding="8dp"
+                tools:ignore="TouchTargetSizeCheck" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginStart="9dp"
+            android:layout_marginEnd="9dp"
+            android:hint="Электронная почта"
+            android:textColorHint="@color/grey"
+            app:boxStrokeColor="@color/blue_700"
+            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+            >
+
+            <AutoCompleteTextView
+                android:textCursorDrawable="@drawable/cursor_black"
+                android:textColorHighlight="@color/blue_700"
+                android:id="@+id/textbox_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:digits="@string/alfavit_for_email"
+                android:inputType="textPersonName"
+                android:maxLength="32"
+                android:textColor="@color/white"
+                android:drawableStart="@drawable/envelope_icon"
+                android:drawablePadding="8dp"
+                tools:ignore="TouchTargetSizeCheck" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="9dp"
+            android:hint="Логин"
+            android:textColorHint="@color/grey"
+            app:boxStrokeColor="@color/blue_700"
+            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+            >
+
+            <AutoCompleteTextView
+                android:textCursorDrawable="@drawable/cursor_black"
+                android:textColorHighlight="@color/blue_700"
+                android:id="@+id/textbox_login_reg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:digits="@string/alfavit_for_login"
+                android:inputType="textPersonName"
+                android:maxLength="32"
+                android:textColor="@color/white"
+                android:drawableStart="@drawable/user_icon"
+                android:drawablePadding="8dp"
+                tools:ignore="TouchTargetSizeCheck" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginStart="9dp"
+            android:layout_marginEnd="9dp"
+            android:hint="Пароль"
+            app:passwordToggleEnabled="true"
+            android:textColorHint="@color/grey"
+            app:boxStrokeColor="@color/blue_700"
+            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+            >
+
+            <AutoCompleteTextView
+                android:id="@+id/textbox_pass_reg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:digits="@string/alfavit_for_login"
+                android:inputType="textPassword"
+                android:maxLength="32"
+                android:textColor="@color/white"
+                android:textColorHighlight="@color/blue_700"
+                android:textCursorDrawable="@drawable/cursor_black"
+                android:drawableStart="@drawable/password_icon"
+                android:drawablePadding="8dp"
+                tools:ignore="TouchTargetSizeCheck" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginStart="9dp"
+            android:layout_marginEnd="9dp"
+            android:hint="Повторите пароль"
+            android:textColorHint="@color/grey"
+            app:boxStrokeColor="@color/blue_700"
+            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+            app:passwordToggleEnabled="true"
+            >
+
+            <AutoCompleteTextView
+                android:textCursorDrawable="@drawable/cursor_black"
+                android:textColorHighlight="@color/blue_700"
+                android:id="@+id/textbox_pass2_reg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:digits="@string/alfavit_for_login"
+                android:inputType="textPassword"
+                android:maxLength="32"
+                android:textColor="@color/white"
+                android:drawableStart="@drawable/password_icon"
+                android:drawablePadding="8dp"
+                tools:ignore="TouchTargetSizeCheck" />
+        </android.support.design.widget.TextInputLayout>
+
+        <RadioButton
+            android:id="@+id/radioButton_isAgree"
+            android:layout_width="match_parent"
+            android:theme="@style/SwitchTheme"
+            android:layout_height="80dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginTop="12dp"
+            android:gravity="center_vertical"
+            android:text="Согласие на обработку персональных данных"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"/>
+    </LinearLayout>
+</com.example.vkr.utils.NonFocusingScrollView>

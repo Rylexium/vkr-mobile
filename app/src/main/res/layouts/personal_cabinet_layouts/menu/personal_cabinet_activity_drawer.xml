@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:title="Профиль" />
+        <item
+            android:id="@+id/nav_egu"
+            android:icon="@drawable/ic_baseline_book_24"
+            android:title="Результаты ЕГЭ" />
+        <item
+            android:id="@+id/nav_achievement"
+            android:icon="@drawable/ic_baseline_military_tech_24"
+            android:title="Достижения" />
+        <item
+            android:id="@+id/nav_speciality"
+            android:icon="@drawable/ic_baseline_psychology_24"
+            android:title="Направления подготовки" />
+        <item
+            android:id="@+id/nav_statement"
+            android:icon="@drawable/ic_baseline_description_24"
+            android:title="Подача заявления" />
+        <item
+            android:id="@+id/nav_agreement"
+            android:icon="@drawable/ic_baseline_fact_check_24"
+            android:title="Согласие на зачисление" />
+        <item
+            android:id="@+id/nav_exit"
+            android:icon="@drawable/ic_baseline_login_24"
+            android:title="Выйти" />
+    </group>
+</menu>

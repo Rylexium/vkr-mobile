@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.vkr">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:installLocation="auto"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:noHistory="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.VKR">
+        <activity
+            android:name=".activity.registration.RegistrationActivity"
+            android:exported="false"
+            android:label="@string/title_activity_registration" />
+        <activity
+            android:name=".personal_cabinet.moreAbout.MoreAboutTheInstitutActivity"
+            android:exported="false" />
+        <activity
+            android:name=".personal_cabinet.moreAbout.MoreAboutTheSpecialityActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.registration.ExamsResultActivity"
+            android:exported="false" />
+        <activity
+            android:name=".personal_cabinet.PersonalCabinetActivity"
+            android:exported="false"
+            android:label="@string/title_activity_personal_cabinet"
+            android:theme="@style/Theme.VKR.NoActionBar" />
+        <activity
+            android:name=".activity.authorization.QuestionsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.authorization.AuthorizationActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

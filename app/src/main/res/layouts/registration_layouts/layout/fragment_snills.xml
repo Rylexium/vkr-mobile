@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.vkr.utils.NonFocusingScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/snills_scroll_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".activity.registration.ui.snills.SnillsFragment">
+
+    <LinearLayout
+        android:id="@+id/snills_layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <Button
+            android:id="@+id/make_snills_photo"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="9dp"
+            android:background="@drawable/round_btn"
+            android:text="Введите данные и загрузите СНИЛС"
+            android:textColor="@color/white"
+            android:textColorHint="@color/grey"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/imageViewSnills"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="12dp" />
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="9dp"
+            android:hint="СНИЛС"
+            android:textColorHint="@color/grey"
+            app:boxStrokeColor="@color/blue_700"
+            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
+            >
+
+            <AutoCompleteTextView
+                android:textCursorDrawable="@drawable/cursor_black"
+                android:textColorHighlight="@color/blue_700"
+                android:id="@+id/textbox_snills"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:digits="0123456789 -"
+                android:inputType="phone"
+                android:maxLength="14"
+                android:textColor="@color/white"
+                tools:ignore="TouchTargetSizeCheck" />
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+</com.example.vkr.utils.NonFocusingScrollView>

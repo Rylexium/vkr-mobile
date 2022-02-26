@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollview_result_egu_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@drawable/neutral_cradient1"
+    android:nestedScrollingEnabled="true"
+    tools:context=".personal_cabinet.ui.result_egu.ResultEguFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+        <LinearLayout
+            android:id="@+id/layout_of_exams"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="9dp"
+            android:gravity="center"
+            android:focusableInTouchMode="true" >
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            />
+    </LinearLayout>
+
+</ScrollView>

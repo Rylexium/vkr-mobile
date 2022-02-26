@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.vkr.personal_cabinet.ui.home.MainFragment"
+        android:label="Главная"
+        tools:layout="@layout/fragment_main" />
+
+    <fragment
+        android:id="@+id/nav_egu"
+        android:name="com.example.vkr.personal_cabinet.ui.result_egu.ResultEguFragment"
+        android:label="Результаты ЕГЭ"
+        tools:layout="@layout/fragment_result_egu" />
+
+    <fragment
+        android:id="@+id/nav_achievement"
+        android:name="com.example.vkr.personal_cabinet.ui.achievements.AchievementsFragment"
+        android:label="Достижения"
+        tools:layout="@layout/fragment_achievments" />
+
+    <fragment
+        android:id="@+id/nav_speciality"
+        android:name="com.example.vkr.personal_cabinet.ui.speciality.SpecialityFragment"
+        android:label="Направления подготовки"
+        tools:layout="@layout/fragment_speciality" />
+
+    <fragment
+        android:id="@+id/nav_statement"
+        android:name="com.example.vkr.personal_cabinet.ui.statement.StatementFragment"
+        android:label="Подача заявления"
+        tools:layout="@layout/fragment_statement" />
+
+    <fragment
+        android:id="@+id/nav_agreement"
+        android:name="com.example.vkr.personal_cabinet.ui.agreement.AgreementFragment"
+        android:label="Согласие на зачисление"
+        tools:layout="@layout/fragment_agreement" />
+
+    <fragment
+        android:id="@+id/nav_exit"
+        android:name="com.example.vkr.personal_cabinet.ui.logout.LogoutFragment"
+        android:label="Выйти"
+        tools:layout="@layout/fragment_logout" >
+    </fragment>
+
+</navigation>

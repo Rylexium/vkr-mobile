@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollview_statement_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@drawable/neutral_cradient"
+    android:nestedScrollingEnabled="true"
+    tools:context=".personal_cabinet.ui.statement.StatementFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:id="@+id/layout_of_statement"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="9dp"
+            android:gravity="center"
+            android:focusableInTouchMode="true" >
+        </LinearLayout>
+        <Button
+            android:id="@+id/button_submit_statement"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@drawable/round_btn"
+            android:textColor="@color/white"
+            android:text="Подать заявление"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="9dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            />
+    </LinearLayout>
+
+</ScrollView>

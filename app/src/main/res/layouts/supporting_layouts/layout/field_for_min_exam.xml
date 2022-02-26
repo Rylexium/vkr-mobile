@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:paddingTop="10dp"
+    android:orientation="horizontal"
+    android:layout_weight="2"
+    >
+
+    <TextView
+        android:id="@+id/name_exam"
+        android:layout_width="0dp"
+        android:layout_weight="1.7"
+        android:layout_height="match_parent"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        />
+    <TextView
+        android:id="@+id/min_points_exam"
+        android:layout_width="wrap_content"
+        android:layout_weight="0.3"
+        android:layout_height="match_parent"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        />
+
+</LinearLayout>

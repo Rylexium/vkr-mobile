@@ -1,0 +1,11 @@
+<resources>
+
+    <style name="Theme.VKR.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.VKR.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.VKR.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+</resources>

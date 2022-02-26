@@ -1,0 +1,668 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.vkr.utils.NonFocusingScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/finish_scroll_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@drawable/neutral_cradient1"
+    tools:context=".activity.registration.ui.finish.FinishFragment">
+
+    <LinearLayout
+        android:id="@+id/finish_layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:paddingTop="10dp"
+        android:paddingStart="9dp"
+        android:paddingEnd="9dp"
+        android:focusableInTouchMode="true" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:paddingBottom="15dp"
+            android:background="@drawable/neutral_cradient"
+            android:focusableInTouchMode="true" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/reg_step_1"
+                android:gravity="center"
+                android:textSize="30dp"
+                android:textColor="@color/white"
+                android:background="@color/blue_700"
+                />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
+                <TextView
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:text="Номер телефона"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/finish_phone_reg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="8 (937) 17-27-345"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
+                <TextView
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:text="Электронная почта"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/finish_email_reg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="aleksei.azizov@mail.ru"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
+                <TextView
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:text="Логин"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/finish_login_reg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="rylexium"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
+                <TextView
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:text="Пароли"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/finish_pass_reg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="Совпадают"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="15dp"
+            android:focusable="true"
+            android:background="@drawable/neutral_cradient"
+            android:focusableInTouchMode="true" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/reg_step_2"
+                android:gravity="center"
+                android:textSize="30dp"
+                android:textColor="@color/white"
+                android:background="@color/blue_700"
+                />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
+                <TextView
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:text="Фамилия"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/finish_family_reg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="Азизов"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
+                <TextView
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:text="Имя"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/finish_name_reg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="Алексей"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
+                <TextView
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:text="Отчество"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/finish_patronymic_reg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="Алексеевич"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
+                <TextView
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:text="Пол"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/finish_sex_reg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="Мужской"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
+                <TextView
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:text="Дата рождения"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/finish_date_of_birthday_reg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="25.01.2000"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
+                <TextView
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:text="Гражданство"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/finish_nationality_reg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="Россия"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="15dp"
+            android:background="@drawable/neutral_cradient"
+            android:focusable="true"
+            android:focusableInTouchMode="true" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/reg_step_3"
+                android:textColor="@color/white"
+                android:background="@color/blue_700"
+                android:textSize="30dp"
+                />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
+                <TextView
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:text="Серия паспорта"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/finish_series_passport_reg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="31 12"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
+                <TextView
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:text="Номер паспорта"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/finish_number_passport_reg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="531218"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
+                <TextView
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:text="Код подразделения"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/finish_code_unit_reg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="123-456"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
+                <TextView
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:text="Дата выдачи"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/finish_date_of_issue_passport_reg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="21.12.2022"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="15dp"
+            android:background="@drawable/neutral_cradient"
+            android:focusable="true"
+            android:focusableInTouchMode="true" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/reg_step_4"
+                android:textColor="@color/white"
+                android:background="@color/blue_700"
+                android:textSize="30dp" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
+                <TextView
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:text="Адрес постоянной регистрации"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/finish_const_address_reg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="авфыафываыа"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
+                <TextView
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:text="Адрес фактического проживания"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/finish_actual_address_reg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="fdasgasgas"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="15dp"
+            android:background="@drawable/neutral_cradient"
+            android:focusable="true"
+            android:focusableInTouchMode="true" >
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/reg_step_5"
+                android:textColor="@color/white"
+                android:background="@color/blue_700"
+                android:textSize="30dp" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
+                <TextView
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:text="СНИЛС"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/finish_snills_reg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="123-456-789 00"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="15dp"
+            android:background="@drawable/neutral_cradient"
+            android:focusable="true"
+            android:focusableInTouchMode="true" >
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/reg_step_6"
+                android:textColor="@color/white"
+                android:background="@color/blue_700"
+                android:textSize="30dp" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
+                <TextView
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:text="Тип образования"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/finish_type_of_education_reg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="Аттестат"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
+                <TextView
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:text="Номер документа"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/finish_number_education_reg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="541234214231"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
+                <TextView
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:text="Дата выдачи"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/finish_date_of_issue_education_reg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="25.05.2021"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="15dp"
+            android:background="@drawable/neutral_cradient"
+            android:focusable="true"
+            android:focusableInTouchMode="true" >
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/reg_step_8"
+                android:textColor="@color/white"
+                android:background="@color/blue_700"
+                android:textSize="30dp" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
+                <TextView
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:text="Тип привилегии"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/finish_privileges_reg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="Нет"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="180dp"/>
+    </LinearLayout>
+
+</com.example.vkr.utils.NonFocusingScrollView>

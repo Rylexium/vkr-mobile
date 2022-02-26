@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/button_previous"
+        android:title="Предыдущий"
+        android:icon="@drawable/image_previous_btn"
+        >
+    </item>
+    <item
+        android:id="@+id/step_info"
+        android:title=""
+        android:icon="@drawable/ic_baseline_check_24"
+        >
+    </item>
+    <item
+        android:id="@+id/button_next"
+        android:title="Следующий"
+        android:icon="@drawable/image_next_btn"
+        >
+    </item>
+</menu>
