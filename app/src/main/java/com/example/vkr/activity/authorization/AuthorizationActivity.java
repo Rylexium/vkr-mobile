@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.Button;
 import android.widget.AutoCompleteTextView;
@@ -120,7 +121,7 @@ public class AuthorizationActivity extends AppCompatActivity {
                 login, HashPass.sha256(password + HashPass.STATIC_SALT)))
                 .setPriority(Priority.IMMEDIATE)
                 .setOkHttpClient(new OkHttpClient.Builder()
-                        .connectTimeout(1, TimeUnit.SECONDS)
+                        .connectTimeout(2, TimeUnit.SECONDS)
                         .build())
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
@@ -129,8 +130,10 @@ public class AuthorizationActivity extends AppCompatActivity {
                         try {
                             JsonNode jsonNode = new ObjectMapper().readTree(response.toString());
                             ShowToast.show(getApplicationContext(), "Успешно");
-
-                            if (Integer.parseInt(jsonNode.get("idEducation").toString()) < 5
+                            if(jsonNode.get("idEducation") == null){
+                                ShowToast.show(getApplicationContext(), "Неверный логин или пароль");
+                            }
+                            else if (Integer.parseInt(jsonNode.get("idEducation").toString()) < 5
                                     && !Boolean.parseBoolean(jsonNode.get("user").get("is_entry").toString())) {
                                 OpenActivity.openExamsResult(activity,
                                         jsonNode.get("user").get("id_abit").toString(),
