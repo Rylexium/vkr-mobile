@@ -247,9 +247,9 @@ class Passport1Fragment : Fragment() {
                 .putString(KEY_PATRONYMIC, binding.textboxPatronymicReg.text.toString())
                 .putString(KEY_SEX, binding.radiobuttonSex.text.toString())
                 .putString(KEY_DATE_OF_BIRTH, binding.textboxDateOfBirth.text.toString())
-                .putString(KEY_NATIONALITY, java.lang.String.valueOf(binding.listboxNationality.selectedItemPosition))
+                .putString(KEY_NATIONALITY, binding.listboxNationality.selectedItemPosition.toString())
                 .putString(KEY_IMAGE_PASSPORT, ConvertClass.convertBitmapToString(bitmap))
-                .putString(KEY_NAME_NATIONALITY, binding.listboxNationality.selectedItem.toString())
+                .putString(KEY_NAME_NATIONALITY, binding.listboxNationality.selectedItem?.toString())
                 .apply()
     }
 

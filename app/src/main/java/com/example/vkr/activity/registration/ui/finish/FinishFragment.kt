@@ -8,6 +8,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.androidnetworking.AndroidNetworking
+import com.androidnetworking.common.Priority
+import com.androidnetworking.error.ANError
+import com.androidnetworking.interfaces.JSONObjectRequestListener
 import com.example.vkr.activity.registration.ui.education.EducationFragment
 import com.example.vkr.activity.registration.ui.passport1.Passport1Fragment
 import com.example.vkr.activity.registration.ui.passport2.Passport2Fragment
@@ -16,13 +20,21 @@ import com.example.vkr.activity.registration.ui.privileges.PrivilegesFragment
 import com.example.vkr.activity.registration.ui.registration.RegistrationFragment
 import com.example.vkr.activity.registration.ui.snills.SnillsFragment
 import com.example.vkr.databinding.FragmentFinishBinding
+import com.example.vkr.utils.HashPass
 import com.example.vkr.utils.ShowToast
+import com.fasterxml.jackson.databind.JsonNode
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.google.gson.JsonObject
+
+import org.json.JSONObject
 
 class FinishFragment : Fragment() {
     private var _binding: FragmentFinishBinding? = null
 
     private val binding get() = _binding!!
     var sharedPreferences : SharedPreferences? = null
+
+    var messageAboutUnique : String? = null
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -33,7 +45,6 @@ class FinishFragment : Fragment() {
         _binding = FragmentFinishBinding.inflate(inflater, container, false)
         sharedPreferences = activity!!.getPreferences(Context.MODE_PRIVATE)
 
-        Log.e("", sharedPreferences?.all.toString());
         fillStep1()
         fillStep2()
         fillStep3()
@@ -41,22 +52,25 @@ class FinishFragment : Fragment() {
         fillStep5()
         fillStep6()
         fillStep8()
-        Log.e("isValidRegistrationFragment", isValidRegistrationFragment().toString())
-        Log.e("isValidPassport1Fragment", isValidPassport1Fragment().toString())
-        Log.e("isValidPassport2Fragment", isValidPassport2Fragment().toString())
-        //Log.e("isValidPassport3Fragment", isValidPassport3Fragment().toString()) //коментирую, потому что нужно вводить русские буквы
-        Log.e("isValidSnillsFragment", isValidSnillsFragment().toString())
-        Log.e("isValidEducationFragment", isValidEducationFragment().toString())
-        //привелегии не проверяю, потому что их может и не быть
-
-        // проверка валидности всех данных с каждого фрагмента
-        // затем сборка всех данных для каждого отношения
-
-
-
-
-
+        checkUnique()
+        applyEvents()
         return binding.root
+    }
+
+    private fun applyEvents(){
+        binding.postInfoReg.setOnClickListener{
+            if(messageAboutUnique != null){
+                ShowToast.show(context, messageAboutUnique)
+                return@setOnClickListener
+            }
+            if(isValidRegistrationFragment() && isValidPassport1Fragment()
+                && isValidPassport2Fragment()
+                    && isValidSnillsFragment() && isValidEducationFragment()
+            ){
+                postAbit()
+                postUser()
+            }
+        }
     }
 
     private fun fillStep1() {
@@ -84,6 +98,7 @@ class FinishFragment : Fragment() {
         binding.finishDateOfIssuePassportReg.text = sharedPreferences?.all?.get(Passport2Fragment().KEY_DATE_ISSUING).toString()
         binding.finishCodeUnitReg.text = sharedPreferences?.all?.get(Passport2Fragment().KEY_CODE_UNIT).toString()
     }
+
     private fun fillStep4() {
         binding.finishConstAddressReg.text = sharedPreferences?.all?.get(Passport3Fragment().KEY_POST_INDEX_REG).toString() + ", " +
                 sharedPreferences?.all?.get(Passport3Fragment().KEY_SUBJECT_REG).toString() + ", " +
@@ -107,6 +122,110 @@ class FinishFragment : Fragment() {
     }
 
 
+    private fun checkUnique(){
+        val passport = binding.finishSeriesPassportReg.text.toString().replace(" ", "") + binding.finishNumberPassportReg.text
+
+        AndroidNetworking.get("https://vkr1-app.herokuapp.com/abit/check_unique" +
+                "?id=" + binding.finishSnillsReg.text.toString().replace("-", "").replace(" ", "") +
+
+                "&phone=" + binding.finishPhoneReg.text.toString().replace("(", "").replace(")", "")
+                                                                  .replace(" ", "").replace("-", "") +
+
+                "&email=" + binding.finishEmailReg.text + "&passport=" + passport +
+                "&number_education=" + binding.finishNumberEducationReg.text + "&login=" + binding.finishLoginReg.text)
+            .setPriority(Priority.IMMEDIATE)
+            .build()
+            .getAsJSONObject(object : JSONObjectRequestListener {
+                override fun onResponse(response: JSONObject) {
+                    val jsonNode : JsonNode = ObjectMapper().readTree(response.toString())
+                    messageAboutUnique = when (jsonNode["error"].asText()){
+                        "id" -> "Такой СНИЛС уже существует"
+                        "phone" -> "Такой номер телефона уже существует"
+                        "email" -> "Такая почта уже существует"
+                        "passport" -> "Такой паспорт уже существует"
+                        "number_education" -> "Такой номер об образовании уже существует"
+                        "login" -> "Такой логин уже существует"
+                        else -> null
+                    }
+                }
+                override fun onError(error: ANError) {
+                    Log.e("", "chechUnique")
+                }
+            });
+    }
+
+    private fun postUser(){
+        val jsonObject = JSONObject()
+        jsonObject.put("login", binding.finishLoginReg.text)
+            .put("password", HashPass.sha256(sharedPreferences?.all?.get("pass").toString() + HashPass.STATIC_SALT))
+            .put("salt1", "")
+            .put("salt2", "")
+            .put("id_abit", binding.finishSnillsReg.text.toString().replace("-", "").replace(" ", "").toLong())
+            .put("is_entry", false)
+        AndroidNetworking.post("https://vkr1-app.herokuapp.com/users/add")
+            .setPriority(Priority.IMMEDIATE)
+            .addJSONObjectBody(jsonObject)
+            .build()
+            .getAsJSONObject(object : JSONObjectRequestListener{
+                override fun onResponse(response: JSONObject) {
+                    Log.e("", response.toString())
+                }
+
+                override fun onError(anError: ANError) {
+                    Log.e("", "error post user")
+                }
+            })
+    }
+
+    private fun postAbit(){
+
+        val jsonObject = JSONObject()
+
+        var sex = true
+        if(binding.finishSexReg.text == "Женский") sex = false
+
+        jsonObject
+            .put("id",
+                binding.finishSnillsReg.text.toString().replace("-", "").replace(" ", "").toLong()
+            )
+            .put("phone", binding.finishPhoneReg.text.toString().replace("(", "").replace(")", "")
+                                                                      .replace(" ", "").replace("-", "").toLongOrNull())
+            .put("email", binding.finishEmailReg.text)
+            .put("family", binding.finishFamilyReg.text)
+            .put("name", binding.finishNameReg.text)
+            .put("patronymic", binding.finishPatronymicReg.text)
+            .put("sex", sex)
+            .put("id_nationality", sharedPreferences?.all?.get("nationality").toString().toInt())
+
+            .put("passport", (binding.finishSeriesPassportReg.text.toString().replace(" ", "")
+                    + binding.finishNumberPassportReg.text).toLong())
+
+            .put("departament_code", binding.finishCodeUnitReg.text.toString().replace("-", "").toInt())
+            .put("const_address", binding.finishConstAddressReg.text)
+            .put("actual_address", binding.finishActualAddressReg.text)
+            .put("id_education", sharedPreferences?.all?.get(EducationFragment().KEY_TYPE_EDUCATION_POSITION).toString().toInt())
+            .put("number_education", binding.finishNumberEducationReg.text.toString().toLongOrNull())
+            .put("reg_number_education", sharedPreferences?.all?.get(EducationFragment().KEY_REGISTRATION_NUMBER)?.toString()?.toIntOrNull())
+            .put("date_of_issing_passport", binding.finishDateOfIssuePassportReg.text)
+            .put("date_of_issing_education", binding.finishDateOfIssueEducationReg.text)
+            .put("date_of_birthday", binding.finishDateOfBirthdayReg.text)
+            .put("id_privileges", sharedPreferences?.all?.get(PrivilegesFragment().KEY_SELECTED_PRIVILEGES).toString().toInt() + 1)
+
+        Log.e("", jsonObject.toString())
+        AndroidNetworking.post("https://vkr1-app.herokuapp.com/abit/add")
+            .setPriority(Priority.IMMEDIATE)
+            .addJSONObjectBody(jsonObject)
+            .build()
+            .getAsJSONObject(object : JSONObjectRequestListener{
+                override fun onResponse(response: JSONObject) {
+                    Log.e("", response.toString())
+                }
+
+                override fun onError(anError: ANError?) {
+                    Log.e("", "error post abit")
+                }
+            })
+    }
 
 
 

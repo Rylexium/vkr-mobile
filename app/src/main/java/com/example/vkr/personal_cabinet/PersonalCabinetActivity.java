@@ -59,9 +59,7 @@ public class PersonalCabinetActivity extends AppCompatActivity {
 
     public static String idAbit;
     public static String idEducation;
-    public static String filter = "(id like '%.03.%' or id like '%.05.%')"; //id like '%.04.%'
-                                                                            //id like '%.06.%'
-                                                                            //(id like '%.03.%' or id like '%.05.%')
+
     public static List<Map<String, String>> specialitysAbit; //кэш
     public static Map<String, String> typeOfStudy;
     public static Map<String, String> instituts;
@@ -183,7 +181,6 @@ public class PersonalCabinetActivity extends AppCompatActivity {
 
     private void clearData(){
         idAbit = null;
-        filter = null;
         if(specialitysAbit != null)specialitysAbit.clear();
         specialitysAbit = null;
     }
@@ -319,6 +316,7 @@ public class PersonalCabinetActivity extends AppCompatActivity {
                     @Override
                     public void onError(ANError anError){
                         Log.e("", "tyt");
+                        specialitysAbit = new ArrayList<>();
                     }
 
                 });

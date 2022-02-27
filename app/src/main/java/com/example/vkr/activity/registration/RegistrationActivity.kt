@@ -8,6 +8,7 @@ import android.support.design.internal.BottomNavigationItemView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.MotionEvent
 
 import com.example.vkr.R
@@ -100,7 +101,7 @@ class RegistrationActivity : AppCompatActivity() {
                 .setPositiveButton("Да") {
                     dialog: DialogInterface, _: Int ->
                     dialog.dismiss()
-                    sharedPreferences!!.edit().clear().apply()
+                    sharedPreferences?.edit()?.clear()?.apply()
                     super.onBackPressed()
                 }
                 .setNegativeButton("Нет") {
