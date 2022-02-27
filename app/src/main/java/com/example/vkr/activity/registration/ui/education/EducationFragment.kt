@@ -202,7 +202,7 @@ class EducationFragment: Fragment() {
             Thread {
                 listRes.add("Выберите образование")
                 AndroidNetworking.get("https://vkr1-app.herokuapp.com/education")
-                    .setPriority(Priority.HIGH)
+                    .setPriority(Priority.IMMEDIATE)
                     .setOkHttpClient(OkHttpClient.Builder()
                             .connectTimeout(2, TimeUnit.SECONDS)
                             .build())

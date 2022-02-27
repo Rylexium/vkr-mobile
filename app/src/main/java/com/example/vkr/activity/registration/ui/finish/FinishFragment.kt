@@ -68,8 +68,6 @@ class FinishFragment : Fragment() {
                     && isValidSnillsFragment() && isValidEducationFragment()
             ){
                 postAbit()
-                postUser()
-
             }
         }
     }
@@ -233,6 +231,7 @@ class FinishFragment : Fragment() {
             .getAsJSONObject(object : JSONObjectRequestListener{
                 override fun onResponse(response: JSONObject) {
                     Log.e("", response.toString())
+                    postUser()
                 }
 
                 override fun onError(anError: ANError?) {

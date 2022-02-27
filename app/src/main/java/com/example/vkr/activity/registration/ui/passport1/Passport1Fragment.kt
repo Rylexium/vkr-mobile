@@ -77,7 +77,7 @@ class Passport1Fragment : Fragment() {
             listRes = ArrayList()
             listRes.add("Выберите гражданство")
             AndroidNetworking.get("https://vkr1-app.herokuapp.com/nationality")
-                .setPriority(Priority.HIGH)
+                .setPriority(Priority.IMMEDIATE)
                 .setOkHttpClient(OkHttpClient.Builder()
                     .connectTimeout(2, TimeUnit.SECONDS)
                     .build())

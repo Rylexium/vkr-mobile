@@ -96,7 +96,7 @@ class PrivilegesFragment : Fragment() {
         }
         sharedPreferences!!.edit()
             .putString(KEY_SELECTED_PRIVILEGES, binding.listboxPrivileges.selectedItemPosition.toString())
-            .putString(KEY_NAME_PRIVILEGES, binding.listboxPrivileges.selectedItem.toString())
+            .putString(KEY_NAME_PRIVILEGES, binding.listboxPrivileges.selectedItem?.toString())
             .apply()
     }
 
@@ -105,7 +105,7 @@ class PrivilegesFragment : Fragment() {
         if(listPrivileges.isEmpty()) {
             activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)!!.visibility = View.GONE
             AndroidNetworking.get("https://vkr1-app.herokuapp.com/privileges")
-                .setPriority(Priority.HIGH)
+                .setPriority(Priority.IMMEDIATE)
                 .setOkHttpClient(OkHttpClient.Builder()
                         .connectTimeout(2, TimeUnit.SECONDS)
                         .build())
