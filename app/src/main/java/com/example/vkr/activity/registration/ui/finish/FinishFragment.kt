@@ -24,7 +24,6 @@ import com.example.vkr.utils.HashPass
 import com.example.vkr.utils.ShowToast
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.google.gson.JsonObject
 
 import org.json.JSONObject
 
@@ -69,6 +68,7 @@ class FinishFragment : Fragment() {
             ){
                 postAbit()
                 postUser()
+
             }
         }
     }

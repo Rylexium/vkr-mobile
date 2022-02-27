@@ -227,7 +227,6 @@ public class MoreAboutTheSpecialityActivity extends AppCompatActivity {
         downloadSpeciality();
         downloadMinExams();
 
-
         for(int i=0; i<specialitysAbit.size() && !favorite; ++i)
             if(Objects.equals(specialitysAbit.get(i).get("id_spec"), idSpec)
                     && Objects.equals(specialitysAbit.get(i).get("id_abit"), PersonalCabinetActivity.idAbit)

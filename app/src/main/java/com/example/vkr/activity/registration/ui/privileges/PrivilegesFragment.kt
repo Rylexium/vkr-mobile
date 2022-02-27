@@ -59,9 +59,9 @@ class PrivilegesFragment : Fragment() {
 
     fun ApplyEvents() {
         binding.buttonAddPrivileges.setOnClickListener {
-            if(binding.layoutForImagesPrivileges.childCount < 5)
+            if(binding.layoutForImagesPrivileges.childCount < 1)
                 SelectImageClass.showMenu(activity!!, this, false)
-            else ShowToast.show(context, "Максимум 5 фотографий")
+            else ShowToast.show(context, "Максимум 1 фотография")
         }
     }
 
@@ -79,13 +79,9 @@ class PrivilegesFragment : Fragment() {
     }
 
     fun comebackAfterOnBackPressed () {
-        var restoredText: String? = activity!!.getPreferences(MODE_PRIVATE).getString(KEY_PRIVILIGE + "0", null)
-        var i = 1
-        while (restoredText != null && restoredText != "" && i < 5) {
+        val restoredText: String? = activity!!.getPreferences(MODE_PRIVATE).getString(KEY_PRIVILIGE + "0", null)
+        if(restoredText != null)
             EditLinearLayout.onAddField(ConvertClass.convertStringToBitmap(restoredText), binding.layoutForImagesPrivileges, activity)
-            restoredText = activity!!.getPreferences(MODE_PRIVATE).getString(KEY_PRIVILIGE + i, null)
-            i++
-        }
     }
 
     @SuppressLint("CommitPrefEdits")

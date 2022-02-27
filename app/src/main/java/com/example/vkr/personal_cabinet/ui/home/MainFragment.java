@@ -202,9 +202,9 @@ public class MainFragment extends Fragment {
 
     private void downloadImagesPassport(){
         binding.buttonGetImagesPassport.setEnabled(false);
-        String previousString = (String) binding.buttonGetImagesPassport.getText();
+        String previousText = (String) binding.buttonGetImagesPassport.getText();
         binding.buttonGetImagesPassport.setText("Загрузка фото...");
-        AndroidNetworking.get("https://vkr1-app.herokuapp.com/abit/passport?id_abit=" + PersonalCabinetActivity.idAbit)
+        AndroidNetworking.get("https://vkr1-app.herokuapp.com/abit/passport?id=" + PersonalCabinetActivity.idAbit)
                 .setPriority(Priority.HIGH)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
@@ -217,20 +217,24 @@ public class MainFragment extends Fragment {
                                 bitmapPassport2 = ConvertClass.convertStringToBitmap(jsonNode.get("passport2").asText());
 
                                 new Handler(Looper.getMainLooper()).post(() -> {
-                                    binding.buttonGetImagesPassport.setEnabled(true); //данные загрузились кнопка включена
-                                    binding.buttonGetImagesPassport.setText(previousString);
                                     setImages(bitmapPassport1, bitmapPassport2, binding.layoutForPagesPassport);
                                     isDownloadImagesPassport = false; //данные отобразились, поэтому след состояние будет не загружено на форму
                                 });
                             } catch (Exception e) {
                                 Log.e("", e.getMessage());
-                                new Handler(Looper.getMainLooper()).post(()->ShowToast.show(binding.getRoot().getContext(), "Изображений нет"));
+                                new Handler(Looper.getMainLooper()).post(()-> ShowToast.show(binding.getRoot().getContext(), "Изображений нет"));
                             }
+                            new Handler(Looper.getMainLooper()).post(()-> {
+                                binding.buttonGetImagesPassport.setEnabled(true); //данные загрузились кнопка включена
+                                binding.buttonGetImagesPassport.setText(previousText);
+                            });
                         }).start();
                     }
                     @Override
                     public void onError(ANError error) {
                         ShowToast.show(binding.getRoot().getContext(), "Изображений нет");
+                        binding.buttonGetImagesPassport.setEnabled(false);
+                        binding.buttonGetImagesPassport.setText(previousText);
                     }
                 });
     }
@@ -238,7 +242,7 @@ public class MainFragment extends Fragment {
         binding.buttonGetImagesEducation.setEnabled(false);
         String previousText = (String) binding.buttonGetImagesEducation.getText();
         binding.buttonGetImagesEducation.setText("Загрузка фото...");
-        AndroidNetworking.get("https://vkr1-app.herokuapp.com/abit/education?id_abit=" + PersonalCabinetActivity.idAbit)
+        AndroidNetworking.get("https://vkr1-app.herokuapp.com/abit/education?id=" + PersonalCabinetActivity.idAbit)
                 .setPriority(Priority.HIGH)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
@@ -251,15 +255,17 @@ public class MainFragment extends Fragment {
                                 bitmapEducation2 = ConvertClass.convertStringToBitmap(jsonNode.get("education2").asText());
 
                                 new Handler(Looper.getMainLooper()).post(() -> {
-                                    binding.buttonGetImagesEducation.setEnabled(true); //данные загрузились кнопка включена
-                                    binding.buttonGetImagesEducation.setText(previousText);
                                     setImages(bitmapEducation1, bitmapEducation1, binding.layoutForPagesEducation);
                                     isDownloadImagesEducation = false; //данные отобразились, поэтому след состояние будет не загружено на форму
                                 });
                             } catch (Exception e) {
                                 Log.e("", e.getMessage());
-                                new Handler(Looper.getMainLooper()).post(()->ShowToast.show(binding.getRoot().getContext(), "Изображений нет"));
+                                new Handler(Looper.getMainLooper()).post(()-> ShowToast.show(binding.getRoot().getContext(), "Изображений нет"));
                             }
+                            new Handler(Looper.getMainLooper()).post(()-> {
+                                binding.buttonGetImagesEducation.setEnabled(true);
+                                binding.buttonGetImagesEducation.setText(previousText);
+                            });
                         }).start();
 
                     }
@@ -276,7 +282,7 @@ public class MainFragment extends Fragment {
         String previousText = (String) binding.buttonGetImagePrivilege.getText();
         binding.buttonGetImagePrivilege.setText("Загрузка фото...");
 
-        AndroidNetworking.get("https://vkr1-app.herokuapp.com/abit/privileges?id_abit=" + PersonalCabinetActivity.idAbit)
+        AndroidNetworking.get("https://vkr1-app.herokuapp.com/abit/privileges?id=" + PersonalCabinetActivity.idAbit)
                 .setPriority(Priority.HIGH)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
@@ -288,14 +294,16 @@ public class MainFragment extends Fragment {
                                 bitmapPrivilege = ConvertClass.convertStringToBitmap(jsonNode.get("privilege").asText());
 
                                 new Handler(Looper.getMainLooper()).post(() -> {
-                                    binding.buttonGetImagePrivilege.setEnabled(true); //данные загрузились кнопка включена
-                                    binding.buttonGetImagePrivilege.setText(previousText);
                                     setImages(bitmapPrivilege, null, binding.layoutForPagePrivilege);
                                     isDownloadImagePrivilege = false; //данные отобразились, поэтому след состояние будет не загружено на форму
                                 });
                             } catch (Exception e) {
-                                new Handler(Looper.getMainLooper()).post(()->ShowToast.show(binding.getRoot().getContext(), "Изображений нет"));
+                                new Handler(Looper.getMainLooper()).post(()-> ShowToast.show(binding.getRoot().getContext(), "Изображений нет"));
                             }
+                            new Handler(Looper.getMainLooper()).post(()-> {
+                                binding.buttonGetImagePrivilege.setEnabled(true); //данные загрузились кнопка включена
+                                binding.buttonGetImagePrivilege.setText(previousText);
+                            });
                         }).start();
 
                     }
