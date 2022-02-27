@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="35dp"
             android:layout_marginEnd="35dp"
-            android:hint="Почта или номер телефона"
+            android:hint="Логин"
             android:textColorHint="@color/grey"
             app:boxStrokeColor="@color/blue_700"
             app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
