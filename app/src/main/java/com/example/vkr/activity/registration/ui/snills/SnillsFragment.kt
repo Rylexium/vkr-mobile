@@ -31,7 +31,7 @@ class SnillsFragment : Fragment() {
     var sharedPreferences : SharedPreferences? = null
 
     val KEY_SNILLS = "snills"
-    private val KEY_PHOTO_SNILLS = "photoSnills"
+    val KEY_PHOTO_SNILLS = "photoSnills"
 
     override fun onCreateView(
             inflater: LayoutInflater,

@@ -80,7 +80,7 @@ class PrivilegesFragment : Fragment() {
 
     fun comebackAfterOnBackPressed () {
         val restoredText: String? = activity!!.getPreferences(MODE_PRIVATE).getString(KEY_PRIVILIGE + "0", null)
-        if(restoredText != null)
+        if(!restoredText.isNullOrEmpty())
             EditLinearLayout.onAddField(ConvertClass.convertStringToBitmap(restoredText), binding.layoutForImagesPrivileges, activity)
     }
 

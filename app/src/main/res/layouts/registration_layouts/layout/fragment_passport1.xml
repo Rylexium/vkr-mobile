@@ -16,18 +16,16 @@
         android:focusable="true"
         android:focusableInTouchMode="true" >
 
-        <Button
-            android:id="@+id/make_passport1_photo"
+        <TextView
+            android:id="@+id/textViewRegistration"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginStart="9dp"
-            android:layout_marginTop="9dp"
-            android:layout_marginEnd="9dp"
-            android:background="@drawable/round_btn"
-            android:text="Введите данные и загрузите стр.3 паспорта"
+            android:layout_height="wrap_content"
+            android:text="Введите свои данные"
             android:textColor="@color/white"
-            android:textColorHint="@color/grey"
-            android:textSize="15sp" />
+            android:gravity="center"
+            android:textSize="35dp"
+            android:paddingTop="35dp"
+            />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -35,7 +33,7 @@
             android:layout_marginTop="15dp">
 
             <LinearLayout
-                android:layout_width="247dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:focusableInTouchMode="true"
                 android:orientation="vertical">
@@ -118,11 +116,6 @@
                         tools:ignore="TouchTargetSizeCheck" />
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
-            <ImageView
-                android:id="@+id/imageViewPassport1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginRight="9dp" />
         </LinearLayout>
 
         <LinearLayout

@@ -26,7 +26,7 @@ class AchievFragment: Fragment() {
     private var _binding: FragmentAchievBinding? = null
     private val binding get() = _binding!!
     private var sharedPreferences : SharedPreferences? = null
-    private val KEY_ACHIEVEMENT = "achievement_bitmap"
+    val KEY_ACHIEVEMENT = "achievement_bitmap"
 
     override fun onCreateView(
             inflater: LayoutInflater,

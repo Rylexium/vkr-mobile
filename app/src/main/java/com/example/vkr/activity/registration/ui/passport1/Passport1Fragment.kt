@@ -53,7 +53,6 @@ class Passport1Fragment : Fragment() {
     val KEY_DATE_OF_BIRTH = "date_of_birth"
     val KEY_NATIONALITY = "nationality"
     val KEY_NAME_NATIONALITY = "name_nationality"
-    val KEY_IMAGE_PASSPORT = "imagePassport"
     var listRes: MutableList<String> = ArrayList()
 
     var tryToConnect : Int = 0
@@ -69,8 +68,6 @@ class Passport1Fragment : Fragment() {
         downloadNationalitys()
         comebackAfterOnBackPressed()
         ApplyEvents()
-        if(bitmap == null)
-            binding.imageViewPassport1.setImageBitmap(ConvertClass.decodeSampledBitmapFromResource(resources, R.drawable.russian_passport, 100, 100))
         return binding.root
     }
 
@@ -143,11 +140,6 @@ class Passport1Fragment : Fragment() {
             binding.radiobuttonSex.isChecked = binding.radiobuttonSex.text.equals("Пол: Мужской")
         }
         wrapper(KEY_DATE_OF_BIRTH, binding.textboxDateOfBirth::setText)
-        val restoredText : String? = sharedPreferences?.getString(KEY_IMAGE_PASSPORT, null)
-        if (restoredText != null) {
-            bitmap = ConvertClass.convertStringToBitmap(sharedPreferences?.getString(KEY_IMAGE_PASSPORT, null))
-            binding.imageViewPassport1.setImageBitmap(bitmap)
-        }
         if (sharedPreferences?.getString(KEY_NATIONALITY, null) != null) {
             binding.listboxNationality.setSelection(sharedPreferences?.getString(KEY_NATIONALITY, null)!!.toInt())
         }
@@ -176,21 +168,12 @@ class Passport1Fragment : Fragment() {
             setVisibleNavigationBottomView(true)
             binding.passport1Layout.requestFocus()
         }
-        binding.makePassport1Photo.setOnClickListener{
-            SelectImageClass.showMenu(activity!!, this,false)
-            setVisibleNavigationBottomView(true)
-            binding.passport1Layout.requestFocus()
-        }
         binding.textboxDateOfBirth.setOnClickListener{
             SelectDateClass.showDatePickerDialogForBirthday(activity!! as AppCompatActivity?, binding.textboxDateOfBirth)
             setVisibleNavigationBottomView(true)
             binding.passport1Layout.requestFocus()
         }
         binding.passport1Layout.setOnClickListener{
-            setVisibleNavigationBottomView(true)
-            binding.passport1Layout.requestFocus()
-        }
-        binding.imageViewPassport1.setOnClickListener{
             setVisibleNavigationBottomView(true)
             binding.passport1Layout.requestFocus()
         }
@@ -223,18 +206,6 @@ class Passport1Fragment : Fragment() {
     }
 
 
-     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-         super.onActivityResult(requestCode, resultCode, data)
-         bitmap = null
-         if (resultCode == RESULT_OK) {
-             when (requestCode) {
-                 SelectImageClass.CAMERA -> bitmap = data?.extras!!["data"] as Bitmap?
-                 SelectImageClass.GALLERY -> bitmap = ConvertClass.decodeUriToBitmap(context, data?.data)
-             }
-             if(bitmap != null) binding.imageViewPassport1.setImageBitmap(bitmap)
-         }
-     }
-
     override fun onStop() {
         saveLastState()
         super.onStop()
@@ -248,7 +219,6 @@ class Passport1Fragment : Fragment() {
                 .putString(KEY_SEX, binding.radiobuttonSex.text.toString())
                 .putString(KEY_DATE_OF_BIRTH, binding.textboxDateOfBirth.text.toString())
                 .putString(KEY_NATIONALITY, binding.listboxNationality.selectedItemPosition.toString())
-                .putString(KEY_IMAGE_PASSPORT, ConvertClass.convertBitmapToString(bitmap))
                 .putString(KEY_NAME_NATIONALITY, binding.listboxNationality.selectedItem?.toString())
                 .apply()
     }

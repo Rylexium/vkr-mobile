@@ -291,7 +291,7 @@ public class MainFragment extends Fragment {
                         new Thread(()->{
                             try {
                                 JsonNode jsonNode = new ObjectMapper().readTree(response.toString());
-                                bitmapPrivilege = ConvertClass.convertStringToBitmap(jsonNode.get("privilege").asText());
+                                bitmapPrivilege = ConvertClass.convertStringToBitmap(jsonNode.get("privileges").asText());
 
                                 new Handler(Looper.getMainLooper()).post(() -> {
                                     setImages(bitmapPrivilege, null, binding.layoutForPagePrivilege);
@@ -319,6 +319,10 @@ public class MainFragment extends Fragment {
     private void setImages(Bitmap bitmap1, Bitmap bitmap2, LinearLayout linearLayout){
         LayoutInflater inflater = (LayoutInflater) Objects.requireNonNull(getActivity()).getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView1, rowView2;
+        if(bitmap1 == null && bitmap2 == null){
+            ShowToast.show(getContext(), "Изображений нет");
+            return;
+        }
         if(bitmap1 != null) {
             rowView1 = inflater.inflate(R.layout.field_for_image, null);
             ImageView image1 = rowView1.findViewById(R.id.field_image);

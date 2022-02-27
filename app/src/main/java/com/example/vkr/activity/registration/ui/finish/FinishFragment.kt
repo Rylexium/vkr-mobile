@@ -12,6 +12,7 @@ import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.common.Priority
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
+import com.example.vkr.activity.registration.ui.achievements.AchievFragment
 import com.example.vkr.activity.registration.ui.education.EducationFragment
 import com.example.vkr.activity.registration.ui.passport1.Passport1Fragment
 import com.example.vkr.activity.registration.ui.passport2.Passport2Fragment
@@ -162,6 +163,7 @@ class FinishFragment : Fragment() {
             .put("salt2", "")
             .put("id_abit", binding.finishSnillsReg.text.toString().replace("-", "").replace(" ", "").toLong())
             .put("is_entry", false)
+        Log.e("", jsonObject.toString());
         AndroidNetworking.post("https://vkr1-app.herokuapp.com/users/add")
             .setPriority(Priority.IMMEDIATE)
             .addJSONObjectBody(jsonObject)
@@ -210,6 +212,18 @@ class FinishFragment : Fragment() {
             .put("date_of_issing_education", binding.finishDateOfIssueEducationReg.text)
             .put("date_of_birthday", binding.finishDateOfBirthdayReg.text)
             .put("id_privileges", sharedPreferences?.all?.get(PrivilegesFragment().KEY_SELECTED_PRIVILEGES).toString().toInt() + 1)
+            .put("passport1", sharedPreferences?.all?.get(Passport2Fragment().KEY_IMAGE_PASSPORT2).toString())
+            .put("passport2", sharedPreferences?.all?.get(Passport3Fragment().KEY_IMAGE_PASSPORT3).toString())
+            .put("snills", sharedPreferences?.all?.get(SnillsFragment().KEY_PHOTO_SNILLS).toString())
+            .put("education1", sharedPreferences?.all?.get(EducationFragment().KEY_EDUCATION_PICTURE1).toString())
+            .put("education2", sharedPreferences?.all?.get(EducationFragment().KEY_EDUCATION_PICTURE2).toString())
+            .put("achievement1", sharedPreferences?.all?.get(AchievFragment().KEY_ACHIEVEMENT + "0").toString())
+            .put("achievement2", sharedPreferences?.all?.get(AchievFragment().KEY_ACHIEVEMENT + "1").toString())
+            .put("achievement3", sharedPreferences?.all?.get(AchievFragment().KEY_ACHIEVEMENT + "2").toString())
+            .put("achievement4", sharedPreferences?.all?.get(AchievFragment().KEY_ACHIEVEMENT + "3").toString())
+            .put("achievement5", sharedPreferences?.all?.get(AchievFragment().KEY_ACHIEVEMENT + "4").toString())
+            .put("privileges", sharedPreferences?.all?.get(PrivilegesFragment().KEY_PRIVILIGE + "0").toString())
+
 
         Log.e("", jsonObject.toString())
         AndroidNetworking.post("https://vkr1-app.herokuapp.com/abit/add")
