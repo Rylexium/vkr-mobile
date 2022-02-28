@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            app:cardCornerRadius="20dp"
+            app:cardCornerRadius="35dp"
             app:cardElevation="0dp"
             android:outlineSpotShadowColor="@android:color/transparent"
             >
@@ -41,6 +41,7 @@
                     android:textStyle="bold"
                     android:paddingStart="15dp"
                     android:textSize="24dp"
+                    android:gravity="center|left"
                     android:textColor="@color/white"
                     android:layout_marginLeft="9dp"
                     />
@@ -49,6 +50,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
+                    android:gravity="center|left"
                     android:textStyle="bold"
                     android:textSize="24dp"
                     android:textColor="@color/white"

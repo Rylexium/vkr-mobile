@@ -9,10 +9,10 @@
                 android:endColor="@color/blue_700"
                 android:startColor="#00cc00" />
             <corners
-                android:topRightRadius="100dp"
-                android:topLeftRadius="100dp"
-                android:bottomLeftRadius="100dp"
-                android:bottomRightRadius="100dp"
+                android:topRightRadius="80dp"
+                android:topLeftRadius="80dp"
+                android:bottomLeftRadius="80dp"
+                android:bottomRightRadius="80dp"
                 />
         </shape>
     </item>
@@ -24,10 +24,10 @@
                 android:endColor="@color/blue_700"
                 android:startColor="#00cc00" />
             <corners
-                android:topRightRadius="100dp"
-                android:topLeftRadius="100dp"
-                android:bottomLeftRadius="100dp"
-                android:bottomRightRadius="100dp"
+                android:topRightRadius="80dp"
+                android:topLeftRadius="80dp"
+                android:bottomLeftRadius="80dp"
+                android:bottomRightRadius="80dp"
                 />
         </shape>
     </item>
@@ -36,10 +36,10 @@
         <shape>
             <solid android:color="@color/blue_700"/>
             <corners
-                android:topRightRadius="100dp"
-                android:topLeftRadius="100dp"
-                android:bottomLeftRadius="100dp"
-                android:bottomRightRadius="100dp"
+                android:topRightRadius="80dp"
+                android:topLeftRadius="80dp"
+                android:bottomLeftRadius="80dp"
+                android:bottomRightRadius="80dp"
                 />
         </shape>
     </item>
