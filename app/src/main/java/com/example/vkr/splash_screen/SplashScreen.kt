@@ -3,6 +3,8 @@ package com.example.vkr.splash_screen
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.MotionEvent
 import android.widget.LinearLayout
 import com.androidnetworking.AndroidNetworking
@@ -12,9 +14,7 @@ import com.androidnetworking.interfaces.JSONArrayRequestListener
 import com.example.vkr.R
 import com.example.vkr.activity.authorization.AuthorizationActivity
 import com.example.vkr.utils.ShowToast
-import okhttp3.OkHttpClient
 import org.json.JSONArray
-import java.util.concurrent.TimeUnit
 import kotlin.random.Random
 
 class SplashScreen : AppCompatActivity() {
@@ -28,7 +28,7 @@ class SplashScreen : AppCompatActivity() {
         val view = findViewById<LinearLayout>(R.id.splash_layout)
         view.alpha = 0f
 
-        checkConnect(0)
+        checkConnect()
 
         view.animate().setDuration(Random.nextInt(1000, 2500).toLong()).alpha(1f).withEndAction{
             Thread {
@@ -40,28 +40,31 @@ class SplashScreen : AppCompatActivity() {
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
-        checkConnect(0)
+        checkConnect()
         return true
     }
 
-    private fun checkConnect(tryConnect : Int){
+    private fun checkConnect(){
         val activity = this
-        AndroidNetworking.get("https://vkr1-app.herokuapp.com/nationality")
-            .setPriority(Priority.IMMEDIATE)
-            .setOkHttpClient(OkHttpClient.Builder()
-                    .connectTimeout(2, TimeUnit.SECONDS)
-                    .build())
-            .build()
-            .getAsJSONArray(object : JSONArrayRequestListener {
-                override fun onResponse(response: JSONArray) {
-                    isConnect = true
-                }
+        val mainHandler = Handler(Looper.getMainLooper())
+        var count = 0
+        mainHandler.post(object : Runnable {
+            override fun run() {
+                AndroidNetworking.get("https://vkr1-app.herokuapp.com/nationality")
+                    .setPriority(Priority.IMMEDIATE)
+                    .build()
+                    .getAsJSONArray(object : JSONArrayRequestListener {
+                        override fun onResponse(response: JSONArray) {
+                            isConnect = true
+                        }
 
-                override fun onError(anError: ANError?) {
-                    ShowToast.show(activity, "Проверьте подключение к интернету")
-                    if(tryConnect <= 3)
-                        checkConnect(tryConnect + 1)
-                }
-            })
+                        override fun onError(anError: ANError?) {
+                            if(count < 2) ShowToast.show(activity, "Проверьте подключение к интернету")
+                        }
+                    })
+                count++
+                mainHandler.postDelayed(this, 1000)
+            }
+        })
     }
 }
