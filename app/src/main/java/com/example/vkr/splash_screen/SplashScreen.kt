@@ -11,7 +11,10 @@ import com.androidnetworking.interfaces.JSONArrayRequestListener
 import com.example.vkr.R
 import com.example.vkr.activity.authorization.AuthorizationActivity
 import com.example.vkr.utils.ShowToast
+import okhttp3.OkHttpClient
 import org.json.JSONArray
+import java.util.concurrent.TimeUnit
+import kotlin.random.Random
 
 class SplashScreen : AppCompatActivity() {
 
@@ -26,7 +29,7 @@ class SplashScreen : AppCompatActivity() {
 
         checkConnect(0)
 
-        view.animate().setDuration(1500).alpha(1f).withEndAction{
+        view.animate().setDuration(Random.nextInt(1000, 2500).toLong()).alpha(1f).withEndAction{
             Thread {
                 while (!isConnect) { } //ждём когда коннект будет установлен
                 startActivity(Intent(this, AuthorizationActivity::class.java))
@@ -37,9 +40,13 @@ class SplashScreen : AppCompatActivity() {
 
     private fun checkConnect(tryConnect : Int){
         val activity = this
+        var timeout = 2
+        if(tryConnect == 4) timeout = 120
         AndroidNetworking.get("https://vkr1-app.herokuapp.com/nationality")
-            .setTag("tryConnect$tryConnect")
             .setPriority(Priority.IMMEDIATE)
+            .setOkHttpClient(OkHttpClient.Builder()
+                    .connectTimeout(timeout.toLong(), TimeUnit.SECONDS)
+                    .build())
             .build()
             .getAsJSONArray(object : JSONArrayRequestListener {
                 override fun onResponse(response: JSONArray) {
@@ -48,7 +55,6 @@ class SplashScreen : AppCompatActivity() {
 
                 override fun onError(anError: ANError?) {
                     ShowToast.show(activity, "Проверьте подключение к интернету")
-                    println("tryConnect: $tryConnect")
                     if(tryConnect <= 3)
                         checkConnect(tryConnect + 1)
                 }
