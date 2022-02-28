@@ -46,7 +46,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.1"
-                    android:background="@color/black"
+                    android:background="@color/blue_700"
                     android:gravity="center" />
                 <EditText
                     android:id="@+id/text_points_of_exam_noedit"
