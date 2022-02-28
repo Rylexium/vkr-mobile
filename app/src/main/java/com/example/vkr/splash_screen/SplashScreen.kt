@@ -3,6 +3,7 @@ package com.example.vkr.splash_screen
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MotionEvent
 import android.widget.LinearLayout
 import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.common.Priority
@@ -38,14 +39,17 @@ class SplashScreen : AppCompatActivity() {
         }
     }
 
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        checkConnect(0)
+        return true
+    }
+
     private fun checkConnect(tryConnect : Int){
         val activity = this
-        var timeout = 2
-        if(tryConnect == 4) timeout = 120
         AndroidNetworking.get("https://vkr1-app.herokuapp.com/nationality")
             .setPriority(Priority.IMMEDIATE)
             .setOkHttpClient(OkHttpClient.Builder()
-                    .connectTimeout(timeout.toLong(), TimeUnit.SECONDS)
+                    .connectTimeout(2, TimeUnit.SECONDS)
                     .build())
             .build()
             .getAsJSONArray(object : JSONArrayRequestListener {
