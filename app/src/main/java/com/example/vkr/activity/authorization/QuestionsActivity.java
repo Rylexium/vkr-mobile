@@ -1,12 +1,18 @@
 package com.example.vkr.activity.authorization;
 
+import android.animation.LayoutTransition;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.transition.AutoTransition;
+import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -52,6 +58,7 @@ public class QuestionsActivity extends AppCompatActivity {
     private Button btnNeedToBeEnrolled;
     private boolean isPressedBtnNeedToBeEnrolled = false;
 
+    private LinearLayout mainLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +72,13 @@ public class QuestionsActivity extends AppCompatActivity {
     }
 
     private void setTextForQuestion(boolean isPressed, LinearLayout linearLayout, String text){
+
+        TransitionManager.beginDelayedTransition(linearLayout, new AutoTransition());
+        linearLayout.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
+
+        TransitionManager.beginDelayedTransition(mainLayout, new AutoTransition());
+        mainLayout.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
+
         if(!isPressed){
             LayoutInflater inflater=(LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             final View rowView=inflater.inflate(R.layout.field_for_questions, null);
@@ -123,6 +137,8 @@ public class QuestionsActivity extends AppCompatActivity {
     }
 
     private void initComponents(){
+        mainLayout = findViewById(R.id.questions_main_layout);
+
         documentsNeededLayout = findViewById(R.id.documents_needed_layout);
         btnDocumentsNeeded = findViewById(R.id.btn_documents_needed);
 

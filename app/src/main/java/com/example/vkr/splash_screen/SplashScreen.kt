@@ -26,7 +26,7 @@ class SplashScreen : AppCompatActivity() {
 
         checkConnect(0)
 
-        view.animate().setDuration(2000).alpha(1f).withEndAction{
+        view.animate().setDuration(500).alpha(1f).withEndAction{
             Thread {
                 while (!isConnect) { } //ждём когда коннект будет установлен
                 startActivity(Intent(this, AuthorizationActivity::class.java))

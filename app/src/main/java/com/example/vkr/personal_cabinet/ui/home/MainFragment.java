@@ -1,5 +1,6 @@
 package com.example.vkr.personal_cabinet.ui.home;
 
+import android.animation.LayoutTransition;
 import android.arch.lifecycle.ViewModelProvider;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -7,6 +8,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.design.widget.FloatingActionButton;
+import android.transition.AutoTransition;
+import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -140,52 +143,30 @@ public class MainFragment extends Fragment {
 
     private void ApplyEvents() {
         binding.buttonGetImagesPassport.setOnClickListener(view -> {
-            if(isDownloadImagesPassport == null){
-                downloadImagesPassport();
-            }
+            if(isDownloadImagesPassport == null) downloadImagesPassport();
             else {
-                if(isDownloadImagesPassport){
-                    setImages(bitmapPassport1, bitmapPassport2, binding.layoutForPagesPassport);
-                }
+                if (isDownloadImagesPassport) setImages(bitmapPassport1, bitmapPassport2, binding.layoutForPagesPassport);
                 else{
-                    binding.scrollviewHomeFragment.scrollTo(binding.textviewDateOfIssingPassport.getScrollX(), binding.textviewDateOfIssingPassport.getScrollY());
-                    while(binding.layoutForPagesPassport.getChildCount() != 1){
-                        binding.layoutForPagesPassport.removeViewAt(0);
-                    }
+                    binding.scrollviewHomeFragment.scrollTo(0, binding.textviewDateOfIssingPassport.getScrollY());
+                    removeAllItem(binding.layoutForPagesPassport);
                 }
                 isDownloadImagesPassport = !isDownloadImagesPassport;
             }
 
         });
         binding.buttonGetImagesEducation.setOnClickListener(view -> {
-            if(isDownloadImagesEducation == null){
-                downloadImagesEducation();
-            }
+            if(isDownloadImagesEducation == null) downloadImagesEducation();
             else {
-                if(isDownloadImagesEducation){
-                    setImages(bitmapEducation1, bitmapEducation2, binding.layoutForPagesPassport);
-                }
-                else{
-                    while(binding.layoutForPagesEducation.getChildCount() != 1){
-                        binding.layoutForPagesEducation.removeViewAt(0);
-                    }
-                }
+                if(isDownloadImagesEducation) setImages(bitmapEducation1, bitmapEducation2, binding.layoutForPagesEducation);
+                else removeAllItem(binding.layoutForPagesEducation);
                 isDownloadImagesEducation = !isDownloadImagesEducation;
             }
         });
         binding.buttonGetImagePrivilege.setOnClickListener(view -> {
-            if(isDownloadImagePrivilege == null){
-                downloadImagePrivilege();
-            }
+            if(isDownloadImagePrivilege == null) downloadImagePrivilege();
             else {
-                if(isDownloadImagePrivilege){
-                    setImages(bitmapPrivilege, null, binding.layoutForPagePrivilege);
-                }
-                else{
-                    while(binding.layoutForPagePrivilege.getChildCount() != 1){
-                        binding.layoutForPagePrivilege.removeViewAt(0);
-                    }
-                }
+                if(isDownloadImagePrivilege) setImages(bitmapPrivilege, null, binding.layoutForPagePrivilege);
+                else removeAllItem(binding.layoutForPagePrivilege);
                 isDownloadImagePrivilege = !isDownloadImagePrivilege;
             }
         });
@@ -317,6 +298,12 @@ public class MainFragment extends Fragment {
     }
 
     private void setImages(Bitmap bitmap1, Bitmap bitmap2, LinearLayout linearLayout){
+        TransitionManager.beginDelayedTransition(binding.fragmentMainMainLayout, new AutoTransition());
+        binding.fragmentMainMainLayout.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
+
+        TransitionManager.beginDelayedTransition(linearLayout, new AutoTransition());
+        linearLayout.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
+
         LayoutInflater inflater = (LayoutInflater) Objects.requireNonNull(getActivity()).getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView1, rowView2;
         if(bitmap1 == null && bitmap2 == null){
@@ -338,6 +325,17 @@ public class MainFragment extends Fragment {
             image2.setMinimumHeight(1000);
             image2.setMinimumWidth(1000);
             linearLayout.addView(rowView2, 1);
+        }
+    }
+
+    private void removeAllItem(LinearLayout linearLayout){
+        TransitionManager.beginDelayedTransition(binding.fragmentMainMainLayout, new AutoTransition());
+        binding.fragmentMainMainLayout.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
+
+        TransitionManager.beginDelayedTransition(binding.layoutForPagesEducation, new AutoTransition());
+        binding.layoutForPagesEducation.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
+        while(linearLayout.getChildCount() != 1){
+            linearLayout.removeViewAt(0);
         }
     }
 

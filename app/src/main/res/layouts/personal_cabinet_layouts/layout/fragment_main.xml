@@ -8,8 +8,10 @@
     android:fillViewport="true"
     android:background="@color/white"
     android:nestedScrollingEnabled="true"
+    android:animateLayoutChanges="true"
     tools:context=".personal_cabinet.ui.home.MainFragment">
     <LinearLayout
+        android:id="@+id/fragment_main_main_layout"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,6 +19,7 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="9dp"
         android:gravity="center"
+        android:animateLayoutChanges="true"
         android:focusableInTouchMode="true" >
 
 
@@ -31,6 +34,7 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"
                 android:background="@color/blue_500"
                 >
                 <TextView
@@ -62,13 +66,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            app:cardCornerRadius="20dp"
+            app:cardCornerRadius="25dp"
             app:cardElevation="0dp"
             >
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/neutral_cradient"
+                android:animateLayoutChanges="true"
                 android:orientation="vertical"
                 >
                 <TextView
@@ -87,6 +92,7 @@
                     android:orientation="vertical"
                     android:layout_marginLeft="9dp"
                     android:layout_marginRight="9dp"
+                    android:animateLayoutChanges="true"
                     >
                     <LinearLayout
                         android:orientation="horizontal"
@@ -258,6 +264,7 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"
                 >
                 <Button
                     android:id="@+id/button_get_images_passport"
@@ -276,7 +283,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            app:cardCornerRadius="20dp"
+            app:cardCornerRadius="25dp"
             app:cardElevation="0dp"
             >
             <LinearLayout
@@ -359,7 +366,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            app:cardCornerRadius="20dp"
+            app:cardCornerRadius="25dp"
             app:cardElevation="0dp"
             >
             <LinearLayout
@@ -484,6 +491,7 @@
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
                     >
                     <Button
                         android:id="@+id/button_get_images_education"
@@ -503,7 +511,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            app:cardCornerRadius="20dp"
+            app:cardCornerRadius="25dp"
             app:cardElevation="0dp"
             >
             <LinearLayout
@@ -555,6 +563,7 @@
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
                     >
                     <Button
                         android:id="@+id/button_get_image_privilege"
@@ -572,7 +581,7 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="150dp"
             />
     </LinearLayout>
 </ScrollView>
