@@ -24,7 +24,6 @@
             android:layout_height="wrap_content"
             app:cardCornerRadius="20dp"
             app:cardElevation="0dp"
-            android:outlineSpotShadowColor="@android:color/transparent"
             >
 
             <LinearLayout
@@ -152,7 +151,6 @@
             android:layout_marginTop="15dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="0dp"
-            android:outlineSpotShadowColor="@android:color/transparent"
             >
             <LinearLayout
                 android:orientation="vertical"
@@ -177,7 +175,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:focusable="true"
-                    android:paddingStart="15dp"
                     android:focusableInTouchMode="true" >
                     <TextView
                         android:layout_width="190dp"
@@ -192,6 +189,7 @@
                         android:layout_height="wrap_content"
                         android:text="Азизов"
                         android:textSize="18dp"
+                        android:layout_marginLeft="15dp"
                         android:textColor="@color/black"
                         />
                 </LinearLayout>
@@ -325,7 +323,6 @@
             android:layout_marginTop="15dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="0dp"
-            android:outlineSpotShadowColor="@android:color/transparent"
             >
             <LinearLayout
                 android:orientation="vertical"
@@ -452,7 +449,6 @@
             android:layout_marginTop="15dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="0dp"
-            android:outlineSpotShadowColor="@android:color/transparent"
             >
             <LinearLayout
                 android:orientation="vertical"
@@ -529,7 +525,6 @@
             android:layout_marginTop="15dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="0dp"
-            android:outlineSpotShadowColor="@android:color/transparent"
             >
             <LinearLayout
                 android:orientation="vertical"
@@ -584,7 +579,6 @@
             android:layout_marginTop="15dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="0dp"
-            android:outlineSpotShadowColor="@android:color/transparent"
             >
             <LinearLayout
                 android:orientation="vertical"
@@ -689,7 +683,6 @@
             android:layout_marginTop="15dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="0dp"
-            android:outlineSpotShadowColor="@android:color/transparent"
             >
             <LinearLayout
                 android:orientation="vertical"
