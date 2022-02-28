@@ -3,6 +3,7 @@ package com.example.vkr.activity.authorization;
 import android.animation.LayoutTransition;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v4.content.ContextCompat;
@@ -86,7 +87,10 @@ public class QuestionsActivity extends AppCompatActivity {
             textQuestion.setText(text);
             linearLayout.addView(rowView);
         }
-        else linearLayout.removeViewAt(linearLayout.getChildCount() - 1);
+        else{
+            linearLayout.getChildAt(linearLayout.getChildCount() - 1).setVisibility(View.GONE);
+            new Handler(Looper.getMainLooper()).postDelayed(()->linearLayout.removeViewAt(linearLayout.getChildCount() - 1), 200);
+        }
     }
 
     private void applyEvents(){
