@@ -16,6 +16,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VKR">
         <activity
+            android:name=".splash_screen.SplashScreen"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".activity.registration.RegistrationActivity"
             android:exported="false"
             android:label="@string/title_activity_registration" />
@@ -38,13 +47,7 @@
             android:exported="false" />
         <activity
             android:name=".activity.authorization.AuthorizationActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false" />
     </application>
 
 </manifest>
