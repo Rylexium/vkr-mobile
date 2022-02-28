@@ -89,7 +89,7 @@ public class QuestionsActivity extends AppCompatActivity {
         }
         else{
             linearLayout.getChildAt(linearLayout.getChildCount() - 1).setVisibility(View.GONE);
-            new Handler(Looper.getMainLooper()).postDelayed(()->linearLayout.removeViewAt(linearLayout.getChildCount() - 1), 200);
+            new Handler(Looper.getMainLooper()).postDelayed(()->linearLayout.removeViewAt(linearLayout.getChildCount() - 1), 250);
         }
     }
 
