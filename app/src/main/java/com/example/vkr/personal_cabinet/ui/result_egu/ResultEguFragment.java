@@ -52,7 +52,7 @@ public class ResultEguFragment extends Fragment {
         EditText points = rowView.findViewById(R.id.text_points_of_exam_noedit);
         EditText year = rowView.findViewById(R.id.spinner_date_exam_noedit);
 
-        exam.setText(nameExam);
+        exam.setText(nameExam + ":");
         points.setText(pointsExam);
         //pointsExams < 39 ? color.red : color.black
         points.setTextColor( Integer.parseInt(pointsExam) < Integer.parseInt(Objects.requireNonNull(viewModel.getMinPointsExams().get(nameExam)))? Color.RED : Color.BLACK);
@@ -64,16 +64,12 @@ public class ResultEguFragment extends Fragment {
 
     private void addFieldSumExams() {
         LayoutInflater inflater = (LayoutInflater) Objects.requireNonNull(getActivity()).getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View rowView = inflater.inflate(R.layout.field_for_exam_noedit, null);
+        final View rowView = inflater.inflate(R.layout.field_for_sum_exams, null);
         EditText exam = rowView.findViewById(R.id.exam_noedit);
         EditText points = rowView.findViewById(R.id.text_points_of_exam_noedit);
 
-        exam.setText("Сумма баллов ЕГЭ");
+        exam.setText("Сумма баллов ЕГЭ:");
         points.setText(String.valueOf(viewModel.getExams().stream().mapToInt(e -> Integer.parseInt(e.get(1))).sum()));
-
-        LinearLayout ll = rowView.findViewById(R.id.field_for_exam_noedit_main_layout);
-        LinearLayout ll1 = rowView.findViewById(R.id.field_for_exam_noedit_layout2);
-        ll.removeView(ll1);
 
         layoutOfExams.addView(rowView);
     }
