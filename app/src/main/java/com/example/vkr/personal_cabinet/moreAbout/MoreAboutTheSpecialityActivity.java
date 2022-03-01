@@ -190,20 +190,23 @@ public class MoreAboutTheSpecialityActivity extends AppCompatActivity {
     }
 
     private void setTextForTitle(boolean isPressed, LinearLayout linearLayout, String text, ImageView status){
+        TransitionManager.beginDelayedTransition(linearLayout, new AutoTransition());
+        linearLayout.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGE_APPEARING);
         if(!isPressed){
-            TransitionManager.beginDelayedTransition(linearLayout, new AutoTransition());
-            linearLayout.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
-
             LayoutInflater inflater=(LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             final View rowView=inflater.inflate(R.layout.field_for_text, null);
+            rowView.setVisibility(View.VISIBLE);
             TextView textQuestion = rowView.findViewById(R.id.text_question);
             textQuestion.setText(text);
             linearLayout.addView(rowView);
             status.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_baseline_arrow_back_24));
+
         }
         else {
+            linearLayout.getChildAt(linearLayout.getChildCount() - 1).setVisibility(View.GONE);
             linearLayout.removeViewAt(linearLayout.getChildCount() - 1);
             status.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_baseline_arrow_downward_24));
+
         }
     }
 
