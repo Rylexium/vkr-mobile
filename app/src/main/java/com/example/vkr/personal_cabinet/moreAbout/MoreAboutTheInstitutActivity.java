@@ -2,13 +2,17 @@ package com.example.vkr.personal_cabinet.moreAbout;
 
 import static java.util.Arrays.asList;
 
+import android.animation.LayoutTransition;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.transition.AutoTransition;
+import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -89,10 +93,12 @@ public class MoreAboutTheInstitutActivity extends AppCompatActivity {
         });
     }
     private void fillSpeciality(boolean isPress, ImageView status) {
+        TransitionManager.beginDelayedTransition(layoutSpecialityInfo, new AutoTransition());
+        layoutSpecialityInfo.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
         if(isPress) {
             for (int i = 0; i < specialitys.size(); i++) {
                 LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View rowView = inflater.inflate(R.layout.field_for_questions, null);
+                View rowView = inflater.inflate(R.layout.field_for_text, null);
                 TextView text = rowView.findViewById(R.id.text_question);
                 text.setText(String.format("%s %s", specialitys.get(i).get(0), specialitys.get(i).get(1)));
                 layoutSpecialityInfo.addView(rowView);

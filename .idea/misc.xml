@@ -40,7 +40,7 @@
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/drawable/neutral_cradient1.xml" value="0.205" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/drawable/side_nav_bar.xml" value="0.3675" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/layout-v28/fragment_main.xml" value="0.25" />
-        <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/layout/activity_more_about_the_institut.xml" value="0.39479166666666665" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/layout/activity_more_about_the_institut.xml" value="0.25" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/layout/activity_more_about_the_speciality.xml" value="0.25" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/layout/app_bar_personal_cabinet.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/layout/content_personal_cabinet.xml" value="0.22083333333333333" />
@@ -101,6 +101,7 @@
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/supporting_layouts/layout/field_for_speciality.xml" value="0.33" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/supporting_layouts/layout/field_for_statement.xml" value="0.5" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/supporting_layouts/layout/field_for_sum_exams.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/supporting_layouts/layout/field_for_text.xml" value="0.14308363059849386" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/supporting_layouts/layout/list_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/supporting_layouts/layout/spinner_item.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/supporting_layouts/layout/splash_screen_activity.xml" value="0.25" />

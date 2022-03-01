@@ -3,8 +3,10 @@ package com.example.vkr.personal_cabinet.moreAbout;
 import static com.example.vkr.personal_cabinet.PersonalCabinetActivity.specialitysAbit;
 import static java.util.Arrays.asList;
 
+import android.animation.LayoutTransition;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.design.widget.Snackbar;
@@ -13,6 +15,8 @@ import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.view.menu.ActionMenuItemView;
+import android.transition.AutoTransition;
+import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -187,8 +191,11 @@ public class MoreAboutTheSpecialityActivity extends AppCompatActivity {
 
     private void setTextForTitle(boolean isPressed, LinearLayout linearLayout, String text, ImageView status){
         if(!isPressed){
+            TransitionManager.beginDelayedTransition(linearLayout, new AutoTransition());
+            linearLayout.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
+
             LayoutInflater inflater=(LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            final View rowView=inflater.inflate(R.layout.field_for_questions, null);
+            final View rowView=inflater.inflate(R.layout.field_for_text, null);
             TextView textQuestion = rowView.findViewById(R.id.text_question);
             textQuestion.setText(text);
             linearLayout.addView(rowView);
