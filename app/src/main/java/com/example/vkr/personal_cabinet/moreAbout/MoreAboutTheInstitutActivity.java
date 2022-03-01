@@ -196,7 +196,7 @@ public class MoreAboutTheInstitutActivity extends AppCompatActivity {
                                         break;
                                     case 4:
                                         findViewById(R.id.more_about_the_institut_main_layout).setBackground(ContextCompat.getDrawable(activity, R.drawable.cradient4));
-                                        card.setCardBackgroundColor(Color.parseColor("#013220g"));
+                                        card.setCardBackgroundColor(Color.parseColor("#013220"));
                                         break;
                                     case 5:
                                         findViewById(R.id.more_about_the_institut_main_layout).setBackground(ContextCompat.getDrawable(activity, R.drawable.cradient5));
