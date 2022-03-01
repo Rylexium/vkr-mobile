@@ -72,7 +72,7 @@ public class QuestionsActivity extends AppCompatActivity {
         applyEvents();
     }
 
-    private void setTextForQuestion(boolean isPressed, LinearLayout linearLayout, String text){
+    private void setTextForQuestion(boolean isPressed, LinearLayout linearLayout, String text, Button button){
 
         TransitionManager.beginDelayedTransition(linearLayout, new AutoTransition());
         linearLayout.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
@@ -88,54 +88,67 @@ public class QuestionsActivity extends AppCompatActivity {
             linearLayout.addView(rowView);
         }
         else{
+            button.setClickable(false);
             linearLayout.getChildAt(linearLayout.getChildCount() - 1).setVisibility(View.GONE);
-            new Handler(Looper.getMainLooper()).postDelayed(()->linearLayout.removeViewAt(linearLayout.getChildCount() - 1), 250);
+            new Handler(Looper.getMainLooper()).postDelayed(()-> {
+                linearLayout.removeViewAt(linearLayout.getChildCount() - 1);
+                button.setClickable(true);
+            }, 250);
         }
     }
 
     private void applyEvents(){
         btnDocumentsNeeded.setOnClickListener(view-> {
-            setTextForQuestion(isPressedBtnDocumentsNeeded, documentsNeededLayout, getResources().getString(R.string.question1));
+            setTextForQuestion(isPressedBtnDocumentsNeeded, documentsNeededLayout,
+                    getResources().getString(R.string.question1), btnDocumentsNeeded);
             isPressedBtnDocumentsNeeded = !isPressedBtnDocumentsNeeded;
         });
 
         btnHowHowToApply.setOnClickListener(view->{
-            setTextForQuestion(isPressedBtnHowToApply, howToApplyLayout, getResources().getString(R.string.question2));
+            setTextForQuestion(isPressedBtnHowToApply, howToApplyLayout,
+                    getResources().getString(R.string.question2), btnHowHowToApply);
             isPressedBtnHowToApply = !isPressedBtnHowToApply;
         });
 
         btnPassingScore.setOnClickListener(view -> {
-            setTextForQuestion(isPressedBtnPassingScore, passingScoreLayout, getResources().getString(R.string.question3));
+            setTextForQuestion(isPressedBtnPassingScore, passingScoreLayout,
+                    getResources().getString(R.string.question3), btnPassingScore);
             isPressedBtnPassingScore = !isPressedBtnPassingScore;
         });
 
         btnMedicalCard.setOnClickListener(view->{
-            setTextForQuestion(isPressedBtnMedicalCard, medicalCardLayout, getResources().getString(R.string.question4));
+            setTextForQuestion(isPressedBtnMedicalCard, medicalCardLayout,
+                    getResources().getString(R.string.question4), btnMedicalCard);
             isPressedBtnMedicalCard = !isPressedBtnMedicalCard;
         });
 
         btnCopyOfDocuments.setOnClickListener(view->{
-            setTextForQuestion(isPressedBtnCopyOfDocuments, сopyOfDocumentsLayout, getResources().getString(R.string.question5));
+            setTextForQuestion(isPressedBtnCopyOfDocuments, сopyOfDocumentsLayout,
+                    getResources().getString(R.string.question5), btnCopyOfDocuments);
             isPressedBtnCopyOfDocuments = !isPressedBtnCopyOfDocuments;
         });
 
         btnDigitalSignature.setOnClickListener(view->{
-            setTextForQuestion(isPressedBtnDigitalSignature, digitalSignatureLayout, getResources().getString(R.string.question6));
+            setTextForQuestion(isPressedBtnDigitalSignature, digitalSignatureLayout,
+                    getResources().getString(R.string.question6), btnDigitalSignature);
             isPressedBtnDigitalSignature = !isPressedBtnDigitalSignature;
         });
 
         btnNeededExamsLayout.setOnClickListener(view->{
-            setTextForQuestion(isPressedBtnNeededExams, neededExamsLayout, getResources().getString(R.string.question7));
+            setTextForQuestion(isPressedBtnNeededExams, neededExamsLayout,
+                    getResources().getString(R.string.question7), btnNeededExamsLayout);
             isPressedBtnNeededExams = !isPressedBtnNeededExams;
         });
 
         btnDormitory.setOnClickListener(view->{
-            setTextForQuestion(isPressedBtnDormitory, dormitoryLayout, getResources().getString(R.string.question8));
+            setTextForQuestion(isPressedBtnDormitory, dormitoryLayout,
+                    getResources().getString(R.string.question8), btnDormitory);
             isPressedBtnDormitory = !isPressedBtnDormitory;
         });
 
         btnNeedToBeEnrolled.setOnClickListener(view->{
-            setTextForQuestion(isPressedBtnNeedToBeEnrolled, needToBeEnrolledLayout, getResources().getString(R.string.question9));
+            setTextForQuestion(isPressedBtnNeedToBeEnrolled, needToBeEnrolledLayout,
+                    getResources().getString(R.string.question9), btnNeedToBeEnrolled);
             isPressedBtnNeedToBeEnrolled = !isPressedBtnNeedToBeEnrolled;
         });
     }

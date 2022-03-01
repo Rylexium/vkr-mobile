@@ -59,7 +59,7 @@ class SplashScreen : AppCompatActivity() {
                         }
 
                         override fun onError(anError: ANError?) {
-                            if(count < 2) ShowToast.show(activity, "Проверьте подключение к интернету")
+                            if(count % 7 == 0) ShowToast.show(activity, "Проверьте подключение к интернету")
                         }
                     })
                 count++
