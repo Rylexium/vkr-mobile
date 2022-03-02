@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.Button;
 import android.widget.AutoCompleteTextView;
@@ -16,6 +17,7 @@ import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.example.vkr.R;
+import com.example.vkr.splash_screen.SplashScreen;
 import com.example.vkr.utils.HashPass;
 import com.example.vkr.utils.HideKeyboardClass;
 import com.example.vkr.utils.OpenActivity;
@@ -39,7 +41,7 @@ public class AuthorizationActivity extends AppCompatActivity {
     private TextView labelRememberPassword;
     private TextView labelRegistration;
 
-    private final String KEY_LOGIN = "login";
+    final String KEY_LOGIN = "login";
 
     private Integer tryToConnect = 0;
 
@@ -66,12 +68,13 @@ public class AuthorizationActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         saveLastState();
-        super.onBackPressed();
+        finishAffinity();
     }
 
     @Override
     public void onResume(){
         textBoxPassword.setText("");
+        SplashScreen.sharedPreferences.edit().remove("password").apply();
         super.onResume();
     }
 
@@ -99,6 +102,10 @@ public class AuthorizationActivity extends AppCompatActivity {
         getPreferences(MODE_PRIVATE)
                 .edit()
                 .putString(KEY_LOGIN, textBoxLogin.getText().toString())
+                .apply();
+        SplashScreen.sharedPreferences.edit()
+                .putString(KEY_LOGIN, textBoxLogin.getText().toString())
+                .putString("password", HashPass.sha256(textBoxPassword.getText().toString() + HashPass.STATIC_SALT))
                 .apply();
     }
 
@@ -138,10 +145,12 @@ public class AuthorizationActivity extends AppCompatActivity {
                                         jsonNode.get("user").get("id_abit").toString(),
                                         jsonNode.get("user").get("login").toString().replace("\"", ""),
                                         jsonNode.get("idEducation").toString());
-                            } else OpenActivity.openPersonalCabinet(activity,
-                                    jsonNode.get("user").get("id_abit").toString(),
-                                    jsonNode.get("user").get("login").toString().replace("\"", ""),
-                                    jsonNode.get("idEducation").toString());
+                            } else{
+                                OpenActivity.openPersonalCabinet(activity,
+                                        jsonNode.get("user").get("id_abit").toString(),
+                                        jsonNode.get("user").get("login").toString().replace("\"", ""),
+                                        jsonNode.get("idEducation").toString());
+                            }
 
                             singInBtn.setEnabled(true);
                             singInBtn.setText(previousText);

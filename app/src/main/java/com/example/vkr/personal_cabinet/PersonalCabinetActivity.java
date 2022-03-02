@@ -128,6 +128,7 @@ public class PersonalCabinetActivity extends AppCompatActivity {
                         (dialog, which) -> {
                             startActivity(new Intent(this, AuthorizationActivity.class)
                                     .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+                            finishAffinity();
                             sendSpeciality();
                             clearData();
                             MainFragment.clearData();
