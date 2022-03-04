@@ -5,6 +5,7 @@
         <item name="colorPrimary">@color/blue_200</item>
         <item name="colorPrimaryDark">@color/blue_500</item>
         <item name="colorAccent">@color/black</item>
+
         <!-- Customize your theme here. -->
     </style>
 </resources>
