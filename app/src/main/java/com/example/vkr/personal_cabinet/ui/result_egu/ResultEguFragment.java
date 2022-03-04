@@ -94,9 +94,7 @@ public class ResultEguFragment extends Fragment {
 
     private void awaitData(){
         new Thread(()->{
-            while (viewModel.getExams() == null || viewModel.getMinPointsExams() == null) {
-                System.out.println("f");
-            }
+            while (viewModel.getExams() == null || viewModel.getMinPointsExams() == null) { }
             new Handler(Looper.getMainLooper()).post(this::fillTable);
         }).start();
     }

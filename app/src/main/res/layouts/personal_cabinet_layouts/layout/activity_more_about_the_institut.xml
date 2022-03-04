@@ -119,7 +119,7 @@
                             android:layout_weight="1.5"
                             android:textColor="@color/white"
                             android:text="Направления подготовки:"
-                            android:textSize="22sp"
+                            android:textSize="18sp"
                             />
                         <ImageView
                             android:id="@+id/arrow_downward4"

@@ -35,6 +35,7 @@ class SplashScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.splash_screen_activity)
+        window.navigationBarColor = applicationContext.getColor(R.color.blue_700)
         sharedPreferences = getPreferences(MODE_PRIVATE)
         val view = findViewById<LinearLayout>(R.id.splash_layout)
         view.alpha = 0f
