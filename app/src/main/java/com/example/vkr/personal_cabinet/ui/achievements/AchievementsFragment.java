@@ -57,25 +57,23 @@ public class AchievementsFragment extends Fragment {
         binding = inflater.inflate(R.layout.fragment_achievements, container, false);
         mainLayout = binding.findViewById(R.id.fragment_achievements_layout);
 
-        new Thread(()->{
-            if(achievements.isEmpty()) downloadPrivileges();
-            else achievements.forEach(item -> onAddField(ConvertClass.convertStringToBitmap(item)));
+        if(achievements.isEmpty()) downloadPrivileges();
+        else achievements.forEach(item -> onAddField(ConvertClass.convertStringToBitmap(item)));
 
-            new Handler(Looper.getMainLooper()).postDelayed(()-> {
-                if (mainLayout.getChildCount() == 0) {
-                    supportTextView = new TextView(getActivity());
-                    supportTextView.setText("Нет фотографий с достижениями");
-                    supportTextView.setTypeface(supportTextView.getTypeface(), Typeface.BOLD);
-                    supportTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24);
-                    supportTextView.setGravity(Gravity.CENTER);
-                    supportTextView.setTextColor(Color.RED);
-                    mainLayout.addView(supportTextView);
-                } else {
-                    mainLayout.removeView(supportTextView);
-                    supportTextView = null;
-                }
-            }, 1000);
-        }).start();
+        new Handler().postDelayed(()-> {
+            if (mainLayout.getChildCount() == 0) {
+                supportTextView = new TextView(getActivity());
+                supportTextView.setText("Нет фотографий с достижениями");
+                supportTextView.setTypeface(supportTextView.getTypeface(), Typeface.BOLD);
+                supportTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24);
+                supportTextView.setGravity(Gravity.CENTER);
+                supportTextView.setTextColor(Color.RED);
+                mainLayout.addView(supportTextView);
+            } else {
+                mainLayout.removeView(supportTextView);
+                supportTextView = null;
+            }
+        }, 1000);
 
         return binding.getRootView();
     }
