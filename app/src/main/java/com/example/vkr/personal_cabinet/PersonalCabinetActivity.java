@@ -31,6 +31,7 @@ import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.example.vkr.R;
 import com.example.vkr.activity.authorization.AuthorizationActivity;
 import com.example.vkr.databinding.PersonalCabinetActivityBinding;
+import com.example.vkr.personal_cabinet.ui.achievements.AchievementsFragment;
 import com.example.vkr.personal_cabinet.ui.home.MainFragment;
 import com.example.vkr.personal_cabinet.ui.result_egu.ResultEguFragment;
 import com.example.vkr.personal_cabinet.ui.speciality.SpecialityFragment;
@@ -135,6 +136,7 @@ public class PersonalCabinetActivity extends AppCompatActivity {
                             ResultEguFragment.clearTable();
                             SpecialityFragment.clearTable();
                             StatementFragment.clearData();
+                            AchievementsFragment.clearData();
                             dialog.dismiss();
                         })
                 .setNegativeButton("Нет", (dialog, which) -> dialog.dismiss())

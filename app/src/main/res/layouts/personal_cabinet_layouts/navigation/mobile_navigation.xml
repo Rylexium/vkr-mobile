@@ -21,7 +21,7 @@
         android:id="@+id/nav_achievement"
         android:name="com.example.vkr.personal_cabinet.ui.achievements.AchievementsFragment"
         android:label="Достижения"
-        tools:layout="@layout/fragment_achievments" />
+        tools:layout="@layout/fragment_achievements" />
 
     <fragment
         android:id="@+id/nav_speciality"

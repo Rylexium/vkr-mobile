@@ -10,6 +10,7 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.MotionEvent
+import androidx.navigation.Navigation
 
 import com.example.vkr.R
 import com.example.vkr.activity.registration.ui.achievements.AchievFragment

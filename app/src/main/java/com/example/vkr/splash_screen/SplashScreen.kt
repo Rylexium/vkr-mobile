@@ -16,16 +16,12 @@ import com.androidnetworking.interfaces.JSONArrayRequestListener
 import com.androidnetworking.interfaces.JSONObjectRequestListener
 import com.example.vkr.R
 import com.example.vkr.activity.authorization.AuthorizationActivity
-import com.example.vkr.utils.HashPass
 import com.example.vkr.utils.OpenActivity
 import com.example.vkr.utils.ShowToast
-import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
-import okhttp3.OkHttpClient
 import org.json.JSONArray
 import org.json.JSONObject
 import java.lang.Exception
-import java.util.concurrent.TimeUnit
 import kotlin.random.Random
 
 class SplashScreen : AppCompatActivity() {

@@ -2,32 +2,77 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation2"
+    android:id="@+id/mobile_navigation_registration"
     app:startDestination="@+id/navigation_home">
 
     <fragment
-        android:id="@+id/navigation_home"
+        android:id="@+id/id_registr"
         android:name="com.example.vkr.activity.registration.ui.registration.RegistrationFragment"
-        android:label="@string/title_home"
         tools:layout="@layout/registration_fragment" >
         <action
-            android:id="@+id/action_navigation_home_to_navigation_dashboard"
-            app:destination="@id/navigation_dashboard" />
+            android:id="@+id/action_id_registr_to_id_passport12"
+            app:destination="@id/id_passport1"
+            app:enterAnim="@android:anim/slide_in_left" />
     </fragment>
-
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.vkr.activity.registration.ui.passport2.Passport2Fragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" >
-        <action
-            android:id="@+id/action_navigation_dashboard_to_navigation_notifications"
-            app:destination="@id/navigation_notifications" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/id_passport1"
         android:name="com.example.vkr.activity.registration.ui.passport1.Passport1Fragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_passport1" >
+        <action
+            android:id="@+id/action_id_passport1_to_id_passport2"
+            app:destination="@id/id_passport2" />
+    </fragment>
+    <fragment
+        android:id="@+id/id_passport2"
+        android:name="com.example.vkr.activity.registration.ui.passport2.Passport2Fragment"
+        tools:layout="@layout/fragment_passport2" >
+        <action
+            android:id="@+id/action_id_passport2_to_id_passport3"
+            app:destination="@id/id_passport3" />
+    </fragment>
+    <fragment
+        android:id="@+id/id_passport3"
+        android:name="com.example.vkr.activity.registration.ui.passport3.Passport3Fragment"
+        tools:layout="@layout/fragment_passport3" >
+        <action
+            android:id="@+id/action_id_passport3_to_id_snills_fragment"
+            app:destination="@id/id_snills_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/id_snills_fragment"
+        android:name="com.example.vkr.activity.registration.ui.snills.SnillsFragment"
+        tools:layout="@layout/fragment_snills" >
+        <action
+            android:id="@+id/action_id_snills_fragment_to_id_education"
+            app:destination="@id/id_education" />
+    </fragment>
+    <fragment
+        android:id="@+id/id_education"
+        android:name="com.example.vkr.activity.registration.ui.education.EducationFragment"
+        tools:layout="@layout/fragment_education" >
+        <action
+            android:id="@+id/action_id_education_to_id_achiev"
+            app:destination="@id/id_achiev" />
+    </fragment>
+    <fragment
+        android:id="@+id/id_achiev"
+        android:name="com.example.vkr.activity.registration.ui.achievements.AchievFragment"
+        tools:layout="@layout/fragment_achiev" >
+        <action
+            android:id="@+id/action_id_achiev_to_id_privileges"
+            app:destination="@id/id_privileges" />
+    </fragment>
+    <fragment
+        android:id="@+id/id_privileges"
+        android:name="com.example.vkr.activity.registration.ui.privileges.PrivilegesFragment"
+        tools:layout="@layout/fragment_privileges" >
+        <action
+            android:id="@+id/action_id_privileges_to_id_finish"
+            app:destination="@id/id_finish" />
+    </fragment>
+    <fragment
+        android:id="@+id/id_finish"
+        android:name="com.example.vkr.activity.registration.ui.finish.FinishFragment"
+        tools:layout="@layout/fragment_finish" />
+
 </navigation>
