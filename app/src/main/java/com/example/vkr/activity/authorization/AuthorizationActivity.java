@@ -86,7 +86,7 @@ public class AuthorizationActivity extends AppCompatActivity {
     }
 
     private void ApplyEvents(){
-        labelRememberPassword.setOnClickListener(view -> System.out.println("Типа помогаем восстановить логин или пароль"));
+        labelRememberPassword.setOnClickListener(view -> OpenActivity.openSupport(this, textBoxLogin.getText().toString()));
         labelRegistration.setOnClickListener(view -> OpenActivity.openRegistration(this));
         labelQuestions.setOnClickListener(view -> OpenActivity.openPageWithQuestion(this));
 

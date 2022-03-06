@@ -254,10 +254,8 @@ class FinishFragment : Fragment() {
     private fun isValidRegistrationFragment() : Boolean {
         return when {
             sharedPreferences?.all?.get(RegistrationFragment().KEY_LOGIN) == "" ->  patternForEmpty("Логин")
-            sharedPreferences?.all?.get(RegistrationFragment().KEY_EMAIL) == "" && sharedPreferences?.all?.get(RegistrationFragment().KEY_PHONE) == "" -> {
-                ShowToast.show(context, "Поля \"email\" или \"номер\" телефона не могут быть пустым")
-                false
-            }
+            sharedPreferences?.all?.get(RegistrationFragment().KEY_EMAIL) == "" -> patternForEmpty("Email")
+            sharedPreferences?.all?.get(RegistrationFragment().KEY_PHONE) == "" -> patternForEmpty("Телефон")
             sharedPreferences?.all?.get(RegistrationFragment().KEY_PASS) != sharedPreferences?.all?.get(RegistrationFragment().KEY_PASS2) -> {
                 ShowToast.show(context, "Пароли не совпадают")
                 false

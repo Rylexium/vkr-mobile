@@ -107,20 +107,20 @@
             android:gravity="center"
             android:text="Подать заявление"
             android:textColor="@color/white"
-            android:textSize="23dp" />
+            android:textSize="23sp" />
 
         <TextView
             android:id="@+id/remember_password"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="15dp"
             android:layout_marginStart="25dp"
+            android:layout_marginTop="15dp"
             android:layout_marginEnd="25dp"
             android:clickable="true"
             android:gravity="center"
-            android:text="Забыли пароль?"
+            android:text="Восстановить доступ"
             android:textColor="@color/white"
-            android:textSize="23dp" />
+            android:textSize="23sp" />
 
         <TextView
             android:id="@+id/questions"
@@ -133,7 +133,7 @@
             android:gravity="center"
             android:text="Часто задаваемые вопросы"
             android:textColor="@color/white"
-            android:textSize="23dp" />
+            android:textSize="23sp" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="110dp" >
