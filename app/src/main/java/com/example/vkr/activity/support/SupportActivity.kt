@@ -158,7 +158,7 @@ class SupportActivity : AppCompatActivity() {
                     val url = when {
                         loginString.isNotEmpty() -> "https://vkr1-app.herokuapp.com/support/password?login=$loginString"
                         phoneString.isNotEmpty() -> "https://vkr1-app.herokuapp.com/support/password?phone=$phoneString"
-                        snillsString.isNotEmpty() -> "https://vkr1-app.herokuapp.com/support/password?id=$snillsString"
+                        snillsString.isNotEmpty() -> "https://vkr1-app.herokuapp.com/support/password?id_abitgi=$snillsString"
                         else -> {
                             ShowToast.show(applicationContext, "Поля не могут быть пустыми")
                             return@setOnClickListener
