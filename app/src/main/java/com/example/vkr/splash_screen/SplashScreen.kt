@@ -46,16 +46,19 @@ class SplashScreen : AppCompatActivity() {
                 mainLayout.setBackgroundColor(applicationContext.getColor(R.color.color_for_splash_screen1))
                 logoImageView.setImageResource(R.drawable.splash_screen1)
                 window.navigationBarColor = applicationContext.getColor(R.color.blue_700)
+                window.statusBarColor = applicationContext.getColor(R.color.blue_700)
             }
             2 -> {
                 mainLayout.setBackgroundColor(applicationContext.getColor(R.color.color_for_splash_screen2))
                 logoImageView.setImageResource(R.drawable.splash_screen2)
                 window.navigationBarColor = Color.parseColor("#000080")
+                window.statusBarColor = Color.parseColor("#000080")
             }
             3 -> {
                 mainLayout.setBackgroundColor(applicationContext.getColor(R.color.color_for_splash_screen3))
                 logoImageView.setImageResource(R.drawable.splash_screen3)
                 window.navigationBarColor = Color.parseColor("#8B4513")
+                window.statusBarColor = Color.parseColor("#8B4513")
             }
         }
         sharedPreferences = getPreferences(MODE_PRIVATE)
