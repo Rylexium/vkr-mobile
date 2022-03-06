@@ -12,5 +12,8 @@
     <color name="blue_200">#64bce9</color>
     <color name="silver">#C0C0C0</color>
     <color name="grey">#434343</color>
+    <color name="color_for_splash_screen1">#0099fa</color>
+    <color name="color_for_splash_screen2">#0045a6</color>
+    <color name="color_for_splash_screen3">#ff8f00</color>
 
 </resources>

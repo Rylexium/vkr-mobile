@@ -2,12 +2,15 @@ package com.example.vkr.splash_screen
 
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.ActivityInfo
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.MotionEvent
+import android.widget.ImageView
 import android.widget.LinearLayout
 import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.common.Priority
@@ -35,8 +38,28 @@ class SplashScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.splash_screen_activity)
-        window.navigationBarColor = applicationContext.getColor(R.color.blue_700)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        val logoImageView = findViewById<ImageView>(R.id.splash_logo)
+        val mainLayout = findViewById<LinearLayout>(R.id.splash_layout_main)
+        when(Random.nextInt(1, 4)){
+            1 -> {
+                mainLayout.setBackgroundColor(applicationContext.getColor(R.color.color_for_splash_screen1))
+                logoImageView.setImageResource(R.drawable.splash_screen1)
+                window.navigationBarColor = applicationContext.getColor(R.color.blue_700)
+            }
+            2 -> {
+                mainLayout.setBackgroundColor(applicationContext.getColor(R.color.color_for_splash_screen2))
+                logoImageView.setImageResource(R.drawable.splash_screen2)
+                window.navigationBarColor = Color.parseColor("#000080")
+            }
+            3 -> {
+                mainLayout.setBackgroundColor(applicationContext.getColor(R.color.color_for_splash_screen3))
+                logoImageView.setImageResource(R.drawable.splash_screen3)
+                window.navigationBarColor = Color.parseColor("#8B4513")
+            }
+        }
         sharedPreferences = getPreferences(MODE_PRIVATE)
+
         val view = findViewById<LinearLayout>(R.id.splash_layout)
         view.alpha = 0f
         checkConnect()

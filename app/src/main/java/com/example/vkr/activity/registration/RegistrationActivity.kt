@@ -3,15 +3,13 @@ package com.example.vkr.activity.registration
 import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.content.SharedPreferences
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.support.design.internal.BottomNavigationItemView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.MotionEvent
-import androidx.navigation.Navigation
-
 import com.example.vkr.R
 import com.example.vkr.activity.registration.ui.achievements.AchievFragment
 import com.example.vkr.activity.registration.ui.education.EducationFragment
@@ -38,6 +36,7 @@ class RegistrationActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         binding = RegistrationActivityBinding.inflate(layoutInflater)
         sharedPreferences = getPreferences(MODE_PRIVATE)
         replaceFragment(fragments[0])
