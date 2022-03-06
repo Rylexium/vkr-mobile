@@ -1,6 +1,9 @@
 package com.example.vkr.activity.support
 
 import android.animation.LayoutTransition
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -16,14 +19,13 @@ import android.widget.TextView
 import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.common.Priority
 import com.androidnetworking.error.ANError
-import com.androidnetworking.interfaces.JSONArrayRequestListener
 import com.androidnetworking.interfaces.JSONObjectRequestListener
 import com.example.vkr.R
 import com.example.vkr.utils.HideKeyboardClass
 import com.example.vkr.utils.ShowToast
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.json.JSONArray
 import org.json.JSONObject
+
 
 class SupportActivity : AppCompatActivity() {
 
@@ -75,6 +77,17 @@ class SupportActivity : AppCompatActivity() {
                 rowView.findViewById<AutoCompleteTextView>(R.id.textbox_support_phone).setText(phone)
                 rowView.findViewById<AutoCompleteTextView>(R.id.textbox_support_id).setText(snills)
 
+                rowView.findViewById<TextView>(R.id.copy_to_clipboard).setOnClickListener{
+                    //copy to clipboard
+                    val loginStr = rowView.findViewById<AutoCompleteTextView>(R.id.textbox_support_login).text.toString()
+                    if(loginStr == "") return@setOnClickListener
+                    val clipboard: ClipboardManager =
+                        this.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                    val clip = ClipData.newPlainText("", loginStr)
+                    clipboard.setPrimaryClip(clip)
+                    ShowToast.show(applicationContext, "Логин успешно скопирован в буфер обмена")
+                }
+
                 rowView.findViewById<TextView>(R.id.button_help_with_login).setOnClickListener{
                     val phone = rowView.findViewById<TextView>(R.id.textbox_support_phone).text.toString()
                     val snills = rowView.findViewById<TextView>(R.id.textbox_support_id).text.toString()
@@ -92,7 +105,9 @@ class SupportActivity : AppCompatActivity() {
                         .build()
                         .getAsJSONObject(object : JSONObjectRequestListener {
                             override fun onResponse(response: JSONObject) {
-                                ShowToast.show(applicationContext, "Ваш логин \"" + ObjectMapper().readTree(response.toString())["login"].asText() + "\"")
+                                val tmpLogin = ObjectMapper().readTree(response.toString())["login"].asText()
+                                ShowToast.show(applicationContext, "Ваш логин \"$tmpLogin\"")
+                                rowView.findViewById<AutoCompleteTextView>(R.id.textbox_support_login).setText(tmpLogin)
                             }
 
                             override fun onError(anError: ANError?) {
@@ -154,8 +169,7 @@ class SupportActivity : AppCompatActivity() {
                         .build()
                         .getAsJSONObject(object : JSONObjectRequestListener {
                             override fun onResponse(response: JSONObject) {
-                                ShowToast.show(applicationContext, "Проверьте вашу почту: "
-                                        + ObjectMapper().readTree(response.toString())["email"].asText())
+                                ShowToast.show(applicationContext, "Проверьте вашу почту")
                             }
 
                             override fun onError(anError: ANError?) {
