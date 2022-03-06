@@ -7,6 +7,7 @@ import android.net.Uri;
 import com.example.vkr.activity.authorization.QuestionsActivity;
 import com.example.vkr.activity.registration.ExamsResultActivity;
 import com.example.vkr.activity.registration.RegistrationActivity;
+import com.example.vkr.activity.support.ChangePasswordActivity;
 import com.example.vkr.personal_cabinet.PersonalCabinetActivity;
 import com.example.vkr.activity.support.SupportActivity;
 
@@ -49,6 +50,12 @@ public class OpenActivity {
 
     public static boolean openSupport(Activity activity, String login){
         activity.startActivity(new Intent(activity, SupportActivity.class)
+                .putExtra("login", login));
+        return true;
+    }
+
+    public static boolean openChangePassword(Activity activity, String login){
+        activity.startActivity(new Intent(activity, ChangePasswordActivity.class)
                 .putExtra("login", login));
         return true;
     }

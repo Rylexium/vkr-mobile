@@ -16,7 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VKR">
         <activity
-            android:name="com.example.vkr.activity.support.SupportActivity"
+            android:name=".activity.support.ChangePasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.support.SupportActivity"
             android:exported="false" />
         <activity
             android:name=".splash_screen.SplashScreen"

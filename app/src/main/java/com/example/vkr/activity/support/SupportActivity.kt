@@ -22,6 +22,7 @@ import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
 import com.example.vkr.R
 import com.example.vkr.utils.HideKeyboardClass
+import com.example.vkr.utils.OpenActivity
 import com.example.vkr.utils.ShowToast
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.json.JSONObject
@@ -163,13 +164,14 @@ class SupportActivity : AppCompatActivity() {
                             return@setOnClickListener
                         }
                     }
-
+                    val activity = this
                     AndroidNetworking.get(url)
                         .setPriority(Priority.IMMEDIATE)
                         .build()
                         .getAsJSONObject(object : JSONObjectRequestListener {
                             override fun onResponse(response: JSONObject) {
-                                ShowToast.show(applicationContext, "Проверьте вашу почту")
+                                ShowToast.show(applicationContext, "Код подтверждения был выслан Вам на почту")
+                                OpenActivity.openChangePassword(activity, ObjectMapper().readTree(response.toString())["login"].asText())
                             }
 
                             override fun onError(anError: ANError?) {
