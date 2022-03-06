@@ -111,7 +111,7 @@ class SupportActivity : AppCompatActivity() {
                             }
 
                             override fun onError(anError: ANError?) {
-
+                                ShowToast.show(applicationContext, "Пользователя с такими данными не существует")
                             }
                         })
 
