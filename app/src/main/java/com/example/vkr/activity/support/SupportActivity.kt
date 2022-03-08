@@ -27,7 +27,11 @@ import com.example.vkr.utils.HideKeyboardClass
 import com.example.vkr.utils.OpenActivity
 import com.example.vkr.utils.ShowToast
 import com.fasterxml.jackson.databind.ObjectMapper
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.json.JSONObject
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 
 class SupportActivity : AppCompatActivity() {
@@ -80,7 +84,6 @@ class SupportActivity : AppCompatActivity() {
                 rowView.findViewById<AutoCompleteTextView>(R.id.textbox_support_phone).setText(phone)
                 rowView.findViewById<AutoCompleteTextView>(R.id.textbox_support_id).setText(snills)
 
-                val activity = this
                 rowView.findViewById<AutoCompleteTextView>(R.id.textbox_support_login).setOnTouchListener(object : OnTouchListener {
                     var gestureDetector = GestureDetector(
                         applicationContext,
@@ -89,7 +92,7 @@ class SupportActivity : AppCompatActivity() {
                                 val loginStr = rowView.findViewById<AutoCompleteTextView>(R.id.textbox_support_login).text.toString()
                                 if(loginStr == "") return
                                 val clipboard: ClipboardManager =
-                                    activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                                    this@SupportActivity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                                 val clip = ClipData.newPlainText("", loginStr)
                                 clipboard.setPrimaryClip(clip)
                                 ShowToast.show(applicationContext, "Логин успешно скопирован в буфер обмена")
@@ -99,7 +102,7 @@ class SupportActivity : AppCompatActivity() {
                                 val loginStr = rowView.findViewById<AutoCompleteTextView>(R.id.textbox_support_login).text.toString()
                                 if(loginStr == "") return super.onDoubleTap(e)
                                 val clipboard: ClipboardManager =
-                                    activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                                    this@SupportActivity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                                 val clip = ClipData.newPlainText("", loginStr)
                                 clipboard.setPrimaryClip(clip)
                                 ShowToast.show(applicationContext, "Логин успешно скопирован в буфер обмена")
@@ -125,21 +128,17 @@ class SupportActivity : AppCompatActivity() {
                         }
                     }
 
-                    AndroidNetworking.get(url)
-                        .setPriority(Priority.IMMEDIATE)
-                        .build()
-                        .getAsJSONObject(object : JSONObjectRequestListener {
-                            override fun onResponse(response: JSONObject) {
-                                val tmpLogin = ObjectMapper().readTree(response.toString())["login"].asText()
+                    GlobalScope.launch {
+                        val tmpLogin = getLogin(url)
+                        Handler(Looper.getMainLooper()).post {
+                            if (tmpLogin == null) ShowToast.show(applicationContext, "Пользователя с такими данными не существует")
+                            else {
                                 ShowToast.show(applicationContext, "Ваш логин \"$tmpLogin\"")
-                                rowView.findViewById<AutoCompleteTextView>(R.id.textbox_support_login).setText(tmpLogin)
+                                rowView.findViewById<AutoCompleteTextView>(R.id.textbox_support_login)
+                                    .setText(tmpLogin)
                             }
-
-                            override fun onError(anError: ANError?) {
-                                ShowToast.show(applicationContext, "Пользователя с такими данными не существует")
-                            }
-                        })
-
+                        }
+                    }
                 }
                 supportWithLogin?.addView(rowView)
             }
@@ -188,20 +187,17 @@ class SupportActivity : AppCompatActivity() {
                             return@setOnClickListener
                         }
                     }
-                    val activity = this
-                    AndroidNetworking.get(url)
-                        .setPriority(Priority.IMMEDIATE)
-                        .build()
-                        .getAsJSONObject(object : JSONObjectRequestListener {
-                            override fun onResponse(response: JSONObject) {
-                                ShowToast.show(applicationContext, "Код подтверждения был выслан Вам на почту")
-                                OpenActivity.openChangePassword(activity, ObjectMapper().readTree(response.toString())["login"].asText())
-                            }
 
-                            override fun onError(anError: ANError?) {
-                                ShowToast.show(applicationContext, "Пользователя с такими данными не существует")
+                    GlobalScope.launch {
+                        val tmpLogin = sendCodeToEmail(url)
+                        Handler(Looper.getMainLooper()).post {
+                            if (tmpLogin == null) ShowToast.show(applicationContext, "Пользователя с такими данными не существует")
+                            else {
+                                OpenActivity.openChangePassword(this@SupportActivity, tmpLogin)
+                                ShowToast.show(applicationContext, "Код подтверждения был выслан Вам на почту")
                             }
-                        })
+                        }
+                    }
                 }
 
                 supportWithPassword?.addView(rowView)
@@ -218,6 +214,36 @@ class SupportActivity : AppCompatActivity() {
                     textViewSupportWithPassword!!.isEnabled = true
                 }, 250)
             }
+        }
+    }
+
+    private suspend fun getLogin(url : String) : String? {
+        return suspendCoroutine {
+            AndroidNetworking.get(url)
+                .setPriority(Priority.IMMEDIATE)
+                .build()
+                .getAsJSONObject(object : JSONObjectRequestListener {
+                    override fun onResponse(response: JSONObject) {
+                        it.resume(ObjectMapper().readTree(response.toString())["login"].asText())
+                    }
+
+                    override fun onError(anError: ANError?) { it.resume(null) }
+                })
+        }
+    }
+
+    private suspend fun sendCodeToEmail(url : String) : String? {
+        return suspendCoroutine {
+            AndroidNetworking.get(url)
+                .setPriority(Priority.IMMEDIATE)
+                .build()
+                .getAsJSONObject(object : JSONObjectRequestListener {
+                    override fun onResponse(response: JSONObject) {
+                        it.resume(ObjectMapper().readTree(response.toString())["login"].asText())
+                    }
+
+                    override fun onError(anError: ANError?) { it.resume(null) }
+                })
         }
     }
 

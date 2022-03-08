@@ -84,7 +84,6 @@ class Passport1Fragment : Fragment() {
                 if (activity!!.getPreferences(MODE_PRIVATE).getString(KEY_NATIONALITY, null) != null)
                     binding.listboxNationality.setSelection(activity!!.getPreferences(MODE_PRIVATE).getString(KEY_NATIONALITY, null)!!.toInt())
             }
-            return@launch
         }
     }
 

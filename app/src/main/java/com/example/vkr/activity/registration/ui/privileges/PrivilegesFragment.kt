@@ -131,7 +131,6 @@ class PrivilegesFragment : Fragment() {
                     binding.listboxPrivileges.setSelection(restoredText.toInt())
                 }
             }
-            return@launch
         }
     }
 

@@ -217,7 +217,6 @@ class EducationFragment: Fragment() {
 
                 if (restoredText != null) binding.listboxDocumentsOfEducation.setSelection(restoredText.toInt())
             }
-            return@launch
         }
     }
 
