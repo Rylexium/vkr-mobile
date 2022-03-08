@@ -73,13 +73,9 @@ class SplashScreen : AppCompatActivity() {
 
                 run tryToConnect@{
                     repeat(1001) {
-                        val connect = awaitConnect()
-                        if (connect) return@tryToConnect
+                        if (awaitConnect()) return@tryToConnect
                         if (it % 7 == 0) Handler(Looper.getMainLooper()).post {
-                            ShowToast.show(
-                                this@SplashScreen,
-                                "Проверьте подключение к интернету"
-                            )
+                            ShowToast.show(this@SplashScreen, "Проверьте подключение к интернету")
                         }
                         delay(1000)
                     }
