@@ -69,7 +69,7 @@ class Passport1Fragment : Fragment() {
         return binding.root
     }
 
-    private fun downloadNationalitys(){
+    private fun downloadNationalitys() {
         if (listRes.isEmpty()){
             activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)!!.visibility = View.GONE
             listRes = ArrayList()
@@ -113,9 +113,6 @@ class Passport1Fragment : Fragment() {
 
                     override fun onError(error: ANError) {
                         ShowToast.show(context, "При загрузке что-то пошло не так")
-                        listRes.add("Россия")
-                        listRes.add("Украина")
-                        listRes.add("Белоруссия")
                         activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)!!.visibility =
                             View.VISIBLE
                         tryToConnect += 1
