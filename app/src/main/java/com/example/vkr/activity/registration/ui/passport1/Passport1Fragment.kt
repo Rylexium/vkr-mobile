@@ -42,7 +42,6 @@ class Passport1Fragment : Fragment() {
 
     private val binding get() = _binding!!
 
-    @JvmField
     var sharedPreferences : SharedPreferences? = null
 
     var bitmap : Bitmap? = null
