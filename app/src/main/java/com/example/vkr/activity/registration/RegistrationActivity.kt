@@ -5,11 +5,14 @@ import android.content.DialogInterface
 import android.content.SharedPreferences
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.support.design.internal.BottomNavigationItemView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.view.MotionEvent
+import android.widget.Button
 import com.example.vkr.R
 import com.example.vkr.activity.registration.ui.achievements.AchievFragment
 import com.example.vkr.activity.registration.ui.education.EducationFragment
@@ -65,6 +68,7 @@ class RegistrationActivity : AppCompatActivity() {
                         step -= 1
                         replaceFragment(fragments[step])
                     }
+                    else if(step < 1) onBackPressed()
                 }
             }
             if((step+1) < 9) setTitleStep("${step + 1}/${fragments.size - 1}")

@@ -46,7 +46,6 @@ class PrivilegesFragment : Fragment() {
     val KEY_PRIVILIGE = "privilege_bitmap"
     private var bitmap: Bitmap? = null
 
-    var tryToConnect : Int = 0
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -56,7 +55,7 @@ class PrivilegesFragment : Fragment() {
         _binding = FragmentPrivilegesBinding.inflate(inflater, container, false)
         val root: View = binding.root
         sharedPreferences = activity!!.getPreferences(MODE_PRIVATE)
-        initComponents()
+        downloadPrivileges()
         applyEvents()
         comebackAfterOnBackPressed()
         return root
@@ -99,9 +98,13 @@ class PrivilegesFragment : Fragment() {
             sharedPreferences!!.edit()
                     .putString(KEY_PRIVILIGE + i, ConvertClass.convertBitmapToString((v.drawable as BitmapDrawable).bitmap)).apply()
         }
+
+        var selectedItem = binding.listboxPrivileges.selectedItem?.toString()
+        if(binding.listboxPrivileges.selectedItem == null) selectedItem = ""
+
         sharedPreferences!!.edit()
             .putString(KEY_SELECTED_PRIVILEGES, binding.listboxPrivileges.selectedItemPosition.toString())
-            .putString(KEY_NAME_PRIVILEGES, binding.listboxPrivileges.selectedItem?.toString())
+            .putString(KEY_NAME_PRIVILEGES, selectedItem)
             .apply()
     }
 
@@ -111,6 +114,8 @@ class PrivilegesFragment : Fragment() {
             run tryToDownload@{
                 repeat(1001) { if (isDownloadPrivileges()) return@tryToDownload }
             }
+
+            if(_binding == null) return@launch
 
             Handler(Looper.getMainLooper()).post {
                 binding.listboxPrivileges.adapter = ArrayAdapter<Any?>(
@@ -148,12 +153,6 @@ class PrivilegesFragment : Fragment() {
                     })
             } else it.resume(true)
         }
-    }
-
-    private fun initComponents() {
-        activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)!!.visibility =
-            View.GONE
-        downloadPrivileges()
     }
 
     override fun onStop() {

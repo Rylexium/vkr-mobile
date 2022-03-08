@@ -168,9 +168,12 @@ class EducationFragment: Fragment() {
         }
     }
     private fun saveLastState() {
+        var selectedItem = binding.listboxDocumentsOfEducation.selectedItem?.toString()
+        if(binding.listboxDocumentsOfEducation.selectedItem == null) selectedItem = ""
+
         sharedPreferences!!.edit()
                 .putString(KEY_TYPE_EDUCATION_POSITION, binding.listboxDocumentsOfEducation.selectedItemPosition.toString())
-                .putString(KEY_NAME_TYPE_EDUCATION, binding.listboxDocumentsOfEducation.selectedItem?.toString())
+                .putString(KEY_NAME_TYPE_EDUCATION, selectedItem)
                 .putString(KEY_ID_EDUCATION, binding.textboxIdEducation.text.toString())
                 .putString(KEY_DATE_OF_ISSUE_OF_EDUCATION, binding.textboxDateOfIssueOfEducation.text.toString())
                 .putString(KEY_REGISTRATION_NUMBER, binding.textboxRegistrationNumber.text.toString())
@@ -195,18 +198,17 @@ class EducationFragment: Fragment() {
 
     private fun initComponents(){
         if(listRes.size == 0) listRes.add("Выберите образование")
-        activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)!!.visibility = View.GONE
         downloadEducations()
     }
 
     private fun downloadEducations() {
         GlobalScope.launch {
             run tryToDownload@{
-                repeat(1001) {
-                    if (isDownloadEducations())
-                        return@tryToDownload
-                }
+                repeat(1001) { if (isDownloadEducations()) return@tryToDownload }
             }
+
+            if(_binding == null) return@launch
+
             Handler(Looper.getMainLooper()).post {
                 binding.listboxDocumentsOfEducation.adapter =
                     MySpinnerAdapter(context!!, R.layout.spinner_item, listRes)
@@ -214,9 +216,6 @@ class EducationFragment: Fragment() {
                 val restoredText = sharedPreferences!!.getString(KEY_TYPE_EDUCATION_POSITION, null)
 
                 if (restoredText != null) binding.listboxDocumentsOfEducation.setSelection(restoredText.toInt())
-
-                activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)!!.visibility =
-                    View.VISIBLE
             }
             return@launch
         }

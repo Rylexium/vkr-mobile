@@ -7,10 +7,12 @@ import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.support.annotation.NonNull
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -74,14 +76,13 @@ class Passport1Fragment : Fragment() {
                 repeat(1001) { if (isDownloadNationalitys()) return@tryToDownload }
             }
 
+            if(_binding == null) return@launch
+
             Handler(Looper.getMainLooper()).post {
                 binding.listboxNationality.adapter = MySpinnerAdapter(context!!, R.layout.spinner_item, listRes)
 
                 if (activity!!.getPreferences(MODE_PRIVATE).getString(KEY_NATIONALITY, null) != null)
                     binding.listboxNationality.setSelection(activity!!.getPreferences(MODE_PRIVATE).getString(KEY_NATIONALITY, null)!!.toInt())
-
-                activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)!!.visibility =
-                    View.VISIBLE
             }
             return@launch
         }
@@ -190,6 +191,9 @@ class Passport1Fragment : Fragment() {
     }
 
     private fun saveLastState() {
+        var selectedItem = binding.listboxNationality.selectedItem?.toString()
+        if(binding.listboxNationality.selectedItem == null) selectedItem = ""
+
         sharedPreferences!!.edit()
                 .putString(KEY_NAME, binding.textboxNameReg.text.toString())
                 .putString(KEY_FAMILY, binding.textboxFamilyReg.text.toString())
@@ -197,7 +201,7 @@ class Passport1Fragment : Fragment() {
                 .putString(KEY_SEX, binding.radiobuttonSex.text.toString())
                 .putString(KEY_DATE_OF_BIRTH, binding.textboxDateOfBirth.text.toString())
                 .putString(KEY_NATIONALITY, binding.listboxNationality.selectedItemPosition.toString())
-                .putString(KEY_NAME_NATIONALITY, binding.listboxNationality.selectedItem?.toString())
+                .putString(KEY_NAME_NATIONALITY, selectedItem)
                 .apply()
     }
 
@@ -209,7 +213,6 @@ class Passport1Fragment : Fragment() {
 
     private fun initComponents(){
         if(listRes.size == 0) listRes.add("Выберите гражданство")
-        activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)!!.visibility = View.GONE
         downloadNationalitys()
     }
 
