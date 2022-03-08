@@ -8,6 +8,8 @@ import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -24,9 +26,13 @@ import com.example.vkr.databinding.FragmentPrivilegesBinding
 import com.example.vkr.utils.*
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 import org.json.JSONArray
 import java.util.concurrent.TimeUnit
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 
 class PrivilegesFragment : Fragment() {
@@ -50,13 +56,13 @@ class PrivilegesFragment : Fragment() {
         _binding = FragmentPrivilegesBinding.inflate(inflater, container, false)
         val root: View = binding.root
         sharedPreferences = activity!!.getPreferences(MODE_PRIVATE)
-        ApplyEvents()
+        initComponents()
+        applyEvents()
         comebackAfterOnBackPressed()
-        downloadPrivileges()
         return root
     }
 
-    fun ApplyEvents() {
+    fun applyEvents() {
         binding.buttonAddPrivileges.setOnClickListener {
             if(binding.layoutForImagesPrivileges.childCount < 1)
                 SelectImageClass.showMenu(activity!!, this, false)
@@ -101,41 +107,53 @@ class PrivilegesFragment : Fragment() {
 
 
     private fun downloadPrivileges() {
-        if(listPrivileges.isEmpty()) {
-            activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)!!.visibility = View.GONE
-            AndroidNetworking.get("https://vkr1-app.herokuapp.com/privileges")
-                .setPriority(Priority.IMMEDIATE)
-                .setOkHttpClient(OkHttpClient.Builder()
-                        .connectTimeout(2, TimeUnit.SECONDS)
-                        .build())
-                .build()
-                .getAsJSONArray(object : JSONArrayRequestListener {
-                    override fun onResponse(response: JSONArray) {
-                        try {
-                            val jsonNode = ObjectMapper().readTree(response.toString())
-                            jsonNode.forEach{ listPrivileges.add(it["name"].toString().replace("\"", ""))}
+        GlobalScope.launch {
+            run tryToDownload@{
+                repeat(1001) { if (isDownloadPrivileges()) return@tryToDownload }
+            }
 
-                            binding.listboxPrivileges.adapter = ArrayAdapter<Any?>(context!!, android.R.layout.simple_spinner_dropdown_item, listPrivileges as List<Any?>)
-                            activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)!!.visibility = View.VISIBLE
-                            val restoredText : String? = activity!!.getPreferences(MODE_PRIVATE).getString(KEY_SELECTED_PRIVILEGES, null)
-                            if (restoredText != null) {
-                                binding.listboxPrivileges.setSelection(restoredText.toInt())
-                            }
-                        } catch (e: JsonProcessingException) {
-                            e.printStackTrace()
+            Handler(Looper.getMainLooper()).post {
+                binding.listboxPrivileges.adapter = ArrayAdapter<Any?>(
+                    context!!,
+                    android.R.layout.simple_spinner_dropdown_item,
+                    listPrivileges as List<Any?>
+                )
+                activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)!!.visibility =
+                    View.VISIBLE
+                val restoredText: String? = activity!!.getPreferences(MODE_PRIVATE)
+                    .getString(KEY_SELECTED_PRIVILEGES, null)
+                if (restoredText != null) {
+                    binding.listboxPrivileges.setSelection(restoredText.toInt())
+                }
+            }
+            return@launch
+        }
+    }
+
+    private suspend fun isDownloadPrivileges() : Boolean {
+        return suspendCoroutine {
+            if (listPrivileges.size == 0) {
+                AndroidNetworking.get("https://vkr1-app.herokuapp.com/privileges")
+                    .setPriority(Priority.IMMEDIATE)
+                    .build()
+                    .getAsJSONArray(object : JSONArrayRequestListener {
+                        override fun onResponse(response: JSONArray) {
+                            ObjectMapper().readTree(response.toString()).forEach { item -> listPrivileges.add(item["name"].asText()) }
+                            it.resume(true)
                         }
-                    }
 
-                    override fun onError(error: ANError) {
-                        tryToConnect += 1
-                        if (tryToConnect < 3)
-                            downloadPrivileges()
-                    }
-                })
+                        override fun onError(error: ANError) {
+                            it.resume(false)
+                        }
+                    })
+            } else it.resume(true)
         }
-        else{
-            binding.listboxPrivileges.adapter = ArrayAdapter<Any?>(context!!, android.R.layout.simple_spinner_dropdown_item, listPrivileges as List<Any?>)
-        }
+    }
+
+    private fun initComponents() {
+        activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)!!.visibility =
+            View.GONE
+        downloadPrivileges()
     }
 
     override fun onStop() {

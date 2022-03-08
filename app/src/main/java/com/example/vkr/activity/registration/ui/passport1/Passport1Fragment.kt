@@ -24,13 +24,14 @@ import com.androidnetworking.interfaces.JSONArrayRequestListener
 import com.example.vkr.R
 import com.example.vkr.databinding.FragmentPassport1Binding
 import com.example.vkr.utils.*
-import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
-import okhttp3.OkHttpClient
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.json.JSONArray
 import java.util.*
-import java.util.concurrent.TimeUnit
 import java.util.function.Consumer
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 
 class Passport1Fragment : Fragment() {
@@ -53,8 +54,6 @@ class Passport1Fragment : Fragment() {
     val KEY_NAME_NATIONALITY = "name_nationality"
     var listRes: MutableList<String> = ArrayList()
 
-    var tryToConnect : Int = 0
-
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -63,66 +62,50 @@ class Passport1Fragment : Fragment() {
 
         _binding = FragmentPassport1Binding.inflate(inflater, container, false)
         sharedPreferences = activity!!.getPreferences(MODE_PRIVATE)
-        downloadNationalitys()
+        initComponents()
         comebackAfterOnBackPressed()
-        ApplyEvents()
+        applyEvents()
         return binding.root
     }
 
-    private fun downloadNationalitys() {
-        if (listRes.isEmpty()){
-            activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)!!.visibility = View.GONE
-            listRes = ArrayList()
-            listRes.add("Выберите гражданство")
-            AndroidNetworking.get("https://vkr1-app.herokuapp.com/nationality")
-                .setPriority(Priority.IMMEDIATE)
-                .setOkHttpClient(OkHttpClient.Builder()
-                    .connectTimeout(2, TimeUnit.SECONDS)
-                    .build())
-                .build()
-                .getAsJSONArray(object : JSONArrayRequestListener {
-                    override fun onResponse(response: JSONArray) {
-                        Thread {
-                            try {
-                                val jsonNode = ObjectMapper().readTree(response.toString())
-                                jsonNode.forEach {
-                                    listRes.add(
-                                        it["name"].toString().replace("\"", "")
-                                    )
-                                }
-                                Handler(Looper.getMainLooper()).post {
-                                    binding.listboxNationality.adapter =
-                                        MySpinnerAdapter(context!!, R.layout.spinner_item, listRes)
-                                    if (activity!!.getPreferences(MODE_PRIVATE)
-                                            .getString(KEY_NATIONALITY, null) != null
-                                    ) {
-                                        binding.listboxNationality.setSelection(
-                                            activity!!.getPreferences(
-                                                MODE_PRIVATE
-                                            ).getString(KEY_NATIONALITY, null)!!.toInt()
-                                        )
-                                    }
-                                    activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)!!.visibility =
-                                        View.VISIBLE
-                                }
-                            } catch (e: JsonProcessingException) {
-                                e.printStackTrace()
-                            }
-                        }.start()
-                    }
+    private fun downloadNationalitys(){
+        GlobalScope.launch {
+            run tryToDownload@{
+                repeat(1001) { if (isDownloadNationalitys()) return@tryToDownload }
+            }
 
-                    override fun onError(error: ANError) {
-                        ShowToast.show(context, "При загрузке что-то пошло не так")
-                        activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)!!.visibility =
-                            View.VISIBLE
-                        tryToConnect += 1
-                        if (tryToConnect < 3)
-                            downloadNationalitys()
-                    }
-                })
-        }else {
-            binding.listboxNationality.adapter = MySpinnerAdapter(context!!, R.layout.spinner_item, listRes)
-            activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)!!.visibility = View.VISIBLE
+            Handler(Looper.getMainLooper()).post {
+                binding.listboxNationality.adapter = MySpinnerAdapter(context!!, R.layout.spinner_item, listRes)
+
+                if (activity!!.getPreferences(MODE_PRIVATE).getString(KEY_NATIONALITY, null) != null)
+                    binding.listboxNationality.setSelection(activity!!.getPreferences(MODE_PRIVATE).getString(KEY_NATIONALITY, null)!!.toInt())
+
+                activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)!!.visibility =
+                    View.VISIBLE
+            }
+            return@launch
+        }
+    }
+
+    private suspend fun isDownloadNationalitys() : Boolean {
+        return suspendCoroutine {
+            if (listRes.size == 1) {
+                AndroidNetworking.get("https://vkr1-app.herokuapp.com/nationality")
+                    .setPriority(Priority.IMMEDIATE)
+                    .build()
+                    .getAsJSONArray(object : JSONArrayRequestListener {
+                        override fun onResponse(response: JSONArray) {
+                            ObjectMapper().readTree(response.toString())
+                                .forEach { item -> listRes.add(item["name"].asText()) }
+                            it.resume(true)
+                        }
+
+                        override fun onError(error: ANError) {
+                            it.resume(false)
+                        }
+                    })
+            } else it.resume(true)
+
         }
     }
 
@@ -154,7 +137,7 @@ class Passport1Fragment : Fragment() {
                 .ifPresent(editText)
     }
 
-    fun ApplyEvents(){
+    fun applyEvents(){
         binding.radiobuttonSex.setOnCheckedChangeListener{ _, _ ->
             if(binding.radiobuttonSex.isChecked)
                 binding.radiobuttonSex.text = "Пол: Мужской"
@@ -219,9 +202,15 @@ class Passport1Fragment : Fragment() {
     }
 
     private fun setVisibleNavigationBottomView(status : Boolean){
-        if(listRes.isEmpty()) return
+        if(listRes.size == 1) return
         if(status) activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)!!.visibility = View.VISIBLE
         else activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)!!.visibility = View.GONE
+    }
+
+    private fun initComponents(){
+        if(listRes.size == 0) listRes.add("Выберите гражданство")
+        activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)!!.visibility = View.GONE
+        downloadNationalitys()
     }
 
     override fun onDestroyView() {

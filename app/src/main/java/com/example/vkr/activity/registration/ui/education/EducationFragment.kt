@@ -26,15 +26,15 @@ import com.androidnetworking.interfaces.JSONArrayRequestListener
 import com.example.vkr.R
 import com.example.vkr.databinding.FragmentEducationBinding
 import com.example.vkr.utils.*
-import com.fasterxml.jackson.core.JsonProcessingException
-import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
-import okhttp3.OkHttpClient
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.json.JSONArray
 import java.util.*
-import java.util.concurrent.TimeUnit
 import java.util.function.Consumer
 import kotlin.collections.ArrayList
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 
 class EducationFragment: Fragment() {
@@ -46,11 +46,8 @@ class EducationFragment: Fragment() {
     var bitmap2 : Bitmap? = null
     var listRes: MutableList<String> = ArrayList()
 
-    var tryToConnect : Int = 0
-
     companion object {
         @JvmStatic var PIC_CODE : Int = 1
-        @JvmStatic lateinit var jsonNode : JsonNode
     }
 
     val KEY_TYPE_EDUCATION_POSITION = "selected_position"
@@ -69,13 +66,13 @@ class EducationFragment: Fragment() {
         _binding = FragmentEducationBinding.inflate(inflater, container, false)
         val root: View = binding.root
         sharedPreferences = activity!!.getPreferences(MODE_PRIVATE)
-        downloadEducations()
-        ApplyEvents()
+        initComponents()
+        applyEvents()
         comebackAfterOnBackPressed()
         return root
     }
 
-    private fun ApplyEvents() {
+    private fun applyEvents() {
         val idEducationListener : TextWatcher = CorrectText(binding.textboxIdEducation, "###### #######")
         binding.makePhotosEducation.setOnClickListener {
             ShowToast.show(context, "Сфотографируйте или выберите $PIC_CODE страницу документа")
@@ -173,7 +170,7 @@ class EducationFragment: Fragment() {
     private fun saveLastState() {
         sharedPreferences!!.edit()
                 .putString(KEY_TYPE_EDUCATION_POSITION, binding.listboxDocumentsOfEducation.selectedItemPosition.toString())
-                .putString(KEY_NAME_TYPE_EDUCATION, binding.listboxDocumentsOfEducation.selectedItem.toString())
+                .putString(KEY_NAME_TYPE_EDUCATION, binding.listboxDocumentsOfEducation.selectedItem?.toString())
                 .putString(KEY_ID_EDUCATION, binding.textboxIdEducation.text.toString())
                 .putString(KEY_DATE_OF_ISSUE_OF_EDUCATION, binding.textboxDateOfIssueOfEducation.text.toString())
                 .putString(KEY_REGISTRATION_NUMBER, binding.textboxRegistrationNumber.text.toString())
@@ -191,62 +188,59 @@ class EducationFragment: Fragment() {
     }
 
     private fun setVisibleNavigationBottomView(status : Boolean){
-        if(listRes.isEmpty()) return
+        if(listRes.size == 1) return
         if(status) activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)!!.visibility = View.VISIBLE
         else activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)!!.visibility = View.GONE
     }
-    fun downloadEducations(){
-        if (listRes.isEmpty()){
-            activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)!!.visibility = View.GONE
-            Thread {
-                listRes.add("Выберите образование")
+
+    private fun initComponents(){
+        if(listRes.size == 0) listRes.add("Выберите образование")
+        activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)!!.visibility = View.GONE
+        downloadEducations()
+    }
+
+    private fun downloadEducations() {
+        GlobalScope.launch {
+            run tryToDownload@{
+                repeat(1001) {
+                    if (isDownloadEducations())
+                        return@tryToDownload
+                }
+            }
+            Handler(Looper.getMainLooper()).post {
+                binding.listboxDocumentsOfEducation.adapter =
+                    MySpinnerAdapter(context!!, R.layout.spinner_item, listRes)
+
+                val restoredText = sharedPreferences!!.getString(KEY_TYPE_EDUCATION_POSITION, null)
+
+                if (restoredText != null) binding.listboxDocumentsOfEducation.setSelection(restoredText.toInt())
+
+                activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)!!.visibility =
+                    View.VISIBLE
+            }
+            return@launch
+        }
+    }
+
+    private suspend fun isDownloadEducations() : Boolean {
+        return suspendCoroutine {
+            if (listRes.size == 1) {
                 AndroidNetworking.get("https://vkr1-app.herokuapp.com/education")
                     .setPriority(Priority.IMMEDIATE)
-                    .setOkHttpClient(OkHttpClient.Builder()
-                            .connectTimeout(2, TimeUnit.SECONDS)
-                            .build())
                     .build()
                     .getAsJSONArray(object : JSONArrayRequestListener {
                         override fun onResponse(response: JSONArray) {
-                            Thread {
-                                try {
-                                    jsonNode = ObjectMapper().readTree(response.toString())
-                                    jsonNode.forEach {
-                                        listRes.add(
-                                            it["name"].toString().replace("\"", "")
-                                        )
-                                    }
-                                    Handler(Looper.getMainLooper()).post{
-                                        binding.listboxDocumentsOfEducation.adapter =
-                                            MySpinnerAdapter(context!!, R.layout.spinner_item, listRes)
-                                        val restoredText = sharedPreferences!!.getString(
-                                            KEY_TYPE_EDUCATION_POSITION,
-                                            null
-                                        )
-                                        if (restoredText != null) {
-                                            binding.listboxDocumentsOfEducation.setSelection(
-                                                restoredText.toInt()
-                                            )
-                                        }
-                                        activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)!!.visibility =
-                                            View.VISIBLE
-                                    }
-                                } catch (e: JsonProcessingException) {
-                                    e.printStackTrace()
-                                }
-                            }.start()
+                            ObjectMapper().readTree(response.toString())
+                                .forEach { item -> listRes.add(item["name"].asText()) }
+                            it.resume(true)
                         }
 
                         override fun onError(error: ANError) {
-                            tryToConnect += 1
-                            if (tryToConnect < 3)
-                                downloadEducations()
+                            it.resume(false)
                         }
                     })
-            }.start()
-        } else {
-            binding.listboxDocumentsOfEducation.adapter = MySpinnerAdapter(context!!, R.layout.spinner_item, listRes)
-            activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)!!.visibility = View.VISIBLE
+            } else  it.resume(true)
+
         }
     }
 }
