@@ -10,9 +10,11 @@ import android.os.Looper
 import android.support.v7.app.AppCompatActivity
 import android.transition.AutoTransition
 import android.transition.TransitionManager
+import android.view.GestureDetector
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
+import android.view.View.OnTouchListener
 import android.widget.AutoCompleteTextView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -78,16 +80,40 @@ class SupportActivity : AppCompatActivity() {
                 rowView.findViewById<AutoCompleteTextView>(R.id.textbox_support_phone).setText(phone)
                 rowView.findViewById<AutoCompleteTextView>(R.id.textbox_support_id).setText(snills)
 
-                rowView.findViewById<TextView>(R.id.copy_to_clipboard).setOnClickListener{
-                    //copy to clipboard
-                    val loginStr = rowView.findViewById<AutoCompleteTextView>(R.id.textbox_support_login).text.toString()
-                    if(loginStr == "") return@setOnClickListener
-                    val clipboard: ClipboardManager =
-                        this.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                    val clip = ClipData.newPlainText("", loginStr)
-                    clipboard.setPrimaryClip(clip)
-                    ShowToast.show(applicationContext, "Логин успешно скопирован в буфер обмена")
-                }
+                val activity = this
+                rowView.findViewById<AutoCompleteTextView>(R.id.textbox_support_login).setOnTouchListener(object : OnTouchListener {
+                    var gestureDetector = GestureDetector(
+                        applicationContext,
+                        object : GestureDetector.OnGestureListener {
+                            override fun onLongPress(motionEvent: MotionEvent) {
+                                val loginStr = rowView.findViewById<AutoCompleteTextView>(R.id.textbox_support_login).text.toString()
+                                if(loginStr == "") return
+                                val clipboard: ClipboardManager =
+                                    activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                                val clip = ClipData.newPlainText("", loginStr)
+                                clipboard.setPrimaryClip(clip)
+                                ShowToast.show(applicationContext, "Логин успешно скопирован в буфер обмена")
+                            }
+                            override fun onDown(motionEvent: MotionEvent): Boolean { return false }
+                            override fun onShowPress(motionEvent: MotionEvent) {}
+                            override fun onSingleTapUp(motionEvent: MotionEvent): Boolean { return false }
+                            override fun onScroll(motionEvent: MotionEvent, motionEvent1: MotionEvent, v: Float, v1: Float): Boolean { return false }
+                            override fun onFling(motionEvent: MotionEvent, motionEvent1: MotionEvent, v: Float, v1: Float): Boolean { return false }
+                        })
+
+                    override fun onTouch(view: View, motionEvent: MotionEvent): Boolean {
+                        gestureDetector.onTouchEvent(motionEvent)
+                        return false
+                    }
+                })
+
+                //                    val loginStr = rowView.findViewById<AutoCompleteTextView>(R.id.textbox_support_login).text.toString()
+                //                    if(loginStr == "") return
+                //                    val clipboard: ClipboardManager =
+                //                        this.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                //                    val clip = ClipData.newPlainText("", loginStr)
+                //                    clipboard.setPrimaryClip(clip)
+                //                    ShowToast.show(applicationContext, "Логин успешно скопирован в буфер обмена")
 
                 rowView.findViewById<TextView>(R.id.button_help_with_login).setOnClickListener{
                     val phone = rowView.findViewById<TextView>(R.id.textbox_support_phone).text.toString()
