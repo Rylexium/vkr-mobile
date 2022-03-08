@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.widget.ImageView
 import android.widget.LinearLayout
 import com.androidnetworking.AndroidNetworking
@@ -64,10 +63,8 @@ class SplashScreen : AppCompatActivity() {
             }
         }
         sharedPreferences = getPreferences(MODE_PRIVATE)
-
         val view = findViewById<LinearLayout>(R.id.splash_layout)
         view.alpha = 0f
-        Log.e("", sharedPreferences.all.toString())
         view.animate().setDuration(Random.nextInt(1000, 2500).toLong()).alpha(1f).withEndAction{
             GlobalScope.launch {
 
