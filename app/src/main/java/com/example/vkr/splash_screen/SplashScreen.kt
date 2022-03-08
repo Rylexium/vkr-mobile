@@ -78,7 +78,6 @@ class SplashScreen : AppCompatActivity() {
                     }
                 }
                 authorization()
-                return@launch
             }
         }
     }
