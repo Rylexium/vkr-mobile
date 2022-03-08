@@ -84,7 +84,7 @@ class SupportActivity : AppCompatActivity() {
                 rowView.findViewById<AutoCompleteTextView>(R.id.textbox_support_login).setOnTouchListener(object : OnTouchListener {
                     var gestureDetector = GestureDetector(
                         applicationContext,
-                        object : GestureDetector.OnGestureListener {
+                        object : GestureDetector.SimpleOnGestureListener() {
                             override fun onLongPress(motionEvent: MotionEvent) {
                                 val loginStr = rowView.findViewById<AutoCompleteTextView>(R.id.textbox_support_login).text.toString()
                                 if(loginStr == "") return
@@ -94,11 +94,17 @@ class SupportActivity : AppCompatActivity() {
                                 clipboard.setPrimaryClip(clip)
                                 ShowToast.show(applicationContext, "Логин успешно скопирован в буфер обмена")
                             }
-                            override fun onDown(motionEvent: MotionEvent): Boolean { return false }
-                            override fun onShowPress(motionEvent: MotionEvent) {}
-                            override fun onSingleTapUp(motionEvent: MotionEvent): Boolean { return false }
-                            override fun onScroll(motionEvent: MotionEvent, motionEvent1: MotionEvent, v: Float, v1: Float): Boolean { return false }
-                            override fun onFling(motionEvent: MotionEvent, motionEvent1: MotionEvent, v: Float, v1: Float): Boolean { return false }
+
+                            override fun onDoubleTap(e: MotionEvent?): Boolean {
+                                val loginStr = rowView.findViewById<AutoCompleteTextView>(R.id.textbox_support_login).text.toString()
+                                if(loginStr == "") return super.onDoubleTap(e)
+                                val clipboard: ClipboardManager =
+                                    activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                                val clip = ClipData.newPlainText("", loginStr)
+                                clipboard.setPrimaryClip(clip)
+                                ShowToast.show(applicationContext, "Логин успешно скопирован в буфер обмена")
+                                return super.onDoubleTap(e)
+                            }
                         })
 
                     override fun onTouch(view: View, motionEvent: MotionEvent): Boolean {
@@ -106,14 +112,6 @@ class SupportActivity : AppCompatActivity() {
                         return false
                     }
                 })
-
-                //                    val loginStr = rowView.findViewById<AutoCompleteTextView>(R.id.textbox_support_login).text.toString()
-                //                    if(loginStr == "") return
-                //                    val clipboard: ClipboardManager =
-                //                        this.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                //                    val clip = ClipData.newPlainText("", loginStr)
-                //                    clipboard.setPrimaryClip(clip)
-                //                    ShowToast.show(applicationContext, "Логин успешно скопирован в буфер обмена")
 
                 rowView.findViewById<TextView>(R.id.button_help_with_login).setOnClickListener{
                     val phone = rowView.findViewById<TextView>(R.id.textbox_support_phone).text.toString()
