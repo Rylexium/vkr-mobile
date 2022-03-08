@@ -3,7 +3,6 @@ package com.example.vkr.activity.authorization;
 import android.animation.LayoutTransition;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
-import android.graphics.Color;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v4.content.ContextCompat;
@@ -13,7 +12,6 @@ import android.transition.AutoTransition;
 import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -39,7 +37,7 @@ public class QuestionsActivity extends AppCompatActivity {
     private Button btnMedicalCard;
     private boolean isPressedBtnMedicalCard = false;
 
-    private LinearLayout сopyOfDocumentsLayout;
+    private LinearLayout copyOfDocumentsLayout;
     private Button btnCopyOfDocuments;
     private boolean isPressedBtnCopyOfDocuments = false;
 
@@ -123,7 +121,7 @@ public class QuestionsActivity extends AppCompatActivity {
         });
 
         btnCopyOfDocuments.setOnClickListener(view->{
-            setTextForQuestion(isPressedBtnCopyOfDocuments, сopyOfDocumentsLayout,
+            setTextForQuestion(isPressedBtnCopyOfDocuments, copyOfDocumentsLayout,
                     getResources().getString(R.string.question5), btnCopyOfDocuments);
             isPressedBtnCopyOfDocuments = !isPressedBtnCopyOfDocuments;
         });
@@ -168,7 +166,7 @@ public class QuestionsActivity extends AppCompatActivity {
         medicalCardLayout = findViewById(R.id.medical_card_layout);
         btnMedicalCard = findViewById(R.id.btn_medical_card);
 
-        сopyOfDocumentsLayout = findViewById(R.id.сopy_of_documents_layout);
+        copyOfDocumentsLayout = findViewById(R.id.сopy_of_documents_layout);
         btnCopyOfDocuments = findViewById(R.id.btn_сopy_of_documents);
 
         digitalSignatureLayout = findViewById(R.id.digital_signature_layout);

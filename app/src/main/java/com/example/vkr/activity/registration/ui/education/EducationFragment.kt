@@ -24,7 +24,6 @@ import com.androidnetworking.common.Priority
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONArrayRequestListener
 import com.example.vkr.R
-import com.example.vkr.activity.registration.ui.privileges.PrivilegesFragment
 import com.example.vkr.databinding.FragmentEducationBinding
 import com.example.vkr.utils.*
 import com.fasterxml.jackson.core.JsonProcessingException

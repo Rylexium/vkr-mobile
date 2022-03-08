@@ -13,9 +13,6 @@ import android.view.ViewGroup
 import com.example.vkr.R
 import com.example.vkr.databinding.RegistrationFragmentBinding
 import com.example.vkr.utils.CorrectText
-import com.example.vkr.utils.HttpURLConnectionClient
-import com.fasterxml.jackson.databind.ObjectMapper
-import org.json.JSONArray
 import java.util.*
 import java.util.function.Consumer
 import java.util.regex.Pattern

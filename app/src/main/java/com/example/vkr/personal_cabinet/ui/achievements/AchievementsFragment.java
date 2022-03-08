@@ -3,15 +3,14 @@ package com.example.vkr.personal_cabinet.ui.achievements;
 import static com.example.vkr.personal_cabinet.PersonalCabinetActivity.idAbit;
 import static com.example.vkr.utils.EditLinearLayout.newSize;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.util.TypedValue;
@@ -19,9 +18,9 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.androidnetworking.AndroidNetworking;
@@ -30,19 +29,14 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.example.vkr.R;
 import com.example.vkr.utils.ConvertClass;
-import com.example.vkr.utils.ShowToast;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class AchievementsFragment extends Fragment {
 
@@ -50,12 +44,16 @@ public class AchievementsFragment extends Fragment {
     private LinearLayout mainLayout;
     private TextView supportTextView;
     private static final List<String> achievements = new ArrayList<>();
+    private FloatingActionButton fab;
+    private ScrollView scrollView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         binding = inflater.inflate(R.layout.fragment_achievements, container, false);
         mainLayout = binding.findViewById(R.id.fragment_achievements_layout);
+        fab = Objects.requireNonNull(getActivity()).findViewById(R.id.fab);
+        scrollView = binding.findViewById(R.id.scrollview_achievements_fragment);
 
         if(achievements.isEmpty()) downloadPrivileges();
         else achievements.forEach(item -> onAddField(ConvertClass.convertStringToBitmap(item)));
@@ -75,7 +73,18 @@ public class AchievementsFragment extends Fragment {
             }
         }, 1000);
 
+        applyEvents();
         return binding.getRootView();
+    }
+
+
+    private void applyEvents(){
+        scrollView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
+            if (scrollY == 0 || (scrollY < oldScrollY && !fab.isShown()))
+                fab.show();
+            else if (scrollY > oldScrollY && fab.isShown())
+                fab.hide();
+        });
     }
 
 

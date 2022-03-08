@@ -23,7 +23,6 @@ import com.example.vkr.R
 import com.example.vkr.databinding.FragmentPrivilegesBinding
 import com.example.vkr.utils.*
 import com.fasterxml.jackson.core.JsonProcessingException
-import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import okhttp3.OkHttpClient
 import org.json.JSONArray

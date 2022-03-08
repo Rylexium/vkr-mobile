@@ -1,8 +1,6 @@
 package com.example.vkr.activity.registration.ui.passport1
 
-import android.app.Activity.RESULT_OK
 import android.content.Context.MODE_PRIVATE
-import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.Color
