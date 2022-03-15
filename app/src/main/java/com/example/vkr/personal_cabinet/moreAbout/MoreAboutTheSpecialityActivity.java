@@ -133,9 +133,7 @@ public class MoreAboutTheSpecialityActivity extends AppCompatActivity {
                             .build()
                             .getAsJSONObject(new JSONObjectRequestListener() {
                                 @Override
-                                public void onResponse(JSONObject response) {
-
-                                }
+                                public void onResponse(JSONObject response) { }
 
                                 @Override
                                 public void onError(ANError anError) {
@@ -200,13 +198,11 @@ public class MoreAboutTheSpecialityActivity extends AppCompatActivity {
             textQuestion.setText(text);
             linearLayout.addView(rowView);
             status.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_baseline_arrow_back_24));
-
         }
         else {
             linearLayout.getChildAt(linearLayout.getChildCount() - 1).setVisibility(View.GONE);
             linearLayout.removeViewAt(linearLayout.getChildCount() - 1);
             status.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_baseline_arrow_downward_24));
-
         }
     }
 
@@ -309,9 +305,7 @@ public class MoreAboutTheSpecialityActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onError(ANError anError) {
-
-                    }
+                    public void onError(ANError anError) { }
                 });
     }
 
@@ -348,9 +342,7 @@ public class MoreAboutTheSpecialityActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onError(ANError anError) {
-
-                    }
+                    public void onError(ANError anError) { }
                 });
     }
 

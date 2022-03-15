@@ -219,9 +219,7 @@ public class MoreAboutTheInstitutActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onError(ANError anError) {
-
-                    }
+                    public void onError(ANError anError) { }
                 });
     }
 
