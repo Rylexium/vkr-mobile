@@ -54,7 +54,6 @@ class SupportActivity : AppCompatActivity() {
         setContentView(R.layout.support_activity)
         window.navigationBarColor = applicationContext.getColor(R.color.orange_700)
         window.statusBarColor = applicationContext.getColor(R.color.orange_700)
-
         login = intent.getStringExtra("login")
         initComponents()
         applyEvents()

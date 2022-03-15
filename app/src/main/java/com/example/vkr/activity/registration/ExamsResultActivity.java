@@ -57,7 +57,6 @@ public class ExamsResultActivity extends AppCompatActivity {
         if(getSupportActionBar() != null) getSupportActionBar().hide(); //убираем action bar
         getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.blue_500));
         setContentView(R.layout.exams_result_activity);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         initComponents();
         appleEvents();
     }

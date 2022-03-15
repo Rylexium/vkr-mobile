@@ -39,7 +39,6 @@ class SplashScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.splash_screen_activity)
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         val logoImageView = findViewById<ImageView>(R.id.splash_logo)
         val mainLayout = findViewById<LinearLayout>(R.id.splash_layout_main)
         when(Random.nextInt(1, 4)){

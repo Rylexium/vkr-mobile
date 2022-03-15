@@ -49,7 +49,6 @@ public class AuthorizationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.authorization_activity);
         if(getSupportActionBar() != null) getSupportActionBar().hide();
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         initComponents();
         comebackAfterOnBackPressed();
         ApplyEvents();

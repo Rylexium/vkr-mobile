@@ -39,7 +39,6 @@ class RegistrationActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         binding = RegistrationActivityBinding.inflate(layoutInflater)
         sharedPreferences = getPreferences(MODE_PRIVATE)
         replaceFragment(fragments[0])

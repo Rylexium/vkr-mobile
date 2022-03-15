@@ -65,7 +65,6 @@ public class QuestionsActivity extends AppCompatActivity {
         setContentView(R.layout.questions_activity);
         if(getSupportActionBar() != null) getSupportActionBar().hide(); //убираем action bar
         getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.blue_500));
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         initComponents();
         applyEvents();
     }

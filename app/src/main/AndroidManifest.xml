@@ -17,12 +17,15 @@
         android:theme="@style/Theme.VKR">
         <activity
             android:name=".activity.support.ChangePasswordActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".activity.support.SupportActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".splash_screen.SplashScreen"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,27 +35,34 @@
         </activity>
         <activity
             android:name=".activity.registration.RegistrationActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:label="@string/title_activity_registration" />
         <activity
             android:name=".personal_cabinet.moreAbout.MoreAboutTheInstitutActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".personal_cabinet.moreAbout.MoreAboutTheSpecialityActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".activity.registration.ExamsResultActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".personal_cabinet.PersonalCabinetActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:label="@string/title_activity_personal_cabinet"
             android:theme="@style/Theme.VKR.NoActionBar" />
         <activity
             android:name=".activity.authorization.QuestionsActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".activity.authorization.AuthorizationActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
     </application>
 
