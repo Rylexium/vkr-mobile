@@ -65,7 +65,6 @@ public class PersonalCabinetActivity extends AppCompatActivity {
     public static Map<String, String> typeOfStudy;
     public static Map<String, String> instituts;
 
-    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,6 +108,8 @@ public class PersonalCabinetActivity extends AppCompatActivity {
                 return OpenActivity.openPageWithQuestion(this);
             case R.id.action_we_on_maps:
                 return OpenActivity.openMapsWhereWe(this);
+            case R.id.action_steps_admission:
+                return OpenActivity.openAdmissionSteps(this);
             default:
                 return super.onOptionsItemSelected(item);
         }

@@ -7,6 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="custom_white">#E2E5DE</color>
     <color name="blue_700">#0E47A1</color>
     <color name="blue_500">#008ce8</color>
     <color name="blue_200">#64bce9</color>
@@ -17,5 +18,7 @@
     <color name="color_for_splash_screen1">#0099fa</color>
     <color name="color_for_splash_screen2">#0045a6</color>
     <color name="color_for_splash_screen3">#ff8f00</color>
+    <color name="dark_red">#CA0000</color>
+    <color name="red">#F02E00</color>
 
 </resources>

@@ -108,6 +108,8 @@ public class MoreAboutTheSpecialityActivity extends AppCompatActivity {
                 return OpenActivity.openPageDeveloper(this);
             case R.id.action_faq:
                 return OpenActivity.openPageWithQuestion(this);
+            case R.id.action_steps_admission:
+                return OpenActivity.openAdmissionSteps(this);
             case R.id.action_we_on_maps:
                 return OpenActivity.openMapsWhereWe(this);
             case android.R.id.home:

@@ -6,11 +6,15 @@
         android:orderInCategory="1"
         android:title="Часто задаваемые вопросы" />
     <item
-        android:id="@+id/action_contact_with_developer"
+        android:id="@+id/action_steps_admission"
         android:orderInCategory="2"
+        android:title="Путь абитуриента" />
+    <item
+        android:id="@+id/action_contact_with_developer"
+        android:orderInCategory="3"
         android:title="Связь с разработчиком" />
     <item
         android:id="@+id/action_we_on_maps"
-        android:orderInCategory="3"
+        android:orderInCategory="4"
         android:title="Где мы находимся?" />
 </menu>

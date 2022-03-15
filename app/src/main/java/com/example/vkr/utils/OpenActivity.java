@@ -59,6 +59,10 @@ public class OpenActivity {
                 .putExtra("login", login));
         return true;
     }
+    public static boolean openAdmissionSteps(Activity activity){
+       // activity.startActivity(new Intent(activity, AdmissionActivity.class));
+        return true;
+    }
 
 
 }

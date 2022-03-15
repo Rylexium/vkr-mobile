@@ -79,6 +79,8 @@ public class MoreAboutTheInstitutActivity extends AppCompatActivity {
                 return OpenActivity.openPageWithQuestion(this);
             case R.id.action_we_on_maps:
                 return OpenActivity.openMapsWhereWe(this);
+            case R.id.action_steps_admission:
+                return OpenActivity.openAdmissionSteps(this);
             case android.R.id.home:
                 finish();
                 return true;
