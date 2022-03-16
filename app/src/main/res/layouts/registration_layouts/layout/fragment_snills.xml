@@ -36,7 +36,8 @@
             android:layout_marginTop="12dp" />
 
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="9dp"
@@ -44,20 +45,22 @@
             android:layout_marginEnd="9dp"
             android:hint="СНИЛС"
             android:textColorHint="@color/grey"
+            app:startIconDrawable="@drawable/ic_baseline_fact_check_24"
             app:boxStrokeColor="@color/blue_700"
             app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
             >
 
-            <AutoCompleteTextView
+            <com.google.android.material.textfield.TextInputEditText
                 android:textCursorDrawable="@drawable/cursor_black"
                 android:textColorHighlight="@color/blue_700"
                 android:id="@+id/textbox_snills"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:digits="0123456789 -"
                 android:inputType="phone"
                 android:maxLength="14"
                 android:textColor="@color/white"
+                android:textSize="17sp"
                 tools:ignore="TouchTargetSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 

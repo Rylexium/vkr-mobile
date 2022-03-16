@@ -48,19 +48,20 @@
             android:layout_marginEnd="9dp"
             />
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="9dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="9dp"
             android:hint="Почтовый индекс"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:textColorHint="@color/grey"
             app:boxStrokeColor="@color/blue_700"
             app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
             >
 
-            <AutoCompleteTextView
+            <com.google.android.material.textfield.TextInputEditText
                 android:textCursorDrawable="@drawable/cursor_black"
                 android:textColorHighlight="@color/blue_700"
                 android:id="@+id/textbox_post_index_reg"
@@ -70,50 +71,55 @@
                 android:inputType="phone"
                 android:maxLength="6"
                 android:textColor="@color/white"
+                android:textSize="17sp"
                 tools:ignore="TouchTargetSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginStart="9dp"
             android:layout_marginTop="9dp"
             android:layout_marginEnd="9dp"
             android:hint="Выберите субъект РФ"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:textColorHint="@color/grey"
             app:boxStrokeColor="@color/blue_700"
             app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
             >
 
-            <AutoCompleteTextView
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
                 android:textCursorDrawable="@drawable/cursor_black"
                 android:textColorHighlight="@color/blue_700"
                 android:id="@+id/textbox_subject_reg"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:digits="@string/alfavit_russian"
                 android:inputType="none"
                 android:maxLength="54"
+                android:paddingStart="15sp"
+                android:textSize="17sp"
                 android:textColor="@color/white"
                 tools:ignore="TouchTargetSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="9dp"
             android:layout_marginTop="9dp"
             android:layout_marginEnd="9dp"
             android:hint="Населённый пункт"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:textColorHint="@color/grey"
             android:textColor="@color/white"
             app:boxStrokeColor="@color/blue_700"
             app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
             >
 
-            <AutoCompleteTextView
+            <com.google.android.material.textfield.TextInputEditText
                 android:textCursorDrawable="@drawable/cursor_black"
                 android:textColorHighlight="@color/blue_700"
                 android:id="@+id/textbox_city_reg"
@@ -127,20 +133,21 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="9dp"
             android:layout_marginTop="9dp"
             android:layout_marginEnd="9dp"
             android:hint="Улица"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:textColorHint="@color/grey"
             android:textColor="@color/white"
             app:boxStrokeColor="@color/blue_700"
             app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
             >
 
-            <AutoCompleteTextView
+            <com.google.android.material.textfield.TextInputEditText
                 android:textCursorDrawable="@drawable/cursor_black"
                 android:textColorHighlight="@color/blue_700"
                 android:id="@+id/textbox_residence_street_reg"
@@ -149,6 +156,7 @@
                 android:digits="@string/alfavit_russian"
                 android:inputType="none"
                 android:maxLength="128"
+                android:textSize="17sp"
                 android:textColor="@color/white"
                 tools:ignore="TouchTargetSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -165,19 +173,20 @@
             android:layout_marginEnd="9dp"
             />
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="9dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="9dp"
             android:hint="Почтовый индекс"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:textColorHint="@color/grey"
             app:boxStrokeColor="@color/blue_700"
             app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
             >
 
-            <AutoCompleteTextView
+            <com.google.android.material.textfield.TextInputEditText
                 android:textCursorDrawable="@drawable/cursor_black"
                 android:textColorHighlight="@color/blue_700"
                 android:id="@+id/textbox_post_index_actual"
@@ -188,79 +197,85 @@
                 android:inputType="phone"
                 android:maxLength="6"
                 android:textColor="@color/white"
+                android:textSize="17sp"
                 tools:ignore="TouchTargetSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginStart="9dp"
             android:layout_marginTop="9dp"
             android:layout_marginEnd="9dp"
             android:hint="Выберите субъект РФ"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:textColorHint="@color/grey"
             app:boxStrokeColor="@color/blue_700"
             app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
             >
 
-            <AutoCompleteTextView
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
                 android:textCursorDrawable="@drawable/cursor_black"
                 android:textColorHighlight="@color/blue_700"
                 android:id="@+id/textbox_subject_actual"
-                android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:digits="@string/alfavit_russian"
                 android:inputType="none"
                 android:maxLength="54"
+                android:paddingStart="15sp"
+                android:textSize="17sp"
                 android:textColor="@color/white"
                 tools:ignore="TouchTargetSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginStart="9dp"
             android:layout_marginTop="9dp"
             android:layout_marginEnd="9dp"
             android:hint="Населённый пункт"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:textColorHint="@color/grey"
             android:textColor="@color/white"
             app:boxStrokeColor="@color/blue_700"
             app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
             >
 
-            <AutoCompleteTextView
-                android:textCursorDrawable="@drawable/cursor_black"
-                android:textColorHighlight="@color/blue_700"
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textbox_city_actual"
-                android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:digits="@string/alfavit_russian"
+                android:focusableInTouchMode="true"
                 android:inputType="none"
                 android:maxLength="54"
                 android:textColor="@color/white"
+                android:textColorHighlight="@color/blue_700"
+                android:textCursorDrawable="@drawable/cursor_black"
+                android:textSize="17sp"
                 tools:ignore="TouchTargetSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="9dp"
             android:layout_marginTop="9dp"
             android:layout_marginEnd="9dp"
             android:hint="Улица"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:textColorHint="@color/grey"
             android:textColor="@color/white"
             app:boxStrokeColor="@color/blue_700"
             app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
             >
 
-            <AutoCompleteTextView
+            <com.google.android.material.textfield.TextInputEditText
                 android:textCursorDrawable="@drawable/cursor_black"
                 android:textColorHighlight="@color/blue_700"
                 android:id="@+id/textbox_residence_street_actual"
@@ -271,6 +286,7 @@
                 android:inputType="none"
                 android:maxLength="128"
                 android:textColor="@color/white"
+                android:textSize="17sp"
                 tools:ignore="TouchTargetSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>
     

@@ -49,7 +49,7 @@ class Passport3Fragment : Fragment() {
     ): View {
         _binding = FragmentPassport3Binding.inflate(inflater, container, false)
         val root: View = binding.root
-        sharedPreferences = activity!!.getPreferences(MODE_PRIVATE)
+        sharedPreferences = requireActivity().getPreferences(MODE_PRIVATE)
         ApplyEvents()
         comebackAfterOnBackPressed()
 
@@ -57,8 +57,8 @@ class Passport3Fragment : Fragment() {
                 .map { str -> str.replaceFirst(" ", "") }
 
 
-        binding.textboxSubjectReg.setAdapter(ArrayAdapter<Any?>(context!!, R.layout.list_item, listOfSubject))
-        binding.textboxSubjectActual.setAdapter(ArrayAdapter<Any?>(context!!, R.layout.list_item, listOfSubject))
+        binding.textboxSubjectReg.setAdapter(ArrayAdapter<Any?>(requireContext(), R.layout.list_item, listOfSubject))
+        binding.textboxSubjectActual.setAdapter(ArrayAdapter<Any?>(requireContext(), R.layout.list_item, listOfSubject))
         if(bitmap == null)
             binding.imageViewPassport3.setImageBitmap(ConvertClass.decodeSampledBitmapFromResource(resources, R.drawable.passport_registration, 100, 100))
         return root
@@ -66,7 +66,7 @@ class Passport3Fragment : Fragment() {
 
     @SuppressLint("ClickableViewAccessibility")
     private fun ApplyEvents() {
-        binding.makePassport3Photo.setOnClickListener { SelectImageClass.showMenu(activity!!,this, false) }
+        binding.makePassport3Photo.setOnClickListener { SelectImageClass.showMenu(requireActivity(),this, false) }
 
         binding.textboxPostIndexReg.setOnFocusChangeListener{ _, isFocus -> setVisibleNavigationBottomView(!isFocus) }
         binding.textboxSubjectReg.setOnFocusChangeListener{ _, isFocus -> setVisibleNavigationBottomView(!isFocus) }

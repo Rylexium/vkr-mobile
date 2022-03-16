@@ -43,7 +43,7 @@ class Passport2Fragment : Fragment() {
     ): View {
         _binding = FragmentPassport2Binding.inflate(inflater, container, false)
         val root: View = binding.root
-        sharedPreferences = activity!!.getPreferences(MODE_PRIVATE)
+        sharedPreferences = requireActivity().getPreferences(MODE_PRIVATE)
         ApplyEvents()
         comebackAfterOnBackPressed()
         return root
@@ -60,14 +60,14 @@ class Passport2Fragment : Fragment() {
             binding.imageViewPassport2.setImageBitmap(bitmap)
         }
 
-        if (binding.textboxPassportSeries.text.length < 5) binding.textboxPassportSeries.setTextColor(Color.RED)
-        else binding.textboxPassportSeries.setTextColor(ContextCompat.getColor(context!!, R.color.white))
+        if (binding.textboxPassportSeries.text?.length!! < 5) binding.textboxPassportSeries.setTextColor(Color.RED)
+        else binding.textboxPassportSeries.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
 
-        if (binding.textboxPassportNumber.text.length < 6) binding.textboxPassportNumber.setTextColor(Color.RED)
-        else binding.textboxPassportNumber.setTextColor(ContextCompat.getColor(context!!, R.color.white))
+        if (binding.textboxPassportNumber.text?.length!! < 6) binding.textboxPassportNumber.setTextColor(Color.RED)
+        else binding.textboxPassportNumber.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
 
-        if (binding.textboxCodeUnit.text.length < 7) binding.textboxCodeUnit.setTextColor(Color.RED)
-        else binding.textboxCodeUnit.setTextColor(ContextCompat.getColor(context!!, R.color.white))
+        if (binding.textboxCodeUnit.text?.length!! < 7) binding.textboxCodeUnit.setTextColor(Color.RED)
+        else binding.textboxCodeUnit.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
     }
     private fun wrapper(key: String, editText: Consumer<String>) {
         Optional.ofNullable(sharedPreferences!!.getString(key, null))
@@ -75,7 +75,7 @@ class Passport2Fragment : Fragment() {
     }
 
     private fun ApplyEvents() {
-        binding.makePassport2Photo.setOnClickListener { SelectImageClass.showMenu(activity!!, this, false) }
+        binding.makePassport2Photo.setOnClickListener { SelectImageClass.showMenu(requireActivity(), this, false) }
         binding.textboxDateIssuingOfPassport.setOnClickListener {
             SelectDateClass.showDatePickerDialogForDateIssuing(activity as AppCompatActivity?, binding.textboxDateIssuingOfPassport)
         }
@@ -85,18 +85,18 @@ class Passport2Fragment : Fragment() {
         binding.passport2Layout.setOnClickListener{ setVisibleNavigationBottomView(true) }
         binding.textboxPassportSeries.setOnFocusChangeListener { _, isFocus ->
             setVisibleNavigationBottomView(!isFocus)
-            if (!isFocus && binding.textboxPassportSeries.text.length < 5) binding.textboxPassportSeries.setTextColor(Color.RED)
-            else binding.textboxPassportSeries.setTextColor(ContextCompat.getColor(context!!, R.color.white))
+            if (!isFocus && binding.textboxPassportSeries.text?.length!! < 5) binding.textboxPassportSeries.setTextColor(Color.RED)
+            else binding.textboxPassportSeries.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
         }
         binding.textboxPassportNumber.setOnFocusChangeListener { _, isFocus ->
             setVisibleNavigationBottomView(!isFocus)
-            if (!isFocus && binding.textboxPassportNumber.text.length < 6) binding.textboxPassportNumber.setTextColor(Color.RED)
-            else binding.textboxPassportNumber.setTextColor(ContextCompat.getColor(context!!, R.color.white))
+            if (!isFocus && binding.textboxPassportNumber.text?.length!! < 6) binding.textboxPassportNumber.setTextColor(Color.RED)
+            else binding.textboxPassportNumber.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
         }
         binding.textboxCodeUnit.setOnFocusChangeListener { _, isFocus ->
             setVisibleNavigationBottomView(!isFocus)
-            if (!isFocus && binding.textboxCodeUnit.text.length < 7) binding.textboxCodeUnit.setTextColor(Color.RED)
-            else binding.textboxCodeUnit.setTextColor(ContextCompat.getColor(context!!, R.color.white))
+            if (!isFocus && binding.textboxCodeUnit.text?.length!! < 7) binding.textboxCodeUnit.setTextColor(Color.RED)
+            else binding.textboxCodeUnit.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
         }
     }
 

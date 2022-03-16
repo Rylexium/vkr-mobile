@@ -44,7 +44,8 @@
                 android:paddingBottom="9dp">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"
@@ -54,39 +55,42 @@
                     app:boxStrokeColor="@color/blue_700"
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                    <AutoCompleteTextView
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/textbox_passport_series"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:digits="@string/only_numbers"
                         android:inputType="phone"
                         android:maxLength="5"
                         android:textColor="@color/white"
                         android:textColorHighlight="@color/blue_700"
                         android:textCursorDrawable="@drawable/cursor_black"
+                        android:textSize="17sp"
                         tools:ignore="TouchTargetSizeCheck" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="0.5"
                     android:hint="Номер паспорта"
                     android:textColorHint="@color/grey"
                     app:boxStrokeColor="@color/blue_700"
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-                    <AutoCompleteTextView
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/textbox_passport_number"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:digits="@string/only_numbers"
                         android:inputType="phone"
                         android:maxLength="6"
                         android:textColor="@color/white"
                         android:textColorHighlight="@color/blue_700"
                         android:textCursorDrawable="@drawable/cursor_black"
+                        android:textSize="17sp"
                         tools:ignore="TouchTargetSizeCheck" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -102,7 +106,8 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
                     android:layout_width="0dp"
                     android:layout_weight="0.5"
                     android:layout_height="wrap_content"
@@ -113,7 +118,7 @@
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
                     >
 
-                    <AutoCompleteTextView
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/textbox_date_issuing_of_passport"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -126,11 +131,13 @@
                         android:textColor="@color/white"
                         android:textColorHighlight="@color/blue_700"
                         android:textCursorDrawable="@drawable/cursor_black"
+                        android:textSize="17sp"
                         tools:ignore="TouchTargetSizeCheck" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
@@ -140,7 +147,7 @@
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
                     >
 
-                    <AutoCompleteTextView
+                    <com.google.android.material.textfield.TextInputEditText
                         android:textCursorDrawable="@drawable/cursor_black"
                         android:textColorHighlight="@color/blue_700"
                         android:id="@+id/textbox_code_unit"
@@ -150,6 +157,7 @@
                         android:inputType="phone"
                         android:maxLength="7"
                         android:textColor="@color/white"
+                        android:textSize="17sp"
                         tools:ignore="TouchTargetSizeCheck" />
                 </com.google.android.material.textfield.TextInputLayout>
 

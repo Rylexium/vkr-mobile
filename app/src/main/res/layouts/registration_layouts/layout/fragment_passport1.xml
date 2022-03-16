@@ -65,6 +65,7 @@
                         android:inputType="textPersonName"
                         android:maxLength="32"
                         android:textColor="@color/white"
+                        android:textSize="17sp"
                         tools:ignore="TouchTargetSizeCheck" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -92,6 +93,7 @@
                         android:inputType="textPersonName"
                         android:maxLength="32"
                         android:textColor="@color/white"
+                        android:textSize="17sp"
                         tools:ignore="TouchTargetSizeCheck" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -119,6 +121,7 @@
                         android:inputType="textPersonName"
                         android:maxLength="64"
                         android:textColor="@color/white"
+                        android:textSize="17sp"
                         tools:ignore="TouchTargetSizeCheck" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
@@ -156,6 +159,7 @@
                     android:textColor="@color/white"
                     android:drawableStart="@drawable/calendar_icon"
                     android:drawablePadding="8dp"
+                    android:textSize="17sp"
                     tools:ignore="TouchTargetSizeCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -168,7 +172,7 @@
                 android:text="Пол"
                 android:theme="@style/SwitchTheme"
                 android:textColor="@color/grey"
-                android:textSize="18dp" />
+                android:textSize="17sp" />
 
         </LinearLayout>
 
