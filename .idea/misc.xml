@@ -46,7 +46,7 @@
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/layout/activity_more_about_the_institut.xml" value="0.25" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/layout/activity_more_about_the_speciality.xml" value="0.33" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/layout/admission_activity.xml" value="0.1" />
-        <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/layout/app_bar_personal_cabinet.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/layout/app_bar_personal_cabinet.xml" value="0.33" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/layout/content_personal_cabinet.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/layout/exams_result_activity.xml" value="0.25" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/layout/fragment_achievements.xml" value="0.18854166666666666" />
@@ -72,6 +72,7 @@
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/registration_layouts/drawable/ic_menu_camera.xml" value="0.293" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/registration_layouts/drawable/side_nav_bar.xml" value="0.3828125" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/registration_layouts/drawable/tab_indicator.xml" value="0.1" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/registration_layouts/layout/admission_activity.xml" value="0.1" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/registration_layouts/layout/change_password_activity.xml" value="0.33" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/registration_layouts/layout/content_personal_cabinet.xml" value="0.35190217391304346" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/registration_layouts/layout/download_achievements_activity.xml" value="0.29257246376811596" />
@@ -85,7 +86,7 @@
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/registration_layouts/layout/fragment_education1.xml" value="0.20625" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/registration_layouts/layout/fragment_finish.xml" value="0.33" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/registration_layouts/layout/fragment_home.xml" value="0.19739583333333333" />
-        <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/registration_layouts/layout/fragment_passport1.xml" value="0.25" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/registration_layouts/layout/fragment_passport1.xml" value="0.5" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/registration_layouts/layout/fragment_passport2.xml" value="0.22" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/registration_layouts/layout/fragment_passport3.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/registration_layouts/layout/fragment_privileges.xml" value="0.36666666666666664" />

@@ -7,12 +7,10 @@ import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import androidx.annotation.NonNull
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.fragment.app.Fragment
 import androidx.core.content.ContextCompat
 import androidx.appcompat.app.AppCompatActivity
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -62,7 +60,7 @@ class Passport1Fragment : Fragment() {
     ): View {
 
         _binding = FragmentPassport1Binding.inflate(inflater, container, false)
-        sharedPreferences = activity!!.getPreferences(MODE_PRIVATE)
+        sharedPreferences = activity?.getPreferences(MODE_PRIVATE)
         initComponents()
         comebackAfterOnBackPressed()
         applyEvents()
@@ -78,10 +76,10 @@ class Passport1Fragment : Fragment() {
             if(_binding == null) return@launch
 
             Handler(Looper.getMainLooper()).post {
-                binding.listboxNationality.adapter = MySpinnerAdapter(context!!, R.layout.spinner_item, listRes)
+                binding.listboxNationality.adapter = MySpinnerAdapter(requireContext(), R.layout.spinner_item, listRes)
 
-                if (activity!!.getPreferences(MODE_PRIVATE).getString(KEY_NATIONALITY, null) != null)
-                    binding.listboxNationality.setSelection(activity!!.getPreferences(MODE_PRIVATE).getString(KEY_NATIONALITY, null)!!.toInt())
+                if (activity?.getPreferences(MODE_PRIVATE)?.getString(KEY_NATIONALITY, null) != null)
+                    binding.listboxNationality.setSelection(activity?.getPreferences(MODE_PRIVATE)?.getString(KEY_NATIONALITY, null)!!.toInt())
             }
         }
     }
@@ -120,14 +118,14 @@ class Passport1Fragment : Fragment() {
         if (sharedPreferences?.getString(KEY_NATIONALITY, null) != null) {
             binding.listboxNationality.setSelection(sharedPreferences?.getString(KEY_NATIONALITY, null)!!.toInt())
         }
-        if (binding.textboxFamilyReg.text.length < 2) binding.textboxFamilyReg.setTextColor(Color.RED)
-        else binding.textboxFamilyReg.setTextColor(ContextCompat.getColor(context!!, R.color.white))
+        if (binding.textboxFamilyReg.text?.length!! < 2) binding.textboxFamilyReg.setTextColor(Color.RED)
+        else binding.textboxFamilyReg.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
 
-        if (binding.textboxNameReg.text.length < 2) binding.textboxNameReg.setTextColor(Color.RED)
-        else binding.textboxNameReg.setTextColor(ContextCompat.getColor(context!!, R.color.white))
+        if (binding.textboxNameReg.text?.length!! < 2) binding.textboxNameReg.setTextColor(Color.RED)
+        else binding.textboxNameReg.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
 
-        if (binding.textboxPatronymicReg.text.length < 2) binding.textboxPatronymicReg.setTextColor(Color.RED)
-        else binding.textboxPatronymicReg.setTextColor(ContextCompat.getColor(context!!, R.color.white))
+        if (binding.textboxPatronymicReg.text?.length!! < 2) binding.textboxPatronymicReg.setTextColor(Color.RED)
+        else binding.textboxPatronymicReg.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
 
     }
 
@@ -146,7 +144,7 @@ class Passport1Fragment : Fragment() {
             binding.passport1Layout.requestFocus()
         }
         binding.textboxDateOfBirth.setOnClickListener{
-            SelectDateClass.showDatePickerDialogForBirthday(activity!! as AppCompatActivity?, binding.textboxDateOfBirth)
+            SelectDateClass.showDatePickerDialogForBirthday(requireActivity() as AppCompatActivity?, binding.textboxDateOfBirth)
             setVisibleNavigationBottomView(true)
             binding.passport1Layout.requestFocus()
         }
@@ -167,18 +165,18 @@ class Passport1Fragment : Fragment() {
 
         binding.textboxFamilyReg.setOnFocusChangeListener{ _, isFocus ->
             setVisibleNavigationBottomView(!isFocus)
-            if(!isFocus && binding.textboxFamilyReg.text.length < 2) binding.textboxFamilyReg.setTextColor(Color.RED)
-            else binding.textboxFamilyReg.setTextColor(ContextCompat.getColor(context!!, R.color.white))
+            if(!isFocus && binding.textboxFamilyReg.text?.length!! < 2) binding.textboxFamilyReg.setTextColor(Color.RED)
+            else binding.textboxFamilyReg.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
         }
         binding.textboxNameReg.setOnFocusChangeListener{ _, isFocus ->
             setVisibleNavigationBottomView(!isFocus)
-            if(!isFocus && binding.textboxNameReg.text.length < 2) binding.textboxNameReg.setTextColor(Color.RED)
-            else binding.textboxNameReg.setTextColor(ContextCompat.getColor(context!!, R.color.white))
+            if(!isFocus && binding.textboxNameReg.text?.length!! < 2) binding.textboxNameReg.setTextColor(Color.RED)
+            else binding.textboxNameReg.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
         }
         binding.textboxPatronymicReg.setOnFocusChangeListener { _, isFocus ->
             setVisibleNavigationBottomView(!isFocus)
-            if (!isFocus && binding.textboxPatronymicReg.text.length < 2) binding.textboxPatronymicReg.setTextColor(Color.RED)
-            else binding.textboxPatronymicReg.setTextColor(ContextCompat.getColor(context!!, R.color.white))
+            if (!isFocus && binding.textboxPatronymicReg.text?.length!! < 2) binding.textboxPatronymicReg.setTextColor(Color.RED)
+            else binding.textboxPatronymicReg.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
         }
     }
 

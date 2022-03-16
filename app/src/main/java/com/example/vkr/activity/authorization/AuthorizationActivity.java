@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.widget.Button;
-import android.widget.AutoCompleteTextView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -24,6 +23,7 @@ import com.example.vkr.utils.ShowToast;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONObject;
 
@@ -33,8 +33,8 @@ import okhttp3.OkHttpClient;
 
 
 public class AuthorizationActivity extends AppCompatActivity {
-    private AutoCompleteTextView textBoxLogin;
-    private AutoCompleteTextView textBoxPassword;
+    private TextInputEditText textBoxLogin;
+    private TextInputEditText textBoxPassword;
     private Button singInBtn;
     private TextView labelQuestions;
     private TextView labelRememberPassword;
@@ -71,7 +71,7 @@ public class AuthorizationActivity extends AppCompatActivity {
 
     @Override
     public void onResume(){
-        textBoxPassword.setText("");
+        //textBoxPassword.setText("");
         SplashScreen.sharedPreferences.edit().remove("password").apply();
         super.onResume();
     }

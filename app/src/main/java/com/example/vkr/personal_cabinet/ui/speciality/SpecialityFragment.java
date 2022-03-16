@@ -134,7 +134,7 @@ public class SpecialityFragment extends Fragment {
 
         scrollView = binding.findViewById(R.id.scrollview_speciality_fragment);
 
-        fab = Objects.requireNonNull(getActivity()).findViewById(R.id.fab);
+        fab = getActivity().findViewById(R.id.fab);
 
         if(speciality == null) { //первый раз зашли сюда
             speciality = new ArrayList<>(); //инициализация

@@ -33,8 +33,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.json.JSONObject;
 
-import java.util.Objects;
-
 public class MainFragment extends Fragment {
     private FragmentMainBinding binding;
     private FloatingActionButton fab;
@@ -72,7 +70,7 @@ public class MainFragment extends Fragment {
 
         binding = FragmentMainBinding.inflate(inflater, container, false);
 
-        mainViewModel = new ViewModelProvider(this,  new ViewModelProvider.NewInstanceFactory()).get(MainViewModel.class);
+        mainViewModel = new ViewModelProvider(this, (ViewModelProvider.Factory) new ViewModelProvider.NewInstanceFactory()).get(MainViewModel.class);
         initHomeViewModel();
         initComponents();
         ApplyEvents();
@@ -304,7 +302,7 @@ public class MainFragment extends Fragment {
         TransitionManager.beginDelayedTransition(linearLayout, new AutoTransition());
         linearLayout.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
 
-        LayoutInflater inflater = (LayoutInflater) Objects.requireNonNull(getActivity()).getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView1, rowView2;
         if(bitmap1 == null && bitmap2 == null){
             ShowToast.show(getContext(), "Изображений нет");
@@ -376,7 +374,10 @@ public class MainFragment extends Fragment {
         if(isDownloadImagesPassport != null) isDownloadImagesPassport = true;
         if(isDownloadImagesEducation != null) isDownloadImagesEducation = true;
         binding.scrollviewHomeFragment.post(()->binding.scrollviewHomeFragment.scrollTo(0, scrollY));
-        fab = Objects.requireNonNull(getActivity()).findViewById(R.id.fab);
+        new Thread(()->{
+            while(getActivity().findViewById(R.id.fab) == null){}
+            new Handler(Looper.getMainLooper()).post(()->fab = getActivity().findViewById(R.id.fab));
+        }).start();
     }
     public static void clearData() {
         loginString = null;

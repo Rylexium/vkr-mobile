@@ -24,23 +24,26 @@
             android:src="@drawable/ssau_preview" />
 
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="35dp"
             android:layout_marginEnd="35dp"
             android:hint="Логин"
             android:textColorHint="@color/grey"
+            app:startIconDrawable="@drawable/user_icon"
+            app:endIconMode="clear_text"
             app:boxStrokeColor="@color/blue_700"
+            app:hintTextColor="@color/blue_700"
             app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
             >
 
-            <AutoCompleteTextView
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textbox_login"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:digits="@string/alfavit_for_login"
-                android:drawableStart="@drawable/user_icon"
                 android:drawablePadding="8dp"
                 android:ems="10"
                 android:inputType="text"
@@ -48,12 +51,14 @@
                 android:singleLine="true"
                 android:textColor="@color/white"
                 android:textColorHighlight="@color/blue_700"
-                android:textColorHint="@color/grey"
-                android:textCursorDrawable="@drawable/cursor_black" />
+                android:textColorHint="@color/black"
+                android:textCursorDrawable="@drawable/cursor_black"
+                android:textSize="18sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="35dp"
@@ -61,11 +66,13 @@
             android:hint="Пароль"
             app:passwordToggleEnabled="true"
             android:textColorHint="@color/grey"
+            app:startIconDrawable="@drawable/password_icon"
             app:boxStrokeColor="@color/blue_700"
+            app:hintTextColor="@color/blue_700"
             app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
             >
 
-            <AutoCompleteTextView
+            <com.google.android.material.textfield.TextInputEditText
                 android:textCursorDrawable="@drawable/cursor_black"
                 android:textColorHighlight="@color/blue_700"
                 android:id="@+id/textbox_password"
@@ -73,14 +80,13 @@
                 android:layout_height="50dp"
                 android:digits="@string/alfavit_for_password"
                 android:ems="10"
+                android:textSize="18sp"
                 android:inputType="textPassword"
                 android:maxLength="64"
                 android:singleLine="true"
                 android:textColor="@color/white"
-                android:drawableStart="@drawable/password_icon"
                 android:drawablePadding="8dp"
-                android:textColorHint="@color/grey"
-                />
+                android:textColorHint="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button

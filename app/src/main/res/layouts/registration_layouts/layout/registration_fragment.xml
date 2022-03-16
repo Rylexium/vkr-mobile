@@ -27,7 +27,8 @@
             android:paddingTop="35dp"
             />
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_marginTop="20dp"
@@ -35,55 +36,62 @@
             android:layout_marginEnd="9dp"
             android:hint="Номер телефона"
             android:textColorHint="@color/grey"
+            app:startIconDrawable="@drawable/phone_icon"
             app:boxStrokeColor="@color/blue_700"
+            app:endIconMode="clear_text"
+            app:hintTextColor="@color/blue_700"
             app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
             >
 
-            <AutoCompleteTextView
+            <com.google.android.material.textfield.TextInputEditText
                 android:textCursorDrawable="@drawable/cursor_black"
                 android:textColorHighlight="@color/blue_700"
                 android:id="@+id/textbox_phone"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:digits="1234567890 +()-"
                 android:inputType="phone"
                 android:maxLength="15"
                 android:textColor="@color/white"
-                android:drawableStart="@drawable/phone_icon"
                 android:drawablePadding="8dp"
+                android:textSize="17sp"
                 tools:ignore="TouchTargetSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_marginStart="9dp"
             android:layout_marginEnd="9dp"
             android:hint="Электронная почта"
             android:textColorHint="@color/grey"
+            app:startIconDrawable="@drawable/envelope_icon"
+            app:endIconMode="clear_text"
             app:boxStrokeColor="@color/blue_700"
             app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
             >
 
-            <AutoCompleteTextView
+            <com.google.android.material.textfield.TextInputEditText
                 android:textCursorDrawable="@drawable/cursor_black"
                 android:textColorHighlight="@color/blue_700"
                 android:id="@+id/textbox_email"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:digits="@string/alfavit_for_email"
                 android:inputType="textPersonName"
                 android:maxLength="32"
                 android:textColor="@color/white"
-                android:drawableStart="@drawable/envelope_icon"
                 android:drawablePadding="8dp"
+                android:textSize="17sp"
                 tools:ignore="TouchTargetSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_marginStart="9dp"
@@ -91,27 +99,29 @@
             android:layout_marginEnd="9dp"
             android:hint="Логин"
             android:textColorHint="@color/grey"
+            app:startIconDrawable="@drawable/user_icon"
+            app:endIconMode="clear_text"
             app:boxStrokeColor="@color/blue_700"
-            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
-            >
+            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
-            <AutoCompleteTextView
+            <com.google.android.material.textfield.TextInputEditText
                 android:textCursorDrawable="@drawable/cursor_black"
                 android:textColorHighlight="@color/blue_700"
                 android:id="@+id/textbox_login_reg"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:digits="@string/alfavit_for_login"
                 android:inputType="textPersonName"
                 android:maxLength="32"
                 android:textColor="@color/white"
-                android:drawableStart="@drawable/user_icon"
                 android:drawablePadding="8dp"
+                android:textSize="17sp"
                 tools:ignore="TouchTargetSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_marginStart="9dp"
@@ -119,27 +129,29 @@
             android:hint="Пароль"
             app:passwordToggleEnabled="true"
             android:textColorHint="@color/grey"
+            app:startIconDrawable="@drawable/password_icon"
             app:boxStrokeColor="@color/blue_700"
             app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
             >
 
-            <AutoCompleteTextView
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textbox_pass_reg"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:digits="@string/alfavit_for_login"
                 android:inputType="textPassword"
                 android:maxLength="32"
                 android:textColor="@color/white"
                 android:textColorHighlight="@color/blue_700"
                 android:textCursorDrawable="@drawable/cursor_black"
-                android:drawableStart="@drawable/password_icon"
                 android:drawablePadding="8dp"
+                android:textSize="17sp"
                 tools:ignore="TouchTargetSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_marginStart="9dp"
@@ -147,22 +159,23 @@
             android:hint="Повторите пароль"
             android:textColorHint="@color/grey"
             app:boxStrokeColor="@color/blue_700"
+            app:startIconDrawable="@drawable/password_icon"
             app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
             app:passwordToggleEnabled="true"
             >
 
-            <AutoCompleteTextView
+            <com.google.android.material.textfield.TextInputEditText
                 android:textCursorDrawable="@drawable/cursor_black"
                 android:textColorHighlight="@color/blue_700"
                 android:id="@+id/textbox_pass2_reg"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:digits="@string/alfavit_for_login"
                 android:inputType="textPassword"
                 android:maxLength="32"
                 android:textColor="@color/white"
-                android:drawableStart="@drawable/password_icon"
                 android:drawablePadding="8dp"
+                android:textSize="17sp"
                 tools:ignore="TouchTargetSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 

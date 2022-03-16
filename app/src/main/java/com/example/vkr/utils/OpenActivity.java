@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 
+import com.example.vkr.activity.admission.AdmissionActivity;
 import com.example.vkr.activity.authorization.QuestionsActivity;
 import com.example.vkr.activity.registration.ExamsResultActivity;
 import com.example.vkr.activity.registration.RegistrationActivity;
@@ -60,7 +61,7 @@ public class OpenActivity {
         return true;
     }
     public static boolean openAdmissionSteps(Activity activity){
-       // activity.startActivity(new Intent(activity, AdmissionActivity.class));
+        activity.startActivity(new Intent(activity, AdmissionActivity.class));
         return true;
     }
 

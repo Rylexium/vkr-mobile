@@ -86,7 +86,7 @@ public class StatementFragment extends Fragment {
     private void initComponents(){
         scrollView = binding.findViewById(R.id.scrollview_statement_fragment);
         linearLayout = binding.findViewById(R.id.layout_of_statement);
-        fab = Objects.requireNonNull(getActivity()).findViewById(R.id.fab);
+        fab = getActivity().findViewById(R.id.fab);
         buttonSubmitStatement = binding.findViewById(R.id.button_submit_statement);
         downloadTypeOfFinancing();
     }

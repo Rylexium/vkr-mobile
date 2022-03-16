@@ -42,7 +42,8 @@
                 android:orientation="vertical">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
                     android:layout_marginStart="9dp"
@@ -54,12 +55,12 @@
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
                     >
 
-                    <AutoCompleteTextView
+                    <com.google.android.material.textfield.TextInputEditText
                         android:textCursorDrawable="@drawable/cursor_black"
                         android:textColorHighlight="@color/blue_700"
                         android:id="@+id/textbox_family_reg"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:digits="@string/alfavit_for_name"
                         android:inputType="textPersonName"
                         android:maxLength="32"
@@ -68,7 +69,8 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
                     android:layout_marginStart="9dp"
@@ -80,7 +82,7 @@
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
                     >
 
-                    <AutoCompleteTextView
+                    <com.google.android.material.textfield.TextInputEditText
                         android:textCursorDrawable="@drawable/cursor_black"
                         android:textColorHighlight="@color/blue_700"
                         android:id="@+id/textbox_name_reg"
@@ -94,7 +96,8 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
                     android:layout_marginStart="9dp"
@@ -106,7 +109,7 @@
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
                     >
 
-                    <AutoCompleteTextView
+                    <com.google.android.material.textfield.TextInputEditText
                         android:textCursorDrawable="@drawable/cursor_black"
                         android:textColorHighlight="@color/blue_700"
                         android:id="@+id/textbox_patronymic_reg"
@@ -130,7 +133,8 @@
             android:orientation="horizontal">
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
                 android:layout_width="190dp"
                 android:layout_height="52dp"
                 android:hint="Дата рождения"
@@ -139,12 +143,12 @@
                 app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
                 >
 
-                <AutoCompleteTextView
+                <com.google.android.material.textfield.TextInputEditText
                     android:textCursorDrawable="@drawable/cursor_black"
                     android:textColorHighlight="@color/blue_700"
                     android:id="@+id/textbox_date_of_birth"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:digits="@string/only_numbers"
                     android:inputType="phone"
                     android:maxLength="10"

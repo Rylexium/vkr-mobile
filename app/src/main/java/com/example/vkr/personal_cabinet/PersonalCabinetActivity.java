@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.navigation.NavController;
@@ -68,7 +69,6 @@ public class PersonalCabinetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = PersonalCabinetActivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         setSupportActionBar(binding.appBarPersonalCabinet.toolbar);
         binding.appBarPersonalCabinet.fab.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW)
                                                                                 .setData(Uri.parse("https://vk.com/moais_samara"))));
@@ -344,9 +344,7 @@ public class PersonalCabinetActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onError(ANError anError){
-
-                    }
+                    public void onError(ANError anError){ }
                 });
     }
 
@@ -370,9 +368,7 @@ public class PersonalCabinetActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onError(ANError anError){
-
-                    }
+                    public void onError(ANError anError){ }
                 });
     }
 }
