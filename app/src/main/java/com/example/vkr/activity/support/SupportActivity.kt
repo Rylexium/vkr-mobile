@@ -15,7 +15,6 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnTouchListener
-import android.widget.AutoCompleteTextView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.androidnetworking.AndroidNetworking
@@ -27,6 +26,7 @@ import com.example.vkr.utils.HideKeyboardClass
 import com.example.vkr.utils.OpenActivity
 import com.example.vkr.utils.ShowToast
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.json.JSONObject
@@ -80,15 +80,15 @@ class SupportActivity : AppCompatActivity() {
                 val inflater = getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
                 val rowView = inflater.inflate(R.layout.field_for_support_login, null)
 
-                rowView.findViewById<AutoCompleteTextView>(R.id.textbox_support_phone).setText(phone)
-                rowView.findViewById<AutoCompleteTextView>(R.id.textbox_support_id).setText(snills)
+                rowView.findViewById<TextInputEditText>(R.id.textbox_support_phone).setText(phone)
+                rowView.findViewById<TextInputEditText>(R.id.textbox_support_id).setText(snills)
 
-                rowView.findViewById<AutoCompleteTextView>(R.id.textbox_support_login).setOnTouchListener(object : OnTouchListener {
+                rowView.findViewById<TextInputEditText>(R.id.textbox_support_login).setOnTouchListener(object : OnTouchListener {
                     var gestureDetector = GestureDetector(
                         applicationContext,
                         object : GestureDetector.SimpleOnGestureListener() {
                             override fun onLongPress(motionEvent: MotionEvent) {
-                                val loginStr = rowView.findViewById<AutoCompleteTextView>(R.id.textbox_support_login).text.toString()
+                                val loginStr = rowView.findViewById<TextInputEditText>(R.id.textbox_support_login).text.toString()
                                 if(loginStr == "") return
                                 val clipboard: ClipboardManager =
                                     this@SupportActivity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
@@ -98,7 +98,7 @@ class SupportActivity : AppCompatActivity() {
                             }
 
                             override fun onDoubleTap(e: MotionEvent?): Boolean {
-                                val loginStr = rowView.findViewById<AutoCompleteTextView>(R.id.textbox_support_login).text.toString()
+                                val loginStr = rowView.findViewById<TextInputEditText>(R.id.textbox_support_login).text.toString()
                                 if(loginStr == "") return super.onDoubleTap(e)
                                 val clipboard: ClipboardManager =
                                     this@SupportActivity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
@@ -130,10 +130,10 @@ class SupportActivity : AppCompatActivity() {
                     GlobalScope.launch {
                         val tmpLogin = getLogin(url)
                         Handler(Looper.getMainLooper()).post {
-                            if (tmpLogin == null) ShowToast.show(applicationContext, "Пользователя с такими данными не существует")
+                            if (tmpLogin.toString() == "null") ShowToast.show(applicationContext, "Пользователя с такими данными не существует")
                             else {
                                 ShowToast.show(applicationContext, "Ваш логин \"$tmpLogin\"")
-                                rowView.findViewById<AutoCompleteTextView>(R.id.textbox_support_login)
+                                rowView.findViewById<TextInputEditText>(R.id.textbox_support_login)
                                     .setText(tmpLogin)
                             }
                         }
@@ -145,8 +145,8 @@ class SupportActivity : AppCompatActivity() {
                 textViewSupportWithLogin!!.isEnabled = false
                 supportWithLogin?.getChildAt(1)?.visibility = View.GONE
 
-                phone = supportWithLogin?.getChildAt(1)?.findViewById<AutoCompleteTextView>(R.id.textbox_support_phone)?.text.toString()
-                snills = supportWithLogin?.getChildAt(1)?.findViewById<AutoCompleteTextView>(R.id.textbox_support_id)?.text.toString()
+                phone = supportWithLogin?.getChildAt(1)?.findViewById<TextInputEditText>(R.id.textbox_support_phone)?.text.toString()
+                snills = supportWithLogin?.getChildAt(1)?.findViewById<TextInputEditText>(R.id.textbox_support_id)?.text.toString()
 
                 Handler(Looper.getMainLooper()).postDelayed({
                     supportWithLogin?.removeViewAt(1)
@@ -168,14 +168,14 @@ class SupportActivity : AppCompatActivity() {
                 val inflater = getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
                 val rowView = inflater.inflate(R.layout.field_for_support_password, null)
 
-                rowView.findViewById<AutoCompleteTextView>(R.id.textbox_support_login).setText(login)
-                rowView.findViewById<AutoCompleteTextView>(R.id.textbox_support_phone).setText(phone)
-                rowView.findViewById<AutoCompleteTextView>(R.id.textbox_support_id).setText(snills)
+                rowView.findViewById<TextInputEditText>(R.id.textbox_support_login).setText(login)
+                rowView.findViewById<TextInputEditText>(R.id.textbox_support_phone).setText(phone)
+                rowView.findViewById<TextInputEditText>(R.id.textbox_support_id).setText(snills)
 
                 rowView.findViewById<TextView>(R.id.button_help_with_password).setOnClickListener{
-                    val loginString = rowView.findViewById<AutoCompleteTextView>(R.id.textbox_support_login).text.toString()
-                    val phoneString = rowView.findViewById<AutoCompleteTextView>(R.id.textbox_support_phone).text.toString()
-                    val snillsString = rowView.findViewById<AutoCompleteTextView>(R.id.textbox_support_id).text.toString()
+                    val loginString = rowView.findViewById<TextInputEditText>(R.id.textbox_support_login).text.toString()
+                    val phoneString = rowView.findViewById<TextInputEditText>(R.id.textbox_support_phone).text.toString()
+                    val snillsString = rowView.findViewById<TextInputEditText>(R.id.textbox_support_id).text.toString()
 
                     val url = when {
                         loginString.isNotEmpty() -> "https://vkr1-app.herokuapp.com/support/password?login=$loginString"
@@ -205,9 +205,9 @@ class SupportActivity : AppCompatActivity() {
                 textViewSupportWithPassword!!.isEnabled = false
                 supportWithPassword?.getChildAt(1)?.visibility = View.GONE
 
-                login = supportWithPassword?.getChildAt(1)?.findViewById<AutoCompleteTextView>(R.id.textbox_support_login)?.text.toString()
-                phone = supportWithPassword?.getChildAt(1)?.findViewById<AutoCompleteTextView>(R.id.textbox_support_phone)?.text.toString()
-                snills = supportWithPassword?.getChildAt(1)?.findViewById<AutoCompleteTextView>(R.id.textbox_support_id)?.text.toString()
+                login = supportWithPassword?.getChildAt(1)?.findViewById<TextInputEditText>(R.id.textbox_support_login)?.text.toString()
+                phone = supportWithPassword?.getChildAt(1)?.findViewById<TextInputEditText>(R.id.textbox_support_phone)?.text.toString()
+                snills = supportWithPassword?.getChildAt(1)?.findViewById<TextInputEditText>(R.id.textbox_support_id)?.text.toString()
                 Handler(Looper.getMainLooper()).postDelayed({
                     supportWithPassword?.removeViewAt(1)
                     textViewSupportWithPassword!!.isEnabled = true

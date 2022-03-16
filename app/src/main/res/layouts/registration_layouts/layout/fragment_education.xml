@@ -44,7 +44,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
+            android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined.Blue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="9dp"
@@ -76,7 +76,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
+                android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined.Blue"
                 android:layout_width="179dp"
                 android:layout_height="wrap_content"
                 android:hint="Дата выдачи"
@@ -104,7 +104,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
+                android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined.Blue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Регистрационный номер"

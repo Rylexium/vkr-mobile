@@ -23,20 +23,22 @@
         />
 
     <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined.Black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Телефон"
         android:textColorHint="@color/silver"
         app:boxStrokeColor="@color/orange_500"
+        app:startIconDrawable="@drawable/phone_icon"
+        app:endIconMode="clear_text"
         app:hintTextAppearance="@style/TextAppearance.App.TextInputLayoutWhite"
         >
 
-        <AutoCompleteTextView
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textbox_support_phone"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:drawableStart="@drawable/phone_icon"
             android:drawablePadding="8dp"
             android:ems="10"
             android:digits="1234567890 +()-"
@@ -51,20 +53,22 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined.Black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="СНИЛС"
         android:textColorHint="@color/silver"
         app:boxStrokeColor="@color/orange_500"
+        app:startIconDrawable="@drawable/ic_baseline_book_online_24"
+        app:endIconMode="clear_text"
         app:hintTextAppearance="@style/TextAppearance.App.TextInputLayoutWhite"
         >
 
-        <AutoCompleteTextView
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textbox_support_id"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:drawableStart="@drawable/ic_baseline_book_online_24"
             android:drawablePadding="8dp"
             android:ems="10"
             android:digits="0123456789 -"
@@ -85,20 +89,21 @@
         android:gravity="center"
         >
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined.Black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Логин"
             android:textColorHint="@color/silver"
             app:boxStrokeColor="@color/orange_500"
+            app:startIconDrawable="@drawable/user_icon"
             app:hintTextAppearance="@style/TextAppearance.App.TextInputLayoutWhite"
             >
 
-            <AutoCompleteTextView
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textbox_support_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/user_icon"
                 android:focusable="false"
                 android:clickable="false"
                 android:longClickable="false"

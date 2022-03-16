@@ -22,7 +22,10 @@
     <style name="SwitchTheme" parent="Theme.AppCompat.Light">
         <item name="android:colorControlActivated">@color/blue_700</item>
     </style>
-    <style name="ThemeOverlay.AppTheme.TextInputEditText.Outlined" parent="">
+    <style name="ThemeOverlay.AppTheme.TextInputEditText.Outlined.Blue" parent="">
         <item name="colorPrimary">@color/blue_700</item>
+    </style>
+    <style name="ThemeOverlay.AppTheme.TextInputEditText.Outlined.Black" parent="">
+        <item name="colorPrimary">@color/white</item>
     </style>
 </resources>

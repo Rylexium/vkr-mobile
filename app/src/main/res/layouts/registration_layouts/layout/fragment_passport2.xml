@@ -45,7 +45,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
+                    android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined.Blue"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"
@@ -71,7 +71,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
+                    android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined.Blue"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"
@@ -107,7 +107,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
+                    android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined.Blue"
                     android:layout_width="0dp"
                     android:layout_weight="0.5"
                     android:layout_height="wrap_content"
@@ -137,7 +137,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
+                    android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined.Blue"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
