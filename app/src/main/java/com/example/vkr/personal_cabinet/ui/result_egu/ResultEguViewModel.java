@@ -2,7 +2,7 @@ package com.example.vkr.personal_cabinet.ui.result_egu;
 
 import static java.util.Arrays.asList;
 
-import android.arch.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModel;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;

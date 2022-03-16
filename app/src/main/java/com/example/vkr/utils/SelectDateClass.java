@@ -1,7 +1,7 @@
 package com.example.vkr.utils;
 
 import android.app.DatePickerDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.widget.DatePicker;
 import android.widget.EditText;
 

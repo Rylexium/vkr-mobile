@@ -26,7 +26,7 @@
             android:textSize="35dp"
             android:paddingTop="35dp"
             />
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="52dp"
@@ -52,9 +52,9 @@
                 android:drawableStart="@drawable/phone_icon"
                 android:drawablePadding="8dp"
                 tools:ignore="TouchTargetSizeCheck" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="52dp"
@@ -79,10 +79,10 @@
                 android:drawableStart="@drawable/envelope_icon"
                 android:drawablePadding="8dp"
                 tools:ignore="TouchTargetSizeCheck" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="52dp"
@@ -108,9 +108,9 @@
                 android:drawableStart="@drawable/user_icon"
                 android:drawablePadding="8dp"
                 tools:ignore="TouchTargetSizeCheck" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="52dp"
@@ -136,9 +136,9 @@
                 android:drawableStart="@drawable/password_icon"
                 android:drawablePadding="8dp"
                 tools:ignore="TouchTargetSizeCheck" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="52dp"
@@ -164,7 +164,7 @@
                 android:drawableStart="@drawable/password_icon"
                 android:drawablePadding="8dp"
                 tools:ignore="TouchTargetSizeCheck" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <RadioButton
             android:id="@+id/radioButton_isAgree"

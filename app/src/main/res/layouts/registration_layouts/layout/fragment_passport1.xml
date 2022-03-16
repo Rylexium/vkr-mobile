@@ -41,7 +41,7 @@
                 android:focusableInTouchMode="true"
                 android:orientation="vertical">
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
@@ -65,9 +65,9 @@
                         android:maxLength="32"
                         android:textColor="@color/white"
                         tools:ignore="TouchTargetSizeCheck" />
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
@@ -91,9 +91,9 @@
                         android:maxLength="32"
                         android:textColor="@color/white"
                         tools:ignore="TouchTargetSizeCheck" />
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
@@ -117,7 +117,7 @@
                         android:maxLength="64"
                         android:textColor="@color/white"
                         tools:ignore="TouchTargetSizeCheck" />
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
         </LinearLayout>
 
@@ -129,7 +129,7 @@
             android:paddingBottom="9dp"
             android:orientation="horizontal">
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="190dp"
                 android:layout_height="52dp"
@@ -153,7 +153,7 @@
                     android:drawableStart="@drawable/calendar_icon"
                     android:drawablePadding="8dp"
                     tools:ignore="TouchTargetSizeCheck" />
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Switch
                 android:id="@+id/radiobutton_sex"

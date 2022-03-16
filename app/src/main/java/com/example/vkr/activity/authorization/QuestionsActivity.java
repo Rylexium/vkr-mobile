@@ -2,11 +2,10 @@ package com.example.vkr.activity.authorization;
 
 import android.animation.LayoutTransition;
 import android.content.Context;
-import android.content.pm.ActivityInfo;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;

@@ -7,7 +7,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.widget.ImageView
 import android.widget.LinearLayout
 import com.androidnetworking.AndroidNetworking

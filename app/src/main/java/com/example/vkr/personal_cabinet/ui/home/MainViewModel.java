@@ -1,9 +1,9 @@
 package com.example.vkr.personal_cabinet.ui.home;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.ViewModel;
-import android.support.annotation.NonNull;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
+import androidx.annotation.NonNull;
 
 public class MainViewModel extends ViewModel {
     private MutableLiveData<String> login;

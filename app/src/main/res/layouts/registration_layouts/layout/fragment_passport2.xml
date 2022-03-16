@@ -43,7 +43,7 @@
                 android:paddingRight="9dp"
                 android:paddingBottom="9dp">
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -65,9 +65,9 @@
                         android:textColorHighlight="@color/blue_700"
                         android:textCursorDrawable="@drawable/cursor_black"
                         tools:ignore="TouchTargetSizeCheck" />
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -88,7 +88,7 @@
                         android:textColorHighlight="@color/blue_700"
                         android:textCursorDrawable="@drawable/cursor_black"
                         tools:ignore="TouchTargetSizeCheck" />
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
 
@@ -101,7 +101,7 @@
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_weight="0.5"
@@ -127,9 +127,9 @@
                         android:textColorHighlight="@color/blue_700"
                         android:textCursorDrawable="@drawable/cursor_black"
                         tools:ignore="TouchTargetSizeCheck" />
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -151,7 +151,7 @@
                         android:maxLength="7"
                         android:textColor="@color/white"
                         tools:ignore="TouchTargetSizeCheck" />
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
         </LinearLayout>

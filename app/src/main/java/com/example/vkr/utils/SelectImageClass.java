@@ -3,13 +3,11 @@ package com.example.vkr.utils;
 import android.app.Activity;
 import android.content.Intent;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-
-import com.example.vkr.activity.registration.ui.snills.SnillsFragment;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class SelectImageClass {
     public final static int CAMERA = 0, GALLERY = 1;

@@ -1,16 +1,16 @@
 package com.example.vkr.personal_cabinet.ui.result_egu;
 
-import android.arch.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProvider;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
+import androidx.annotation.NonNull;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import androidx.fragment.app.Fragment;
+import androidx.core.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,10 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
 import com.example.vkr.R;
-import com.example.vkr.personal_cabinet.ui.speciality.SpecialityFragment;
 
-import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 public class ResultEguFragment extends Fragment {
