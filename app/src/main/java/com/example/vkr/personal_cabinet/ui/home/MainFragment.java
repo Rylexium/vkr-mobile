@@ -373,11 +373,10 @@ public class MainFragment extends Fragment {
         binding.textviewPrivilege.setText(privilege);
         if(isDownloadImagesPassport != null) isDownloadImagesPassport = true;
         if(isDownloadImagesEducation != null) isDownloadImagesEducation = true;
-        binding.scrollviewHomeFragment.post(()->binding.scrollviewHomeFragment.scrollTo(0, scrollY));
-        new Thread(()->{
-            while(getActivity().findViewById(R.id.fab) == null){}
-            new Handler(Looper.getMainLooper()).post(()->fab = getActivity().findViewById(R.id.fab));
-        }).start();
+        if(fab == null)
+            new Thread(()-> {
+                while(fab == null) fab = getActivity().findViewById(R.id.fab);
+            }).start();
     }
     public static void clearData() {
         loginString = null;
