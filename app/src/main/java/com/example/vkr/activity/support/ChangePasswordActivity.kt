@@ -4,7 +4,6 @@ import android.animation.LayoutTransition
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.transition.AutoTransition
@@ -13,10 +12,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
-import android.widget.AutoCompleteTextView
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.common.Priority
 import com.androidnetworking.error.ANError
@@ -26,6 +25,7 @@ import com.example.vkr.activity.authorization.AuthorizationActivity
 import com.example.vkr.utils.HashPass
 import com.example.vkr.utils.HideKeyboardClass
 import com.example.vkr.utils.ShowToast
+import com.google.android.material.textfield.TextInputEditText
 import org.json.JSONObject
 
 class ChangePasswordActivity : AppCompatActivity() {
@@ -56,10 +56,9 @@ class ChangePasswordActivity : AppCompatActivity() {
 
     private fun applyEvents(){
         number1?.addTextChangedListener(object : TextWatcher{
+            private var previousLength = 0
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
             override fun afterTextChanged(p0: Editable?) {
                 if(p0?.length == 0) return
                 sendCode()
@@ -72,9 +71,7 @@ class ChangePasswordActivity : AppCompatActivity() {
         })
         number2?.addTextChangedListener(object : TextWatcher{
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
             override fun afterTextChanged(p0: Editable?) {
                 if(p0?.length == 0) return
                 sendCode()
@@ -87,9 +84,7 @@ class ChangePasswordActivity : AppCompatActivity() {
         })
         number3?.addTextChangedListener(object : TextWatcher{
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
             override fun afterTextChanged(p0: Editable?) {
                 if(p0?.length == 0) return
                 sendCode()
@@ -102,9 +97,7 @@ class ChangePasswordActivity : AppCompatActivity() {
         })
         number4?.addTextChangedListener(object : TextWatcher{
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
             override fun afterTextChanged(p0: Editable?) {
                 if(p0?.length == 0) return
                 sendCode()
@@ -132,13 +125,13 @@ class ChangePasswordActivity : AppCompatActivity() {
                     val rowView = inflater.inflate(R.layout.field_for_change_password, null)
 
                     rowView.findViewById<TextView>(R.id.button_send_new_password).setOnClickListener{
-                        val pass1 = rowView.findViewById<AutoCompleteTextView>(R.id.new_password1)
-                        val pass2 = rowView.findViewById<AutoCompleteTextView>(R.id.new_password2)
+                        val pass1 = rowView.findViewById<TextInputEditText>(R.id.new_password1)
+                        val pass2 = rowView.findViewById<TextInputEditText>(R.id.new_password2)
                         if(pass1.text.toString() != pass2.text.toString()){
                             ShowToast.show(this@ChangePasswordActivity, "Пароли не совпадают")
                             return@setOnClickListener
                         }
-                        else if(pass1.text.equals("") || pass2.text.equals("")) return@setOnClickListener
+                        else if(pass1.text!!.equals("") || pass2.text!!.equals("")) return@setOnClickListener
 
                         AndroidNetworking.post("https://vkr1-app.herokuapp.com/support/change_password?login=${intent.getStringExtra("login")}" +
                                 "&password=" + HashPass.sha256(pass1.text.toString() + HashPass.STATIC_SALT))
