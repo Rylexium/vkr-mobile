@@ -10,6 +10,7 @@ class AdmissionActivity : AppCompatActivity() {
 
     private lateinit var tabLayout : TabLayout
     private lateinit var viewPager2 : ViewPager2
+    private lateinit var adapter: FragmentAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,8 +21,8 @@ class AdmissionActivity : AppCompatActivity() {
     private fun initComponents(){
         tabLayout = findViewById(R.id.tabLayout)
         viewPager2 = findViewById(R.id.viewPager2)
-        viewPager2.adapter = FragmentAdapter(supportFragmentManager, lifecycle)
 
+        viewPager2.adapter = FragmentAdapter(supportFragmentManager, lifecycle)
 
         tabLayout.addTab(tabLayout.newTab().setText("Очное обучение"))
         tabLayout.addTab(tabLayout.newTab().setText("Очно-заочное (заочное) обучение"))

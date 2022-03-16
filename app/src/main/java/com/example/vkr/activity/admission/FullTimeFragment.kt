@@ -1,11 +1,13 @@
 package com.example.vkr.activity.admission
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.vkr.R
+import com.example.vkr.utils.ShowToast
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,7 +36,7 @@ class FullTimeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        ShowToast.show(context, "FullTimeFragment")
         return inflater.inflate(R.layout.fragment_full_time, container, false)
     }
 
