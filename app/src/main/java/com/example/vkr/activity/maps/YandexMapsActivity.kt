@@ -1,18 +1,16 @@
 package com.example.vkr.activity.maps
 
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.example.vkr.R
 import com.yandex.mapkit.Animation
 import com.yandex.mapkit.MapKitFactory
 import com.yandex.mapkit.geometry.Point
 import com.yandex.mapkit.map.CameraPosition
 import com.yandex.mapkit.mapview.MapView
-import com.yandex.runtime.image.ImageProvider
+import com.yandex.runtime.ui_view.ViewProvider
+
 
 class YandexMapsActivity : AppCompatActivity() {
 
@@ -31,12 +29,7 @@ class YandexMapsActivity : AppCompatActivity() {
             CameraPosition(Point(53.213779, 50.176837), 16f, 0.0f, 0.0f),
             Animation(Animation.Type.SMOOTH, 0F),
             null)
-        mapview.map.mapObjects.addPlacemark(Point(53.213779, 50.176837), ImageProvider.fromBitmap(drawSimpleBitmap("Приёмная комиссия")))
-
-        val mapKit = MapKitFactory.getInstance()
-        val userLocationLayer = mapKit.createUserLocationLayer(mapview.mapWindow)
-        userLocationLayer.isVisible = true
-        userLocationLayer.isHeadingEnabled = true
+        drawMyLocationMark(Point(53.213782, 50.176837))
     }
 
     override fun onStart() {
@@ -50,21 +43,14 @@ class YandexMapsActivity : AppCompatActivity() {
         MapKitFactory.getInstance().onStart()
         super.onStop()
     }
-    private fun drawSimpleBitmap(text : String) : Bitmap {
-        val picSize = 50
-        val bitmap = Bitmap.createBitmap(picSize, picSize, Bitmap.Config.ARGB_8888)
-        val canvas = Canvas(bitmap)
+    private fun drawMyLocationMark(it: Point) {
+        val view = View(applicationContext).apply {
+            background = applicationContext.getDrawable(R.drawable.ic_baseline_place_24)
+        }
 
-        val paint = Paint()
-        paint.color = Color.RED
-        paint.style = Paint.Style.FILL
-        canvas.drawCircle((picSize / 2).toFloat(), (picSize / 2).toFloat(), (picSize / 2).toFloat(), paint)
-
-        paint.color = Color.WHITE
-        paint.isAntiAlias = true
-        paint.textSize = 20f
-        paint.textAlign = Paint.Align.CENTER;
-        canvas.drawText(text, (picSize / 2).toFloat(), picSize / 2 - ((paint.descent() + paint.ascent()) / 2), paint);
-        return bitmap;
+        mapview.map.mapObjects.addPlacemark(
+            it,
+            ViewProvider(view)
+        )
     }
 }
