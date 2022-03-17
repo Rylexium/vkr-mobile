@@ -71,7 +71,7 @@ public class AuthorizationActivity extends AppCompatActivity {
 
     @Override
     public void onResume(){
-        //textBoxPassword.setText("");
+        textBoxPassword.setText("");
         SplashScreen.sharedPreferences.edit().remove("password").apply();
         super.onResume();
     }

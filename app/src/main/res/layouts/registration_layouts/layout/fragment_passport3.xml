@@ -129,6 +129,7 @@
                 android:inputType="none"
                 android:maxLength="54"
                 android:textColor="@color/white"
+                android:textSize="17sp"
                 tools:ignore="TouchTargetSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
