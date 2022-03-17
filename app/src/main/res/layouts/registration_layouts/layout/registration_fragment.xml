@@ -26,7 +26,7 @@
             android:textSize="35dp"
             android:paddingTop="35dp"
             />
-        <com.google.android.material.textfield.TextInputLayout
+        <com.fredporciuncula.phonemoji.PhonemojiTextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined.Blue"
             android:layout_width="match_parent"
@@ -43,21 +43,27 @@
             app:hintTextColor="@color/blue_700"
             app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
             >
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:textCursorDrawable="@drawable/cursor_black"
-                android:textColorHighlight="@color/blue_700"
+            <com.fredporciuncula.phonemoji.PhonemojiFlagTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="16sp"
+                app:phonemoji_flagFor="@id/textbox_phone"
+                />
+            <com.fredporciuncula.phonemoji.PhonemojiTextInputEditText
                 android:id="@+id/textbox_phone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:digits="1234567890 +()-"
-                android:inputType="phone"
-                android:maxLength="15"
+                app:phonemoji_initialRegionCode="RU"
+                android:textCursorDrawable="@drawable/cursor_black"
+                android:textColorHighlight="@color/blue_700"
+                android:maxLength="16"
                 android:textColor="@color/white"
                 android:drawablePadding="8dp"
                 android:textSize="17sp"
                 tools:ignore="TouchTargetSizeCheck" />
-        </com.google.android.material.textfield.TextInputLayout>
+
+        </com.fredporciuncula.phonemoji.PhonemojiTextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"

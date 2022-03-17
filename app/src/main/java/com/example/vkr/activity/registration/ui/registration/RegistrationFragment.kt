@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.fragment.app.Fragment
 import androidx.core.content.ContextCompat
@@ -79,11 +80,11 @@ class RegistrationFragment : Fragment() {
             if (!isFocus && binding.textboxPassReg.text.toString() != binding.textboxPass2Reg.text.toString()) binding.textboxPass2Reg.setTextColor(Color.RED)
             else binding.textboxPass2Reg.setTextColor(ContextCompat.getColor(context!!, R.color.white))
         }
-        binding.textboxPhone.addTextChangedListener(CorrectText(binding.textboxPhone, "8 (###) ##-##-###"))
+        binding.textboxPhone.addTextChangedListener(CorrectText(binding.textboxPhone, "+7 (###) ##-##-###"))
     }
 
     fun isCorrectPhone(text: String?): Boolean {
-        return text?.length == 17 && Pattern.matches("^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}", text)
+        return text?.length == 18 && Pattern.matches("^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}", text)
     }
 
     fun isCorrectEmail(text: String?): Boolean {
