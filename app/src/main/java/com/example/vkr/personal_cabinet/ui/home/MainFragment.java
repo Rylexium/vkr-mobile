@@ -35,7 +35,6 @@ import org.json.JSONObject;
 
 public class MainFragment extends Fragment {
     private FragmentMainBinding binding;
-    private FloatingActionButton fab;
 
     private static String loginString;
     private static String sexString;
@@ -62,8 +61,6 @@ public class MainFragment extends Fragment {
     private static Boolean isDownloadImagePrivilege = null;
 
     private static MainViewModel mainViewModel;
-
-    private static Integer scrollY = 0;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -172,10 +169,10 @@ public class MainFragment extends Fragment {
 
         binding.scrollviewHomeFragment.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
             //work with fab
-            if (scrollY == 0 || (scrollY < oldScrollY && !fab.isShown()))
-                fab.show();
-            else if (scrollY > oldScrollY && fab.isShown())
-                fab.hide();
+            if (scrollY == 0 || (scrollY < oldScrollY && !PersonalCabinetActivity.fab.isShown()))
+                PersonalCabinetActivity.fab.show();
+            else if (scrollY > oldScrollY && PersonalCabinetActivity.fab.isShown())
+                PersonalCabinetActivity.fab.hide();
         });
     }
 
@@ -373,10 +370,11 @@ public class MainFragment extends Fragment {
         binding.textviewPrivilege.setText(privilege);
         if(isDownloadImagesPassport != null) isDownloadImagesPassport = true;
         if(isDownloadImagesEducation != null) isDownloadImagesEducation = true;
-        if(fab == null)
-            new Thread(()-> {
-                while(fab == null) fab = getActivity().findViewById(R.id.fab);
-            }).start();
+//        fab = getActivity().findViewById(R.id.fab);
+//        if(fab == null)
+//            new Thread(()-> {
+//                while(fab == null) fab = getActivity().findViewById(R.id.fab);
+//            }).start();
     }
     public static void clearData() {
         loginString = null;
@@ -407,7 +405,6 @@ public class MainFragment extends Fragment {
     }
     @Override
     public void onDestroyView() {
-        MainFragment.scrollY = binding.scrollviewHomeFragment.getScrollY();
         super.onDestroyView();
         binding = null;
     }

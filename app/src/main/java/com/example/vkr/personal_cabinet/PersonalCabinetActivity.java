@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.navigation.NavController;
@@ -64,6 +65,8 @@ public class PersonalCabinetActivity extends AppCompatActivity {
     public static Map<String, String> typeOfStudy;
     public static Map<String, String> instituts;
 
+    public static FloatingActionButton fab;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +75,8 @@ public class PersonalCabinetActivity extends AppCompatActivity {
         setSupportActionBar(binding.appBarPersonalCabinet.toolbar);
         binding.appBarPersonalCabinet.fab.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW)
                                                                                 .setData(Uri.parse("https://vk.com/moais_samara"))));
+
+        fab = binding.appBarPersonalCabinet.fab;
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
 
