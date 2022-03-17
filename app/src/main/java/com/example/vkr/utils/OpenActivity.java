@@ -6,11 +6,15 @@ import android.net.Uri;
 
 import com.example.vkr.activity.admission.AdmissionActivity;
 import com.example.vkr.activity.authorization.QuestionsActivity;
+import com.example.vkr.activity.maps.GoogleMapsActivity;
+import com.example.vkr.activity.maps.YandexMapsActivity;
 import com.example.vkr.activity.registration.ExamsResultActivity;
 import com.example.vkr.activity.registration.RegistrationActivity;
 import com.example.vkr.activity.support.ChangePasswordActivity;
 import com.example.vkr.personal_cabinet.PersonalCabinetActivity;
 import com.example.vkr.activity.support.SupportActivity;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 
 public class OpenActivity {
 
@@ -26,8 +30,15 @@ public class OpenActivity {
     }
 
     public static boolean openMapsWhereWe(Activity activity){
-        activity.startActivity(new Intent(Intent.ACTION_VIEW)
-                .setData(Uri.parse("https://www.google.ru/maps/place/53%C2%B012'49.3%22N+50%C2%B010'37.3%22E/@53.2137071,50.1762502,18z/data=!3m1!4b1!4m6!3m5!1s0x0:0xeeb6557ca0cc4e6b!7e2!8m2!3d53.2137058!4d50.1770238?hl=ru")));
+//        GoogleApiAvailability googleApiAvailability = GoogleApiAvailability.getInstance();
+//        int resultCode = googleApiAvailability.isGooglePlayServicesAvailable(activity);
+//        if(resultCode == ConnectionResult.SUCCESS)
+//            activity.startActivity(new Intent(activity, GoogleMapsActivity.class));
+//        else
+            activity.startActivity(new Intent(activity, YandexMapsActivity.class));
+//        activity.startActivity(new Intent(Intent.ACTION_VIEW)
+//                .setData(Uri.parse("https://www.google.ru/maps/place/53%C2%B012'49.3%22N+50%C2%B010'37.3%22E/@53.2137071," +
+//                        "50.1762502,18z/data=!3m1!4b1!4m6!3m5!1s0x0:0xeeb6557ca0cc4e6b!7e2!8m2!3d53.2137058!4d50.1770238?hl=ru")));
         return true;
     }
 

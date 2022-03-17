@@ -70,6 +70,7 @@
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/layout/fragment_statement.xml" value="0.33" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/layout/nav_header_personal_cabinet.xml" value="0.25" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/layout/personal_cabinet_activity.xml" value="0.22" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/layout/yandex_maps_activity.xml" value="0.2497733454215775" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/menu/menu_institut.xml" value="0.19739583333333333" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/menu/menu_speciality.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/menu/personal_cabinet.xml" value="0.36666666666666664" />
@@ -98,7 +99,9 @@
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/registration_layouts/layout/fragment_passport3.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/registration_layouts/layout/fragment_privileges.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/registration_layouts/layout/fragment_snills.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/registration_layouts/layout/huawei_maps_activity.xml" value="0.15476699444206926" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/registration_layouts/layout/lk_activity.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/registration_layouts/layout/maps_activity.xml" value="0.15433946130825138" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/registration_layouts/layout/passport1_activity.xml" value="0.29257246376811596" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/registration_layouts/layout/passport2_activity.xml" value="0.29257246376811596" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/registration_layouts/layout/passport3_activity.xml" value="0.29257246376811596" />
