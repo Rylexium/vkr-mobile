@@ -57,7 +57,7 @@ dependencies {
     implementation 'com.amitshekhar.android:android-networking:1.0.2'
 
     implementation 'com.zolad:zoominimageview:1.0.0'
-    implementation 'com.yandex.android:mapkit:3.5.0'
+    implementation 'com.yandex.android:maps.mobile:4.0.0-lite'
 
     implementation 'androidx.lifecycle:lifecycle-livedata:2.4.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel:2.4.1'

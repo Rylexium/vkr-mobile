@@ -6,7 +6,6 @@ import android.graphics.Color
 import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.view.get
 import com.example.vkr.R
 import com.yandex.mapkit.Animation
 import com.yandex.mapkit.MapKitFactory
@@ -32,7 +31,7 @@ class YandexMapsActivity : AppCompatActivity() {
             CameraPosition(Point(53.213779, 50.176837), 16f, 0.0f, 0.0f),
             Animation(Animation.Type.SMOOTH, 0F),
             null)
-        mapview.map.mapObjects.addPlacemark(Point(53.213779, 50.176837), ImageProvider.fromBitmap(drawSimpleBitmap("*")))
+        mapview.map.mapObjects.addPlacemark(Point(53.213779, 50.176837), ImageProvider.fromBitmap(drawSimpleBitmap("Приёмная комиссия")))
 
         val mapKit = MapKitFactory.getInstance()
         val userLocationLayer = mapKit.createUserLocationLayer(mapview.mapWindow)
