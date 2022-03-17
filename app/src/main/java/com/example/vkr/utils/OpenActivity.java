@@ -30,11 +30,11 @@ public class OpenActivity {
     }
 
     public static boolean openMapsWhereWe(Activity activity){
-//        GoogleApiAvailability googleApiAvailability = GoogleApiAvailability.getInstance();
-//        int resultCode = googleApiAvailability.isGooglePlayServicesAvailable(activity);
-//        if(resultCode == ConnectionResult.SUCCESS)
-//            activity.startActivity(new Intent(activity, GoogleMapsActivity.class));
-//        else
+        GoogleApiAvailability googleApiAvailability = GoogleApiAvailability.getInstance();
+        int resultCode = googleApiAvailability.isGooglePlayServicesAvailable(activity);
+        if(resultCode == ConnectionResult.SUCCESS)
+            activity.startActivity(new Intent(activity, GoogleMapsActivity.class));
+        else
             try {
                 activity.startActivity(new Intent(activity, YandexMapsActivity.class));
             }
