@@ -114,6 +114,8 @@
                     android:hint="Дата выдачи"
                     android:paddingRight="9dp"
                     android:textColorHint="@color/grey"
+                    app:startIconDrawable="@drawable/calendar_icon"
+                    app:startIconTintMode="src_atop"
                     app:boxStrokeColor="@color/blue_700"
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
                     >
@@ -123,7 +125,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:digits="@string/only_numbers"
-                        android:drawableStart="@drawable/calendar_icon"
                         android:drawablePadding="8dp"
                         android:focusable="false"
                         android:inputType="phone"

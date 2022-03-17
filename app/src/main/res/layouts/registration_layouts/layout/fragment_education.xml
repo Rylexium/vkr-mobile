@@ -97,6 +97,7 @@
                     android:textColor="@color/white"
                     android:focusable="false"
                     android:drawableStart="@drawable/calendar_icon"
+                    app:startIconTintMode="src_atop"
                     android:drawablePadding="8dp"
                     android:textSize="17sp"
                     tools:ignore="TouchTargetSizeCheck" />

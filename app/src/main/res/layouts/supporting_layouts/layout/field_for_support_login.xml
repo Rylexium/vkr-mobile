@@ -61,6 +61,7 @@
         android:textColorHint="@color/silver"
         app:boxStrokeColor="@color/orange_500"
         app:startIconDrawable="@drawable/ic_baseline_book_online_24"
+
         app:endIconMode="clear_text"
         app:hintTextAppearance="@style/TextAppearance.App.TextInputLayoutWhite"
         >
@@ -97,6 +98,7 @@
             android:textColorHint="@color/silver"
             app:boxStrokeColor="@color/orange_500"
             app:startIconDrawable="@drawable/user_icon"
+            app:startIconTintMode="src_atop"
             app:hintTextAppearance="@style/TextAppearance.App.TextInputLayoutWhite"
             >
 

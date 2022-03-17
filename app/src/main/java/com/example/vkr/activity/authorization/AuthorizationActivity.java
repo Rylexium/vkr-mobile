@@ -3,6 +3,8 @@ package com.example.vkr.activity.authorization;
 import android.app.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MotionEvent;
