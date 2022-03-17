@@ -10,7 +10,6 @@ class AdmissionActivity : AppCompatActivity() {
 
     private lateinit var tabLayout : TabLayout
     private lateinit var viewPager2 : ViewPager2
-    private lateinit var adapter: FragmentAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

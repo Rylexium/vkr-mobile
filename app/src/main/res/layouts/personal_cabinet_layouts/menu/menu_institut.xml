@@ -7,7 +7,7 @@
     <item
         android:id="@+id/action_steps_admission"
         android:orderInCategory="2"
-        android:title="Путь абитуриента" />
+        android:title="Дата поступления" />
     <item
         android:id="@+id/action_contact_with_developer"
         android:orderInCategory="3"

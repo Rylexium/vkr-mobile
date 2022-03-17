@@ -34,6 +34,7 @@ android {
                             'src/main/res/layouts/authorization_layouts',
                             'src/main/res/layouts/personal_cabinet_layouts',
                             'src/main/res/layouts/supporting_layouts',
+                            'src/main/res/layouts/admission_layout',
                             'src/main/res/layouts' ,
                             'src/main/res'
                     ]

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_step1_abit">Начало приема документов</string>
+
+    <string name="fulltime_budjet_step1_abit">20 июня</string>
+    <string name="fulltime_contract_step1_abit">20 июня</string>
+    <string name="distance_budjet_step1_abit">20 июня</string>
+    <string name="distance_contract_step1_abit">20 июня</string>
+
+
+    <string name="title_step2_abit">Завершение приема документов от лиц,поступающих с прохождение \n- творческого конкурса, \n- вступительных испытаний вуза</string>
+
+    <string name="fulltime_budjet_step2_abit">11 июля</string>
+    <string name="fulltime_contract_step2_abit">11 августа</string>
+    <string name="distance_budjet_step2_abit">11 июля</string>
+    <string name="distance_contract_step2_abit">8 сентября</string>
+
+    <string name="title_step3_abit">Завершение вступительных испытаний Самарского университета</string>
+
+    <string name="fulltime_budjet_step3_abit">25 июля</string>
+    <string name="fulltime_contract_step3_abit">19 августа</string>
+    <string name="distance_budjet_step3_abit">25 июля</string>
+    <string name="distance_contract_step3_abit">16 сентября</string>
+
+    <string name="title_step4_abit">Завершение приема документов от лиц, поступающих по результатам ЕГЭ</string>
+
+    <string name="fulltime_budjet_step4_abit">25 июля</string>
+    <string name="fulltime_contract_step4_abit">19 августа</string>
+    <string name="distance_budjet_step4_abit">25 июля</string>
+    <string name="distance_contract_step4_abit">16 сентября</string>
+
+    <string name="title_step5_abit">Завершение приема заявлений о согласии на зачисление (для поступающих без вступительных испытаний и на места впределах квот)</string>
+
+    <string name="fulltime_budjet_step5_abit">28 июля</string>
+    <string name="fulltime_contract_step5_abit">-</string>
+    <string name="distance_budjet_step5_abit">28 июля</string>
+    <string name="distance_contract_step5_abit">-</string>
+
+    <string name="title_step6_abit">Зачисление</string>
+
+    <string name="fulltime_budjet_step6_abit">30 июля</string>
+    <string name="fulltime_contract_step6_abit">-</string>
+    <string name="distance_budjet_step6_abit">30 июля</string>
+    <string name="distance_contract_step6_abit">-</string>
+
+    <string name="title_step7_abit">Завершение приема заявлений о согласии на зачисление</string>
+
+    <string name="fulltime_budjet_step7_abit">3 августа</string>
+    <string name="fulltime_contract_step7_abit">23 августа</string>
+    <string name="distance_budjet_step7_abit">3 августа</string>
+    <string name="distance_contract_step7_abit">20 сентября</string>
+
+    <string name="title_step8_abit">Зачисление</string>
+
+    <string name="fulltime_budjet_step8_abit">9 августа</string>
+    <string name="fulltime_contract_step8_abit">25 августа</string>
+    <string name="distance_budjet_step8_abit">9 августа</string>
+    <string name="distance_contract_step8_abit">23 сентября</string>
+
+
+
+
+
+    <string name="title_step1_magistr">Начало приема документов</string>
+
+    <string name="fulltime_budjet_step1_magistr">20 июня</string>
+    <string name="fulltime_contract_step1_magistr">20 июня</string>
+    <string name="distance_budjet_step1_magistr">20 июня</string>
+    <string name="distance_contract_step1_magistr">20 июня</string>
+
+
+    <string name="title_step2_magistr">Завершение приема документов от лиц, поступающих на обучение с прохождением вступительных испытаний Самарского университета</string>
+
+    <string name="fulltime_budjet_step2_magistr">8 августа</string>
+    <string name="fulltime_contract_step2_magistr">8 августа</string>
+    <string name="distance_budjet_step2_magistr">8 августа</string>
+    <string name="distance_contract_step2_magistr">8 сентября</string>
+
+    <string name="title_step3_magistr">Завершение вступительных испытаний, проводимых университетом самостоятельно</string>
+
+    <string name="fulltime_budjet_step3_magistr">16 августа</string>
+    <string name="fulltime_contract_step3_magistr">16 августа</string>
+    <string name="distance_budjet_step3_magistr">16 августа</string>
+    <string name="distance_contract_step3_magistr">16 сентября</string>
+
+    <string name="title_step4_magistr">Завершение приема документов от лиц, успешно прошедших вступительные испытания и поступающих по договорам об оказании платных образовательных услуг</string>
+
+    <string name="fulltime_budjet_step4_magistr">-</string>
+    <string name="fulltime_contract_step4_magistr">22 августа</string>
+    <string name="distance_budjet_step4_magistr">-</string>
+    <string name="distance_contract_step4_magistr">16 сентября</string>
+
+    <string name="title_step5_magistr">Завершение приема заявлений о согласии на зачисление (Для лиц, поступающих в пределах целевой квоты)</string>
+
+    <string name="fulltime_budjet_step5_magistr">16 августа</string>
+    <string name="fulltime_contract_step5_magistr">-</string>
+    <string name="distance_budjet_step5_magistr">16 августа</string>
+    <string name="distance_contract_step5_magistr">-</string>
+
+    <string name="title_step6_magistr">Зачисление</string>
+
+    <string name="fulltime_budjet_step6_magistr">17 августа</string>
+    <string name="fulltime_contract_step6_magistr">-</string>
+    <string name="distance_budjet_step6_magistr">17 августа</string>
+    <string name="distance_contract_step6_magistr">-</string>
+
+    <string name="title_step7_magistr">Завершение приема заявлений о согласии на зачисление</string>
+
+    <string name="fulltime_budjet_step7_magistr">17 августа</string>
+    <string name="fulltime_contract_step7_magistr">23 августа</string>
+    <string name="distance_budjet_step7_magistr">17 августа</string>
+    <string name="distance_contract_step7_magistr">20 сентября</string>
+
+    <string name="title_step8_magistr">Зачисление лиц, успешно прошедших вступительные испытания и подавших согласие на зачисление</string>
+
+    <string name="fulltime_budjet_step8_magistr">19 августа</string>
+    <string name="fulltime_contract_step8_magistr">25 августа</string>
+    <string name="distance_budjet_step8_magistr">19 августа</string>
+    <string name="distance_contract_step8_magistr">22 сентября</string>
+
+
+</resources>

@@ -15,7 +15,7 @@ public class FragmentAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        return (position == 1) ? new FullTimeFragment() : new DistanceFragment();
+        return (position == 0) ? new FullTimeFragment() : new DistanceFragment();
     }
 
     @Override
