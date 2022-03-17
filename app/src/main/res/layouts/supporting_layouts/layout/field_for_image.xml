@@ -4,9 +4,9 @@
     android:layout_height="match_parent"
     android:paddingTop="10dp"
     android:orientation="vertical">
-    <ImageView
+    <com.zolad.zoominimageview.ZoomInImageView
         android:id="@+id/field_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </ImageView>
+    </com.zolad.zoominimageview.ZoomInImageView>
 </LinearLayout>

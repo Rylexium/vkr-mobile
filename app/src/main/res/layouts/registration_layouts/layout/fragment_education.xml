@@ -131,13 +131,13 @@
 
         </LinearLayout>
 
-        <ImageView
+        <com.zolad.zoominimageview.ZoomInImageView
             android:id="@+id/education_document1"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             />
 
-        <ImageView
+        <com.zolad.zoominimageview.ZoomInImageView
             android:id="@+id/education_document2"
             android:layout_width="match_parent"
             android:layout_height="200dp"
