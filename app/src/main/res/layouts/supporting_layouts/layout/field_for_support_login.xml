@@ -97,8 +97,7 @@
             android:hint="Логин"
             android:textColorHint="@color/silver"
             app:boxStrokeColor="@color/orange_500"
-            app:startIconDrawable="@drawable/user_icon"
-            app:startIconTintMode="src_atop"
+            app:startIconDrawable="@drawable/ic_baseline_person_24"
             app:hintTextAppearance="@style/TextAppearance.App.TextInputLayoutWhite"
             >
 

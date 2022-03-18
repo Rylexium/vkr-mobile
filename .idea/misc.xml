@@ -20,6 +20,7 @@
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/ic_baseline_description_24.xml" value="0.2925" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.205" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.205" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.196" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/ic_baseline_place_24.xml" value="0.25" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/ic_wave.xml" value="0.298" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/round_btn.xml" value="0.3675" />
@@ -110,7 +111,7 @@
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/registration_layouts/layout/passport3_activity.xml" value="0.29257246376811596" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/registration_layouts/layout/registr_activity.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/registration_layouts/layout/registration_activity.xml" value="0.20520833333333333" />
-        <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/registration_layouts/layout/registration_fragment.xml" value="0.33" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/registration_layouts/layout/registration_fragment.xml" value="0.5" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/registration_layouts/layout/snills_activity.xml" value="0.28940217391304346" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/registration_layouts/layout/support_activity.xml" value="0.14308363059849386" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/registration_layouts/menu/bottom_nav_menu.xml" value="0.36666666666666664" />
