@@ -156,6 +156,7 @@ public class SpecialityFragment extends Fragment {
             speciality = null;
         }
         start = 0;
+        end = 26;
         isBottom = false;
         isAllSpecialityDownload = false;
     }
