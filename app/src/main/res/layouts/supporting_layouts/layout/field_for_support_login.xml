@@ -48,6 +48,7 @@
             android:textColor="@color/white"
             android:textColorHighlight="@color/black"
             android:textColorHint="@color/grey"
+            android:textSize="17sp"
             android:textCursorDrawable="@drawable/cursor_black" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -79,6 +80,7 @@
             android:textColor="@color/white"
             android:textColorHighlight="@color/black"
             android:textColorHint="@color/grey"
+            android:textSize="17sp"
             android:textCursorDrawable="@drawable/cursor_black" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -114,6 +116,7 @@
                 android:textColor="@color/white"
                 android:textColorHighlight="@color/black"
                 android:textColorHint="@color/grey"
+                android:textSize="17sp"
                 android:textCursorDrawable="@drawable/cursor_black" />
         </com.google.android.material.textfield.TextInputLayout>
 
