@@ -10,9 +10,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import androidx.annotation.NonNull;
+
+import com.example.vkr.utils.ShowToast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.fragment.app.Fragment;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +39,6 @@ import org.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class SpecialityFragment extends Fragment {
 
@@ -67,6 +70,7 @@ public class SpecialityFragment extends Fragment {
     private void onAddField(String idSpeciality, String nameSpeciality,
                             String nameInstitut, String nameTypeOfStudy,
                             String valueGeneralCompetition, String valueContract) {
+        if(getActivity() == null) return;
         LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View rowView = inflater.inflate(R.layout.field_for_speciality, null);
 
@@ -107,12 +111,12 @@ public class SpecialityFragment extends Fragment {
         scrollView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
             int bottom = (scrollView.getChildAt(scrollView.getChildCount() - 1)).getHeight() - scrollView.getHeight() - scrollY;
             if (bottom == 0 && !isBottom) {
-                if (!isAllSpecialityDownload){
+                if (!isAllSpecialityDownload) {
                     Snackbar.make(scrollView, "Подождите, идёт загрузка...", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                     isBottom = true;
                     downloadSpeciality();
-                }else
+                } else
                     Snackbar.make(scrollView, "Все специальности были загружены", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
             }
@@ -135,8 +139,7 @@ public class SpecialityFragment extends Fragment {
         scrollView = binding.findViewById(R.id.scrollview_speciality_fragment);
 
         fab = getActivity().findViewById(R.id.fab);
-
-        if(speciality.isEmpty())  //первый раз зашли сюда
+        if(speciality.size() == 0)  //первый раз зашли сюда
             downloadSpeciality(); //подгружаем
         else {
             for(int i = 0; i < speciality.size(); i++) //уже были данные
@@ -149,10 +152,7 @@ public class SpecialityFragment extends Fragment {
     }
 
     public static void clearTable() {
-        if(speciality != null){
-            speciality.clear();
-            speciality = null;
-        }
+        speciality.clear();
         start = 0;
         end = 26;
         isBottom = false;
@@ -209,10 +209,14 @@ public class SpecialityFragment extends Fragment {
                     }
 
                     @Override
-                    public void onError(ANError anError){
-                        isAllSpecialityDownload = true;
-                        Snackbar.make(scrollView, "Все специальности были загружены", Snackbar.LENGTH_LONG)
-                                .setAction("Action", null).show();
+                    public void onError(ANError anError) {
+                        if (speciality.size() == 0)
+                            ShowToast.show(getContext(), "Проверьте подключение к интернету");
+                        else {
+                            isAllSpecialityDownload = true;
+                            Snackbar.make(scrollView, "Все специальности были загружены", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
+                        }
                     }
                 });
     }
