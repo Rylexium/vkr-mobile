@@ -48,8 +48,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class StatementFragment extends Fragment {
 
@@ -201,6 +204,7 @@ public class StatementFragment extends Fragment {
     private void fillSpeciality(){
             //сортируемо по приоритету
         new Thread(()->{
+            specialitysAbit = new ArrayList<>(new HashSet<>(specialitysAbit));
             specialitysAbit.sort(Comparator.comparing(
                     map -> Integer.parseInt(map.get("priority") == null || map.get("priority").equals("null") ? "0" : map.get("priority"))));
             new Handler(Looper.getMainLooper()).post(() -> {
