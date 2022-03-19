@@ -18,6 +18,7 @@ import com.example.vkr.R
 import com.example.vkr.databinding.FragmentPassport3Binding
 import com.example.vkr.utils.ConvertClass
 import com.example.vkr.utils.SelectImageClass
+import com.example.vkr.utils.ShowCustomDialog
 import java.util.*
 import java.util.function.Consumer
 
@@ -125,18 +126,15 @@ class Passport3Fragment : Fragment() {
     private fun showYesNoDialog(motionEvent: MotionEvent): Boolean {
         //если не первый раз нажимаем на одну это же поля или уже сказали "Да"
         if (motionEvent.action != MotionEvent.ACTION_UP || isYes) return false
-        val dialogView: View = LayoutInflater.from(context).inflate(R.layout.yes_no_dialog, null)
-        val dialogBuilder: android.app.AlertDialog.Builder? = android.app.AlertDialog.Builder(context)
-                .setView(dialogView)
-        val alertDialog: android.app.AlertDialog? = dialogBuilder!!.show()
-        dialogView.findViewById<View>(R.id.button_yes).setOnClickListener {
-            binding.textboxSubjectActual.text = binding.textboxSubjectReg.text
-            binding.textboxPostIndexActual.text = binding.textboxPostIndexReg.text
-            binding.textboxCityActual.text = binding.textboxCityReg.text
-            binding.textboxResidenceStreetActual.text = binding.textboxResidenceStreetReg.text
-            alertDialog!!.dismiss()
-        }
-        dialogView.findViewById<View>(R.id.button_no).setOnClickListener { alertDialog!!.dismiss() }
+        ShowCustomDialog().showDialog(this.activity, this.activity?.getDrawable(R.drawable.ic_baseline_room_24),
+            "Место жительства", "Место прописки соответствует фактическому месту проживания?",
+            "Да", "Нет")
+            .setOnYes {
+                binding.textboxSubjectActual.text = binding.textboxSubjectReg.text
+                binding.textboxPostIndexActual.text = binding.textboxPostIndexReg.text
+                binding.textboxCityActual.text = binding.textboxCityReg.text
+                binding.textboxResidenceStreetActual.text = binding.textboxResidenceStreetReg.text
+            }
         isYes = true
         return true
     }

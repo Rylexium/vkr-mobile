@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.vkr.utils.ShowCustomDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
@@ -126,26 +127,22 @@ public class PersonalCabinetActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed(){
-        new AlertDialog.Builder(this).setTitle("Выйти")
-                .setMessage("Вы действительно хотите выйти?")
-                .setPositiveButton("Да",
-                        (dialog, which) -> {
-                            startActivity(new Intent(this, AuthorizationActivity.class)
-                                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
-                            finishAffinity();
-                            sendSpeciality();
-                            clearData();
-                            MainFragment.clearData();
-                            ResultEguFragment.clearTable();
-                            SpecialityFragment.clearTable();
-                            StatementFragment.clearData();
-                            AchievementsFragment.clearData();
-                            dialog.dismiss();
-                        })
-                .setNegativeButton("Нет", (dialog, which) -> dialog.dismiss())
-                .setOnDismissListener(dialogInterface -> navigationView.getMenu().findItem(R.id.nav_home).setChecked(true))
-                .create()
-                .show();
+        new ShowCustomDialog().showDialog(this, null,
+                "Выйти", "Вы действительно хотите выйти?",
+                "Да", "Нет")
+                .setOnYes(() -> {
+                    startActivity(new Intent(this, AuthorizationActivity.class)
+                            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+                    finishAffinity();
+                    sendSpeciality();
+                    clearData();
+                    MainFragment.clearData();
+                    ResultEguFragment.clearTable();
+                    SpecialityFragment.clearTable();
+                    StatementFragment.clearData();
+                    AchievementsFragment.clearData();
+                })
+                .setOnDismiss(() -> navigationView.getMenu().findItem(R.id.nav_home).setChecked(true));
     }
 
 

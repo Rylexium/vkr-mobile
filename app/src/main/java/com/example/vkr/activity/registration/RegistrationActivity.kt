@@ -25,6 +25,7 @@ import com.example.vkr.activity.registration.ui.registration.RegistrationFragmen
 import com.example.vkr.activity.registration.ui.snills.SnillsFragment
 import com.example.vkr.databinding.RegistrationActivityBinding
 import com.example.vkr.utils.HideKeyboardClass
+import com.example.vkr.utils.ShowCustomDialog
 
 
 class RegistrationActivity : AppCompatActivity() {
@@ -97,22 +98,13 @@ class RegistrationActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        AlertDialog.Builder(this)
-                .setTitle("Внимание")
-                .setMessage("Вы действительно хотите выйти? Все введённые данные будут утеряны")
-                .setCancelable(false)
-                .setPositiveButton("Да") {
-                    dialog: DialogInterface, _: Int ->
-                    dialog.dismiss()
-                    sharedPreferences?.edit()?.clear()?.apply()
-                    super.onBackPressed()
-                }
-                .setNegativeButton("Нет") {
-                    dialog: DialogInterface, _: Int ->
-                    dialog.dismiss()
-                }
-                .show()
-                .setCanceledOnTouchOutside(true)
+        ShowCustomDialog().showDialog(this, null,
+            "Внимание", "Вы действительно хотите выйти? Все введённые данные будут утеряны",
+            "Да", "Нет")
+            .setOnYes {
+                sharedPreferences?.edit()?.clear()?.apply()
+                super.onBackPressed()
+            }
     }
 
 }
