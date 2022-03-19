@@ -328,6 +328,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="5dp"
                         android:paddingTop="5dp"
                         android:paddingBottom="5dp"
                         >
@@ -337,8 +339,6 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:gravity="center"
-                            android:paddingLeft="20dp"
-                            android:paddingRight="5dp"
                             android:animateLayoutChanges="true"
                             >
 

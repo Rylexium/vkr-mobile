@@ -1,6 +1,5 @@
 package com.example.vkr.personal_cabinet.ui.result_egu;
 
-import androidx.lifecycle.ViewModelProvider;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,9 +9,7 @@ import androidx.annotation.NonNull;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.fragment.app.Fragment;
-import androidx.core.content.ContextCompat;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +35,7 @@ public class ResultEguFragment extends Fragment {
 
         binding = inflater.inflate(R.layout.fragment_result_egu, container, false);
         layoutOfExams = binding.findViewById(R.id.layout_of_exams);
-        viewModel = new ViewModelProvider(this, (ViewModelProvider.Factory) new ViewModelProvider.NewInstanceFactory()).get(ResultEguViewModel.class);
+        viewModel = new ResultEguViewModel();
         initComponents();
         applyEvents();
         return binding.getRootView();
@@ -108,8 +105,6 @@ public class ResultEguFragment extends Fragment {
         awaitData();
         scrollView = binding.findViewById(R.id.scrollview_result_egu_fragment);
         fab = getActivity().findViewById(R.id.fab);
-        if(viewModel.getExams() == null) viewModel.downloadExams();
-        if(viewModel.getMinPointsExams() == null) viewModel.downloadMinPointsExams();
     }
 
     @Override

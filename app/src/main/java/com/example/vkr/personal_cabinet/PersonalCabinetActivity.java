@@ -186,6 +186,9 @@ public class PersonalCabinetActivity extends AppCompatActivity {
         idAbit = null;
         if(specialitysAbit != null)specialitysAbit.clear();
         specialitysAbit = null;
+        idEducation = null;
+        typeOfStudy = null;
+        instituts = null;
     }
 
     private void initComponents(){

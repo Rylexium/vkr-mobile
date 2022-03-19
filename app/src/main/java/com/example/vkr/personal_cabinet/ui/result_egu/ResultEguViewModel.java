@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 public class ResultEguViewModel extends ViewModel {
-    public static List<List<String>> exams;
+    public static List<List<String>> exams = new ArrayList<>();
     public static Map<String, String> minPointsExams;
 
     public ResultEguViewModel() {
@@ -32,9 +32,7 @@ public class ResultEguViewModel extends ViewModel {
     public List<List<String>> getExams(){ return exams; }
 
     public static void clearExams(){
-        if(exams == null) return;
         exams.clear();
-        exams = null;
     }
 
     public Map<String, String> getMinPointsExams(){
@@ -42,33 +40,28 @@ public class ResultEguViewModel extends ViewModel {
     }
 
     public void downloadExams(){
-        if(exams == null) {
-            AndroidNetworking.get("https://vkr1-app.herokuapp.com/abit/exams?id_abit=" + PersonalCabinetActivity.idAbit)
-                    .setPriority(Priority.HIGH)
-                    .build()
-                    .getAsJSONArray(new JSONArrayRequestListener() {
-                        @Override
-                        public void onResponse(JSONArray response) {
-                            exams = new ArrayList<>();
-                            new Thread(() -> {
-                                try {
-                                    JsonNode jsonNode = new ObjectMapper().readTree(response.toString());
-                                    for (int i = jsonNode.size() - 1; i >= 0; --i) {
-                                        exams.add(asList(jsonNode.get(i).get("exams").get("name").toString().replace("\"", ""),
-                                                jsonNode.get(i).get("abitExams").get("points").toString(),
-                                                jsonNode.get(i).get("abitExams").get("year").toString()));
-                                    }
+        AndroidNetworking.get("https://vkr1-app.herokuapp.com/abit/exams?id_abit=" + PersonalCabinetActivity.idAbit)
+                .setPriority(Priority.HIGH)
+                .build()
+                .getAsJSONArray(new JSONArrayRequestListener() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            JsonNode jsonNode = new ObjectMapper().readTree(response.toString());
+                            for (int i = jsonNode.size() - 1; i >= 0; --i) {
+                                exams.add(asList(jsonNode.get(i).get("exams").get("name").asText(),
+                                        jsonNode.get(i).get("abitExams").get("points").toString(),
+                                        jsonNode.get(i).get("abitExams").get("year").toString()));
+                            }
 
-                                } catch (JsonProcessingException e) {
-                                    e.printStackTrace();
-                                }
-                            }).start();
-                        }
+                        } catch (JsonProcessingException e) {
+                            e.printStackTrace();
+                        };
+                    }
 
-                        @Override
-                        public void onError(ANError error) { }
-                    });
-        }
+                    @Override
+                    public void onError(ANError error) { }
+                });
     }
 
     public void downloadMinPointsExams(){
