@@ -40,6 +40,7 @@ public class ResultEguViewModel extends ViewModel {
     }
 
     public void downloadExams(){
+        if(exams.size() != 0) return;
         AndroidNetworking.get("https://vkr1-app.herokuapp.com/abit/exams?id_abit=" + PersonalCabinetActivity.idAbit)
                 .setPriority(Priority.HIGH)
                 .build()
