@@ -50,7 +50,7 @@ public class MoreAboutTheInstitutActivity extends AppCompatActivity {
     private TextView discriptionOfInstitut;
     private LinearLayout layoutSpecialityInfo;
     private LinearLayout layoutSpeciality;
-    private List<List<String>> specialitys;
+    private List<List<String>> specialitys = new ArrayList<>();;
     private boolean isPressed = false;
 
 
@@ -125,8 +125,8 @@ public class MoreAboutTheInstitutActivity extends AppCompatActivity {
         layoutSpeciality = findViewById(R.id.layout_of_specialitys);
         layoutSpecialityInfo = findViewById(R.id.layout_of_specialitys_info);
 
-        downloadInfoInstituts();
         downloadSpecialitys();
+        downloadInfoInstituts();
     }
 
     private void downloadSpecialitys(){
@@ -141,21 +141,15 @@ public class MoreAboutTheInstitutActivity extends AppCompatActivity {
             .getAsJSONArray(new JSONArrayRequestListener() {
                 @Override
                 public void onResponse(JSONArray response) {
-                    new Thread(()->{
-                        try {
-                            specialitys = new ArrayList<>();
-                            JsonNode jsonNode = new ObjectMapper().readTree(response.toString());
-                            jsonNode.forEach(item -> specialitys.add(asList(item.get("id").asText(), item.get("name").asText())));
-                            new Handler(Looper.getMainLooper()).post(()->{
-                                fillSpeciality(isPressed, findViewById(R.id.arrow_downward4));
-                                layoutSpeciality.setEnabled(true);
-                            });
+                    try {
+                        JsonNode jsonNode = new ObjectMapper().readTree(response.toString());
+                        jsonNode.forEach(item -> specialitys.add(asList(item.get("id").asText(), item.get("name").asText())));
+                        layoutSpeciality.setEnabled(true);
 
-                        } catch (Exception e) {
-                            Log.e("", "error catch");
-                            Log.e("", e.getMessage());
-                        }
-                    }).start();
+                    } catch (Exception e) {
+                        Log.e("", "error catch");
+                        Log.e("", e.getMessage());
+                    }
                 }
 
                 @Override
@@ -174,45 +168,44 @@ public class MoreAboutTheInstitutActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         try {
                             JsonNode jsonNode = new ObjectMapper().readTree(response.toString());
-                            new Handler(Looper.getMainLooper()).post(() -> {
-                                nameOfInstitut.setText(getIntent().getStringExtra("name_institut"));
-                                discriptionOfInstitut.setText(jsonNode.get("institution").get("description").asText());
-                                contactPhoneOfInstitut.setText(jsonNode.get("institution").get("contact_phone").asText());
-                                directorOfInstitut.setText(String.format("Директор института: %s", jsonNode.get("director").get("family").asText() + " " +
-                                        jsonNode.get("director").get("name").asText() + " " + jsonNode.get("director").get("patronymic").asText()));
 
-                                CardView card = findViewById(R.id.cardview_institut);
-                                switch (id){
-                                    case 1:
-                                        findViewById(R.id.more_about_the_institut_main_layout).setBackground(ContextCompat.getDrawable(activity, R.drawable.cradient1));
-                                        card.setCardBackgroundColor(Color.parseColor("#191970"));
-                                        break;
-                                    case 2:
-                                        findViewById(R.id.more_about_the_institut_main_layout).setBackground(ContextCompat.getDrawable(activity, R.drawable.cradient2));
-                                        card.setCardBackgroundColor(Color.parseColor("#CD5C5C"));
-                                        break;
-                                    case 3:
-                                        findViewById(R.id.more_about_the_institut_main_layout).setBackground(ContextCompat.getDrawable(activity, R.drawable.cradient3));
-                                        card.setCardBackgroundColor(Color.parseColor("#8A2BE2"));
-                                        break;
-                                    case 4:
-                                        findViewById(R.id.more_about_the_institut_main_layout).setBackground(ContextCompat.getDrawable(activity, R.drawable.cradient4));
-                                        card.setCardBackgroundColor(Color.parseColor("#013220"));
-                                        break;
-                                    case 5:
-                                        findViewById(R.id.more_about_the_institut_main_layout).setBackground(ContextCompat.getDrawable(activity, R.drawable.cradient5));
-                                        card.setCardBackgroundColor(Color.parseColor("#660066"));
-                                        break;
-                                    case 6:
-                                        findViewById(R.id.more_about_the_institut_main_layout).setBackground(ContextCompat.getDrawable(activity, R.drawable.cradient6));
-                                        card.setCardBackgroundColor(Color.parseColor("#660033"));
-                                        break;
-                                    case 7:
-                                        findViewById(R.id.more_about_the_institut_main_layout).setBackground(ContextCompat.getDrawable(activity, R.drawable.cradient7));
-                                        card.setCardBackgroundColor(Color.parseColor("#ff6600"));
-                                        break;
-                                }
-                            });
+                            nameOfInstitut.setText(getIntent().getStringExtra("name_institut"));
+                            discriptionOfInstitut.setText(jsonNode.get("institution").get("description").asText());
+                            contactPhoneOfInstitut.setText(jsonNode.get("institution").get("contact_phone").asText());
+                            directorOfInstitut.setText(String.format("Директор института: %s", jsonNode.get("director").get("family").asText() + " " +
+                                    jsonNode.get("director").get("name").asText() + " " + jsonNode.get("director").get("patronymic").asText()));
+
+                            CardView card = findViewById(R.id.cardview_institut);
+                            switch (id){
+                                case 1:
+                                    findViewById(R.id.more_about_the_institut_main_layout).setBackground(ContextCompat.getDrawable(activity, R.drawable.cradient1));
+                                    card.setCardBackgroundColor(Color.parseColor("#191970"));
+                                    break;
+                                case 2:
+                                    findViewById(R.id.more_about_the_institut_main_layout).setBackground(ContextCompat.getDrawable(activity, R.drawable.cradient2));
+                                    card.setCardBackgroundColor(Color.parseColor("#CD5C5C"));
+                                    break;
+                                case 3:
+                                    findViewById(R.id.more_about_the_institut_main_layout).setBackground(ContextCompat.getDrawable(activity, R.drawable.cradient3));
+                                    card.setCardBackgroundColor(Color.parseColor("#8A2BE2"));
+                                    break;
+                                case 4:
+                                    findViewById(R.id.more_about_the_institut_main_layout).setBackground(ContextCompat.getDrawable(activity, R.drawable.cradient4));
+                                    card.setCardBackgroundColor(Color.parseColor("#013220"));
+                                    break;
+                                case 5:
+                                    findViewById(R.id.more_about_the_institut_main_layout).setBackground(ContextCompat.getDrawable(activity, R.drawable.cradient5));
+                                    card.setCardBackgroundColor(Color.parseColor("#660066"));
+                                    break;
+                                case 6:
+                                    findViewById(R.id.more_about_the_institut_main_layout).setBackground(ContextCompat.getDrawable(activity, R.drawable.cradient6));
+                                    card.setCardBackgroundColor(Color.parseColor("#660033"));
+                                    break;
+                                case 7:
+                                    findViewById(R.id.more_about_the_institut_main_layout).setBackground(ContextCompat.getDrawable(activity, R.drawable.cradient7));
+                                    card.setCardBackgroundColor(Color.parseColor("#ff6600"));
+                                    break;
+                            }
 
                         } catch (JsonProcessingException e) {
                             e.printStackTrace();
