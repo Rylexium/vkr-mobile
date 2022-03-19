@@ -108,7 +108,6 @@ public class StatementFragment extends Fragment {
                                 listFinancing = new ArrayList<>();
                                 JsonNode jsonNode = new ObjectMapper().readTree(response.toString());
                                 jsonNode.forEach(item -> listFinancing.add(item.get("name").asText()));
-                                new Handler(Looper.getMainLooper()).post(()->fillSpeciality());
                             } catch (JsonProcessingException e) {
                                 e.printStackTrace();
                             }
@@ -204,7 +203,6 @@ public class StatementFragment extends Fragment {
     private void fillSpeciality(){
             //сортируемо по приоритету
         new Thread(()->{
-            specialitysAbit = new ArrayList<>(new HashSet<>(specialitysAbit));
             specialitysAbit.sort(Comparator.comparing(
                     map -> Integer.parseInt(map.get("priority") == null || map.get("priority").equals("null") ? "0" : map.get("priority"))));
             new Handler(Looper.getMainLooper()).post(() -> {
