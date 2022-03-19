@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -21,6 +22,7 @@ import com.example.vkr.splash_screen.SplashScreen;
 import com.example.vkr.utils.HashPass;
 import com.example.vkr.utils.HideKeyboardClass;
 import com.example.vkr.utils.OpenActivity;
+import com.example.vkr.utils.ShowBottomDialog;
 import com.example.vkr.utils.ShowToast;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;

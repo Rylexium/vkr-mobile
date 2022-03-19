@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_bg"
+    android:paddingBottom="25dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/chooseTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="Откуда загрузить?"
+        android:textColor="@color/black"
+        android:layout_marginTop="5dp"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        />
+
+    <LinearLayout
+        android:id="@+id/layoutEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:padding="8dp" >
+
+        <LinearLayout
+            android:id="@+id/first_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/first_icon"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_baseline_photo_24" />
+
+            <TextView
+                android:id="@+id/first_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Галлерея"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/second_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="15dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/second_icon"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_baseline_photo_camera_24" />
+
+            <TextView
+                android:id="@+id/second_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Камера"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

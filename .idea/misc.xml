@@ -12,6 +12,7 @@
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/cradient6.xml" value="0.2105" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/cradient7.xml" value="0.2105" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/cursor_black.xml" value="0.2925" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/dialog_bg.xml" value="0.1" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.205" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/ic_baseline_arrow_downward_24.xml" value="0.205" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/ic_baseline_arrow_forward_24.xml" value="0.33" />
@@ -21,6 +22,10 @@
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.205" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.205" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.196" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/ic_baseline_map_24.xml" value="0.3085" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/ic_baseline_open_in_browser_24.xml" value="0.3085" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/ic_baseline_photo_24.xml" value="0.211" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/ic_baseline_photo_camera_24.xml" value="0.211" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/ic_baseline_place_24.xml" value="0.25" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/ic_wave.xml" value="0.298" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/round_btn.xml" value="0.3675" />
@@ -120,7 +125,9 @@
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/registration_layouts/layout/snills_activity.xml" value="0.28940217391304346" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/registration_layouts/layout/support_activity.xml" value="0.14308363059849386" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/registration_layouts/menu/bottom_nav_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/supporting_layouts/layout/bottomsheetlayout.xml" value="0.33" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/supporting_layouts/layout/custom_fab.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/supporting_layouts/layout/dialog_bg.xml" value="0.1" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/supporting_layouts/layout/field.xml" value="0.3328804347826087" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/supporting_layouts/layout/field_for_change_password.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/supporting_layouts/layout/field_for_exam.xml" value="0.3328804347826087" />

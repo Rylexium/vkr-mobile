@@ -40,26 +40,18 @@ public class OpenActivity {
     }
 
     public static boolean openMapsWhereWe(Activity activity){
-        GoogleApiAvailability googleApiAvailability = GoogleApiAvailability.getInstance();
-        int resultCode = googleApiAvailability.isGooglePlayServicesAvailable(activity);
-        if(resultCode == ConnectionResult.SUCCESS)
-            activity.startActivity(new Intent(activity, GoogleMapsActivity.class));
-        else
-            new AlertDialog.Builder(activity).setTitle("Где мы находимся?")
-                    .setMessage("Что открыть?")
-                    .setPositiveButton("Яндекс.Карты", (dialog, which) -> {
-                        activity.startActivity(new Intent(activity, YandexMapsActivity.class));
-                        dialog.dismiss();
-                    })
-                    .setNegativeButton("Браузер", (dialog, which) -> {
-                        activity.startActivity(new Intent(Intent.ACTION_VIEW)
-                                .setData(Uri.parse("https://www.google.ru/maps/place/53%C2%B012'49.3%22N+50%C2%B010'37.3%22E/@53.2137071," +
-                                        "50.1762502,18z/data=!3m1!4b1!4m6!3m5!1s0x0:0xeeb6557ca0cc4e6b!7e2!8m2!3d53.2137058!4d50.1770238?hl=ru")));
-                        dialog.dismiss();
-                    })
-                    .setNeutralButton("Отмена", (dialog, which) -> dialog.dismiss())
-                    .create()
-                    .show();
+//        GoogleApiAvailability googleApiAvailability = GoogleApiAvailability.getInstance();
+//        int resultCode = googleApiAvailability.isGooglePlayServicesAvailable(activity);
+//        if(resultCode == ConnectionResult.SUCCESS)
+//            activity.startActivity(new Intent(activity, GoogleMapsActivity.class));
+//        else
+            new ShowBottomDialog().showDialog(activity, "Что открыть?",
+                    activity.getDrawable(R.drawable.ic_baseline_map_24), "Яндекс.Карты",
+                    activity.getDrawable(R.drawable.ic_baseline_open_in_browser_24), "Браузер")
+                    .setOnFirstItem(() -> activity.startActivity(new Intent(activity, YandexMapsActivity.class)))
+                    .setOnSecondItem(() -> activity.startActivity(new Intent(Intent.ACTION_VIEW)
+                            .setData(Uri.parse("https://www.google.ru/maps/place/53%C2%B012'49.3%22N+50%C2%B010'37.3%22E/@53.2137071," +
+                                    "50.1762502,18z/data=!3m1!4b1!4m6!3m5!1s0x0:0xeeb6557ca0cc4e6b!7e2!8m2!3d53.2137058!4d50.1770238?hl=ru"))));
         return true;
     }
 
