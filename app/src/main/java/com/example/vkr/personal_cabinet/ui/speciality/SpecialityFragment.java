@@ -76,6 +76,16 @@ public class SpecialityFragment extends Fragment {
         TextView generalCompetition = rowView.findViewById(R.id.textview_general_competition); // 253 / 25
         TextView contract = rowView.findViewById(R.id.textview_сontract); // 123 / 75
 
+        LinearLayout mainLayout = rowView.findViewById(R.id.main_speciality_layout);
+        mainLayout.setOnClickListener(view -> {
+            mainLayout.setEnabled(false);
+            new Handler().postDelayed(() -> mainLayout.setEnabled(true),2000); //иначе 2-й клик будет доступен и откроется сразу 2 окна
+            startActivity(new Intent(binding.getContext(), MoreAboutTheSpecialityActivity.class)
+                    .putExtra("id", idSpeciality)
+                    .putExtra("type_of_study", nameTypeOfStudy));
+        });
+
+
         name.setOnClickListener(view-> {
             name.setEnabled(false);
             new Handler().postDelayed(() -> name.setEnabled(true),2000); //иначе 2-й клик будет доступен и откроется сразу 2 окна

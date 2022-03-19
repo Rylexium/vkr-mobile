@@ -8,6 +8,7 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/main_speciality_layout"
         android:background="@drawable/side_nav_bar"
         android:layout_width="match_parent"
         android:orientation="vertical"

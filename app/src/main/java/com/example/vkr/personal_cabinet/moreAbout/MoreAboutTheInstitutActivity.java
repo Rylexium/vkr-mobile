@@ -135,7 +135,6 @@ public class MoreAboutTheInstitutActivity extends AppCompatActivity {
             url = "https://vkr1-app.herokuapp.com/speciality/abit/info?id_institut=" + getIntent().getStringExtra("id");
         else
             url = "https://vkr1-app.herokuapp.com/speciality/magistr/info?id_institut=" + getIntent().getStringExtra("id");
-        Log.e("", url);
         AndroidNetworking.get(url)
             .setPriority(Priority.IMMEDIATE)
             .build()
