@@ -85,15 +85,6 @@ public class SpecialityFragment extends Fragment {
                     .putExtra("type_of_study", nameTypeOfStudy));
         });
 
-
-        name.setOnClickListener(view-> {
-            name.setEnabled(false);
-            new Handler().postDelayed(() -> name.setEnabled(true),2000); //иначе 2-й клик будет доступен и откроется сразу 2 окна
-            startActivity(new Intent(binding.getContext(), MoreAboutTheSpecialityActivity.class)
-                    .putExtra("id", idSpeciality)
-                    .putExtra("type_of_study", nameTypeOfStudy));
-        });
-
         institut.setOnClickListener(view ->{
             institut.setEnabled(false);
             new Handler().postDelayed(() -> institut.setEnabled(true),2000);
