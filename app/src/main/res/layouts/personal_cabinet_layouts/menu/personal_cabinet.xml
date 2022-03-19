@@ -10,26 +10,25 @@
             <item
                 android:id="@+id/action_faq"
                 android:title="Часто задаваемые вопросы"
-                android:icon="@drawable/ic_baseline_email_24"
-                android:iconTint="@color/black"
+                android:icon="@drawable/ic_baseline_question_answer_24"
                 app:showAsAction="ifRoom"
                 />
             <item
                 android:id="@+id/action_steps_admission"
                 android:title="Этапы поступления"
-                android:iconTint="@color/black"
+                android:icon="@drawable/ic_baseline_sticky_note_2_24"
                 app:showAsAction="ifRoom"
                 />
             <item
                 android:id="@+id/action_contact_with_developer"
                 android:title="Связь с разработчиком"
-                android:iconTint="@color/black"
+                android:icon="@drawable/ic_baseline_self_improvement_24"
                 app:showAsAction="ifRoom"
                 />
             <item
                 android:id="@+id/action_we_on_maps"
                 android:title="Где мы находимся?"
-                android:iconTint="@color/black"
+                android:icon="@drawable/ic_baseline_room_24"
                 app:showAsAction="ifRoom"
                 />
         </menu>
