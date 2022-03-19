@@ -36,7 +36,7 @@
             android:layout_marginEnd="9dp"
             android:hint="Номер телефона"
             android:textColorHint="@color/grey"
-            app:startIconDrawable="@drawable/phone_icon"
+            app:startIconDrawable="@drawable/ic_baseline_phone_24"
             app:startIconTintMode="src_atop"
             app:boxStrokeColor="@color/blue_700"
             app:endIconMode="clear_text"

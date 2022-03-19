@@ -30,7 +30,7 @@
         android:hint="Телефон"
         android:textColorHint="@color/silver"
         app:boxStrokeColor="@color/orange_500"
-        app:startIconDrawable="@drawable/phone_icon"
+        app:startIconDrawable="@drawable/ic_baseline_phone_24"
         app:endIconMode="clear_text"
         app:hintTextAppearance="@style/TextAppearance.App.TextInputLayoutWhite"
         >
