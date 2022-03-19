@@ -32,7 +32,7 @@ public class SelectImageClass {
     }
 
     public static void showMenu(@NonNull FragmentActivity activity, @NonNull Fragment fragment, @NonNull Boolean multitouch) {
-        new ShowBottomDialog().showDialog(activity, "Выберите",
+        new ShowBottomDialog().showDialog(activity, "Откуда загрузить?",
             activity.getDrawable(R.drawable.ic_baseline_photo_24), "Галлерея",
             activity.getDrawable(R.drawable.ic_baseline_photo_camera_24), "Камера")
             .setOnFirstItem(()-> fragment.startActivityForResult(multitouch ?
