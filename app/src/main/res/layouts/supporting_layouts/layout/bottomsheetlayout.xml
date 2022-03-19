@@ -44,7 +44,7 @@
                 android:id="@+id/first_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Галлерея"
+                android:text="Галерея"
                 android:textSize="16sp" />
         </LinearLayout>
 
