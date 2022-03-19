@@ -33,7 +33,7 @@
             android:orientation="vertical">
             <View
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="55dp"
                 android:background="@drawable/ic_wave" />
         </LinearLayout>
         <androidx.cardview.widget.CardView
