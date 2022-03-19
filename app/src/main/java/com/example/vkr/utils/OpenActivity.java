@@ -40,11 +40,11 @@ public class OpenActivity {
     }
 
     public static boolean openMapsWhereWe(Activity activity){
-//        GoogleApiAvailability googleApiAvailability = GoogleApiAvailability.getInstance();
-//        int resultCode = googleApiAvailability.isGooglePlayServicesAvailable(activity);
-//        if(resultCode == ConnectionResult.SUCCESS)
-//            activity.startActivity(new Intent(activity, GoogleMapsActivity.class));
-//        else
+        GoogleApiAvailability googleApiAvailability = GoogleApiAvailability.getInstance();
+        int resultCode = googleApiAvailability.isGooglePlayServicesAvailable(activity);
+        if(resultCode == ConnectionResult.SUCCESS)
+            activity.startActivity(new Intent(activity, GoogleMapsActivity.class));
+        else
             new ShowBottomDialog().showDialog(activity, "Что открыть?",
                     activity.getDrawable(R.drawable.ic_baseline_map_24), "Яндекс.Карты",
                     activity.getDrawable(R.drawable.ic_baseline_open_in_browser_24), "Браузер")
