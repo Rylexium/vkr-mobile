@@ -103,15 +103,13 @@ public class StatementFragment extends Fragment {
                 .getAsJSONArray(new JSONArrayRequestListener() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        new Thread(()->{
-                            try {
-                                listFinancing = new ArrayList<>();
-                                JsonNode jsonNode = new ObjectMapper().readTree(response.toString());
-                                jsonNode.forEach(item -> listFinancing.add(item.get("name").asText()));
-                            } catch (JsonProcessingException e) {
-                                e.printStackTrace();
-                            }
-                        }).start();
+                        try {
+                            listFinancing = new ArrayList<>();
+                            JsonNode jsonNode = new ObjectMapper().readTree(response.toString());
+                            jsonNode.forEach(item -> listFinancing.add(item.get("name").asText()));
+                        } catch (JsonProcessingException e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override
@@ -184,10 +182,8 @@ public class StatementFragment extends Fragment {
 
     @Override
     public void onResume(){
-        if(listFinancing != null) {
-            linearLayout.removeAllViews();
-            fillSpeciality();
-        }
+        linearLayout.removeAllViews();
+        fillSpeciality();
         super.onResume();
     }
 
