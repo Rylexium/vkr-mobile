@@ -29,9 +29,7 @@ public class ResultEguViewModel extends ViewModel {
     }
 
 
-    public List<List<String>> getExams(){
-        return exams;
-    }
+    public List<List<String>> getExams(){ return exams; }
 
     public static void clearExams(){
         if(exams == null) return;
@@ -43,7 +41,7 @@ public class ResultEguViewModel extends ViewModel {
         return minPointsExams;
     }
 
-    private void downloadExams(){
+    public void downloadExams(){
         if(exams == null) {
             AndroidNetworking.get("https://vkr1-app.herokuapp.com/abit/exams?id_abit=" + PersonalCabinetActivity.idAbit)
                     .setPriority(Priority.HIGH)
@@ -73,7 +71,7 @@ public class ResultEguViewModel extends ViewModel {
         }
     }
 
-    private void downloadMinPointsExams(){
+    public void downloadMinPointsExams(){
         if(minPointsExams == null) {
             AndroidNetworking.get("https://vkr1-app.herokuapp.com/speciality_exams/min")
                     .setPriority(Priority.HIGH)

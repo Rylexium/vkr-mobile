@@ -11,6 +11,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.fragment.app.Fragment;
 import androidx.core.content.ContextCompat;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +44,7 @@ public class ResultEguFragment extends Fragment {
         return binding.getRootView();
     }
     private void onAddField(String nameExam, String pointsExam, String yearExam) {
+        if(getActivity() == null) return;
         LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View rowView = inflater.inflate(R.layout.field_for_exam_noedit, null);
 
@@ -60,6 +63,7 @@ public class ResultEguFragment extends Fragment {
     }
 
     private void addFieldSumExams() {
+        if(getActivity() == null) return;
         LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View rowView = inflater.inflate(R.layout.field_for_sum_exams, null);
         EditText exam = rowView.findViewById(R.id.exam_noedit);
@@ -104,6 +108,8 @@ public class ResultEguFragment extends Fragment {
         awaitData();
         scrollView = binding.findViewById(R.id.scrollview_result_egu_fragment);
         fab = getActivity().findViewById(R.id.fab);
+        if(viewModel.getExams() == null) viewModel.downloadExams();
+        if(viewModel.getMinPointsExams() == null) viewModel.downloadMinPointsExams();
     }
 
     @Override

@@ -60,9 +60,10 @@ public class StatementFragment extends Fragment {
     private LinearLayout linearLayout;
     private View binding;
     private FloatingActionButton fab;
-    private static List<String> listFinancing;
     private Button buttonSubmitStatement;
     private TextView supportTextView;
+
+    private static List<String> listFinancing;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -94,30 +95,6 @@ public class StatementFragment extends Fragment {
         downloadTypeOfFinancing();
     }
 
-
-    private void downloadTypeOfFinancing(){
-        if(listFinancing != null) return;
-        AndroidNetworking.get("https://vkr1-app.herokuapp.com/type_of_financing")
-                .setPriority(Priority.HIGH)
-                .build()
-                .getAsJSONArray(new JSONArrayRequestListener() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        try {
-                            listFinancing = new ArrayList<>();
-                            JsonNode jsonNode = new ObjectMapper().readTree(response.toString());
-                            jsonNode.forEach(item -> listFinancing.add(item.get("name").asText()));
-                        } catch (JsonProcessingException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void onError(ANError anError) { }
-                });
-
-    }
-
     private boolean isValidPriority(){
         if(linearLayout.getChildCount() == 0) return false;
         try {
@@ -141,6 +118,11 @@ public class StatementFragment extends Fragment {
     private void onAddField(String idSpeciality, String nameSpeciality,
                             String nameInstitut, String nameTypeOfStudy,
                             String valueOfDateOfStatement, String valueFinancing, String valuePriority) {
+        if(listFinancing == null) {
+            ShowToast.show(getContext(), "Проверьте подключение к интернету");
+            return;
+        }
+
         LayoutInflater inflater = (LayoutInflater) Objects.requireNonNull(getActivity()).getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View rowView = inflater.inflate(R.layout.field_for_statement, null);
 
@@ -197,8 +179,9 @@ public class StatementFragment extends Fragment {
     }
 
     private void fillSpeciality(){
-            //сортируемо по приоритету
+        if(specialitysAbit == null) return;
         new Thread(()->{
+            //сортируем по приоритету
             specialitysAbit.sort(Comparator.comparing(
                     map -> Integer.parseInt(map.get("priority") == null || map.get("priority").equals("null") ? "0" : map.get("priority"))));
             new Handler(Looper.getMainLooper()).post(() -> {
@@ -274,5 +257,27 @@ public class StatementFragment extends Fragment {
 
             ShowToast.show(getActivity(), "Успешно");
         }
+    }
+
+    private void downloadTypeOfFinancing(){
+        if(listFinancing != null) return;
+        AndroidNetworking.get("https://vkr1-app.herokuapp.com/type_of_financing")
+                .setPriority(Priority.HIGH)
+                .build()
+                .getAsJSONArray(new JSONArrayRequestListener() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            listFinancing = new ArrayList<>();
+                            JsonNode jsonNode = new ObjectMapper().readTree(response.toString());
+                            jsonNode.forEach(item -> listFinancing.add(item.get("name").asText()));
+                        } catch (JsonProcessingException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) { }
+                });
     }
 }

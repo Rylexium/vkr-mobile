@@ -200,6 +200,13 @@ public class PersonalCabinetActivity extends AppCompatActivity {
         idAbit = getIntent().getStringExtra("id_abit");
         idEducation = getIntent().getStringExtra("id_education");
 
+        downloadAbit();
+        downloadTypeOfStudy();
+        downloadSpecialitysAbit();
+        downloadInstituts();
+    }
+
+    private void downloadAbit(){
         AndroidNetworking.get("https://vkr1-app.herokuapp.com/abit?id=" + idAbit)
                 .setPriority(Priority.HIGH)
                 .build()
@@ -246,10 +253,6 @@ public class PersonalCabinetActivity extends AppCompatActivity {
                     @Override
                     public void onError(ANError error) { }
                 });
-
-        downloadTypeOfStudy();
-        downloadSpecialitysAbit();
-        downloadInstituts();
     }
 
     private void sendDataToHomeFragment(String login, String snills, String sex, String nationality,

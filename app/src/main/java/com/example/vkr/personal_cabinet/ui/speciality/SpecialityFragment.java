@@ -43,7 +43,7 @@ public class SpecialityFragment extends Fragment {
     private LinearLayout specialityLayout;
     private ScrollView scrollView;
 
-    private static List<List<String>> speciality;
+    private static List<List<String>> speciality = new ArrayList<>(); //инициализация;
     private static Integer start = 0;
     private static Integer end = 26;
     private final Integer next = 26;
@@ -67,7 +67,7 @@ public class SpecialityFragment extends Fragment {
     private void onAddField(String idSpeciality, String nameSpeciality,
                             String nameInstitut, String nameTypeOfStudy,
                             String valueGeneralCompetition, String valueContract) {
-        LayoutInflater inflater = (LayoutInflater) Objects.requireNonNull(getActivity()).getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View rowView = inflater.inflate(R.layout.field_for_speciality, null);
 
         TextView name = rowView.findViewById(R.id.textview_speciality); //02.03.03 МОАИС
@@ -112,10 +112,9 @@ public class SpecialityFragment extends Fragment {
                             .setAction("Action", null).show();
                     isBottom = true;
                     downloadSpeciality();
-                }else {
+                }else
                     Snackbar.make(scrollView, "Все специальности были загружены", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
-                }
             }
             else{
                 isBottom = false;
@@ -137,10 +136,8 @@ public class SpecialityFragment extends Fragment {
 
         fab = getActivity().findViewById(R.id.fab);
 
-        if(speciality == null) { //первый раз зашли сюда
-            speciality = new ArrayList<>(); //инициализация
+        if(speciality.isEmpty())  //первый раз зашли сюда
             downloadSpeciality(); //подгружаем
-        }
         else {
             for(int i = 0; i < speciality.size(); i++) //уже были данные
                 onAddField(speciality.get(i).get(0), speciality.get(i).get(1),
