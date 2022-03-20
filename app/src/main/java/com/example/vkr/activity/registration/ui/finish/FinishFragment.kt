@@ -220,7 +220,7 @@ class FinishFragment : Fragment() {
             .put("achievement3", sharedPreferences?.all?.get(AchievFragment().KEY_ACHIEVEMENT + "2").toString())
             .put("achievement4", sharedPreferences?.all?.get(AchievFragment().KEY_ACHIEVEMENT + "3").toString())
             .put("achievement5", sharedPreferences?.all?.get(AchievFragment().KEY_ACHIEVEMENT + "4").toString())
-            .put("privileges", sharedPreferences?.all?.get(PrivilegesFragment().KEY_PRIVILIGE + "0").toString())
+            .put("privileges", sharedPreferences?.all?.get(PrivilegesFragment().KEY_PRIVILIGE).toString())
 
 
         Log.e("", jsonObject.toString())
