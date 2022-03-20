@@ -10,6 +10,8 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.fragment.app.Fragment
 import androidx.core.content.ContextCompat
@@ -18,13 +20,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.graphics.drawable.toBitmap
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DecodeFormat
+import com.example.vkr.activity.registration.RegistrationActivity
 import com.example.vkr.databinding.FragmentSnillsBinding
 import com.example.vkr.utils.ConvertClass
 import com.example.vkr.utils.CorrectText
 import com.example.vkr.utils.SelectImageClass
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import java.util.regex.Pattern
@@ -43,11 +46,13 @@ class SnillsFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View {
+        RegistrationActivity.next.isEnabled = false
+        RegistrationActivity.previous.isEnabled = false
         _binding = FragmentSnillsBinding.inflate(inflater, container, false)
         val root: View = binding.root
         sharedPreferences = activity!!.getPreferences(Context.MODE_PRIVATE)
         applyEvents()
-        comebackAfterOnBackPressed()
+        lifecycleScope.launch { comebackAfterOnBackPressed() }
         return root
     }
 
@@ -78,26 +83,43 @@ class SnillsFragment : Fragment() {
         }
     }
 
-    private  fun comebackAfterOnBackPressed() {
-        val restoredText1 = sharedPreferences!!.getString(KEY_SNILLS, null)
-        if (!TextUtils.isEmpty(restoredText1))
-            binding.textboxSnills.setText(restoredText1)
+    private suspend fun comebackAfterOnBackPressed() {
+        return coroutineScope {
+            val restoredText1 = sharedPreferences!!.getString(KEY_SNILLS, null)
+            if (!TextUtils.isEmpty(restoredText1))
+                Handler(Looper.getMainLooper()).post { binding.textboxSnills.setText(restoredText1) }
 
-        val restoredText2 = sharedPreferences!!.getString(KEY_PHOTO_SNILLS, null)
-        if (!TextUtils.isEmpty(restoredText2))
-                Glide.with(this)
-                    .load(ConvertClass.convertStringToBitmap(restoredText2))
-                    .format(DecodeFormat.PREFER_RGB_565)
-                    .fitCenter()
-                    .into(binding.imageViewSnills)
-        else
-            binding.imageViewSnills.setImageBitmap(ConvertClass.decodeSampledBitmapFromResource(resources, R.drawable.snills, 100, 100))
+            val restoredText2 = sharedPreferences!!.getString(KEY_PHOTO_SNILLS, null)
+            if (!TextUtils.isEmpty(restoredText2)) {
+                val bitmap = ConvertClass.convertStringToBitmap(restoredText2)
+                Handler(Looper.getMainLooper()).post {
+                    Glide.with(this@SnillsFragment)
+                        .load(bitmap)
+                        .format(DecodeFormat.PREFER_RGB_565)
+                        .fitCenter()
+                        .into(binding.imageViewSnills)
+                }
+            }
+            else {
+                val bitmap = ConvertClass.decodeSampledBitmapFromResource(resources, R.drawable.snills, 100, 100)
+                Handler(Looper.getMainLooper()).post { binding.imageViewSnills.setImageBitmap(bitmap) }
+            }
 
-        binding.textboxSnills.setTextColor(if (!isCorrectSnills(binding.textboxSnills.text.toString())) Color.RED else ContextCompat.getColor(context!!, R.color.white))
+            Handler(Looper.getMainLooper()).post {
+                binding.textboxSnills.setTextColor(if (!isCorrectSnills(binding.textboxSnills.text.toString())) Color.RED else ContextCompat.getColor(context!!, R.color.white))
+            }
+
+            Handler(Looper.getMainLooper()).post{
+                RegistrationActivity.next.isEnabled = true
+                RegistrationActivity.previous.isEnabled = true
+                RegistrationActivity.info.isChecked = true
+                RegistrationActivity.info.title = "5/8"
+            }
+        }
     }
 
     override fun onStop() {
-        GlobalScope.launch { saveLastState() }
+        lifecycleScope.launch { saveLastState() }
         super.onStop()
     }
 

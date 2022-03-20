@@ -3,10 +3,12 @@ package com.example.vkr.activity.registration
 import android.annotation.SuppressLint
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.view.MenuItem
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AppCompatActivity
 import android.view.MotionEvent
+import android.view.View
 import com.example.vkr.R
 import com.example.vkr.activity.registration.ui.achievements.AchievFragment
 import com.example.vkr.activity.registration.ui.education.EducationFragment
@@ -24,18 +26,29 @@ import com.example.vkr.utils.ShowCustomDialog
 
 class RegistrationActivity : AppCompatActivity() {
 
-    private lateinit var binding: RegistrationActivityBinding
+    lateinit var binding: RegistrationActivityBinding
 
     private var fragments = listOf(RegistrationFragment(), Passport1Fragment(), Passport2Fragment(), Passport3Fragment(),
                                    SnillsFragment(), EducationFragment(), AchievFragment(), PrivilegesFragment(), FinishFragment())
 
     var sharedPreferences : SharedPreferences? = null
-    private var step = 0
+
+    companion object {
+        lateinit var next : MenuItem
+        lateinit var previous : MenuItem
+        lateinit var info : MenuItem
+        var step : Int = 0
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = RegistrationActivityBinding.inflate(layoutInflater)
         sharedPreferences = getPreferences(MODE_PRIVATE)
+
+        next = binding.bottomNavigation.menu.findItem(R.id.button_next)
+        info = binding.bottomNavigation.menu.getItem(1)
+        previous = binding.bottomNavigation.menu.findItem(R.id.button_previous)
+
         replaceFragment(fragments[0])
         setTitleStep("${step + 1}/${fragments.size - 1}")
         applyEvents()

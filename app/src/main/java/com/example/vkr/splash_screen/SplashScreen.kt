@@ -9,7 +9,7 @@ import android.os.Looper
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.lifecycleScope
 import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.common.Priority
 import com.androidnetworking.error.ANError
@@ -20,7 +20,6 @@ import com.example.vkr.activity.authorization.AuthorizationActivity
 import com.example.vkr.utils.OpenActivity
 import com.example.vkr.utils.ShowToast
 import com.fasterxml.jackson.databind.ObjectMapper
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.json.JSONArray
@@ -64,7 +63,7 @@ class SplashScreen : AppCompatActivity() {
         val view = findViewById<LinearLayout>(R.id.splash_layout)
         view.alpha = 0f
         view.animate().setDuration(Random.nextInt(1000, 2500).toLong()).alpha(1f).withEndAction{
-            GlobalScope.launch {
+            lifecycleScope.launch {
 
                 run tryToConnect@{
                     repeat(1001) {

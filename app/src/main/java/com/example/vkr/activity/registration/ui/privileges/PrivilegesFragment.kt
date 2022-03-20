@@ -7,7 +7,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -17,16 +16,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.ImageView
+import androidx.lifecycle.lifecycleScope
 import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.common.Priority
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONArrayRequestListener
 import com.example.vkr.R
+import com.example.vkr.activity.registration.RegistrationActivity
 import com.example.vkr.databinding.FragmentPrivilegesBinding
 import com.example.vkr.utils.*
 import com.fasterxml.jackson.databind.ObjectMapper
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import org.json.JSONArray
@@ -50,12 +49,14 @@ class PrivilegesFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View {
+        RegistrationActivity.next.isEnabled = false
+        RegistrationActivity.previous.isEnabled = false
         _binding = FragmentPrivilegesBinding.inflate(inflater, container, false)
         val root: View = binding.root
         sharedPreferences = activity!!.getPreferences(MODE_PRIVATE)
         downloadPrivileges()
         applyEvents()
-        comebackAfterOnBackPressed()
+        lifecycleScope.launch { comebackAfterOnBackPressed() }
         return root
     }
 
@@ -79,36 +80,43 @@ class PrivilegesFragment : Fragment() {
         }
     }
 
-    private  fun comebackAfterOnBackPressed () {
-        val restoredText: String? = activity!!.getPreferences(MODE_PRIVATE).getString(KEY_PRIVILIGE + "0", null)
-        if(!restoredText.isNullOrEmpty())
-                EditLinearLayout.onAddField(ConvertClass.convertStringToBitmap(restoredText), binding.layoutForImagesPrivileges, activity)
+    private suspend fun comebackAfterOnBackPressed () {
+        return coroutineScope {
+            val restoredText: String? = activity!!.getPreferences(MODE_PRIVATE).getString(KEY_PRIVILIGE, null)
+            if(!restoredText.isNullOrEmpty()){
+                bitmap = ConvertClass.convertStringToBitmap(restoredText)
+                Handler(Looper.getMainLooper()).post {
+                    EditLinearLayout.onAddField(bitmap, binding.layoutForImagesPrivileges, activity)
+                }
+            }
+            Handler(Looper.getMainLooper()).post{
+                RegistrationActivity.next.isEnabled = true
+                RegistrationActivity.previous.isEnabled = true
+                RegistrationActivity.info.isChecked = true
+                RegistrationActivity.info.title = "8/8"
+            }
+        }
     }
 
     @SuppressLint("CommitPrefEdits")
     private suspend fun saveLastState() {
+        var selectedItem = binding.listboxPrivileges.selectedItem?.toString()
+        if(binding.listboxPrivileges.selectedItem == null) selectedItem = ""
+
+        sharedPreferences!!.edit()
+            .putString(KEY_SELECTED_PRIVILEGES, binding.listboxPrivileges.selectedItemPosition.toString())
+            .putString(KEY_NAME_PRIVILEGES, selectedItem)
+            .apply()
+
         return coroutineScope {
-            for(i in 0 until 5)
-                sharedPreferences!!.edit().putString(KEY_PRIVILIGE + i, "").apply()
-
-            for (i in 0 until binding.layoutForImagesPrivileges.childCount) {
-                val v: ImageView = binding.layoutForImagesPrivileges.getChildAt(i).findViewById(R.id.image_edit)
-                sharedPreferences!!.edit()
-                        .putString(KEY_PRIVILIGE + i, ConvertClass.convertBitmapToString((v.drawable as BitmapDrawable).bitmap)).apply()
-            }
-
-            var selectedItem = binding.listboxPrivileges.selectedItem?.toString()
-            if(binding.listboxPrivileges.selectedItem == null) selectedItem = ""
-
             sharedPreferences!!.edit()
-                .putString(KEY_SELECTED_PRIVILEGES, binding.listboxPrivileges.selectedItemPosition.toString())
-                .putString(KEY_NAME_PRIVILEGES, selectedItem)
+                .putString(KEY_PRIVILIGE, ConvertClass.convertBitmapToString(bitmap))
                 .apply()
         }
     }
 
     private fun downloadPrivileges() {
-        GlobalScope.launch {
+        lifecycleScope.launch {
             run tryToDownload@{
                 repeat(1001) { if (isDownloadPrivileges()) return@tryToDownload }
             }
@@ -153,7 +161,7 @@ class PrivilegesFragment : Fragment() {
     }
 
     override fun onStop() {
-        GlobalScope.launch { saveLastState() }
+        lifecycleScope.launch { saveLastState() }
         super.onStop()
     }
 

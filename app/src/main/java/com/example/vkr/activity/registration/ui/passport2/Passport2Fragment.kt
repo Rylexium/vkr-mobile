@@ -8,6 +8,9 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.fragment.app.Fragment
 import androidx.core.content.ContextCompat
@@ -15,13 +18,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.core.graphics.drawable.toBitmap
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DecodeFormat
 import com.example.vkr.R
+import com.example.vkr.activity.registration.RegistrationActivity
 import com.example.vkr.databinding.FragmentPassport2Binding
 import com.example.vkr.utils.*
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import java.util.*
@@ -47,35 +52,52 @@ class Passport2Fragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View {
+        RegistrationActivity.next.isEnabled = false
+        RegistrationActivity.previous.isEnabled = false
         _binding = FragmentPassport2Binding.inflate(inflater, container, false)
         val root: View = binding.root
         sharedPreferences = requireActivity().getPreferences(MODE_PRIVATE)
         applyEvents()
-        comebackAfterOnBackPressed()
+        lifecycleScope.launch { comebackAfterOnBackPressed() }
         return root
     }
 
-    private fun comebackAfterOnBackPressed() {
-        wrapper(KEY_PASSPORT_SERIES, binding.textboxPassportSeries::setText)
-        wrapper(KEY_DATE_ISSUING, binding.textboxDateIssuingOfPassport::setText)
-        wrapper(KEY_PASSPORT_NUMBER, binding.textboxPassportNumber::setText)
-        wrapper(KEY_CODE_UNIT, binding.textboxCodeUnit::setText)
-        val str : String? = sharedPreferences!!.getString(KEY_IMAGE_PASSPORT2, null)
-        if (str != null){
-            Glide.with(this)
-                .load(ConvertClass.convertStringToBitmap(str))
-                .format(DecodeFormat.PREFER_RGB_565)
-                .fitCenter()
-                .into(binding.imageViewPassport2)
+    private suspend fun comebackAfterOnBackPressed() {
+        return coroutineScope {
+            Handler(Looper.getMainLooper()).post {
+                wrapper(KEY_PASSPORT_SERIES, binding.textboxPassportSeries::setText)
+                wrapper(KEY_DATE_ISSUING, binding.textboxDateIssuingOfPassport::setText)
+                wrapper(KEY_PASSPORT_NUMBER, binding.textboxPassportNumber::setText)
+                wrapper(KEY_CODE_UNIT, binding.textboxCodeUnit::setText)
+
+                if (binding.textboxPassportSeries.text?.length!! < 5) binding.textboxPassportSeries.setTextColor(Color.RED)
+                else binding.textboxPassportSeries.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+
+                if (binding.textboxPassportNumber.text?.length!! < 6) binding.textboxPassportNumber.setTextColor(Color.RED)
+                else binding.textboxPassportNumber.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+
+                if (binding.textboxCodeUnit.text?.length!! < 7) binding.textboxCodeUnit.setTextColor(Color.RED)
+                else binding.textboxCodeUnit.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+            }
+
+            val str: String? = sharedPreferences!!.getString(KEY_IMAGE_PASSPORT2, null)
+            if (str != null) {
+                val bitmap = ConvertClass.convertStringToBitmap(str)
+                Handler(Looper.getMainLooper()).post {
+                    Glide.with(this@Passport2Fragment)
+                        .load(bitmap)
+                        .format(DecodeFormat.PREFER_RGB_565)
+                        .fitCenter()
+                        .into(binding.imageViewPassport2)
+                }
+            }
+            Handler(Looper.getMainLooper()).post{
+                RegistrationActivity.next.isEnabled = true
+                RegistrationActivity.previous.isEnabled = true
+                RegistrationActivity.info.isChecked = true
+                RegistrationActivity.info.title = "3/8"
+            }
         }
-        if (binding.textboxPassportSeries.text?.length!! < 5) binding.textboxPassportSeries.setTextColor(Color.RED)
-        else binding.textboxPassportSeries.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-
-        if (binding.textboxPassportNumber.text?.length!! < 6) binding.textboxPassportNumber.setTextColor(Color.RED)
-        else binding.textboxPassportNumber.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-
-        if (binding.textboxCodeUnit.text?.length!! < 7) binding.textboxCodeUnit.setTextColor(Color.RED)
-        else binding.textboxCodeUnit.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
     }
     private fun wrapper(key: String, editText: Consumer<String>) {
         Optional.ofNullable(sharedPreferences!!.getString(key, null))
@@ -143,7 +165,7 @@ class Passport2Fragment : Fragment() {
     }
 
     override fun onStop() {
-        GlobalScope.launch {  saveLastState() }
+        lifecycleScope.launch {  saveLastState() }
         super.onStop()
     }
 

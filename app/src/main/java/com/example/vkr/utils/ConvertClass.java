@@ -81,6 +81,7 @@ public class ConvertClass {
             try {
                 image_stream = mContext.getContentResolver().openInputStream(sendUri);
                 getBitmap = BitmapFactory.decodeStream(image_stream);
+                image_stream.close();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }

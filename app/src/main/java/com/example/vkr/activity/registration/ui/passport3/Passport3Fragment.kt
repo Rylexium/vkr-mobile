@@ -8,6 +8,8 @@ import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,14 +18,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.core.graphics.drawable.toBitmap
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DecodeFormat
 import com.example.vkr.R
+import com.example.vkr.activity.registration.RegistrationActivity
 import com.example.vkr.databinding.FragmentPassport3Binding
 import com.example.vkr.utils.ConvertClass
 import com.example.vkr.utils.SelectImageClass
 import com.example.vkr.utils.ShowCustomDialog
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import java.util.*
@@ -54,11 +57,12 @@ class Passport3Fragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View {
+        RegistrationActivity.next.isEnabled = false
+        RegistrationActivity.previous.isEnabled = false
         _binding = FragmentPassport3Binding.inflate(inflater, container, false)
         val root: View = binding.root
         sharedPreferences = requireActivity().getPreferences(MODE_PRIVATE)
         applyEvents()
-        comebackAfterOnBackPressed()
 
         val listOfSubject = listOf(resources.getString(R.string.subject_of_russia))[0].split(";")
                 .map { str -> str.replaceFirst(" ", "") }
@@ -66,6 +70,7 @@ class Passport3Fragment : Fragment() {
 
         binding.textboxSubjectReg.setAdapter(ArrayAdapter<Any?>(requireContext(), R.layout.list_item, listOfSubject))
         binding.textboxSubjectActual.setAdapter(ArrayAdapter<Any?>(requireContext(), R.layout.list_item, listOfSubject))
+        lifecycleScope.launch { comebackAfterOnBackPressed() }
         return root
     }
 
@@ -106,27 +111,41 @@ class Passport3Fragment : Fragment() {
     }
 
 
-    private fun comebackAfterOnBackPressed() {
-        wrapper(KEY_POST_INDEX_REG, binding.textboxPostIndexReg::setText)
-        wrapper(KEY_SUBJECT_REG, binding.textboxSubjectReg::setText)
-        wrapper(KEY_CITY_REG, binding.textboxCityReg::setText)
-        wrapper(KEY_RESIDENCE_STREET_REG, binding.textboxResidenceStreetReg::setText)
-        wrapper(KEY_POST_INDEX_ACTUAL, binding.textboxPostIndexActual::setText)
-        wrapper(KEY_SUBJECT_ACTUAL, binding.textboxSubjectActual::setText)
-        wrapper(KEY_CITY_ACTUAL, binding.textboxCityActual::setText)
-        wrapper(KEY_RESIDENCE_STREET_ACTUAL, binding.textboxResidenceStreetActual::setText)
+    private suspend fun comebackAfterOnBackPressed() {
+        return coroutineScope {
+            Handler(Looper.getMainLooper()).post {
+                wrapper(KEY_POST_INDEX_REG, binding.textboxPostIndexReg::setText)
+                wrapper(KEY_SUBJECT_REG, binding.textboxSubjectReg::setText)
+                wrapper(KEY_CITY_REG, binding.textboxCityReg::setText)
+                wrapper(KEY_RESIDENCE_STREET_REG, binding.textboxResidenceStreetReg::setText)
+                wrapper(KEY_POST_INDEX_ACTUAL, binding.textboxPostIndexActual::setText)
+                wrapper(KEY_SUBJECT_ACTUAL, binding.textboxSubjectActual::setText)
+                wrapper(KEY_CITY_ACTUAL, binding.textboxCityActual::setText)
+                wrapper(KEY_RESIDENCE_STREET_ACTUAL, binding.textboxResidenceStreetActual::setText)
+            }
+            val str: String? = sharedPreferences!!.getString(KEY_IMAGE_PASSPORT3, null)
+            if (str != null && str != "") {
+                val bitmap = ConvertClass.convertStringToBitmap(str)
+                Handler(Looper.getMainLooper()).post {
+                    Glide.with(this@Passport3Fragment)
+                        .load(bitmap)
+                        .format(DecodeFormat.PREFER_RGB_565)
+                        .fitCenter()
+                        .into(binding.imageViewPassport3)
+                }
+            }
+            else{
+                val bitmap = ConvertClass.decodeSampledBitmapFromResource(resources, R.drawable.passport_registration, 100, 100)
+                Handler(Looper.getMainLooper()).post { binding.imageViewPassport3.setImageBitmap(bitmap) }
+            }
 
-        val str: String? = sharedPreferences!!.getString(KEY_IMAGE_PASSPORT3, null)
-        if (str != null && str != "") {
-            Glide.with(this)
-                .load(ConvertClass.convertStringToBitmap(str))
-                .format(DecodeFormat.PREFER_RGB_565)
-                .fitCenter()
-                .into(binding.imageViewPassport3)
+            Handler(Looper.getMainLooper()).post{
+                RegistrationActivity.next.isEnabled = true
+                RegistrationActivity.previous.isEnabled = true
+                RegistrationActivity.info.isChecked = true
+                RegistrationActivity.info.title = "4/8"
+            }
         }
-        else
-            binding.imageViewPassport3.setImageBitmap(
-                ConvertClass.decodeSampledBitmapFromResource(resources, R.drawable.passport_registration, 100, 100))
     }
 
     private fun wrapper(key: String, editText: Consumer<String>) {
@@ -183,7 +202,7 @@ class Passport3Fragment : Fragment() {
     }
 
     override fun onStop() {
-        GlobalScope.launch { saveLastState() }
+        lifecycleScope.launch { saveLastState() }
         super.onStop()
     }
 
