@@ -6,6 +6,7 @@ import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.os.Handler
@@ -24,13 +25,10 @@ import com.androidnetworking.interfaces.JSONArrayRequestListener
 import com.example.vkr.R
 import com.example.vkr.databinding.FragmentPrivilegesBinding
 import com.example.vkr.utils.*
-import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import okhttp3.OkHttpClient
 import org.json.JSONArray
-import java.util.concurrent.TimeUnit
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
@@ -45,7 +43,6 @@ class PrivilegesFragment : Fragment() {
     val KEY_NAME_PRIVILEGES = "name_privileges"
     val KEY_PRIVILIGE = "privilege_bitmap"
     private var bitmap: Bitmap? = null
-
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -70,15 +67,14 @@ class PrivilegesFragment : Fragment() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK) {
             when (requestCode) {
-                SelectImageClass.CAMERA -> bitmap = data?.extras!!["data"] as Bitmap?
+                SelectImageClass.CAMERA -> bitmap = BitmapFactory.decodeFile(SelectImageClass.currentPhotoPath)
                 SelectImageClass.GALLERY -> bitmap = ConvertClass.decodeUriToBitmap(context, data?.data)
             }
-            if (bitmap != null) {
+
+            if (bitmap != null)
                 EditLinearLayout.onAddField(bitmap, binding.layoutForImagesPrivileges, activity)
-            }
         }
     }
 

@@ -6,6 +6,7 @@ import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.fragment.app.Fragment
@@ -51,7 +52,7 @@ class Passport3Fragment : Fragment() {
         _binding = FragmentPassport3Binding.inflate(inflater, container, false)
         val root: View = binding.root
         sharedPreferences = requireActivity().getPreferences(MODE_PRIVATE)
-        ApplyEvents()
+        applyEvents()
         comebackAfterOnBackPressed()
 
         val listOfSubject = listOf(resources.getString(R.string.subject_of_russia))[0].split(";")
@@ -66,7 +67,7 @@ class Passport3Fragment : Fragment() {
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    private fun ApplyEvents() {
+    private fun applyEvents() {
         binding.makePassport3Photo.setOnClickListener { SelectImageClass.showMenu(requireActivity(),this, false) }
 
         binding.textboxPostIndexReg.setOnFocusChangeListener{ _, isFocus -> setVisibleNavigationBottomView(!isFocus) }
@@ -140,13 +141,13 @@ class Passport3Fragment : Fragment() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
         bitmap = null
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
-                SelectImageClass.CAMERA -> bitmap = data?.extras!!["data"] as Bitmap?
+                SelectImageClass.CAMERA -> bitmap = BitmapFactory.decodeFile(SelectImageClass.currentPhotoPath)
                 SelectImageClass.GALLERY -> bitmap = ConvertClass.decodeUriToBitmap(context, data?.data)
             }
+
             if(bitmap != null) binding.imageViewPassport3.setImageBitmap(bitmap)
         }
     }

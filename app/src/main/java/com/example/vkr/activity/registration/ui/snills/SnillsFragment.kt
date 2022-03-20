@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -41,12 +42,12 @@ class SnillsFragment : Fragment() {
         val root: View = binding.root
         sharedPreferences = activity!!.getPreferences(Context.MODE_PRIVATE)
         binding.imageViewSnills.setImageBitmap(ConvertClass.decodeSampledBitmapFromResource(resources, R.drawable.snills, 100, 100));
-        ApplyEvents()
+        applyEvents()
         comebackAfterOnBackPressed()
         return root
     }
 
-    private fun ApplyEvents() {
+    private fun applyEvents() {
         binding.makeSnillsPhoto.setOnClickListener {
             SelectImageClass.showMenu(activity!!, this, false)
         }
@@ -61,7 +62,7 @@ class SnillsFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK) {
             when (requestCode) {
-                SelectImageClass.CAMERA -> bitmap = data?.extras!!["data"] as Bitmap?
+                SelectImageClass.CAMERA -> bitmap = BitmapFactory.decodeFile(SelectImageClass.currentPhotoPath)
                 SelectImageClass.GALLERY -> bitmap = ConvertClass.decodeUriToBitmap(context, data?.data)
             }
             if(bitmap != null)
@@ -80,12 +81,6 @@ class SnillsFragment : Fragment() {
         }
         binding.textboxSnills.setTextColor(if (!isCorrectSnills(binding.textboxSnills.text.toString())) Color.RED
                                            else ContextCompat.getColor(context!!, R.color.white))
-    }
-
-    fun clearComponents() {
-        if (sharedPreferences == null) return
-        bitmap = null
-        sharedPreferences!!.edit().clear().apply()
     }
 
     override fun onPause() {

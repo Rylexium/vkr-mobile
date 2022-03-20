@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -35,11 +36,11 @@ class AchievFragment: Fragment() {
         _binding = FragmentAchievBinding.inflate(inflater, container, false)
         val root: View = binding.root
         sharedPreferences = activity!!.getPreferences(Context.MODE_PRIVATE)
-        ApplyEvents()
+        applyEvents()
         comebackAfterOnBackPressed()
         return root
     }
-    private fun ApplyEvents() {
+    private fun applyEvents() {
         binding.buttonAddAchievements.setOnClickListener {
             if(binding.layoutForImagesAchievements.childCount < 5)
                 SelectImageClass.showMenu(activity!!, this, false)
@@ -48,16 +49,15 @@ class AchievFragment: Fragment() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
         var bitmap: Bitmap? = null
         if (resultCode == RESULT_OK) {
             when (requestCode) {
-                SelectImageClass.CAMERA -> bitmap = data?.extras!!["data"] as Bitmap?
+                SelectImageClass.CAMERA -> bitmap = BitmapFactory.decodeFile(SelectImageClass.currentPhotoPath)
                 SelectImageClass.GALLERY -> bitmap = ConvertClass.decodeUriToBitmap(context, data?.data)
             }
-            if (bitmap != null) {
+            if (bitmap != null)
                 EditLinearLayout.onAddField(bitmap, binding.layoutForImagesAchievements, activity)
-            }
+
         }
     }
 

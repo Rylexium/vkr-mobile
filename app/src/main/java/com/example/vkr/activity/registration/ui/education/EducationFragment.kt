@@ -5,6 +5,7 @@ import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
@@ -130,17 +131,16 @@ class EducationFragment: Fragment() {
                 .ifPresent(editText)
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
             if (PIC_CODE == 1) ShowToast.show(context, "Сфотографируйте или выберите 2 страницу документа")
             when (requestCode) {
                 SelectImageClass.CAMERA -> {
                     if (PIC_CODE == 1) {
-                        bitmap1 = data?.extras!!["data"] as Bitmap?
+                        bitmap1 = BitmapFactory.decodeFile(SelectImageClass.currentPhotoPath)
                         SelectImageClass.showMenu(activity!!, this, false)
                         PIC_CODE = 2
                     } else if (PIC_CODE == 2) {
-                        bitmap2 = data?.extras!!["data"] as Bitmap?
+                        bitmap2 = BitmapFactory.decodeFile(SelectImageClass.currentPhotoPath)
                         PIC_CODE = 1
                     }
                 }

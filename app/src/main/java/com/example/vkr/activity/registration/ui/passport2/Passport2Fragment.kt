@@ -5,6 +5,7 @@ import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -44,7 +45,7 @@ class Passport2Fragment : Fragment() {
         _binding = FragmentPassport2Binding.inflate(inflater, container, false)
         val root: View = binding.root
         sharedPreferences = requireActivity().getPreferences(MODE_PRIVATE)
-        ApplyEvents()
+        applyEvents()
         comebackAfterOnBackPressed()
         return root
     }
@@ -74,7 +75,7 @@ class Passport2Fragment : Fragment() {
                 .ifPresent(editText)
     }
 
-    private fun ApplyEvents() {
+    private fun applyEvents() {
         binding.makePassport2Photo.setOnClickListener { SelectImageClass.showMenu(requireActivity(), this, false) }
         binding.textboxDateIssuingOfPassport.setOnClickListener {
             SelectDateClass.showDatePickerDialogForDateIssuing(activity as AppCompatActivity?, binding.textboxDateIssuingOfPassport)
@@ -101,16 +102,14 @@ class Passport2Fragment : Fragment() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
         bitmap = null
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
-                SelectImageClass.CAMERA -> bitmap = data?.extras!!["data"] as Bitmap?
+                SelectImageClass.CAMERA -> bitmap = BitmapFactory.decodeFile(SelectImageClass.currentPhotoPath)
                 SelectImageClass.GALLERY -> bitmap = ConvertClass.decodeUriToBitmap(context, data?.data)
             }
-            if(bitmap != null){
+            if(bitmap != null)
                 binding.imageViewPassport2.setImageBitmap(bitmap)
-            }
         }
     }
 
