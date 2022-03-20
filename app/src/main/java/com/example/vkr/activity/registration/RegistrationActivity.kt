@@ -100,8 +100,7 @@ class RegistrationActivity : AppCompatActivity() {
     @SuppressLint("RestrictedApi")
     private fun setTitleStep(text : CharSequence){
         binding.bottomNavigation.menu.getItem(1).isChecked = true
-        binding.bottomNavigation.findViewById<BottomNavigationItemView>(R.id.step_info)
-                .setTitle(text)
+        binding.bottomNavigation.menu.getItem(1).title = text
     }
 
     override fun onBackPressed() {
