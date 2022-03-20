@@ -309,16 +309,12 @@ public class MainFragment extends Fragment {
             rowView1 = inflater.inflate(R.layout.field_for_image, null);
             ImageView image1 = rowView1.findViewById(R.id.field_image);
             image1.setImageBitmap(bitmap1);
-            image1.setMinimumHeight(1000);
-            image1.setMinimumWidth(1000);
             linearLayout.addView(rowView1, 0);
         }
         if(bitmap2 != null) {
             rowView2 = inflater.inflate(R.layout.field_for_image, null);
             ImageView image2 = rowView2.findViewById(R.id.field_image);
             image2.setImageBitmap(bitmap2);
-            image2.setMinimumHeight(1000);
-            image2.setMinimumWidth(1000);
             linearLayout.addView(rowView2, 1);
         }
     }

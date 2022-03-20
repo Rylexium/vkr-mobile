@@ -3,10 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="10dp"
+    android:paddingRight="9dp"
+    android:paddingLeft="9dp"
     android:orientation="vertical">
     <com.zolad.zoominimageview.ZoomInImageView
         android:id="@+id/field_image"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </com.zolad.zoominimageview.ZoomInImageView>
+        android:layout_height="300dp"
+        android:scaleType="fitXY" />
 </LinearLayout>

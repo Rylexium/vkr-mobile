@@ -117,13 +117,11 @@ class EducationFragment: Fragment() {
         restoredText = sharedPreferences!!.getString(KEY_EDUCATION_PICTURE1, null)
         if (restoredText != null) {
             bitmap1 = ConvertClass.convertStringToBitmap(restoredText)
-            EditLinearLayout.newSize(binding.educationDocument1, activity!!)
             binding.educationDocument1.setImageBitmap(bitmap1)
         }
         restoredText = sharedPreferences!!.getString(KEY_EDUCATION_PICTURE2, null)
         if (restoredText != null) {
             bitmap2 = ConvertClass.convertStringToBitmap(restoredText)
-            EditLinearLayout.newSize(binding.educationDocument2, activity!!)
             binding.educationDocument2.setImageBitmap(bitmap2)
         }
     }
@@ -157,14 +155,12 @@ class EducationFragment: Fragment() {
                     }
                 }
             }
-            if (bitmap1 != null){
+
+            if (bitmap1 != null)
                 binding.educationDocument1.setImageBitmap(bitmap1)
-                EditLinearLayout.newSize(binding.educationDocument1, activity!!)
-            }
-            if (bitmap2 != null){
+
+            if (bitmap2 != null)
                 binding.educationDocument2.setImageBitmap(bitmap2)
-                EditLinearLayout.newSize(binding.educationDocument2, activity!!)
-            }
         }
     }
     private fun saveLastState() {

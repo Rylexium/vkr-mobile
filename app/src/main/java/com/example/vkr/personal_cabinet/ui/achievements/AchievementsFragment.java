@@ -1,7 +1,6 @@
 package com.example.vkr.personal_cabinet.ui.achievements;
 
 import static com.example.vkr.personal_cabinet.PersonalCabinetActivity.idAbit;
-import static com.example.vkr.utils.EditLinearLayout.newSize;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -115,14 +114,12 @@ public class AchievementsFragment extends Fragment {
     }
 
     public void onAddField(Bitmap v) {
-        LayoutInflater inflater= (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View rowView=inflater.inflate(R.layout.field, null);
-        LinearLayout ll = rowView.findViewById(R.id.field_for_image);
-        ll.removeView(rowView.findViewById(R.id.delete_button));
+        LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View rowView=inflater.inflate(R.layout.field_for_image, null);
 
-        ImageView view = rowView.findViewById(R.id.image_edit);
-        newSize(view, getActivity());
-        view.setImageBitmap(v);
+        ImageView image = rowView.findViewById(R.id.field_image);
+        image.setImageBitmap(v);
+
         mainLayout.addView(rowView);
     }
 

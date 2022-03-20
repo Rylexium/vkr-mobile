@@ -134,13 +134,15 @@
         <com.zolad.zoominimageview.ZoomInImageView
             android:id="@+id/education_document1"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="300dp"
+            android:scaleType="fitXY"
             />
 
         <com.zolad.zoominimageview.ZoomInImageView
             android:id="@+id/education_document2"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="300dp"
+            android:scaleType="fitXY"
             />
         <TextView
             android:layout_width="match_parent"
