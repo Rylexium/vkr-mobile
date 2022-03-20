@@ -26,7 +26,7 @@ public class ConvertClass {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         byte[] byteArray = stream.toByteArray();
-        try { stream.close(); }
+        try { stream.flush(); stream.close(); }
         catch (IOException ignored) { }
         return Base64.encodeToString(byteArray, Base64.DEFAULT);
     }

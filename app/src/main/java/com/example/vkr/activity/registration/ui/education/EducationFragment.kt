@@ -14,7 +14,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AppCompatActivity
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,11 +25,14 @@ import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.common.Priority
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONArrayRequestListener
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DecodeFormat
 import com.example.vkr.R
 import com.example.vkr.databinding.FragmentEducationBinding
 import com.example.vkr.utils.*
 import com.fasterxml.jackson.databind.ObjectMapper
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import org.json.JSONArray
 import java.util.*
@@ -48,7 +50,7 @@ class EducationFragment: Fragment() {
     var listRes: MutableList<String> = ArrayList()
 
     companion object {
-        @JvmStatic var PIC_CODE : Int = 1
+        @JvmStatic var PIC_CODE : Int = 0
     }
 
     val KEY_TYPE_EDUCATION_POSITION = "selected_position"
@@ -69,14 +71,14 @@ class EducationFragment: Fragment() {
         sharedPreferences = activity!!.getPreferences(MODE_PRIVATE)
         initComponents()
         applyEvents()
-        GlobalScope.launch { comebackAfterOnBackPressed() }
+        comebackAfterOnBackPressed()
         return root
     }
 
     private fun applyEvents() {
         val idEducationListener : TextWatcher = CorrectText(binding.textboxIdEducation, "###### #######")
         binding.makePhotosEducation.setOnClickListener {
-            ShowToast.show(context, "Сфотографируйте или выберите $PIC_CODE страницу документа")
+            ShowToast.show(context, "Сфотографируйте или выберите ${ (PIC_CODE % 2) + 1 } страницу документа")
             SelectImageClass.showMenu(activity!!, this, false)
         }
 
@@ -107,29 +109,29 @@ class EducationFragment: Fragment() {
         }
     }
 
-    private suspend fun comebackAfterOnBackPressed() {
-        return suspendCoroutine {
-            val restoredText1 = sharedPreferences!!.getString(KEY_TYPE_EDUCATION_POSITION, null)
-            Handler(Looper.getMainLooper()).post{
-                binding.listboxDocumentsOfEducation.setSelection(restoredText1?.toInt() ?: 0)
-            }
+    private  fun comebackAfterOnBackPressed() {
+        val restoredText1 = sharedPreferences!!.getString(KEY_TYPE_EDUCATION_POSITION, null)
+            binding.listboxDocumentsOfEducation.setSelection(restoredText1?.toInt() ?: 0)
+        wrapper(KEY_ID_EDUCATION, binding.textboxIdEducation::setText)
+        wrapper(KEY_DATE_OF_ISSUE_OF_EDUCATION, binding.textboxDateOfIssueOfEducation::setText)
+        wrapper(KEY_REGISTRATION_NUMBER, binding.textboxRegistrationNumber::setText)
 
-            Handler(Looper.getMainLooper()).post{
-                wrapper(KEY_ID_EDUCATION, binding.textboxIdEducation::setText)
-                wrapper(KEY_DATE_OF_ISSUE_OF_EDUCATION, binding.textboxDateOfIssueOfEducation::setText)
-                wrapper(KEY_REGISTRATION_NUMBER, binding.textboxRegistrationNumber::setText)
-            }
 
-            val restoredText2 = sharedPreferences!!.getString(KEY_EDUCATION_PICTURE1, null)
-            if (restoredText2 != null) {
-                val bitmap1 = ConvertClass.convertStringToBitmap(restoredText2)
-                Handler(Looper.getMainLooper()).post{ binding.educationDocument1.setImageBitmap(bitmap1) }
-            }
-            val restoredText3 = sharedPreferences!!.getString(KEY_EDUCATION_PICTURE2, null)
-            if (restoredText3 != null) {
-                val bitmap2 = ConvertClass.convertStringToBitmap(restoredText3)
-                Handler(Looper.getMainLooper()).post{ binding.educationDocument2.setImageBitmap(bitmap2) }
-            }
+        val restoredText2 = sharedPreferences!!.getString(KEY_EDUCATION_PICTURE1, null)
+        if (restoredText2 != null) {
+            Glide.with(this)
+                .load(ConvertClass.convertStringToBitmap(restoredText2))
+                .format(DecodeFormat.PREFER_RGB_565)
+                .fitCenter()
+                .into(binding.educationDocument1)
+        }
+        val restoredText3 = sharedPreferences!!.getString(KEY_EDUCATION_PICTURE2, null)
+        if (restoredText3 != null) {
+            Glide.with(this)
+                .load(ConvertClass.convertStringToBitmap(restoredText3))
+                .format(DecodeFormat.PREFER_RGB_565)
+                .fitCenter()
+                .into(binding.educationDocument2)
         }
     }
     private fun wrapper(key: String, editText: Consumer<String>) {
@@ -139,53 +141,60 @@ class EducationFragment: Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK) {
             var bitmap : Bitmap? = null
-            if (PIC_CODE == 1) ShowToast.show(context, "Сфотографируйте или выберите 2 страницу документа")
+            if (PIC_CODE % 2 == 0) ShowToast.show(context, "Сфотографируйте или выберите 2 страницу документа")
             when (requestCode) {
                 SelectImageClass.CAMERA -> {
-                    if (PIC_CODE == 1) {
+                    if (PIC_CODE % 2 == 0) {
                         bitmap = BitmapFactory.decodeFile(SelectImageClass.currentPhotoPath)
                         SelectImageClass.showMenu(activity!!, this, false)
-                        PIC_CODE = 2
-                    } else if (PIC_CODE == 2) {
+                    } else
                         bitmap = BitmapFactory.decodeFile(SelectImageClass.currentPhotoPath)
-                        PIC_CODE = 1
-                    }
                 }
                 SelectImageClass.GALLERY -> {
-                    if (PIC_CODE == 1) {
+                    if (PIC_CODE % 2 == 0) {
                         bitmap = ConvertClass.decodeUriToBitmap(context, data?.data)
                         SelectImageClass.showMenu(activity!!, false)
-                        PIC_CODE = 2
-                    } else if (PIC_CODE == 2) {
-                        bitmap = ConvertClass.decodeUriToBitmap(context, data?.data)
-                        PIC_CODE = 1
                     }
+                    else
+                        bitmap = ConvertClass.decodeUriToBitmap(context, data?.data)
                 }
             }
 
-            if (bitmap != null && PIC_CODE == 2)
-                binding.educationDocument1.setImageBitmap(bitmap)
-
-            if (bitmap != null && PIC_CODE == 1)
-                binding.educationDocument2.setImageBitmap(bitmap)
+            if (bitmap != null) {
+                if (PIC_CODE % 2 == 0)
+                    Glide.with(this)
+                        .load(bitmap)
+                        .format(DecodeFormat.PREFER_RGB_565)
+                        .fitCenter()
+                        .into(binding.educationDocument1)
+                else
+                    Glide.with(this)
+                        .load(bitmap)
+                        .format(DecodeFormat.PREFER_RGB_565)
+                        .fitCenter()
+                        .into(binding.educationDocument2)
+            }
+            PIC_CODE += 1
         }
     }
-    private fun saveLastState() {
-        var selectedItem = binding.listboxDocumentsOfEducation.selectedItem?.toString()
-        if(binding.listboxDocumentsOfEducation.selectedItem == null) selectedItem = ""
+    private suspend fun saveLastState() {
+        return coroutineScope {
+            var selectedItem = binding.listboxDocumentsOfEducation.selectedItem?.toString()
+            if(binding.listboxDocumentsOfEducation.selectedItem == null) selectedItem = ""
 
-        sharedPreferences!!.edit()
-                .putString(KEY_TYPE_EDUCATION_POSITION, binding.listboxDocumentsOfEducation.selectedItemPosition.toString())
-                .putString(KEY_NAME_TYPE_EDUCATION, selectedItem)
-                .putString(KEY_ID_EDUCATION, binding.textboxIdEducation.text.toString())
-                .putString(KEY_DATE_OF_ISSUE_OF_EDUCATION, binding.textboxDateOfIssueOfEducation.text.toString())
-                .putString(KEY_REGISTRATION_NUMBER, binding.textboxRegistrationNumber.text.toString())
-                .putString(KEY_EDUCATION_PICTURE1, ConvertClass.convertBitmapToString(binding.educationDocument1.drawable?.toBitmap()))
-                .putString(KEY_EDUCATION_PICTURE2, ConvertClass.convertBitmapToString(binding.educationDocument2.drawable?.toBitmap()))
-                .apply()
+            sharedPreferences!!.edit()
+                    .putString(KEY_TYPE_EDUCATION_POSITION, binding.listboxDocumentsOfEducation.selectedItemPosition.toString())
+                    .putString(KEY_NAME_TYPE_EDUCATION, selectedItem)
+                    .putString(KEY_ID_EDUCATION, binding.textboxIdEducation.text.toString())
+                    .putString(KEY_DATE_OF_ISSUE_OF_EDUCATION, binding.textboxDateOfIssueOfEducation.text.toString())
+                    .putString(KEY_REGISTRATION_NUMBER, binding.textboxRegistrationNumber.text.toString())
+                    .putString(KEY_EDUCATION_PICTURE1, ConvertClass.convertBitmapToString(binding.educationDocument1.drawable?.toBitmap()))
+                    .putString(KEY_EDUCATION_PICTURE2, ConvertClass.convertBitmapToString(binding.educationDocument2.drawable?.toBitmap()))
+                    .apply()
+        }
     }
     override fun onStop() {
-        saveLastState()
+        GlobalScope.launch { saveLastState() }
         super.onStop()
     }
     override fun onDestroyView() {

@@ -8,8 +8,6 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.fragment.app.Fragment
 import androidx.core.content.ContextCompat
@@ -18,14 +16,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.graphics.drawable.toBitmap
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DecodeFormat
 import com.example.vkr.R
 import com.example.vkr.databinding.FragmentPassport2Binding
 import com.example.vkr.utils.*
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import java.util.*
 import java.util.function.Consumer
-import kotlin.coroutines.suspendCoroutine
 
 
 class Passport2Fragment : Fragment() {
@@ -51,34 +51,31 @@ class Passport2Fragment : Fragment() {
         val root: View = binding.root
         sharedPreferences = requireActivity().getPreferences(MODE_PRIVATE)
         applyEvents()
-        GlobalScope.launch { comebackAfterOnBackPressed() }
+        comebackAfterOnBackPressed()
         return root
     }
 
-    private suspend fun comebackAfterOnBackPressed() {
-        return suspendCoroutine {
-            Handler(Looper.getMainLooper()).post {
-                wrapper(KEY_PASSPORT_SERIES, binding.textboxPassportSeries::setText)
-                wrapper(KEY_DATE_ISSUING, binding.textboxDateIssuingOfPassport::setText)
-                wrapper(KEY_PASSPORT_NUMBER, binding.textboxPassportNumber::setText)
-                wrapper(KEY_CODE_UNIT, binding.textboxCodeUnit::setText)
-            }
-            val str : String? = sharedPreferences!!.getString(KEY_IMAGE_PASSPORT2, null)
-            if (str != null){
-                val bitmap = ConvertClass.convertStringToBitmap(str)
-                Handler(Looper.getMainLooper()).post{ binding.imageViewPassport2.setImageBitmap(bitmap) }
-            }
-            Handler(Looper.getMainLooper()).post{
-                if (binding.textboxPassportSeries.text?.length!! < 5) binding.textboxPassportSeries.setTextColor(Color.RED)
-                else binding.textboxPassportSeries.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-
-                if (binding.textboxPassportNumber.text?.length!! < 6) binding.textboxPassportNumber.setTextColor(Color.RED)
-                else binding.textboxPassportNumber.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-
-                if (binding.textboxCodeUnit.text?.length!! < 7) binding.textboxCodeUnit.setTextColor(Color.RED)
-                else binding.textboxCodeUnit.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-            }
+    private fun comebackAfterOnBackPressed() {
+        wrapper(KEY_PASSPORT_SERIES, binding.textboxPassportSeries::setText)
+        wrapper(KEY_DATE_ISSUING, binding.textboxDateIssuingOfPassport::setText)
+        wrapper(KEY_PASSPORT_NUMBER, binding.textboxPassportNumber::setText)
+        wrapper(KEY_CODE_UNIT, binding.textboxCodeUnit::setText)
+        val str : String? = sharedPreferences!!.getString(KEY_IMAGE_PASSPORT2, null)
+        if (str != null){
+            Glide.with(this)
+                .load(ConvertClass.convertStringToBitmap(str))
+                .format(DecodeFormat.PREFER_RGB_565)
+                .fitCenter()
+                .into(binding.imageViewPassport2)
         }
+        if (binding.textboxPassportSeries.text?.length!! < 5) binding.textboxPassportSeries.setTextColor(Color.RED)
+        else binding.textboxPassportSeries.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+
+        if (binding.textboxPassportNumber.text?.length!! < 6) binding.textboxPassportNumber.setTextColor(Color.RED)
+        else binding.textboxPassportNumber.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+
+        if (binding.textboxCodeUnit.text?.length!! < 7) binding.textboxCodeUnit.setTextColor(Color.RED)
+        else binding.textboxCodeUnit.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
     }
     private fun wrapper(key: String, editText: Consumer<String>) {
         Optional.ofNullable(sharedPreferences!!.getString(key, null))
@@ -118,19 +115,26 @@ class Passport2Fragment : Fragment() {
                 SelectImageClass.CAMERA -> bitmap = BitmapFactory.decodeFile(SelectImageClass.currentPhotoPath)
                 SelectImageClass.GALLERY -> bitmap = ConvertClass.decodeUriToBitmap(context, data?.data)
             }
+
             if(bitmap != null)
-                binding.imageViewPassport2.setImageBitmap(bitmap)
+                Glide.with(this)
+                    .load(bitmap)
+                    .format(DecodeFormat.PREFER_RGB_565)
+                    .fitCenter()
+                    .into(binding.imageViewPassport2)
         }
     }
 
-    private fun saveLastState() {
-        sharedPreferences!!.edit()
+    private suspend fun saveLastState() {
+        return coroutineScope {
+            sharedPreferences!!.edit()
                 .putString(KEY_PASSPORT_SERIES, binding.textboxPassportSeries.text.toString())
                 .putString(KEY_DATE_ISSUING, binding.textboxDateIssuingOfPassport.text.toString())
                 .putString(KEY_PASSPORT_NUMBER, binding.textboxPassportNumber.text.toString())
                 .putString(KEY_CODE_UNIT, binding.textboxCodeUnit.text.toString())
                 .putString(KEY_IMAGE_PASSPORT2, ConvertClass.convertBitmapToString(binding.imageViewPassport2.drawable?.toBitmap()))
                 .apply()
+        }
     }
 
     private fun setVisibleNavigationBottomView(status : Boolean){
@@ -139,7 +143,7 @@ class Passport2Fragment : Fragment() {
     }
 
     override fun onStop() {
-        saveLastState()
+        GlobalScope.launch {  saveLastState() }
         super.onStop()
     }
 

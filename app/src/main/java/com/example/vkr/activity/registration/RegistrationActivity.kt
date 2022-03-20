@@ -1,18 +1,12 @@
 package com.example.vkr.activity.registration
 
 import android.annotation.SuppressLint
-import android.content.DialogInterface
 import android.content.SharedPreferences
-import android.content.pm.ActivityInfo
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import androidx.fragment.app.Fragment
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.view.MotionEvent
-import android.widget.Button
 import com.example.vkr.R
 import com.example.vkr.activity.registration.ui.achievements.AchievFragment
 import com.example.vkr.activity.registration.ui.education.EducationFragment

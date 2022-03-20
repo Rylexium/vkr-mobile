@@ -42,8 +42,6 @@ class Passport1Fragment : Fragment() {
 
     var sharedPreferences : SharedPreferences? = null
 
-    var bitmap : Bitmap? = null
-
     val KEY_NAME = "name"
     val KEY_FAMILY = "family"
     val KEY_PATRONYMIC = "patronymic"
@@ -134,7 +132,7 @@ class Passport1Fragment : Fragment() {
                 .ifPresent(editText)
     }
 
-    fun applyEvents(){
+    fun applyEvents() {
         binding.radiobuttonSex.setOnCheckedChangeListener{ _, _ ->
             if(binding.radiobuttonSex.isChecked)
                 binding.radiobuttonSex.text = "Пол: Мужской"
@@ -179,7 +177,6 @@ class Passport1Fragment : Fragment() {
             else binding.textboxPatronymicReg.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
         }
     }
-
 
     override fun onStop() {
         saveLastState()

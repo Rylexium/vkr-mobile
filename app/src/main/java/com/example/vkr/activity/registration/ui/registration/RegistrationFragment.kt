@@ -39,7 +39,7 @@ class RegistrationFragment : Fragment() {
         _binding = RegistrationFragmentBinding.inflate(inflater, container, false)
         val root: View = binding.root
         sharedPreferences = activity!!.getPreferences(Context.MODE_PRIVATE)
-        applyEvent()
+        applyEvents()
         comebackAfterOnBackPressed()
         return root
     }
@@ -50,7 +50,7 @@ class RegistrationFragment : Fragment() {
     }
 
 
-    fun applyEvent(){
+    fun applyEvents(){
         binding.registrationLayout.setOnClickListener { activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)!!.visibility = View.VISIBLE }
         binding.textboxLoginReg.setOnFocusChangeListener{ _, isFocus -> setVisibleNavigationBottomView(!isFocus) }
         binding.textboxPassReg.setOnFocusChangeListener{ _, isFocus -> setVisibleNavigationBottomView(!isFocus)

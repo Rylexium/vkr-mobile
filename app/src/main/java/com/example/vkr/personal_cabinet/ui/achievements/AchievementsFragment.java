@@ -9,6 +9,9 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import androidx.annotation.NonNull;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DecodeFormat;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.fragment.app.Fragment;
 import android.util.Log;
@@ -63,7 +66,7 @@ public class AchievementsFragment extends Fragment {
                 supportTextView.setText("Нет фотографий с достижениями");
                 supportTextView.setTypeface(supportTextView.getTypeface(), Typeface.BOLD);
                 supportTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24);
-                supportTextView.setGravity(Gravity.CENTER);
+                supportTextView.setGravity(Gravity.TOP);
                 supportTextView.setTextColor(Color.RED);
                 mainLayout.addView(supportTextView);
             } else {
@@ -118,8 +121,11 @@ public class AchievementsFragment extends Fragment {
         final View rowView=inflater.inflate(R.layout.field_for_image, null);
 
         ImageView image = rowView.findViewById(R.id.field_image);
-        image.setImageBitmap(v);
-
+        Glide.with(this)
+                .load(v)
+                .format(DecodeFormat.PREFER_RGB_565)
+                .fitCenter()
+                .into(image);
         mainLayout.addView(rowView);
     }
 

@@ -23,6 +23,7 @@ import com.example.vkr.utils.EditLinearLayout
 import com.example.vkr.utils.SelectImageClass
 import com.example.vkr.utils.ShowToast
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlin.coroutines.suspendCoroutine
 
@@ -95,19 +96,21 @@ class AchievFragment: Fragment() {
         }
     }
     @SuppressLint("CommitPrefEdits")
-    private fun saveLastState() {
-        for(i in 0 until 5)
-            sharedPreferences!!.edit().putString(KEY_ACHIEVEMENT + i, "").apply()
-        for (i in 0 until binding.layoutForImagesAchievements.childCount) {
-            val v: ImageView = binding.layoutForImagesAchievements.getChildAt(i).findViewById(R.id.image_edit)
-            sharedPreferences!!.edit()
-                    .putString(KEY_ACHIEVEMENT + i, ConvertClass.convertBitmapToString((v.drawable as BitmapDrawable).bitmap))
-                    .apply()
+    private suspend fun saveLastState() {
+        return coroutineScope {
+            for(i in 0 until 5)
+                sharedPreferences!!.edit().putString(KEY_ACHIEVEMENT + i, "").apply()
+            for (i in 0 until binding.layoutForImagesAchievements.childCount) {
+                val v: ImageView = binding.layoutForImagesAchievements.getChildAt(i).findViewById(R.id.image_edit)
+                sharedPreferences!!.edit()
+                        .putString(KEY_ACHIEVEMENT + i, ConvertClass.convertBitmapToString((v.drawable as BitmapDrawable).bitmap))
+                        .apply()
+            }
         }
     }
 
     override fun onStop() {
-        saveLastState()
+        GlobalScope.launch { saveLastState() }
         super.onStop()
     }
 

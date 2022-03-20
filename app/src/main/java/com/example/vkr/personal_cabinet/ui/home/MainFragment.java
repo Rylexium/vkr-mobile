@@ -7,6 +7,9 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DecodeFormat;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
@@ -308,13 +311,21 @@ public class MainFragment extends Fragment {
         if(bitmap1 != null) {
             rowView1 = inflater.inflate(R.layout.field_for_image, null);
             ImageView image1 = rowView1.findViewById(R.id.field_image);
-            image1.setImageBitmap(bitmap1);
+            Glide.with(this)
+                    .load(bitmap1)
+                    .format(DecodeFormat.PREFER_RGB_565)
+                    .fitCenter()
+                    .into(image1);
             linearLayout.addView(rowView1, 0);
         }
         if(bitmap2 != null) {
             rowView2 = inflater.inflate(R.layout.field_for_image, null);
             ImageView image2 = rowView2.findViewById(R.id.field_image);
-            image2.setImageBitmap(bitmap2);
+            Glide.with(this)
+                    .load(bitmap2)
+                    .format(DecodeFormat.PREFER_RGB_565)
+                    .fitCenter()
+                    .into(image2);
             linearLayout.addView(rowView2, 1);
         }
     }

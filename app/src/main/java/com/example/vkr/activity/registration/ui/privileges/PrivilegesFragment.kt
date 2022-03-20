@@ -27,6 +27,7 @@ import com.example.vkr.databinding.FragmentPrivilegesBinding
 import com.example.vkr.utils.*
 import com.fasterxml.jackson.databind.ObjectMapper
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import org.json.JSONArray
 import kotlin.coroutines.resume
@@ -54,7 +55,7 @@ class PrivilegesFragment : Fragment() {
         sharedPreferences = activity!!.getPreferences(MODE_PRIVATE)
         downloadPrivileges()
         applyEvents()
-        GlobalScope.launch { comebackAfterOnBackPressed() }
+        comebackAfterOnBackPressed()
         return root
     }
 
@@ -78,35 +79,33 @@ class PrivilegesFragment : Fragment() {
         }
     }
 
-    private suspend fun comebackAfterOnBackPressed () {
-        return suspendCoroutine {
-            val restoredText: String? = activity!!.getPreferences(MODE_PRIVATE).getString(KEY_PRIVILIGE + "0", null)
-            if(!restoredText.isNullOrEmpty())
-                Handler(Looper.getMainLooper()).post{
-                    EditLinearLayout.onAddField(ConvertClass.convertStringToBitmap(restoredText), binding.layoutForImagesPrivileges, activity) }
-        }
+    private  fun comebackAfterOnBackPressed () {
+        val restoredText: String? = activity!!.getPreferences(MODE_PRIVATE).getString(KEY_PRIVILIGE + "0", null)
+        if(!restoredText.isNullOrEmpty())
+                EditLinearLayout.onAddField(ConvertClass.convertStringToBitmap(restoredText), binding.layoutForImagesPrivileges, activity)
     }
 
     @SuppressLint("CommitPrefEdits")
-    private fun saveLastState() {
-        for(i in 0 until 5)
-            sharedPreferences!!.edit().putString(KEY_PRIVILIGE + i, "").apply()
+    private suspend fun saveLastState() {
+        return coroutineScope {
+            for(i in 0 until 5)
+                sharedPreferences!!.edit().putString(KEY_PRIVILIGE + i, "").apply()
 
-        for (i in 0 until binding.layoutForImagesPrivileges.childCount) {
-            val v: ImageView = binding.layoutForImagesPrivileges.getChildAt(i).findViewById(R.id.image_edit)
+            for (i in 0 until binding.layoutForImagesPrivileges.childCount) {
+                val v: ImageView = binding.layoutForImagesPrivileges.getChildAt(i).findViewById(R.id.image_edit)
+                sharedPreferences!!.edit()
+                        .putString(KEY_PRIVILIGE + i, ConvertClass.convertBitmapToString((v.drawable as BitmapDrawable).bitmap)).apply()
+            }
+
+            var selectedItem = binding.listboxPrivileges.selectedItem?.toString()
+            if(binding.listboxPrivileges.selectedItem == null) selectedItem = ""
+
             sharedPreferences!!.edit()
-                    .putString(KEY_PRIVILIGE + i, ConvertClass.convertBitmapToString((v.drawable as BitmapDrawable).bitmap)).apply()
+                .putString(KEY_SELECTED_PRIVILEGES, binding.listboxPrivileges.selectedItemPosition.toString())
+                .putString(KEY_NAME_PRIVILEGES, selectedItem)
+                .apply()
         }
-
-        var selectedItem = binding.listboxPrivileges.selectedItem?.toString()
-        if(binding.listboxPrivileges.selectedItem == null) selectedItem = ""
-
-        sharedPreferences!!.edit()
-            .putString(KEY_SELECTED_PRIVILEGES, binding.listboxPrivileges.selectedItemPosition.toString())
-            .putString(KEY_NAME_PRIVILEGES, selectedItem)
-            .apply()
     }
-
 
     private fun downloadPrivileges() {
         GlobalScope.launch {
@@ -154,7 +153,7 @@ class PrivilegesFragment : Fragment() {
     }
 
     override fun onStop() {
-        saveLastState()
+        GlobalScope.launch { saveLastState() }
         super.onStop()
     }
 
