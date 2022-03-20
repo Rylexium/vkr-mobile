@@ -54,7 +54,7 @@ class PrivilegesFragment : Fragment() {
         sharedPreferences = activity!!.getPreferences(MODE_PRIVATE)
         downloadPrivileges()
         applyEvents()
-        comebackAfterOnBackPressed()
+        GlobalScope.launch { comebackAfterOnBackPressed() }
         return root
     }
 
@@ -78,10 +78,13 @@ class PrivilegesFragment : Fragment() {
         }
     }
 
-    fun comebackAfterOnBackPressed () {
-        val restoredText: String? = activity!!.getPreferences(MODE_PRIVATE).getString(KEY_PRIVILIGE + "0", null)
-        if(!restoredText.isNullOrEmpty())
-            EditLinearLayout.onAddField(ConvertClass.convertStringToBitmap(restoredText), binding.layoutForImagesPrivileges, activity)
+    private suspend fun comebackAfterOnBackPressed () {
+        return suspendCoroutine {
+            val restoredText: String? = activity!!.getPreferences(MODE_PRIVATE).getString(KEY_PRIVILIGE + "0", null)
+            if(!restoredText.isNullOrEmpty())
+                Handler(Looper.getMainLooper()).post{
+                    EditLinearLayout.onAddField(ConvertClass.convertStringToBitmap(restoredText), binding.layoutForImagesPrivileges, activity) }
+        }
     }
 
     @SuppressLint("CommitPrefEdits")

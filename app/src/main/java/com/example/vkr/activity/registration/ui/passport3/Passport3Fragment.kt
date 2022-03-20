@@ -8,6 +8,8 @@ import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,20 +17,23 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.core.graphics.drawable.toBitmap
 import com.example.vkr.R
 import com.example.vkr.databinding.FragmentPassport3Binding
 import com.example.vkr.utils.ConvertClass
 import com.example.vkr.utils.SelectImageClass
 import com.example.vkr.utils.ShowCustomDialog
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.util.*
 import java.util.function.Consumer
+import kotlin.coroutines.suspendCoroutine
 
 
 class Passport3Fragment : Fragment() {
     private var _binding: FragmentPassport3Binding? = null
     private val binding get() = _binding!!
 
-    private var bitmap: Bitmap? = null
     var sharedPreferences: SharedPreferences? = null
     private var isYes = false
 
@@ -53,7 +58,7 @@ class Passport3Fragment : Fragment() {
         val root: View = binding.root
         sharedPreferences = requireActivity().getPreferences(MODE_PRIVATE)
         applyEvents()
-        comebackAfterOnBackPressed()
+        GlobalScope.launch { comebackAfterOnBackPressed() }
 
         val listOfSubject = listOf(resources.getString(R.string.subject_of_russia))[0].split(";")
                 .map { str -> str.replaceFirst(" ", "") }
@@ -61,8 +66,6 @@ class Passport3Fragment : Fragment() {
 
         binding.textboxSubjectReg.setAdapter(ArrayAdapter<Any?>(requireContext(), R.layout.list_item, listOfSubject))
         binding.textboxSubjectActual.setAdapter(ArrayAdapter<Any?>(requireContext(), R.layout.list_item, listOfSubject))
-        if(bitmap == null)
-            binding.imageViewPassport3.setImageBitmap(ConvertClass.decodeSampledBitmapFromResource(resources, R.drawable.passport_registration, 100, 100))
         return root
     }
 
@@ -103,19 +106,27 @@ class Passport3Fragment : Fragment() {
     }
 
 
-    private fun comebackAfterOnBackPressed() {
-        wrapper(KEY_POST_INDEX_REG, binding.textboxPostIndexReg::setText)
-        wrapper(KEY_SUBJECT_REG, binding.textboxSubjectReg::setText)
-        wrapper(KEY_CITY_REG, binding.textboxCityReg::setText)
-        wrapper(KEY_RESIDENCE_STREET_REG, binding.textboxResidenceStreetReg::setText)
-        wrapper(KEY_POST_INDEX_ACTUAL, binding.textboxPostIndexActual::setText)
-        wrapper(KEY_SUBJECT_ACTUAL, binding.textboxSubjectActual::setText)
-        wrapper(KEY_CITY_ACTUAL, binding.textboxCityActual::setText)
-        wrapper(KEY_RESIDENCE_STREET_ACTUAL, binding.textboxResidenceStreetActual::setText)
-        val str : String? = sharedPreferences!!.getString(KEY_IMAGE_PASSPORT3, null)
-        if (str != null) {
-            bitmap = ConvertClass.convertStringToBitmap(str)
-            binding.imageViewPassport3.setImageBitmap(bitmap)
+    private suspend fun comebackAfterOnBackPressed() {
+        return suspendCoroutine {
+            Handler(Looper.getMainLooper()).post {
+                wrapper(KEY_POST_INDEX_REG, binding.textboxPostIndexReg::setText)
+                wrapper(KEY_SUBJECT_REG, binding.textboxSubjectReg::setText)
+                wrapper(KEY_CITY_REG, binding.textboxCityReg::setText)
+                wrapper(KEY_RESIDENCE_STREET_REG, binding.textboxResidenceStreetReg::setText)
+                wrapper(KEY_POST_INDEX_ACTUAL, binding.textboxPostIndexActual::setText)
+                wrapper(KEY_SUBJECT_ACTUAL, binding.textboxSubjectActual::setText)
+                wrapper(KEY_CITY_ACTUAL, binding.textboxCityActual::setText)
+                wrapper(KEY_RESIDENCE_STREET_ACTUAL, binding.textboxResidenceStreetActual::setText)
+            }
+            val str: String? = sharedPreferences!!.getString(KEY_IMAGE_PASSPORT3, null)
+            if (str != null && str != "") {
+                val bitmap = ConvertClass.convertStringToBitmap(str)
+                Handler(Looper.getMainLooper()).post{ binding.imageViewPassport3.setImageBitmap(bitmap) }
+            }
+            else Handler(Looper.getMainLooper()).post{
+                binding.imageViewPassport3.setImageBitmap(
+                    ConvertClass.decodeSampledBitmapFromResource(resources, R.drawable.passport_registration, 100, 100))
+            }
         }
     }
 
@@ -141,7 +152,7 @@ class Passport3Fragment : Fragment() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        bitmap = null
+        var bitmap : Bitmap? = null
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
                 SelectImageClass.CAMERA -> bitmap = BitmapFactory.decodeFile(SelectImageClass.currentPhotoPath)
@@ -162,7 +173,7 @@ class Passport3Fragment : Fragment() {
                 .putString(KEY_CITY_ACTUAL, binding.textboxCityActual.text.toString())
                 .putString(KEY_RESIDENCE_STREET_ACTUAL, binding.textboxResidenceStreetActual.text.toString())
                 .putString(KEY_IS_YES, isYes.toString())
-                .putString(KEY_IMAGE_PASSPORT3, ConvertClass.convertBitmapToString(bitmap))
+                .putString(KEY_IMAGE_PASSPORT3, ConvertClass.convertBitmapToString(binding.imageViewPassport3.drawable.toBitmap()))
                 .apply()
     }
 

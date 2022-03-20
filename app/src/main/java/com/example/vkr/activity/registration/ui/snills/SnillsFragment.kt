@@ -10,6 +10,8 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.fragment.app.Fragment
 import androidx.core.content.ContextCompat
@@ -17,17 +19,20 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.graphics.drawable.toBitmap
 import com.example.vkr.databinding.FragmentSnillsBinding
 import com.example.vkr.utils.ConvertClass
 import com.example.vkr.utils.CorrectText
 import com.example.vkr.utils.SelectImageClass
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.util.regex.Pattern
+import kotlin.coroutines.suspendCoroutine
 
 class SnillsFragment : Fragment() {
 
     private var _binding: FragmentSnillsBinding? = null
     private val binding get() = _binding!!
-    private var bitmap : Bitmap? = null
     var sharedPreferences : SharedPreferences? = null
 
     val KEY_SNILLS = "snills"
@@ -41,9 +46,8 @@ class SnillsFragment : Fragment() {
         _binding = FragmentSnillsBinding.inflate(inflater, container, false)
         val root: View = binding.root
         sharedPreferences = activity!!.getPreferences(Context.MODE_PRIVATE)
-        binding.imageViewSnills.setImageBitmap(ConvertClass.decodeSampledBitmapFromResource(resources, R.drawable.snills, 100, 100));
         applyEvents()
-        comebackAfterOnBackPressed()
+        GlobalScope.launch { comebackAfterOnBackPressed() }
         return root
     }
 
@@ -59,8 +63,8 @@ class SnillsFragment : Fragment() {
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK) {
+            var bitmap : Bitmap? = null
             when (requestCode) {
                 SelectImageClass.CAMERA -> bitmap = BitmapFactory.decodeFile(SelectImageClass.currentPhotoPath)
                 SelectImageClass.GALLERY -> bitmap = ConvertClass.decodeUriToBitmap(context, data?.data)
@@ -70,17 +74,25 @@ class SnillsFragment : Fragment() {
         }
     }
 
-    private fun comebackAfterOnBackPressed() {
-        var restoredText = sharedPreferences!!.getString(KEY_SNILLS, null)
-        if (!TextUtils.isEmpty(restoredText)) {
-            binding.textboxSnills.setText(restoredText)
+    private suspend fun comebackAfterOnBackPressed() {
+        return suspendCoroutine {
+            val restoredText1 = sharedPreferences!!.getString(KEY_SNILLS, null)
+            if (!TextUtils.isEmpty(restoredText1))
+                Handler(Looper.getMainLooper()).post{ binding.textboxSnills.setText(restoredText1) }
+
+            val restoredText2 = sharedPreferences!!.getString(KEY_PHOTO_SNILLS, null)
+            if (!TextUtils.isEmpty(restoredText2))
+                Handler(Looper.getMainLooper()).post{ binding.imageViewSnills.setImageBitmap(ConvertClass.convertStringToBitmap(restoredText2)) }
+            else
+                Handler(Looper.getMainLooper()).post{
+                    binding.imageViewSnills.setImageBitmap(ConvertClass.decodeSampledBitmapFromResource(resources, R.drawable.snills, 100, 100))
+                }
+
+            Handler(Looper.getMainLooper()).post{
+                binding.textboxSnills.setTextColor(if (!isCorrectSnills(binding.textboxSnills.text.toString())) Color.RED
+                else ContextCompat.getColor(context!!, R.color.white))
+            }
         }
-        restoredText = sharedPreferences!!.getString(KEY_PHOTO_SNILLS, null)
-        if (!TextUtils.isEmpty(restoredText)) {
-            binding.imageViewSnills.setImageBitmap(ConvertClass.convertStringToBitmap(restoredText))
-        }
-        binding.textboxSnills.setTextColor(if (!isCorrectSnills(binding.textboxSnills.text.toString())) Color.RED
-                                           else ContextCompat.getColor(context!!, R.color.white))
     }
 
     override fun onPause() {
@@ -95,7 +107,7 @@ class SnillsFragment : Fragment() {
     private fun saveLastState() {
         sharedPreferences!!.edit()
                 .putString(KEY_SNILLS, binding.textboxSnills.text.toString())
-                .putString(KEY_PHOTO_SNILLS, ConvertClass.convertBitmapToString(bitmap))
+                .putString(KEY_PHOTO_SNILLS, ConvertClass.convertBitmapToString(binding.imageViewSnills.drawable?.toBitmap()))
                 .apply()
     }
 

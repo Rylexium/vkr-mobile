@@ -9,6 +9,8 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +22,9 @@ import com.example.vkr.utils.ConvertClass
 import com.example.vkr.utils.EditLinearLayout
 import com.example.vkr.utils.SelectImageClass
 import com.example.vkr.utils.ShowToast
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlin.coroutines.suspendCoroutine
 
 
 class AchievFragment: Fragment() {
@@ -37,7 +42,7 @@ class AchievFragment: Fragment() {
         val root: View = binding.root
         sharedPreferences = activity!!.getPreferences(Context.MODE_PRIVATE)
         applyEvents()
-        comebackAfterOnBackPressed()
+        GlobalScope.launch { comebackAfterOnBackPressed() }
         return root
     }
     private fun applyEvents() {
@@ -61,13 +66,32 @@ class AchievFragment: Fragment() {
         }
     }
 
-    fun comebackAfterOnBackPressed() {
-        var restoredText = sharedPreferences!!.getString(KEY_ACHIEVEMENT + "0", null)
-        var i = 1
-        while (restoredText != null && restoredText != "" && i < 5) {
-            EditLinearLayout.onAddField(ConvertClass.convertStringToBitmap(restoredText), binding.layoutForImagesAchievements, activity)
-            restoredText = sharedPreferences!!.getString(KEY_ACHIEVEMENT + i, null)
-            i++
+    private suspend fun comebackAfterOnBackPressed() {
+        return suspendCoroutine {
+            val restoredText1 = sharedPreferences!!.getString(KEY_ACHIEVEMENT + "0", null)
+            if(restoredText1 != null && restoredText1 != "")
+                Handler(Looper.getMainLooper()).post{
+                    EditLinearLayout.onAddField(ConvertClass.convertStringToBitmap(restoredText1), binding.layoutForImagesAchievements, activity) }
+
+            val restoredText2 = sharedPreferences!!.getString(KEY_ACHIEVEMENT + "1", null)
+            if(restoredText2 != null && restoredText2 != "")
+                Handler(Looper.getMainLooper()).post{
+                    EditLinearLayout.onAddField(ConvertClass.convertStringToBitmap(restoredText2), binding.layoutForImagesAchievements, activity) }
+
+            val restoredText3 = sharedPreferences!!.getString(KEY_ACHIEVEMENT + "2", null)
+            if(restoredText3 != null && restoredText3 != "")
+                Handler(Looper.getMainLooper()).post{
+                    EditLinearLayout.onAddField(ConvertClass.convertStringToBitmap(restoredText3), binding.layoutForImagesAchievements, activity) }
+
+            val restoredText4 = sharedPreferences!!.getString(KEY_ACHIEVEMENT + "3", null)
+            if(restoredText4 != null && restoredText4 != "")
+            Handler(Looper.getMainLooper()).post{
+                EditLinearLayout.onAddField(ConvertClass.convertStringToBitmap(restoredText4), binding.layoutForImagesAchievements, activity) }
+
+            val restoredText5 = sharedPreferences!!.getString(KEY_ACHIEVEMENT + "4", null)
+            if(restoredText5 != null && restoredText5 != "")
+                Handler(Looper.getMainLooper()).post{
+                    EditLinearLayout.onAddField(ConvertClass.convertStringToBitmap(restoredText5), binding.layoutForImagesAchievements, activity) }
         }
     }
     @SuppressLint("CommitPrefEdits")

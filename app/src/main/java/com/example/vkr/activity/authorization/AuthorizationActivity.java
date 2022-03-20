@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -88,9 +90,21 @@ public class AuthorizationActivity extends AppCompatActivity {
     }
 
     private void ApplyEvents(){
-        labelRememberPassword.setOnClickListener(view -> OpenActivity.openSupport(this, textBoxLogin.getText().toString()));
-        labelRegistration.setOnClickListener(view -> OpenActivity.openRegistration(this));
-        labelQuestions.setOnClickListener(view -> OpenActivity.openPageWithQuestion(this));
+        labelRememberPassword.setOnClickListener(view -> {
+            labelRememberPassword.setEnabled(false);
+            OpenActivity.openSupport(this, textBoxLogin.getText().toString());
+            new Handler(Looper.getMainLooper()).postDelayed(() -> labelRememberPassword.setEnabled(true), 1000);
+        });
+        labelRegistration.setOnClickListener(view -> {
+            labelRegistration.setEnabled(false);
+            OpenActivity.openRegistration(this);
+            new Handler(Looper.getMainLooper()).postDelayed(() -> labelRegistration.setEnabled(true), 1000);
+        });
+        labelQuestions.setOnClickListener(view -> {
+            labelQuestions.setEnabled(false);
+            OpenActivity.openPageWithQuestion(this);
+            new Handler(Looper.getMainLooper()).postDelayed(() -> labelQuestions.setEnabled(true), 1000);
+        });
 
         singInBtn.setOnClickListener(view -> {
             if(textBoxLogin.getText().length() == 0 || textBoxPassword.getText().length() == 0) return;

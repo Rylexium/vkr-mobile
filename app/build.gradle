@@ -7,6 +7,10 @@ plugins {
 android {
     compileSdk 32
 
+    dexOptions {
+        javaMaxHeapSize "4G"
+    }
+
     defaultConfig {
         applicationId "com.example.vkr"
         minSdk 24
