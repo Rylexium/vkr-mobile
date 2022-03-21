@@ -4,8 +4,6 @@ import static com.example.vkr.personal_cabinet.PersonalCabinetActivity.idAbit;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import androidx.annotation.NonNull;
@@ -14,19 +12,15 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DecodeFormat;
 import com.example.vkr.personal_cabinet.PersonalCabinetActivity;
 import com.example.vkr.utils.AnimationHideFab;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.example.vkr.utils.ShowToast;
 import androidx.fragment.app.Fragment;
 import android.util.Log;
-import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
@@ -41,15 +35,12 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class AchievementsFragment extends Fragment {
 
     private View binding;
     private LinearLayout mainLayout;
-    private TextView supportTextView;
     private static final List<String> achievements = new ArrayList<>();
-    private ScrollView scrollView;
 
     private float mTouchPosition;
     private float mReleasePosition;
@@ -59,25 +50,11 @@ public class AchievementsFragment extends Fragment {
 
         binding = inflater.inflate(R.layout.fragment_achievements, container, false);
         mainLayout = binding.findViewById(R.id.fragment_achievements_layout);
-        scrollView = binding.findViewById(R.id.scrollview_achievements_fragment);
 
         if(achievements.isEmpty()) downloadPrivileges();
         else achievements.forEach(item -> onAddField(ConvertClass.convertStringToBitmap(item)));
 
-        new Handler().postDelayed(()-> {
-            if (mainLayout.getChildCount() == 0) {
-                supportTextView = new TextView(getActivity());
-                supportTextView.setText("Нет фотографий с достижениями");
-                supportTextView.setTypeface(supportTextView.getTypeface(), Typeface.BOLD);
-                supportTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24);
-                supportTextView.setGravity(Gravity.TOP);
-                supportTextView.setTextColor(Color.RED);
-                mainLayout.addView(supportTextView);
-            } else {
-                mainLayout.removeView(supportTextView);
-                supportTextView = null;
-            }
-        }, 1000);
+        new Handler().postDelayed(()-> ShowToast.show(getContext(), "Проверьте подключение к интернету"), 1500);
 
         applyEvents();
         return binding.getRootView();
