@@ -34,7 +34,6 @@
         android:layout_marginBottom="16dp"
         android:backgroundTint="@android:color/transparent"
         android:scaleType="fitXY"
-        app:elevation="0dp"
         app:maxImageSize="56dip"
         app:backgroundTint="@android:color/transparent"
         app:srcCompat="@drawable/vk" />
