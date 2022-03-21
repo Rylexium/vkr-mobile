@@ -282,6 +282,7 @@ public class StatementFragment extends Fragment {
                 .getAsJSONArray(new JSONArrayRequestListener() {
                     @Override
                     public void onResponse(JSONArray response) {
+                        if(listFinancing != null) return;
                         try {
                             listFinancing = new ArrayList<>();
                             JsonNode jsonNode = new ObjectMapper().readTree(response.toString());

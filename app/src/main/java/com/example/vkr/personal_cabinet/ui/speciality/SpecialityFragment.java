@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.os.Looper;
 import androidx.annotation.NonNull;
 
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.example.vkr.utils.AnimationHideFab;
 import com.example.vkr.utils.ShowToast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -38,6 +39,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +57,8 @@ public class SpecialityFragment extends Fragment {
     private static Integer start = 0;
     private static Integer end = 26;
     private final Integer next = 26;
+
+    private static Integer countSpeciality = 0;
 
     private float mTouchPosition;
     private float mReleasePosition;
@@ -140,10 +144,8 @@ public class SpecialityFragment extends Fragment {
             if (event.getAction() == MotionEvent.ACTION_UP) {
                 mReleasePosition = event.getY();
 
-                if (mTouchPosition - mReleasePosition > 0) // user scroll down
-                    AnimationHideFab.hide(PersonalCabinetActivity.fab);
-                else //user scroll up
-                    AnimationHideFab.show(PersonalCabinetActivity.fab);
+                if (mTouchPosition - mReleasePosition > 0) AnimationHideFab.hide(PersonalCabinetActivity.fab);// user scroll down
+                else AnimationHideFab.show(PersonalCabinetActivity.fab); //user scroll up
             }
             return false;
         });
@@ -171,6 +173,7 @@ public class SpecialityFragment extends Fragment {
         speciality.clear();
         start = 0;
         end = 26;
+        countSpeciality = 0;
         isBottom = false;
         isAllSpecialityDownload = false;
     }
@@ -193,17 +196,25 @@ public class SpecialityFragment extends Fragment {
             url = "https://vkr1-app.herokuapp.com/speciality/aspirant/min";
 
         AndroidNetworking.get(url + "?start=" + start.toString() + "&next=" + end.toString())
-                .setPriority(Priority.HIGH)
+                .setPriority(Priority.IMMEDIATE)
                 .setOkHttpClient(new OkHttpClient.Builder()
                         .connectTimeout(2, TimeUnit.SECONDS)
                         .build())
                 .build()
-                .getAsJSONArray(new JSONArrayRequestListener() {
+                .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
-                    public void onResponse(JSONArray response){
+                    public void onResponse(JSONObject response) {
                         try {
                             JsonNode jsonNode = new ObjectMapper().readTree(response.toString());
-                            jsonNode.forEach(item -> speciality.add(asList(
+
+                            if(speciality.size() != 0)
+                                jsonNode.get("speciality").forEach(item -> {
+                                    if (!item.get("specialityMinInfo").get("id").asText().equals(speciality.get(start - 1).get(0))) return;
+                                });
+
+
+                            countSpeciality = jsonNode.get("len").asInt();
+                            jsonNode.get("speciality").forEach(item -> speciality.add(asList(
                                     item.get("specialityMinInfo").get("id").asText(),
                                     item.get("specialityMinInfo").get("name").asText(),
                                     item.get("institut").asText(),
@@ -223,12 +234,12 @@ public class SpecialityFragment extends Fragment {
 
                     @Override
                     public void onError(ANError anError) {
-                        if (speciality.size() == 0) {
+                        if (speciality.size() != countSpeciality) {
                             countTry += 1;
-                            if(countTry % 10 == 0) ShowToast.show(getContext(), "Проверьте подключение к интернету");
+                            if(countTry % 8 == 0) ShowToast.show(getContext(), "Проверьте подключение к интернету");
                             new Handler().postDelayed(() -> downloadSpeciality(), 1000);
                         }
-                        else {
+                        else  {
                             isAllSpecialityDownload = true;
                             Snackbar.make(scrollView, "Все специальности были загружены", Snackbar.LENGTH_LONG)
                                     .setAction("Action", null).show();
