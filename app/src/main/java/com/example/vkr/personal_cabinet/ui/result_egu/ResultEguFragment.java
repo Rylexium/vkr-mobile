@@ -6,11 +6,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import androidx.annotation.NonNull;
+
+import com.example.vkr.personal_cabinet.PersonalCabinetActivity;
+import com.example.vkr.utils.AnimationHideFab;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -25,8 +29,9 @@ public class ResultEguFragment extends Fragment {
 
     private View binding;
     private LinearLayout layoutOfExams;
-    private ScrollView scrollView;
-    private FloatingActionButton fab;
+
+    private float mTouchPosition;
+    private float mReleasePosition;
 
     private static ResultEguViewModel viewModel;
 
@@ -73,14 +78,19 @@ public class ResultEguFragment extends Fragment {
     }
 
     private void applyEvents(){
-        scrollView = binding.findViewById(R.id.scrollview_result_egu_fragment);
-        fab = getActivity().findViewById(R.id.fab);
-        scrollView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
-            //work with fab
-            if (scrollY == 0 || (scrollY < oldScrollY && !fab.isShown()))
-                fab.show();
-            else if (scrollY > oldScrollY && fab.isShown())
-                fab.hide();
+        binding.getRootView().setOnTouchListener((view, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                mTouchPosition = event.getY();
+            }
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                mReleasePosition = event.getY();
+
+                if (mTouchPosition - mReleasePosition > 0) // user scroll down
+                    AnimationHideFab.hide(PersonalCabinetActivity.fab);
+                else //user scroll up
+                    AnimationHideFab.show(PersonalCabinetActivity.fab);
+            }
+            return false;
         });
     }
 
@@ -103,8 +113,6 @@ public class ResultEguFragment extends Fragment {
 
     private void initComponents(){
         awaitData();
-        scrollView = binding.findViewById(R.id.scrollview_result_egu_fragment);
-        fab = getActivity().findViewById(R.id.fab);
     }
 
     @Override

@@ -10,15 +10,17 @@ import android.os.Looper;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DecodeFormat;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.example.vkr.utils.AnimationHideFab;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -64,6 +66,9 @@ public class MainFragment extends Fragment {
     private static Boolean isDownloadImagePrivilege = null;
 
     private static MainViewModel mainViewModel;
+
+    private float mTouchPosition;
+    private float mReleasePosition;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -169,13 +174,27 @@ public class MainFragment extends Fragment {
             }
         });
 
+        binding.getRoot().setOnTouchListener((view, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                mTouchPosition = event.getY();
+            }
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                mReleasePosition = event.getY();
+
+                if (mTouchPosition - mReleasePosition > 0) // user scroll down
+                    AnimationHideFab.hide(PersonalCabinetActivity.fab);
+                else //user scroll up
+                    AnimationHideFab.show(PersonalCabinetActivity.fab);
+            }
+            return false;
+        });
 
         binding.scrollviewHomeFragment.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
             //work with fab
-            if (scrollY == 0 || (scrollY < oldScrollY && !PersonalCabinetActivity.fab.isShown()))
-                PersonalCabinetActivity.fab.show();
-            else if (scrollY > oldScrollY && PersonalCabinetActivity.fab.isShown())
-                PersonalCabinetActivity.fab.hide();
+            if (scrollY == 0 || (scrollY < oldScrollY && !PersonalCabinetActivity.fab.isShown())) //show
+                AnimationHideFab.show(PersonalCabinetActivity.fab);
+            else if (scrollY > oldScrollY && PersonalCabinetActivity.fab.isShown()) //hide
+                AnimationHideFab.hide(PersonalCabinetActivity.fab);
         });
     }
 
@@ -377,11 +396,6 @@ public class MainFragment extends Fragment {
         binding.textviewPrivilege.setText(privilege);
         if(isDownloadImagesPassport != null) isDownloadImagesPassport = true;
         if(isDownloadImagesEducation != null) isDownloadImagesEducation = true;
-//        fab = getActivity().findViewById(R.id.fab);
-//        if(fab == null)
-//            new Thread(()-> {
-//                while(fab == null) fab = getActivity().findViewById(R.id.fab);
-//            }).start();
     }
     public static void clearData() {
         loginString = null;
@@ -410,6 +424,7 @@ public class MainFragment extends Fragment {
         isDownloadImagePrivilege = null;
         bitmapPrivilege = null;
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();

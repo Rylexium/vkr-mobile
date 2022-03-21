@@ -32,7 +32,11 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/blue_700"
-        app:srcCompat="@drawable/ic_baseline_message_24" />
+        android:backgroundTint="@android:color/transparent"
+        android:scaleType="fitXY"
+        app:elevation="0dp"
+        app:maxImageSize="56dip"
+        app:backgroundTint="@android:color/transparent"
+        app:srcCompat="@drawable/vk" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

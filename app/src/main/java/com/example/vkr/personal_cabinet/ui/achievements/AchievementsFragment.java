@@ -12,12 +12,15 @@ import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DecodeFormat;
+import com.example.vkr.personal_cabinet.PersonalCabinetActivity;
+import com.example.vkr.utils.AnimationHideFab;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -46,15 +49,16 @@ public class AchievementsFragment extends Fragment {
     private LinearLayout mainLayout;
     private TextView supportTextView;
     private static final List<String> achievements = new ArrayList<>();
-    private FloatingActionButton fab;
     private ScrollView scrollView;
+
+    private float mTouchPosition;
+    private float mReleasePosition;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         binding = inflater.inflate(R.layout.fragment_achievements, container, false);
         mainLayout = binding.findViewById(R.id.fragment_achievements_layout);
-        fab = Objects.requireNonNull(getActivity()).findViewById(R.id.fab);
         scrollView = binding.findViewById(R.id.scrollview_achievements_fragment);
 
         if(achievements.isEmpty()) downloadPrivileges();
@@ -81,11 +85,19 @@ public class AchievementsFragment extends Fragment {
 
 
     private void applyEvents(){
-        scrollView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
-            if (scrollY == 0 || (scrollY < oldScrollY && !fab.isShown()))
-                fab.show();
-            else if (scrollY > oldScrollY && fab.isShown())
-                fab.hide();
+        binding.getRootView().setOnTouchListener((view, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                mTouchPosition = event.getY();
+            }
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                mReleasePosition = event.getY();
+
+                if (mTouchPosition - mReleasePosition > 0) // user scroll down
+                    AnimationHideFab.hide(PersonalCabinetActivity.fab);
+                else //user scroll up
+                    AnimationHideFab.show(PersonalCabinetActivity.fab);
+            }
+            return false;
         });
     }
 

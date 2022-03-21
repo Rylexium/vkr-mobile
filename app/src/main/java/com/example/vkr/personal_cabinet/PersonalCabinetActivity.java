@@ -8,9 +8,11 @@ import android.os.Looper;
 import androidx.appcompat.app.AlertDialog;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.vkr.utils.AnimationHideFab;
 import com.example.vkr.utils.ShowCustomDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -22,6 +24,9 @@ import androidx.navigation.ui.NavigationUI;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import com.androidnetworking.AndroidNetworking;

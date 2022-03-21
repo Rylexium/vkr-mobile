@@ -11,12 +11,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import androidx.annotation.NonNull;
+
+import com.example.vkr.utils.AnimationHideFab;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -56,10 +59,12 @@ import java.util.stream.Collectors;
 
 public class StatementFragment extends Fragment {
 
-    private ScrollView scrollView;
     private LinearLayout linearLayout;
     private View binding;
-    private FloatingActionButton fab;
+
+    private float mTouchPosition;
+    private float mReleasePosition;
+
     private Button buttonSubmitStatement;
     private TextView supportTextView;
 
@@ -77,20 +82,26 @@ public class StatementFragment extends Fragment {
 
 
     private void applyEvents(){
-        scrollView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
-            if (scrollY == 0 || (scrollY < oldScrollY && !fab.isShown()))
-                fab.show();
-            else if (scrollY > oldScrollY && fab.isShown())
-                fab.hide();
+        binding.getRootView().setOnTouchListener((view, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                mTouchPosition = event.getY();
+            }
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                mReleasePosition = event.getY();
+
+                if (mTouchPosition - mReleasePosition > 0) // user scroll down
+                    AnimationHideFab.hide(PersonalCabinetActivity.fab);
+                else //user scroll up
+                    AnimationHideFab.show(PersonalCabinetActivity.fab);
+            }
+            return false;
         });
 
         buttonSubmitStatement.setOnClickListener(this::onClick);
     }
 
     private void initComponents(){
-        scrollView = binding.findViewById(R.id.scrollview_statement_fragment);
         linearLayout = binding.findViewById(R.id.layout_of_statement);
-        fab = getActivity().findViewById(R.id.fab);
         buttonSubmitStatement = binding.findViewById(R.id.button_submit_statement);
         downloadTypeOfFinancing();
     }

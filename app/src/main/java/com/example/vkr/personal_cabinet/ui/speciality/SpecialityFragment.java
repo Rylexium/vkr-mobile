@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.os.Looper;
 import androidx.annotation.NonNull;
 
+import com.example.vkr.utils.AnimationHideFab;
 import com.example.vkr.utils.ShowToast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -18,6 +19,7 @@ import androidx.fragment.app.Fragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -51,7 +53,8 @@ public class SpecialityFragment extends Fragment {
     private static Integer end = 26;
     private final Integer next = 26;
 
-    private FloatingActionButton fab;
+    private float mTouchPosition;
+    private float mReleasePosition;
 
     private static boolean isBottom = false; // дошли до конца
     private static boolean isAllSpecialityDownload = false;
@@ -124,11 +127,20 @@ public class SpecialityFragment extends Fragment {
                 isBottom = false;
                 SpecialityFragment.scrollY = scrollView.getScrollY();
             }
+        });
+        binding.getRootView().setOnTouchListener((view, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                mTouchPosition = event.getY();
+            }
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                mReleasePosition = event.getY();
 
-            if (scrollY == 0 || (scrollY < oldScrollY && !fab.isShown()))
-                fab.show();
-            else if (scrollY > oldScrollY && fab.isShown())
-                fab.hide();
+                if (mTouchPosition - mReleasePosition > 0) // user scroll down
+                    AnimationHideFab.hide(PersonalCabinetActivity.fab);
+                else //user scroll up
+                    AnimationHideFab.show(PersonalCabinetActivity.fab);
+            }
+            return false;
         });
     }
 
@@ -138,7 +150,6 @@ public class SpecialityFragment extends Fragment {
 
         scrollView = binding.findViewById(R.id.scrollview_speciality_fragment);
 
-        fab = getActivity().findViewById(R.id.fab);
         if(speciality.size() == 0)  //первый раз зашли сюда
             downloadSpeciality(); //подгружаем
         else {
