@@ -35,8 +35,10 @@ public class ResultEguViewModel extends ViewModel {
     private int countTry2 = 0;
 
     public ResultEguViewModel() {
-        new Thread(this::downloadMinPointsExams).start();
-        new Thread(this::downloadExams).start();
+        new Thread(() -> {
+            downloadExams();
+            downloadMinPointsExams();
+        }).start();
     }
 
 
