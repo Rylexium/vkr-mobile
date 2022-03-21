@@ -4,6 +4,7 @@ import static com.example.vkr.personal_cabinet.PersonalCabinetActivity.idAbit;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import androidx.annotation.NonNull;
@@ -30,11 +31,16 @@ import com.example.vkr.R;
 import com.example.vkr.utils.ConvertClass;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
 
 public class AchievementsFragment extends Fragment {
 
@@ -45,6 +51,8 @@ public class AchievementsFragment extends Fragment {
     private float mTouchPosition;
     private float mReleasePosition;
 
+    private int countTry = 0;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -53,8 +61,6 @@ public class AchievementsFragment extends Fragment {
 
         if(achievements.isEmpty()) downloadPrivileges();
         else achievements.forEach(item -> onAddField(ConvertClass.convertStringToBitmap(item)));
-
-        new Handler().postDelayed(()-> ShowToast.show(getContext(), "Проверьте подключение к интернету"), 1500);
 
         applyEvents();
         return binding.getRootView();
@@ -82,13 +88,15 @@ public class AchievementsFragment extends Fragment {
     private void downloadPrivileges(){
         AndroidNetworking.get("https://vkr1-app.herokuapp.com/abit/achievements?id=" + idAbit)
                 .setPriority(Priority.HIGH)
+                .setOkHttpClient(new OkHttpClient.Builder()
+                                        .connectTimeout(2, TimeUnit.SECONDS)
+                                        .build())
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            JsonNode jsonNode = new ObjectMapper().readTree(response.toString());
-                            jsonNode.forEach(item -> {
+                            new ObjectMapper().readTree(response.toString()).forEach(item -> {
                                 if(!item.asText().equals("null") && !item.asText().equals("")) {
                                     achievements.add(item.asText());
                                     onAddField(ConvertClass.convertStringToBitmap(item.asText()));
@@ -100,7 +108,9 @@ public class AchievementsFragment extends Fragment {
 
                     @Override
                     public void onError(ANError anError) {
-                        Log.e("error", "privileges");
+                        countTry += 1;
+                        if(countTry % 10 == 0) ShowToast.show(getContext(), "Не удалось загрузить изображения");
+                        new Handler().postDelayed(() -> downloadPrivileges(), 1000);
                     }
                 });
     }

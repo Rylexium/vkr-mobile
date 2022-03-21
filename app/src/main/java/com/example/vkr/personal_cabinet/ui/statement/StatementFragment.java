@@ -55,7 +55,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+
+import okhttp3.OkHttpClient;
 
 public class StatementFragment extends Fragment {
 
@@ -69,6 +72,7 @@ public class StatementFragment extends Fragment {
     private TextView supportTextView;
 
     private static List<String> listFinancing;
+    private int countTry = 0;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -129,10 +133,7 @@ public class StatementFragment extends Fragment {
     private void onAddField(String idSpeciality, String nameSpeciality,
                             String nameInstitut, String nameTypeOfStudy,
                             String valueOfDateOfStatement, String valueFinancing, String valuePriority) {
-        if(listFinancing == null) {
-            ShowToast.show(getContext(), "Проверьте подключение к интернету");
-            return;
-        }
+        if(listFinancing == null) return;
 
         LayoutInflater inflater = (LayoutInflater) Objects.requireNonNull(getActivity()).getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View rowView = inflater.inflate(R.layout.field_for_statement, null);
@@ -274,6 +275,9 @@ public class StatementFragment extends Fragment {
         if(listFinancing != null) return;
         AndroidNetworking.get("https://vkr1-app.herokuapp.com/type_of_financing")
                 .setPriority(Priority.HIGH)
+                .setOkHttpClient(new OkHttpClient.Builder()
+                        .connectTimeout(2, TimeUnit.SECONDS)
+                        .build())
                 .build()
                 .getAsJSONArray(new JSONArrayRequestListener() {
                     @Override
@@ -282,13 +286,18 @@ public class StatementFragment extends Fragment {
                             listFinancing = new ArrayList<>();
                             JsonNode jsonNode = new ObjectMapper().readTree(response.toString());
                             jsonNode.forEach(item -> listFinancing.add(item.get("name").asText()));
+                            fillSpeciality();
                         } catch (JsonProcessingException e) {
                             e.printStackTrace();
                         }
                     }
 
                     @Override
-                    public void onError(ANError anError) { }
+                    public void onError(ANError anError) {
+                        countTry += 1;
+                        if(countTry % 10 == 0) ShowToast.show(getContext(), "Проверьте подключение к интернету");
+                        new Handler().postDelayed(() -> downloadTypeOfFinancing(), 1000);
+                    }
                 });
     }
 }

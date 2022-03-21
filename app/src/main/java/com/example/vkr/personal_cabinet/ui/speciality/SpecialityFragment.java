@@ -41,6 +41,9 @@ import org.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
 
 public class SpecialityFragment extends Fragment {
 
@@ -60,6 +63,8 @@ public class SpecialityFragment extends Fragment {
     private static boolean isAllSpecialityDownload = false;
 
     private static Integer scrollY = 0;
+
+    private int countTry = 0;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -189,40 +194,40 @@ public class SpecialityFragment extends Fragment {
 
         AndroidNetworking.get(url + "?start=" + start.toString() + "&next=" + end.toString())
                 .setPriority(Priority.HIGH)
+                .setOkHttpClient(new OkHttpClient.Builder()
+                        .connectTimeout(2, TimeUnit.SECONDS)
+                        .build())
                 .build()
                 .getAsJSONArray(new JSONArrayRequestListener() {
                     @Override
                     public void onResponse(JSONArray response){
-                        new Thread(()-> {
-                            try {
-                                JsonNode jsonNode = new ObjectMapper().readTree(response.toString());
-                                jsonNode.forEach(item -> {
-                                    speciality.add(asList(
-                                            item.get("specialityMinInfo").get("id").asText(),
-                                            item.get("specialityMinInfo").get("name").asText(),
-                                            item.get("institut").asText(),
-                                            item.get("typeOfStudy").asText(),
-                                            item.get("specialityMinInfo").get("budget").toString(),
-                                            item.get("specialityMinInfo").get("pay").toString()));
-                                });
-                                new Handler(Looper.getMainLooper()).post(() -> {
-                                    for(int i = start; i < speciality.size(); i++)
-                                        onAddField(speciality.get(i).get(0), speciality.get(i).get(1),
-                                                speciality.get(i).get(2), speciality.get(i).get(3),
-                                                speciality.get(i).get(4), speciality.get(i).get(5));
-                                    start += next;
-                                    end += next;
-                                });
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        }).start();
+                        try {
+                            JsonNode jsonNode = new ObjectMapper().readTree(response.toString());
+                            jsonNode.forEach(item -> speciality.add(asList(
+                                    item.get("specialityMinInfo").get("id").asText(),
+                                    item.get("specialityMinInfo").get("name").asText(),
+                                    item.get("institut").asText(),
+                                    item.get("typeOfStudy").asText(),
+                                    item.get("specialityMinInfo").get("budget").toString(),
+                                    item.get("specialityMinInfo").get("pay").toString())));
+                            for(int i = start; i < speciality.size(); i++)
+                                onAddField(speciality.get(i).get(0), speciality.get(i).get(1),
+                                        speciality.get(i).get(2), speciality.get(i).get(3),
+                                        speciality.get(i).get(4), speciality.get(i).get(5));
+                            start += next;
+                            end += next;
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override
                     public void onError(ANError anError) {
-                        if (speciality.size() == 0)
-                            ShowToast.show(getContext(), "Проверьте подключение к интернету");
+                        if (speciality.size() == 0) {
+                            countTry += 1;
+                            if(countTry % 10 == 0) ShowToast.show(getContext(), "Проверьте подключение к интернету");
+                            new Handler().postDelayed(() -> downloadSpeciality(), 1000);
+                        }
                         else {
                             isAllSpecialityDownload = true;
                             Snackbar.make(scrollView, "Все специальности были загружены", Snackbar.LENGTH_LONG)
