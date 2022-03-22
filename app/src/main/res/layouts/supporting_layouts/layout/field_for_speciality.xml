@@ -34,7 +34,7 @@
                 android:id="@+id/textview_speciality"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="28sp"
+                android:textSize="26sp"
                 android:elegantTextHeight="true"
                 android:text="02.03.03 Математическое обеспечение и администрирование информационных систем"
                 android:textColor="@color/white"
@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:elegantTextHeight="true"
-                android:textSize="25sp"
+                android:textSize="24sp"
                 android:text="Естественнонаучный институт"
                 />
 
@@ -62,20 +62,11 @@
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:text="Заявлений / Мест"
-                        android:elegantTextHeight="true"
-                        android:textColor="@color/white"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:gravity="center"
                         android:paddingTop="10sp"
                         android:textColor="@color/white"
-                        android:text="Общий конкурс"
+                        android:text="Бюджетные места"
                         android:textSize="20sp" />
 
                     <TextView
@@ -90,10 +81,10 @@
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:paddingTop="10sp"
-                        android:text="Контракт"
+                        android:elegantTextHeight="true"
+                        android:text="Платные места"
                         android:textColor="@color/white"
                         android:textSize="20sp" />
 
@@ -102,14 +93,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:paddingTop="10sp"
+
                         android:text="150"
                         android:elegantTextHeight="true"
                         android:textColor="@color/white"
                         android:textSize="26sp" />
 
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -119,8 +109,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:paddingTop="10sp"
                         android:text="Форма обучения"
-                        android:elegantTextHeight="true"
+
                         android:textColor="@color/white"
                         android:textSize="20sp" />
 
