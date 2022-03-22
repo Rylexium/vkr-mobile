@@ -101,6 +101,10 @@ public class AchievementsFragment extends Fragment {
                                     achievements.add(item.asText());
                                     onAddField(ConvertClass.convertStringToBitmap(item.asText()));
                                 }
+                                else{
+                                    ShowToast.show(getContext(), "Нет изображений с вашими достижениями");
+                                    return;
+                                }
                             });
                         }
                         catch(Exception ignored){ }

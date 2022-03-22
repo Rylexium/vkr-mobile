@@ -15,6 +15,8 @@ import com.androidnetworking.common.Priority
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONArrayRequestListener
 import com.androidnetworking.interfaces.JSONObjectRequestListener
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DecodeFormat
 import com.example.vkr.R
 import com.example.vkr.activity.authorization.AuthorizationActivity
 import com.example.vkr.utils.OpenActivity
@@ -42,19 +44,28 @@ class SplashScreen : AppCompatActivity() {
         when(Random.nextInt(1, 4)){
             1 -> {
                 mainLayout.setBackgroundColor(applicationContext.getColor(R.color.color_for_splash_screen1))
-                logoImageView.setImageResource(R.drawable.splash_screen1)
+                Glide.with(this)
+                    .load(R.drawable.splash_screen1)
+                    .format(DecodeFormat.PREFER_RGB_565)
+                    .into(logoImageView)
                 window.navigationBarColor = applicationContext.getColor(R.color.blue_700)
                 window.statusBarColor = applicationContext.getColor(R.color.blue_700)
             }
             2 -> {
                 mainLayout.setBackgroundColor(applicationContext.getColor(R.color.color_for_splash_screen2))
-                logoImageView.setImageResource(R.drawable.splash_screen2)
+                Glide.with(this)
+                    .load(R.drawable.splash_screen2)
+                    .format(DecodeFormat.PREFER_RGB_565)
+                    .into(logoImageView)
                 window.navigationBarColor = Color.parseColor("#000080")
                 window.statusBarColor = Color.parseColor("#000080")
             }
             3 -> {
                 mainLayout.setBackgroundColor(applicationContext.getColor(R.color.color_for_splash_screen3))
-                logoImageView.setImageResource(R.drawable.splash_screen3)
+                Glide.with(this)
+                    .load(R.drawable.splash_screen3)
+                    .format(DecodeFormat.PREFER_RGB_565)
+                    .into(logoImageView)
                 window.navigationBarColor = applicationContext.getColor(R.color.orange_700)
                 window.statusBarColor = applicationContext.getColor(R.color.orange_700)
             }

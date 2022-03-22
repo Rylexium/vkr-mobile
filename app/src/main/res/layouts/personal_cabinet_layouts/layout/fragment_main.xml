@@ -15,9 +15,9 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="9dp"
+        android:layout_marginEnd="5dp"
         android:gravity="center"
         android:animateLayoutChanges="true"
         android:focusableInTouchMode="true" >
@@ -38,25 +38,31 @@
                 android:background="@color/blue_500"
                 >
                 <TextView
-                    android:layout_width="180dp"
-                    android:layout_height="40dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:layout_marginLeft="9dp"
+                    android:layout_marginRight="9dp"
                     android:text="Логин"
+                    android:elegantTextHeight="true"
                     android:textStyle="bold"
                     android:paddingStart="15dp"
-                    android:textSize="24dp"
+                    android:textSize="24sp"
                     android:gravity="center|left"
                     android:textColor="@color/white"
-                    android:layout_marginLeft="9dp"
                     />
                 <TextView
                     android:id="@+id/textview_login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
                     android:text=""
-                    android:gravity="center|start"
+                    android:elegantTextHeight="true"
+                    android:gravity="center"
                     android:textStyle="bold"
-                    android:textSize="24dp"
+                    android:textSize="24sp"
                     android:textColor="@color/white"
+                    android:layout_marginLeft="9dp"
                     android:layout_marginRight="9dp"
                     />
             </LinearLayout>
@@ -72,13 +78,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/neutral_cradient"
+                android:background="@drawable/neutral_cradient1"
                 android:animateLayoutChanges="true"
                 android:orientation="vertical"
                 >
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:elegantTextHeight="true"
                     android:text="Персональные данные"
                     android:textSize="26dp"
                     android:textStyle="bold"
@@ -98,69 +105,85 @@
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="9dp"
+                        android:layout_marginTop="8dp"
                         >
                         <TextView
-                            android:layout_width="180dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.52"
+                            android:elegantTextHeight="true"
                             android:text="СНИЛС"
                             android:textStyle="bold"
-                            android:textSize="20dp"
+                            android:textSize="20sp"
+                            android:textColor="@color/grey"
                             />
                         <TextView
                             android:id="@+id/textview_snills"
                             android:textStyle="bold"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.45"
                             android:text=""
-                            android:layout_marginLeft="15dp"
-                            android:textSize="20dp"
+                            android:elegantTextHeight="true"
+                            android:layout_marginStart="15dp"
+                            android:textSize="20sp"
+                            android:textColor="@color/grey"
                             />
                     </LinearLayout>
                     <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="9dp"
                         >
                         <TextView
-                            android:layout_width="180dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.52"
                             android:text="Дата рождения"
-                            android:textSize="20dp"
+                            android:elegantTextHeight="true"
+                            android:textSize="20sp"
                             android:textStyle="bold"
+                            android:textColor="@color/grey"
                             />
                         <TextView
                             android:id="@+id/textview_date_of_birthday"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.45"
                             android:text=""
+                            android:elegantTextHeight="true"
                             android:textStyle="bold"
-                            android:textSize="20dp"
-                            android:layout_marginLeft="15dp"
+                            android:textSize="20sp"
+                            android:layout_marginStart="15dp"
+                            android:textColor="@color/grey"
                             />
                     </LinearLayout>
                     <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="9dp"
                         >
                         <TextView
-                            android:layout_width="180dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.52"
                             android:text="Пол"
-                            android:textSize="20dp"
+                            android:elegantTextHeight="true"
+                            android:textSize="20sp"
                             android:textStyle="bold"
+                            android:textColor="@color/grey"
                             />
                         <TextView
                             android:id="@+id/textview_sex"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.45"
                             android:text=""
+                            android:elegantTextHeight="true"
                             android:textStyle="bold"
-                            android:textSize="20dp"
-                            android:layout_marginLeft="15dp"
+                            android:textSize="20sp"
+                            android:layout_marginStart="15dp"
+                            android:textColor="@color/grey"
                             />
                     </LinearLayout>
 
@@ -168,23 +191,28 @@
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="9dp"
                         >
                         <TextView
-                            android:layout_width="180dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.52"
                             android:text="Гражданство"
-                            android:textSize="20dp"
+                            android:elegantTextHeight="true"
+                            android:textSize="20sp"
                             android:textStyle="bold"
+                            android:textColor="@color/grey"
                             />
                         <TextView
                             android:id="@+id/textview_nationality"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.45"
                             android:text=""
-                            android:textSize="20dp"
+                            android:elegantTextHeight="true"
+                            android:textSize="20sp"
                             android:textStyle="bold"
-                            android:layout_marginLeft="15dp"
+                            android:layout_marginStart="15dp"
+                            android:textColor="@color/grey"
                             />
                     </LinearLayout>
 
@@ -192,23 +220,29 @@
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="9dp"
+                         
                         >
                         <TextView
-                            android:layout_width="180dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.52"
                             android:text="Паспорт"
-                            android:textSize="20dp"
+                            android:elegantTextHeight="true"
+                            android:textSize="20sp"
                             android:textStyle="bold"
+                            android:textColor="@color/grey"
                             />
                         <TextView
                             android:id="@+id/textview_passport"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.45"
                             android:text=""
-                            android:textSize="20dp"
+                            android:elegantTextHeight="true"
+                            android:textSize="20sp"
                             android:textStyle="bold"
-                            android:layout_marginLeft="15dp"
+                            android:layout_marginStart="15dp"
+                            android:textColor="@color/grey"
                             />
                     </LinearLayout>
 
@@ -216,46 +250,60 @@
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="9dp"
+                        
                         >
                         <TextView
-                            android:layout_width="180dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.52"
                             android:text="Код подразделения"
-                            android:textSize="20dp"
+                            android:elegantTextHeight="true"
+                            android:textSize="20sp"
                             android:textStyle="bold"
+                            android:textColor="@color/grey"
                             />
                         <TextView
                             android:id="@+id/textview_departament_code"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.45"
                             android:text=""
-                            android:textSize="20dp"
+                            android:layout_gravity="center|start"
+                            android:elegantTextHeight="true"
+                            android:textSize="20sp"
                             android:textStyle="bold"
-                            android:layout_marginLeft="15dp"
+                            android:layout_marginStart="15dp"
+                            android:textColor="@color/grey"
                             />
                     </LinearLayout>
                     <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="9dp"
+                        
                         >
                         <TextView
-                            android:layout_width="180dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.52"
                             android:text="Дата выдачи паспорта"
+                            android:elegantTextHeight="true"
                             android:textStyle="bold"
-                            android:textSize="20dp"
+                            android:textSize="20sp"
+                            android:textColor="@color/grey"
                             />
                         <TextView
                             android:id="@+id/textview_date_of_issing_passport"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.45"
                             android:text=""
-                            android:textSize="20dp"
+                            android:layout_gravity="center|start"
+                            android:elegantTextHeight="true"
+                            android:textSize="20sp"
                             android:textStyle="bold"
-                            android:layout_marginLeft="15dp"
+                            android:layout_marginStart="15dp"
+                            android:textColor="@color/grey"
                             />
                     </LinearLayout>
                 </LinearLayout>
@@ -289,7 +337,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/neutral_cradient"
+                android:background="@drawable/neutral_cradient1"
                 android:orientation="vertical"
                 android:paddingBottom="9dp"
                 >
@@ -298,6 +346,7 @@
                     android:layout_height="match_parent"
                     android:text="Адрес"
                     android:textSize="26dp"
+                    android:elegantTextHeight="true"
                     android:gravity="center"
                     android:textStyle="bold"
                     android:background="@color/blue_500"
@@ -314,46 +363,61 @@
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="9dp"
+                        android:layout_marginTop="8dp"
                         >
                         <TextView
-                            android:layout_width="180dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Место прописки"
-                            android:textSize="20dp"
+                            android:elegantTextHeight="true"
+                            android:layout_weight="0.52"
+                            android:textSize="20sp"
                             android:textStyle="bold"
+                            android:textColor="@color/grey"
                             />
                         <TextView
                             android:id="@+id/textview_const_address"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.45"
                             android:text=""
-                            android:textSize="20dp"
+                            android:layout_gravity="center|start"
+                            android:elegantTextHeight="true"
+                            android:textSize="20sp"
                             android:textStyle="bold"
-                            android:layout_marginLeft="15dp"
+                            android:layout_marginStart="15dp"
+                            android:textColor="@color/grey"
                             />
                     </LinearLayout>
                     <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="9dp"
+                        
                         >
                         <TextView
-                            android:layout_width="180dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.52"
                             android:text="Фактическое местопроживание"
-                            android:textSize="20dp"
+                            android:elegantTextHeight="true"
+                            android:breakStrategy="simple"
+                            android:textSize="20sp"
                             android:textStyle="bold"
+                            android:textColor="@color/grey"
                             />
                         <TextView
                             android:id="@+id/textview_actual_address"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.45"
                             android:text=""
-                            android:textSize="20dp"
+                            android:layout_gravity="center|start"
+                            android:elegantTextHeight="true"
+                            android:textSize="20sp"
                             android:textStyle="bold"
-                            android:layout_marginLeft="15dp"
+                            android:layout_marginStart="15dp"
+                            android:textColor="@color/grey"
                             />
                     </LinearLayout>
                 </LinearLayout>
@@ -372,7 +436,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/neutral_cradient"
+                android:background="@drawable/neutral_cradient1"
                 android:orientation="vertical"
                 >
                 <TextView
@@ -380,6 +444,7 @@
                     android:layout_height="match_parent"
                     android:text="Образование"
                     android:textSize="26dp"
+                    android:elegantTextHeight="true"
                     android:textStyle="bold"
                     android:gravity="center"
                     android:background="@color/blue_500"
@@ -396,92 +461,116 @@
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="9dp"
+                        android:layout_marginTop="8dp"
                         >
                         <TextView
-                            android:layout_width="180dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.52"
                             android:text="Тип образования"
-                            android:textSize="20dp"
+                            android:elegantTextHeight="true"
+                            android:textSize="20sp"
                             android:textStyle="bold"
+                            android:textColor="@color/grey"
                             />
                         <TextView
                             android:id="@+id/textview_id_education"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.45"
                             android:text=""
-                            android:textSize="20dp"
+                            android:layout_gravity="center|start"
+                            android:elegantTextHeight="true"
+                            android:textSize="20sp"
                             android:textStyle="bold"
-                            android:layout_marginLeft="15dp"
+                            android:layout_marginStart="15dp"
+                            android:textColor="@color/grey"
                             />
                     </LinearLayout>
                     <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="9dp"
                         >
                         <TextView
-                            android:layout_width="180dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.52"
                             android:text="Номер образовательного документа"
-                            android:textSize="20dp"
+                            android:elegantTextHeight="true"
+                            android:textSize="20sp"
                             android:textStyle="bold"
+                            android:textColor="@color/grey"
                             />
                         <TextView
                             android:id="@+id/textview_number_education"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.45"
                             android:text=""
-                            android:textSize="20dp"
+                            android:elegantTextHeight="true"
+                            android:layout_gravity="center|start"
+                            android:textSize="20sp"
                             android:textStyle="bold"
-                            android:layout_marginLeft="15dp"
+                            android:layout_marginStart="15dp"
+                            android:textColor="@color/grey"
                             />
                     </LinearLayout>
                     <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="9dp"
                         >
                         <TextView
-                            android:layout_width="180dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.52"
                             android:text="Регистрационный номер"
-                            android:textSize="20dp"
+                            android:elegantTextHeight="true"
+                            android:textSize="20sp"
                             android:textStyle="bold"
+                            android:textColor="@color/grey"
                             />
                         <TextView
                             android:id="@+id/textview_reg_number_education"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.45"
                             android:text=""
-                            android:textSize="20dp"
+                            android:elegantTextHeight="true"
+                            android:layout_gravity="center|start"
+                            android:textSize="20sp"
                             android:textStyle="bold"
-                            android:layout_marginLeft="15dp"
+                            android:layout_marginStart="15dp"
+                            android:textColor="@color/grey"
                             />
                     </LinearLayout>
                     <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="9dp"
                         >
                         <TextView
-                            android:layout_width="180dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.52"
                             android:text="Дата выдачи документа об образовании"
-                            android:textSize="20dp"
+                            android:textSize="20sp"
                             android:textStyle="bold"
+                            android:textColor="@color/grey"
                             />
                         <TextView
                             android:id="@+id/textview_date_of_issing_education"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.45"
                             android:text=""
-                            android:textSize="20dp"
+                            android:elegantTextHeight="true"
+                            android:layout_gravity="center|start"
+                            android:textSize="20sp"
                             android:textStyle="bold"
-                            android:layout_marginLeft="15dp"
+                            android:layout_marginStart="15dp"
+                            android:textColor="@color/grey"
                             />
                     </LinearLayout>
 
@@ -517,7 +606,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/neutral_cradient"
+                android:background="@drawable/neutral_cradient1"
                 android:orientation="vertical"
                 >
                 <TextView
@@ -525,36 +614,42 @@
                     android:layout_height="match_parent"
                     android:text="Привилегия"
                     android:textSize="26dp"
+                    android:elegantTextHeight="true"
                     android:gravity="center"
                     android:textStyle="bold"
                     android:background="@color/blue_500"
                     android:textColor="@color/white"
                     />
 
-
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="9dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginLeft="9dp"
                     android:layout_marginRight="9dp"
                     >
                     <TextView
-                        android:layout_width="180dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0.52"
                         android:text="Тип привилегии"
+                        android:elegantTextHeight="true"
                         android:textStyle="bold"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
+                        android:textColor="@color/grey"
                         />
                     <TextView
                         android:id="@+id/textview_privilege"
                         android:textStyle="bold"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0.45"
                         android:text=""
-                        android:textSize="20dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_gravity="center|start"
+                        android:textSize="20sp"
+                        android:layout_marginStart="15dp"
+                        android:textColor="@color/grey"
                         />
                 </LinearLayout>
 

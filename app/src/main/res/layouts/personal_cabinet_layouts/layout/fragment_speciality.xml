@@ -2,7 +2,6 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/scrollview_speciality_fragment"
-    android:background="@drawable/neutral_cradient"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
@@ -13,14 +12,14 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
         android:focusableInTouchMode="true" >
         <LinearLayout
             android:id="@+id/layout_speciality"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
             android:gravity="center"
             android:focusableInTouchMode="true" >
         </LinearLayout>
