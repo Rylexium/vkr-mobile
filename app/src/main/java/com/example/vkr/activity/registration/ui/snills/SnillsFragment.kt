@@ -24,6 +24,7 @@ import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DecodeFormat
 import com.example.vkr.activity.registration.RegistrationActivity
+import com.example.vkr.activity.registration.RegistrationActivity.Companion.sharedPreferences
 import com.example.vkr.databinding.FragmentSnillsBinding
 import com.example.vkr.utils.ConvertClass
 import com.example.vkr.utils.CorrectText
@@ -36,11 +37,15 @@ class SnillsFragment : Fragment() {
 
     private var _binding: FragmentSnillsBinding? = null
     private val binding get() = _binding!!
-    var sharedPreferences : SharedPreferences? = null
 
-    val KEY_SNILLS = "snills"
-    val KEY_PHOTO_SNILLS = "photoSnills"
+    companion object {
+        val KEY_SNILLS = "snills"
+        val KEY_PHOTO_SNILLS = "photoSnills"
 
+        fun isCorrectSnills(text: String): Boolean {
+            return text.length == 14 && Pattern.matches("^\\d{3}-\\d{3}-\\d{3} \\d{2}$", text)
+        }
+    }
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -50,7 +55,6 @@ class SnillsFragment : Fragment() {
         RegistrationActivity.previous.isEnabled = false
         _binding = FragmentSnillsBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        sharedPreferences = activity!!.getPreferences(Context.MODE_PRIVATE)
         applyEvents()
         lifecycleScope.launch { comebackAfterOnBackPressed() }
         return root
@@ -85,11 +89,11 @@ class SnillsFragment : Fragment() {
 
     private suspend fun comebackAfterOnBackPressed() {
         return coroutineScope {
-            val restoredText1 = sharedPreferences!!.getString(KEY_SNILLS, null)
+            val restoredText1 = sharedPreferences.getString(KEY_SNILLS, null)
             if (!TextUtils.isEmpty(restoredText1))
                 Handler(Looper.getMainLooper()).post { binding.textboxSnills.setText(restoredText1) }
 
-            val restoredText2 = sharedPreferences!!.getString(KEY_PHOTO_SNILLS, null)
+            val restoredText2 = sharedPreferences.getString(KEY_PHOTO_SNILLS, null)
             if (!TextUtils.isEmpty(restoredText2)) {
                 val bitmap = ConvertClass.convertStringToBitmap(restoredText2)
                 Handler(Looper.getMainLooper()).post {
@@ -123,13 +127,9 @@ class SnillsFragment : Fragment() {
         super.onStop()
     }
 
-    fun isCorrectSnills(text: String): Boolean {
-        return text.length == 14 && Pattern.matches("^\\d{3}-\\d{3}-\\d{3} \\d{2}$", text)
-    }
-
     private suspend fun saveLastState() {
         return coroutineScope {
-            sharedPreferences!!.edit()
+            sharedPreferences.edit()
                     .putString(KEY_SNILLS, binding.textboxSnills.text.toString())
                     .putString(KEY_PHOTO_SNILLS, ConvertClass.convertBitmapToString(binding.imageViewSnills.drawable?.toBitmap()))
                     .apply()
@@ -141,7 +141,7 @@ class SnillsFragment : Fragment() {
         _binding = null
     }
 
-    fun setVisibleNavigationBottomView(status : Boolean){
+    private fun setVisibleNavigationBottomView(status : Boolean){
         if(status) activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)!!.visibility = View.VISIBLE
         else activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)!!.visibility = View.GONE
     }

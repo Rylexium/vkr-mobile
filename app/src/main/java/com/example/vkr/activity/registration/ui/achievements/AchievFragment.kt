@@ -21,6 +21,7 @@ import androidx.core.view.get
 import androidx.lifecycle.lifecycleScope
 import com.example.vkr.R
 import com.example.vkr.activity.registration.RegistrationActivity
+import com.example.vkr.activity.registration.RegistrationActivity.Companion.sharedPreferences
 import com.example.vkr.databinding.FragmentAchievBinding
 import com.example.vkr.utils.ConvertClass
 import com.example.vkr.utils.EditLinearLayout
@@ -33,9 +34,10 @@ import kotlinx.coroutines.launch
 class AchievFragment: Fragment() {
     private var _binding: FragmentAchievBinding? = null
     private val binding get() = _binding!!
-    private var sharedPreferences : SharedPreferences? = null
-    val KEY_ACHIEVEMENT = "achievement_bitmap"
 
+    companion object {
+        val KEY_ACHIEVEMENT = "achievement_bitmap"
+    }
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -43,7 +45,6 @@ class AchievFragment: Fragment() {
     ): View {
         _binding = FragmentAchievBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        sharedPreferences = activity!!.getPreferences(Context.MODE_PRIVATE)
         applyEvents()
         RegistrationActivity.next.isEnabled = false
         RegistrationActivity.previous.isEnabled = false
@@ -72,7 +73,7 @@ class AchievFragment: Fragment() {
 
     private suspend fun comebackAfterOnBackPressed() {
         return coroutineScope {
-            val restoredText1 = sharedPreferences!!.getString(KEY_ACHIEVEMENT + "0", null)
+            val restoredText1 = sharedPreferences.getString(KEY_ACHIEVEMENT + "0", null)
             if(restoredText1 != null && restoredText1 != ""){
                 val bitmap = ConvertClass.convertStringToBitmap(restoredText1)
                 Handler(Looper.getMainLooper()).post {
@@ -80,7 +81,7 @@ class AchievFragment: Fragment() {
                 }
             }
 
-            val restoredText2 = sharedPreferences!!.getString(KEY_ACHIEVEMENT + "1", null)
+            val restoredText2 = sharedPreferences.getString(KEY_ACHIEVEMENT + "1", null)
             if(restoredText2 != null && restoredText2 != ""){
                 val bitmap = ConvertClass.convertStringToBitmap(restoredText2)
                 Handler(Looper.getMainLooper()).post {
@@ -88,7 +89,7 @@ class AchievFragment: Fragment() {
                 }
             }
 
-            val restoredText3 = sharedPreferences!!.getString(KEY_ACHIEVEMENT + "2", null)
+            val restoredText3 = sharedPreferences.getString(KEY_ACHIEVEMENT + "2", null)
             if(restoredText3 != null && restoredText3 != ""){
                 val bitmap = ConvertClass.convertStringToBitmap(restoredText3)
                 Handler(Looper.getMainLooper()).post {
@@ -96,7 +97,7 @@ class AchievFragment: Fragment() {
                 }
             }
 
-            val restoredText4 = sharedPreferences!!.getString(KEY_ACHIEVEMENT + "3", null)
+            val restoredText4 = sharedPreferences.getString(KEY_ACHIEVEMENT + "3", null)
             if(restoredText4 != null && restoredText4 != ""){
                 val bitmap = ConvertClass.convertStringToBitmap(restoredText4)
                 Handler(Looper.getMainLooper()).post {
@@ -104,7 +105,7 @@ class AchievFragment: Fragment() {
                 }
             }
 
-            val restoredText5 = sharedPreferences!!.getString(KEY_ACHIEVEMENT + "4", null)
+            val restoredText5 = sharedPreferences.getString(KEY_ACHIEVEMENT + "4", null)
             if(restoredText5 != null && restoredText5 != ""){
                 val bitmap = ConvertClass.convertStringToBitmap(restoredText5)
                 Handler(Looper.getMainLooper()).post {
@@ -123,12 +124,12 @@ class AchievFragment: Fragment() {
     @SuppressLint("CommitPrefEdits")
     private suspend fun saveLastState() {
         for(i in 0 until 5)
-            sharedPreferences!!.edit().putString(KEY_ACHIEVEMENT + i, "").apply()
+            sharedPreferences.edit().putString(KEY_ACHIEVEMENT + i, "").apply()
 
         return coroutineScope {
             if(binding.layoutForImagesAchievements.childCount == 0) return@coroutineScope
             for(i in 0 until binding.layoutForImagesAchievements.childCount)
-                sharedPreferences!!.edit()
+                sharedPreferences.edit()
                     .putString(KEY_ACHIEVEMENT + i, ConvertClass.convertBitmapToString(binding.layoutForImagesAchievements[i]
                         .findViewById<ImageView>(R.id.image_edit).drawable.toBitmap())).apply()
         }

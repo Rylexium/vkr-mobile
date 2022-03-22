@@ -1,7 +1,5 @@
 package com.example.vkr.activity.registration.ui.finish
 
-import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.util.Log
@@ -12,6 +10,7 @@ import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.common.Priority
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
+import com.example.vkr.activity.registration.RegistrationActivity.Companion.sharedPreferences
 import com.example.vkr.activity.registration.ui.achievements.AchievFragment
 import com.example.vkr.activity.registration.ui.education.EducationFragment
 import com.example.vkr.activity.registration.ui.passport1.Passport1Fragment
@@ -32,7 +31,6 @@ class FinishFragment : Fragment() {
     private var _binding: FragmentFinishBinding? = null
 
     private val binding get() = _binding!!
-    var sharedPreferences : SharedPreferences? = null
 
     var messageAboutUnique : String? = null
 
@@ -43,7 +41,6 @@ class FinishFragment : Fragment() {
     ): View {
 
         _binding = FragmentFinishBinding.inflate(inflater, container, false)
-        sharedPreferences = activity!!.getPreferences(Context.MODE_PRIVATE)
 
         fillStep1()
         fillStep2()
@@ -73,51 +70,53 @@ class FinishFragment : Fragment() {
     }
 
     private fun fillStep1() {
-        binding.finishLoginReg.text = sharedPreferences?.all?.get(RegistrationFragment().KEY_LOGIN).toString()
-        binding.finishPhoneReg.text = sharedPreferences?.all?.get(RegistrationFragment().KEY_PHONE).toString()
-        binding.finishEmailReg.text = sharedPreferences?.all?.get(RegistrationFragment().KEY_EMAIL).toString()
-        if(sharedPreferences?.all?.get(RegistrationFragment().KEY_PASS) == sharedPreferences?.all?.get(RegistrationFragment().KEY_PASS2))
-            binding.finishPassReg.text = "Совпадают"
-        else binding.finishPassReg.text = "Не совпадают"
+        binding.finishLoginReg.text = sharedPreferences.all[RegistrationFragment.KEY_LOGIN].toString()
+        binding.finishPhoneReg.text = sharedPreferences.all[RegistrationFragment.KEY_PHONE].toString()
+        binding.finishEmailReg.text = sharedPreferences.all[RegistrationFragment.KEY_EMAIL].toString()
+        when {
+            sharedPreferences.all[RegistrationFragment.KEY_PASS] == "" -> binding.finishPassReg.text = "Пароль пуст"
+            sharedPreferences.all[RegistrationFragment.KEY_PASS] == sharedPreferences.all[RegistrationFragment.KEY_PASS2] -> binding.finishPassReg.text = "Совпадают"
+            else -> binding.finishPassReg.text = "Не совпадают"
+        }
     }
     private fun fillStep2() {
-        binding.finishFamilyReg.text = sharedPreferences?.all?.get(Passport1Fragment().KEY_FAMILY).toString()
-        binding.finishNameReg.text = sharedPreferences?.all?.get(Passport1Fragment().KEY_NAME).toString()
-        binding.finishPatronymicReg.text = sharedPreferences?.all?.get(Passport1Fragment().KEY_PATRONYMIC).toString()
-        binding.finishDateOfBirthdayReg.text = sharedPreferences?.all?.get(Passport1Fragment().KEY_DATE_OF_BIRTH).toString()
-        binding.finishNationalityReg.text = sharedPreferences?.all?.get(Passport1Fragment().KEY_NAME_NATIONALITY).toString()
+        binding.finishFamilyReg.text = sharedPreferences.all[Passport1Fragment.KEY_FAMILY].toString()
+        binding.finishNameReg.text = sharedPreferences.all[Passport1Fragment.KEY_NAME].toString()
+        binding.finishPatronymicReg.text = sharedPreferences.all[Passport1Fragment.KEY_PATRONYMIC].toString()
+        binding.finishDateOfBirthdayReg.text = sharedPreferences.all[Passport1Fragment.KEY_DATE_OF_BIRTH].toString()
+        binding.finishNationalityReg.text = sharedPreferences.all[Passport1Fragment.KEY_NAME_NATIONALITY].toString()
 
-        val sex = sharedPreferences?.all?.get(Passport1Fragment().KEY_SEX).toString().split(" ")
+        val sex = sharedPreferences.all[Passport1Fragment.KEY_SEX].toString().split(" ")
         if(sex.size == 1) binding.finishSexReg.text = "Не указано"
         else binding.finishSexReg.text = sex[1]
     }
     private fun fillStep3() {
-        binding.finishNumberPassportReg.text = sharedPreferences?.all?.get(Passport2Fragment().KEY_PASSPORT_NUMBER).toString()
-        binding.finishSeriesPassportReg.text = sharedPreferences?.all?.get(Passport2Fragment().KEY_PASSPORT_SERIES).toString()
-        binding.finishDateOfIssuePassportReg.text = sharedPreferences?.all?.get(Passport2Fragment().KEY_DATE_ISSUING).toString()
-        binding.finishCodeUnitReg.text = sharedPreferences?.all?.get(Passport2Fragment().KEY_CODE_UNIT).toString()
+        binding.finishNumberPassportReg.text = sharedPreferences.all[Passport2Fragment.KEY_PASSPORT_NUMBER].toString()
+        binding.finishSeriesPassportReg.text = sharedPreferences.all[Passport2Fragment.KEY_PASSPORT_SERIES].toString()
+        binding.finishDateOfIssuePassportReg.text = sharedPreferences.all[Passport2Fragment.KEY_DATE_ISSUING].toString()
+        binding.finishCodeUnitReg.text = sharedPreferences.all[Passport2Fragment.KEY_CODE_UNIT].toString()
     }
 
     private fun fillStep4() {
-        binding.finishConstAddressReg.text = sharedPreferences?.all?.get(Passport3Fragment().KEY_POST_INDEX_REG).toString() + ", " +
-                sharedPreferences?.all?.get(Passport3Fragment().KEY_SUBJECT_REG).toString() + ", " +
-                sharedPreferences?.all?.get(Passport3Fragment().KEY_CITY_REG).toString() + ", " +
-                sharedPreferences?.all?.get(Passport3Fragment().KEY_RESIDENCE_STREET_REG).toString()
-        binding.finishActualAddressReg.text = sharedPreferences?.all?.get(Passport3Fragment().KEY_POST_INDEX_ACTUAL).toString() + ", " +
-                sharedPreferences?.all?.get(Passport3Fragment().KEY_SUBJECT_ACTUAL).toString() + ", " +
-                sharedPreferences?.all?.get(Passport3Fragment().KEY_CITY_ACTUAL).toString() + ", " +
-                sharedPreferences?.all?.get(Passport3Fragment().KEY_RESIDENCE_STREET_ACTUAL).toString()
+        binding.finishConstAddressReg.text = sharedPreferences.all[Passport3Fragment.KEY_POST_INDEX_REG].toString() + ", " +
+                sharedPreferences.all[Passport3Fragment.KEY_SUBJECT_REG].toString() + ", " +
+                sharedPreferences.all[Passport3Fragment.KEY_CITY_REG].toString() + ", " +
+                sharedPreferences.all[Passport3Fragment.KEY_RESIDENCE_STREET_REG].toString()
+        binding.finishActualAddressReg.text = sharedPreferences.all[Passport3Fragment.KEY_POST_INDEX_ACTUAL].toString() + ", " +
+                sharedPreferences.all[Passport3Fragment.KEY_SUBJECT_ACTUAL].toString() + ", " +
+                sharedPreferences.all[Passport3Fragment.KEY_CITY_ACTUAL].toString() + ", " +
+                sharedPreferences.all[Passport3Fragment.KEY_RESIDENCE_STREET_ACTUAL].toString()
     }
     private fun fillStep5() {
-        binding.finishSnillsReg.text = sharedPreferences?.all?.get(SnillsFragment().KEY_SNILLS).toString()
+        binding.finishSnillsReg.text = sharedPreferences.all[SnillsFragment.KEY_SNILLS].toString()
     }
     private fun fillStep6() {
-        binding.finishTypeOfEducationReg.text = sharedPreferences?.all?.get(EducationFragment().KEY_NAME_TYPE_EDUCATION).toString()
-        binding.finishNumberEducationReg.text = sharedPreferences?.all?.get(EducationFragment().KEY_ID_EDUCATION).toString()
-        binding.finishDateOfIssueEducationReg.text = sharedPreferences?.all?.get(EducationFragment().KEY_DATE_OF_ISSUE_OF_EDUCATION).toString()
+        binding.finishTypeOfEducationReg.text = sharedPreferences.all[EducationFragment.KEY_NAME_TYPE_EDUCATION].toString()
+        binding.finishNumberEducationReg.text = sharedPreferences.all[EducationFragment.KEY_ID_EDUCATION].toString()
+        binding.finishDateOfIssueEducationReg.text = sharedPreferences.all[EducationFragment.KEY_DATE_OF_ISSUE_OF_EDUCATION].toString()
     }
     private fun fillStep8() {
-        binding.finishPrivilegesReg.text = sharedPreferences?.all?.get(PrivilegesFragment().KEY_NAME_PRIVILEGES).toString()
+        binding.finishPrivilegesReg.text = sharedPreferences.all[PrivilegesFragment.KEY_NAME_PRIVILEGES].toString()
     }
 
 
@@ -156,7 +155,7 @@ class FinishFragment : Fragment() {
     private fun postUser(){
         val jsonObject = JSONObject()
         jsonObject.put("login", binding.finishLoginReg.text)
-            .put("password", HashPass.sha256(sharedPreferences?.all?.get("pass").toString() + HashPass.STATIC_SALT))
+            .put("password", HashPass.sha256(sharedPreferences.all["pass"].toString() + HashPass.STATIC_SALT))
             .put("salt1", "")
             .put("salt2", "")
             .put("id_abit", binding.finishSnillsReg.text.toString().replace("-", "").replace(" ", "").toLong())
@@ -195,7 +194,7 @@ class FinishFragment : Fragment() {
             .put("name", binding.finishNameReg.text)
             .put("patronymic", binding.finishPatronymicReg.text)
             .put("sex", sex)
-            .put("id_nationality", sharedPreferences?.all?.get("nationality").toString().toInt())
+            .put("id_nationality", sharedPreferences.all["nationality"].toString().toInt())
 
             .put("passport", (binding.finishSeriesPassportReg.text.toString().replace(" ", "")
                     + binding.finishNumberPassportReg.text).toLong())
@@ -203,24 +202,24 @@ class FinishFragment : Fragment() {
             .put("departament_code", binding.finishCodeUnitReg.text.toString().replace("-", "").toInt())
             .put("const_address", binding.finishConstAddressReg.text)
             .put("actual_address", binding.finishActualAddressReg.text)
-            .put("id_education", sharedPreferences?.all?.get(EducationFragment().KEY_TYPE_EDUCATION_POSITION).toString().toInt())
+            .put("id_education", sharedPreferences.all[EducationFragment.KEY_TYPE_EDUCATION_POSITION].toString().toInt())
             .put("number_education", binding.finishNumberEducationReg.text.toString().toLongOrNull())
-            .put("reg_number_education", sharedPreferences?.all?.get(EducationFragment().KEY_REGISTRATION_NUMBER)?.toString()?.toIntOrNull())
+            .put("reg_number_education", sharedPreferences.all[EducationFragment.KEY_REGISTRATION_NUMBER]?.toString()?.toIntOrNull())
             .put("date_of_issing_passport", binding.finishDateOfIssuePassportReg.text)
             .put("date_of_issing_education", binding.finishDateOfIssueEducationReg.text)
             .put("date_of_birthday", binding.finishDateOfBirthdayReg.text)
-            .put("id_privileges", sharedPreferences?.all?.get(PrivilegesFragment().KEY_SELECTED_PRIVILEGES).toString().toInt() + 1)
-            .put("passport1", sharedPreferences?.all?.get(Passport2Fragment().KEY_IMAGE_PASSPORT2).toString())
-            .put("passport2", sharedPreferences?.all?.get(Passport3Fragment().KEY_IMAGE_PASSPORT3).toString())
-            .put("snills", sharedPreferences?.all?.get(SnillsFragment().KEY_PHOTO_SNILLS).toString())
-            .put("education1", sharedPreferences?.all?.get(EducationFragment().KEY_EDUCATION_PICTURE1).toString())
-            .put("education2", sharedPreferences?.all?.get(EducationFragment().KEY_EDUCATION_PICTURE2).toString())
-            .put("achievement1", sharedPreferences?.all?.get(AchievFragment().KEY_ACHIEVEMENT + "0").toString())
-            .put("achievement2", sharedPreferences?.all?.get(AchievFragment().KEY_ACHIEVEMENT + "1").toString())
-            .put("achievement3", sharedPreferences?.all?.get(AchievFragment().KEY_ACHIEVEMENT + "2").toString())
-            .put("achievement4", sharedPreferences?.all?.get(AchievFragment().KEY_ACHIEVEMENT + "3").toString())
-            .put("achievement5", sharedPreferences?.all?.get(AchievFragment().KEY_ACHIEVEMENT + "4").toString())
-            .put("privileges", sharedPreferences?.all?.get(PrivilegesFragment().KEY_PRIVILIGE).toString())
+            .put("id_privileges", sharedPreferences.all[PrivilegesFragment.KEY_SELECTED_PRIVILEGES].toString().toInt() + 1)
+            .put("passport1", sharedPreferences.all[Passport2Fragment.KEY_IMAGE_PASSPORT2].toString())
+            .put("passport2", sharedPreferences.all[Passport3Fragment.KEY_IMAGE_PASSPORT3].toString())
+            .put("snills", sharedPreferences.all[SnillsFragment.KEY_PHOTO_SNILLS].toString())
+            .put("education1", sharedPreferences.all[EducationFragment.KEY_EDUCATION_PICTURE1].toString())
+            .put("education2", sharedPreferences.all[EducationFragment.KEY_EDUCATION_PICTURE2].toString())
+            .put("achievement1", sharedPreferences.all[AchievFragment.KEY_ACHIEVEMENT + "0"].toString())
+            .put("achievement2", sharedPreferences.all[AchievFragment.KEY_ACHIEVEMENT + "1"].toString())
+            .put("achievement3", sharedPreferences.all[AchievFragment.KEY_ACHIEVEMENT + "2"].toString())
+            .put("achievement4", sharedPreferences.all[AchievFragment.KEY_ACHIEVEMENT + "3"].toString())
+            .put("achievement5", sharedPreferences.all[AchievFragment.KEY_ACHIEVEMENT + "4"].toString())
+            .put("privileges", sharedPreferences.all[PrivilegesFragment.KEY_PRIVILIGE].toString())
 
 
         Log.e("", jsonObject.toString())
@@ -242,46 +241,46 @@ class FinishFragment : Fragment() {
 
 
 
-    private fun patternForEmpty(field:String) : Boolean{
+    private fun patternForEmpty(field:String) : Boolean {
         ShowToast.show(context, "Поле \"$field\" не может быть пустым")
         return false
     }
-    private fun patternForInvalidData(field : String) : Boolean{
+    private fun patternForInvalidData(field : String) : Boolean {
         ShowToast.show(context, "В поле \"$field\" некорректные данные")
         return false
     }
 
     private fun isValidRegistrationFragment() : Boolean {
         return when {
-            sharedPreferences?.all?.get(RegistrationFragment().KEY_LOGIN) == "" ->  patternForEmpty("Логин")
-            sharedPreferences?.all?.get(RegistrationFragment().KEY_EMAIL) == "" -> patternForEmpty("Email")
-            sharedPreferences?.all?.get(RegistrationFragment().KEY_PHONE) == "" -> patternForEmpty("Телефон")
-            sharedPreferences?.all?.get(RegistrationFragment().KEY_PASS) != sharedPreferences?.all?.get(RegistrationFragment().KEY_PASS2) -> {
+            sharedPreferences.all[RegistrationFragment.KEY_LOGIN] == "" ->  patternForEmpty("Логин")
+            sharedPreferences.all[RegistrationFragment.KEY_EMAIL] == "" -> patternForEmpty("Email")
+            sharedPreferences.all[RegistrationFragment.KEY_PHONE] == "" -> patternForEmpty("Телефон")
+            sharedPreferences.all[RegistrationFragment.KEY_PASS] != sharedPreferences.all[RegistrationFragment.KEY_PASS2] -> {
                 ShowToast.show(context, "Пароли не совпадают")
                 false
             }
-            sharedPreferences?.all?.get(RegistrationFragment().KEY_EMAIL)?.toString() != ""
-                    && !RegistrationFragment().isCorrectEmail(sharedPreferences?.all?.get(RegistrationFragment().KEY_EMAIL)?.toString()) ->
+            sharedPreferences.all[RegistrationFragment.KEY_EMAIL]?.toString() != ""
+                    && !RegistrationFragment.isCorrectEmail(sharedPreferences.all[RegistrationFragment.KEY_EMAIL].toString()) ->
                 patternForInvalidData("Почта")
-            sharedPreferences?.all?.get(RegistrationFragment().KEY_PHONE)?.toString() != ""
-                    && !RegistrationFragment().isCorrectPhone(sharedPreferences?.all?.get(RegistrationFragment().KEY_PHONE)?.toString()) ->
+            sharedPreferences.all[RegistrationFragment.KEY_PHONE]?.toString() != ""
+                    && !RegistrationFragment.isCorrectPhone(sharedPreferences.all[RegistrationFragment.KEY_PHONE].toString()) ->
                 patternForInvalidData("Номер телефона")
             else -> true
         }
     }
     private fun isValidPassport1Fragment() : Boolean {
         return when {
-            sharedPreferences?.all?.get(Passport1Fragment().KEY_FAMILY) == "" -> patternForEmpty("Фамилия")
-            sharedPreferences?.all?.get(Passport1Fragment().KEY_FAMILY)?.toString()?.length!! < 2 -> patternForInvalidData("Фамилия")
-            sharedPreferences?.all?.get(Passport1Fragment().KEY_NAME) == "" -> patternForEmpty("Имя")
-            sharedPreferences?.all?.get(Passport1Fragment().KEY_NAME)?.toString()?.length!! < 2 -> patternForInvalidData("Имя")
+            sharedPreferences.all[Passport1Fragment.KEY_FAMILY] == "" -> patternForEmpty("Фамилия")
+            sharedPreferences.all[Passport1Fragment.KEY_FAMILY]?.toString()?.length!! < 2 -> patternForInvalidData("Фамилия")
+            sharedPreferences.all[Passport1Fragment.KEY_NAME] == "" -> patternForEmpty("Имя")
+            sharedPreferences.all[Passport1Fragment.KEY_NAME].toString().length < 2 -> patternForInvalidData("Имя")
 
-            sharedPreferences?.all?.get(Passport1Fragment().KEY_PATRONYMIC)?.toString() != ""
-                    && sharedPreferences?.all?.get(Passport1Fragment().KEY_PATRONYMIC)?.toString()?.length!! < 2 -> patternForInvalidData("Отчество")
+            sharedPreferences.all[Passport1Fragment.KEY_PATRONYMIC]?.toString() != ""
+                    && sharedPreferences.all[Passport1Fragment.KEY_PATRONYMIC]?.toString()?.length!! < 2 -> patternForInvalidData("Отчество")
 
-            sharedPreferences?.all?.get(Passport1Fragment().KEY_DATE_OF_BIRTH) == "" -> patternForEmpty("Дата рождения")
-            sharedPreferences?.all?.get(Passport1Fragment().KEY_SEX) == "" -> patternForEmpty("Пол")
-            sharedPreferences?.all?.get(Passport1Fragment().KEY_NATIONALITY).toString() == "0" -> {
+            sharedPreferences.all[Passport1Fragment.KEY_DATE_OF_BIRTH] == "" -> patternForEmpty("Дата рождения")
+            sharedPreferences.all[Passport1Fragment.KEY_SEX] == "" -> patternForEmpty("Пол")
+            sharedPreferences.all[Passport1Fragment.KEY_NATIONALITY].toString() == "0" -> {
                 ShowToast.show(context, "Вы не выбрали своё гражданство")
                 false
             }
@@ -290,42 +289,42 @@ class FinishFragment : Fragment() {
     }
     private fun isValidPassport2Fragment() : Boolean {
         return when {
-            sharedPreferences?.all?.get(Passport2Fragment().KEY_PASSPORT_SERIES) == "" -> patternForEmpty("Серия паспорта")
-            sharedPreferences?.all?.get(Passport2Fragment().KEY_PASSPORT_SERIES).toString().length < 5 -> patternForInvalidData("Серия паспорта")
-            sharedPreferences?.all?.get(Passport2Fragment().KEY_PASSPORT_NUMBER) == "" -> patternForEmpty("Номер паспорта")
-            sharedPreferences?.all?.get(Passport2Fragment().KEY_PASSPORT_NUMBER).toString().length < 6 -> patternForInvalidData("Номер паспорта")
-            sharedPreferences?.all?.get(Passport2Fragment().KEY_CODE_UNIT) == "" -> patternForEmpty("Код подразделения")
-            sharedPreferences?.all?.get(Passport2Fragment().KEY_CODE_UNIT).toString().length < 7 -> patternForInvalidData("Код подразделения")
-            sharedPreferences?.all?.get(Passport2Fragment().KEY_DATE_ISSUING) == "" -> {
+            sharedPreferences.all[Passport2Fragment.KEY_PASSPORT_SERIES] == "" -> patternForEmpty("Серия паспорта")
+            sharedPreferences.all[Passport2Fragment.KEY_PASSPORT_SERIES].toString().length < 5 -> patternForInvalidData("Серия паспорта")
+            sharedPreferences.all[Passport2Fragment.KEY_PASSPORT_NUMBER] == "" -> patternForEmpty("Номер паспорта")
+            sharedPreferences.all[Passport2Fragment.KEY_PASSPORT_NUMBER].toString().length < 6 -> patternForInvalidData("Номер паспорта")
+            sharedPreferences.all[Passport2Fragment.KEY_CODE_UNIT] == "" -> patternForEmpty("Код подразделения")
+            sharedPreferences.all[Passport2Fragment.KEY_CODE_UNIT].toString().length < 7 -> patternForInvalidData("Код подразделения")
+            sharedPreferences.all[Passport2Fragment.KEY_DATE_ISSUING] == "" -> {
                 ShowToast.show(context, "Вы не выбрали дату выдачи паспорта")
                 false
             }
             else -> true
         }
     }
-    private fun isValidPassport3Fragment() : Boolean{
+    private fun isValidPassport3Fragment() : Boolean {
         return when {
-            sharedPreferences?.all?.get(Passport3Fragment().KEY_POST_INDEX_REG) == "" -> patternForEmpty("Почтовый индекс")
-            sharedPreferences?.all?.get(Passport3Fragment().KEY_SUBJECT_REG) == "" -> patternForEmpty("Субъект")
-            sharedPreferences?.all?.get(Passport3Fragment().KEY_CITY_REG) == "" -> patternForEmpty("Населённый пункт")
-            sharedPreferences?.all?.get(Passport3Fragment().KEY_RESIDENCE_STREET_REG) == "" -> patternForEmpty("Улица")
+            sharedPreferences.all[Passport3Fragment.KEY_POST_INDEX_REG] == "" -> patternForEmpty("Почтовый индекс")
+            sharedPreferences.all[Passport3Fragment.KEY_SUBJECT_REG] == "" -> patternForEmpty("Субъект")
+            sharedPreferences.all[Passport3Fragment.KEY_CITY_REG] == "" -> patternForEmpty("Населённый пункт")
+            sharedPreferences.all[Passport3Fragment.KEY_RESIDENCE_STREET_REG] == "" -> patternForEmpty("Улица")
             else -> true
         }
 
     }
-    private fun isValidSnillsFragment() : Boolean{
+    private fun isValidSnillsFragment() : Boolean {
         return when {
-            sharedPreferences?.all?.get(SnillsFragment().KEY_SNILLS) == "" -> patternForEmpty("СНИЛС")
-            !SnillsFragment().isCorrectSnills(sharedPreferences?.all?.get(SnillsFragment().KEY_SNILLS).toString()) -> patternForInvalidData("СНИЛС")
+            sharedPreferences.all[SnillsFragment.KEY_SNILLS] == "" -> patternForEmpty("СНИЛС")
+            !SnillsFragment.isCorrectSnills(sharedPreferences.all[SnillsFragment.KEY_SNILLS].toString()) -> patternForInvalidData("СНИЛС")
             else -> true
         }
 
     }
     private fun isValidEducationFragment() : Boolean {
         return when {
-            sharedPreferences?.all?.get(EducationFragment().KEY_TYPE_EDUCATION_POSITION).toString() == "0" -> patternForEmpty("Тип обучения")
-            sharedPreferences?.all?.get(EducationFragment().KEY_ID_EDUCATION) == "" -> patternForEmpty("Номер документа")
-            sharedPreferences?.all?.get(EducationFragment().KEY_DATE_OF_ISSUE_OF_EDUCATION) == "" -> patternForEmpty("Дата выдачи")
+            sharedPreferences.all[EducationFragment.KEY_TYPE_EDUCATION_POSITION].toString() == "0" -> patternForEmpty("Тип обучения")
+            sharedPreferences.all[EducationFragment.KEY_ID_EDUCATION] == "" -> patternForEmpty("Номер документа")
+            sharedPreferences.all[EducationFragment.KEY_DATE_OF_ISSUE_OF_EDUCATION] == "" -> patternForEmpty("Дата выдачи")
             else -> true
         }
     }

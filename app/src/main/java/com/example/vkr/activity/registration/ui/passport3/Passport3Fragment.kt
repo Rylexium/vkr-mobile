@@ -23,6 +23,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DecodeFormat
 import com.example.vkr.R
 import com.example.vkr.activity.registration.RegistrationActivity
+import com.example.vkr.activity.registration.RegistrationActivity.Companion.sharedPreferences
 import com.example.vkr.databinding.FragmentPassport3Binding
 import com.example.vkr.utils.ConvertClass
 import com.example.vkr.utils.SelectImageClass
@@ -37,21 +38,21 @@ class Passport3Fragment : Fragment() {
     private var _binding: FragmentPassport3Binding? = null
     private val binding get() = _binding!!
 
-    var sharedPreferences: SharedPreferences? = null
     private var isYes = false
 
-    val KEY_POST_INDEX_REG = "postIndexReg"
-    val KEY_SUBJECT_REG = "subjectReg"
-    val KEY_CITY_REG = "cityReg"
-    val KEY_RESIDENCE_STREET_REG = "residenceStreetReg"
+    companion object {
+        val KEY_POST_INDEX_REG = "postIndexReg"
+        val KEY_SUBJECT_REG = "subjectReg"
+        val KEY_CITY_REG = "cityReg"
+        val KEY_RESIDENCE_STREET_REG = "residenceStreetReg"
 
-    val KEY_POST_INDEX_ACTUAL = "postIndexActual"
-    val KEY_SUBJECT_ACTUAL = "subjectActual"
-    val KEY_CITY_ACTUAL = "cityActual"
-    val KEY_RESIDENCE_STREET_ACTUAL = "residenceStreetActual"
-    val KEY_IS_YES = "isYes"
-    val KEY_IMAGE_PASSPORT3 = "imagePassport3"
-
+        val KEY_POST_INDEX_ACTUAL = "postIndexActual"
+        val KEY_SUBJECT_ACTUAL = "subjectActual"
+        val KEY_CITY_ACTUAL = "cityActual"
+        val KEY_RESIDENCE_STREET_ACTUAL = "residenceStreetActual"
+        val KEY_IS_YES = "isYes"
+        val KEY_IMAGE_PASSPORT3 = "imagePassport3"
+    }
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -61,7 +62,6 @@ class Passport3Fragment : Fragment() {
         RegistrationActivity.previous.isEnabled = false
         _binding = FragmentPassport3Binding.inflate(inflater, container, false)
         val root: View = binding.root
-        sharedPreferences = requireActivity().getPreferences(MODE_PRIVATE)
         applyEvents()
 
         val listOfSubject = listOf(resources.getString(R.string.subject_of_russia))[0].split(";")
@@ -123,7 +123,7 @@ class Passport3Fragment : Fragment() {
                 wrapper(KEY_CITY_ACTUAL, binding.textboxCityActual::setText)
                 wrapper(KEY_RESIDENCE_STREET_ACTUAL, binding.textboxResidenceStreetActual::setText)
             }
-            val str: String? = sharedPreferences!!.getString(KEY_IMAGE_PASSPORT3, null)
+            val str: String? = sharedPreferences.getString(KEY_IMAGE_PASSPORT3, null)
             if (str != null && str != "") {
                 val bitmap = ConvertClass.convertStringToBitmap(str)
                 Handler(Looper.getMainLooper()).post {
@@ -149,7 +149,7 @@ class Passport3Fragment : Fragment() {
     }
 
     private fun wrapper(key: String, editText: Consumer<String>) {
-        Optional.ofNullable(sharedPreferences?.getString(key, null))
+        Optional.ofNullable(sharedPreferences.getString(key, null))
                 .ifPresent(editText)
     }
 
@@ -183,7 +183,7 @@ class Passport3Fragment : Fragment() {
 
     private suspend fun saveLastState() {
         return coroutineScope {
-            sharedPreferences!!.edit().putString(KEY_POST_INDEX_REG, binding.textboxPostIndexReg.text.toString())
+            sharedPreferences.edit().putString(KEY_POST_INDEX_REG, binding.textboxPostIndexReg.text.toString())
                     .putString(KEY_SUBJECT_REG, binding.textboxSubjectReg.text.toString())
                     .putString(KEY_CITY_REG, binding.textboxCityReg.text.toString())
                     .putString(KEY_RESIDENCE_STREET_REG, binding.textboxResidenceStreetReg.text.toString())

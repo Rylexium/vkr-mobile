@@ -23,6 +23,7 @@ import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONArrayRequestListener
 import com.example.vkr.R
 import com.example.vkr.activity.registration.RegistrationActivity
+import com.example.vkr.activity.registration.RegistrationActivity.Companion.sharedPreferences
 import com.example.vkr.databinding.FragmentPrivilegesBinding
 import com.example.vkr.utils.*
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -36,13 +37,13 @@ import kotlin.coroutines.suspendCoroutine
 class PrivilegesFragment : Fragment() {
     private var _binding: FragmentPrivilegesBinding? = null
     private val binding get() = _binding!!
-    var sharedPreferences: SharedPreferences? = null
-    var listPrivileges: MutableList<String> = ArrayList()
-
-    val KEY_SELECTED_PRIVILEGES = "selectedItemPositionPrivilege"
-    val KEY_NAME_PRIVILEGES = "name_privileges"
-    val KEY_PRIVILIGE = "privilege_bitmap"
+    private var listPrivileges: MutableList<String> = ArrayList()
     private var bitmap: Bitmap? = null
+    companion object {
+        val KEY_SELECTED_PRIVILEGES = "selectedItemPositionPrivilege"
+        val KEY_NAME_PRIVILEGES = "name_privileges"
+        val KEY_PRIVILIGE = "privilege_bitmap"
+    }
 
     override fun onCreateView(
             inflater: LayoutInflater,

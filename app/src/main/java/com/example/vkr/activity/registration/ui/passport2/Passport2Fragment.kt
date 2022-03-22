@@ -25,6 +25,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DecodeFormat
 import com.example.vkr.R
 import com.example.vkr.activity.registration.RegistrationActivity
+import com.example.vkr.activity.registration.RegistrationActivity.Companion.sharedPreferences
 import com.example.vkr.databinding.FragmentPassport2Binding
 import com.example.vkr.utils.*
 import kotlinx.coroutines.coroutineScope
@@ -38,14 +39,13 @@ class Passport2Fragment : Fragment() {
     private var _binding: FragmentPassport2Binding? = null
 
     private val binding get() = _binding!!
-
-    var sharedPreferences: SharedPreferences? = null
-
-    val KEY_PASSPORT_SERIES = "passport_series"
-    val KEY_DATE_ISSUING = "date_issuing"
-    val KEY_PASSPORT_NUMBER = "passport_number"
-    val KEY_CODE_UNIT = "code_unit"
-    val KEY_IMAGE_PASSPORT2 = "imagePassport2"
+    companion object {
+        val KEY_PASSPORT_SERIES = "passport_series"
+        val KEY_DATE_ISSUING = "date_issuing"
+        val KEY_PASSPORT_NUMBER = "passport_number"
+        val KEY_CODE_UNIT = "code_unit"
+        val KEY_IMAGE_PASSPORT2 = "imagePassport2"
+    }
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -56,7 +56,6 @@ class Passport2Fragment : Fragment() {
         RegistrationActivity.previous.isEnabled = false
         _binding = FragmentPassport2Binding.inflate(inflater, container, false)
         val root: View = binding.root
-        sharedPreferences = requireActivity().getPreferences(MODE_PRIVATE)
         applyEvents()
         lifecycleScope.launch { comebackAfterOnBackPressed() }
         return root
@@ -80,7 +79,7 @@ class Passport2Fragment : Fragment() {
                 else binding.textboxCodeUnit.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
             }
 
-            val str: String? = sharedPreferences!!.getString(KEY_IMAGE_PASSPORT2, null)
+            val str: String? = sharedPreferences.getString(KEY_IMAGE_PASSPORT2, null)
             if (str != null) {
                 val bitmap = ConvertClass.convertStringToBitmap(str)
                 Handler(Looper.getMainLooper()).post {
@@ -100,7 +99,7 @@ class Passport2Fragment : Fragment() {
         }
     }
     private fun wrapper(key: String, editText: Consumer<String>) {
-        Optional.ofNullable(sharedPreferences!!.getString(key, null))
+        Optional.ofNullable(sharedPreferences.getString(key, null))
                 .ifPresent(editText)
     }
 
@@ -149,7 +148,7 @@ class Passport2Fragment : Fragment() {
 
     private suspend fun saveLastState() {
         return coroutineScope {
-            sharedPreferences!!.edit()
+            sharedPreferences.edit()
                 .putString(KEY_PASSPORT_SERIES, binding.textboxPassportSeries.text.toString())
                 .putString(KEY_DATE_ISSUING, binding.textboxDateIssuingOfPassport.text.toString())
                 .putString(KEY_PASSPORT_NUMBER, binding.textboxPassportNumber.text.toString())

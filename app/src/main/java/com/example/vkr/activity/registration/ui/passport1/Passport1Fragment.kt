@@ -17,11 +17,13 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.TextView
+import androidx.lifecycle.lifecycleScope
 import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.common.Priority
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONArrayRequestListener
 import com.example.vkr.R
+import com.example.vkr.activity.registration.RegistrationActivity.Companion.sharedPreferences
 import com.example.vkr.databinding.FragmentPassport1Binding
 import com.example.vkr.utils.*
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -39,17 +41,17 @@ class Passport1Fragment : Fragment() {
     private var _binding: FragmentPassport1Binding? = null
 
     private val binding get() = _binding!!
-
-    var sharedPreferences : SharedPreferences? = null
-
-    val KEY_NAME = "name"
-    val KEY_FAMILY = "family"
-    val KEY_PATRONYMIC = "patronymic"
-    val KEY_SEX = "sex"
-    val KEY_DATE_OF_BIRTH = "date_of_birth"
-    val KEY_NATIONALITY = "nationality"
-    val KEY_NAME_NATIONALITY = "name_nationality"
     var listRes: MutableList<String> = ArrayList()
+
+    companion object {
+        val KEY_NAME = "name"
+        val KEY_FAMILY = "family"
+        val KEY_PATRONYMIC = "patronymic"
+        val KEY_SEX = "sex"
+        val KEY_DATE_OF_BIRTH = "date_of_birth"
+        val KEY_NATIONALITY = "nationality"
+        val KEY_NAME_NATIONALITY = "name_nationality"
+    }
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -58,7 +60,6 @@ class Passport1Fragment : Fragment() {
     ): View {
 
         _binding = FragmentPassport1Binding.inflate(inflater, container, false)
-        sharedPreferences = activity?.getPreferences(MODE_PRIVATE)
         initComponents()
         comebackAfterOnBackPressed()
         applyEvents()
@@ -66,7 +67,7 @@ class Passport1Fragment : Fragment() {
     }
 
     private fun downloadNationalitys(){
-        GlobalScope.launch {
+        lifecycleScope.launch {
             run tryToDownload@{
                 repeat(1001) { if (isDownloadNationalitys()) return@tryToDownload }
             }
@@ -113,8 +114,8 @@ class Passport1Fragment : Fragment() {
             binding.radiobuttonSex.isChecked = binding.radiobuttonSex.text.equals("Пол: Мужской")
         }
         wrapper(KEY_DATE_OF_BIRTH, binding.textboxDateOfBirth::setText)
-        if (sharedPreferences?.getString(KEY_NATIONALITY, null) != null) {
-            binding.listboxNationality.setSelection(sharedPreferences?.getString(KEY_NATIONALITY, null)!!.toInt())
+        if (sharedPreferences.getString(KEY_NATIONALITY, null) != null) {
+            binding.listboxNationality.setSelection(sharedPreferences.getString(KEY_NATIONALITY, null)!!.toInt())
         }
         if (binding.textboxFamilyReg.text?.length!! < 2) binding.textboxFamilyReg.setTextColor(Color.RED)
         else binding.textboxFamilyReg.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
@@ -128,7 +129,7 @@ class Passport1Fragment : Fragment() {
     }
 
     private fun wrapper(key: String, editText: Consumer<String>) {
-        Optional.ofNullable(sharedPreferences!!.getString(key, null))
+        Optional.ofNullable(sharedPreferences.getString(key, null))
                 .ifPresent(editText)
     }
 
@@ -187,7 +188,7 @@ class Passport1Fragment : Fragment() {
         var selectedItem = binding.listboxNationality.selectedItem?.toString()
         if(binding.listboxNationality.selectedItem == null) selectedItem = ""
 
-        sharedPreferences!!.edit()
+        sharedPreferences.edit()
                 .putString(KEY_NAME, binding.textboxNameReg.text.toString())
                 .putString(KEY_FAMILY, binding.textboxFamilyReg.text.toString())
                 .putString(KEY_PATRONYMIC, binding.textboxPatronymicReg.text.toString())

@@ -1,10 +1,7 @@
 package com.example.vkr.activity.registration.ui.registration
 
-import android.content.Context
-import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.fragment.app.Fragment
 import androidx.core.content.ContextCompat
@@ -12,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.vkr.R
+import com.example.vkr.activity.registration.RegistrationActivity.Companion.sharedPreferences
 import com.example.vkr.databinding.RegistrationFragmentBinding
 import com.example.vkr.utils.CorrectText
 import java.util.*
@@ -23,14 +21,21 @@ class RegistrationFragment : Fragment() {
     private var _binding: RegistrationFragmentBinding? = null
 
     private val binding get() = _binding!!
-    private var isAgree : Boolean = false;
-    var sharedPreferences : SharedPreferences? = null
-    val KEY_PHONE = "phone"
-    val KEY_EMAIL = "email"
-    val KEY_LOGIN = "login"
-    val KEY_PASS = "pass"
-    val KEY_PASS2 = "pass2"
+    companion object {
+        var isAgree : Boolean = false
+        val KEY_PHONE = "phone"
+        val KEY_EMAIL = "email"
+        val KEY_LOGIN = "login"
+        val KEY_PASS = "pass"
+        val KEY_PASS2 = "pass2"
+        fun isCorrectPhone(text: String?): Boolean {
+            return text?.length == 18 && Pattern.matches("^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}", text)
+        }
 
+        fun isCorrectEmail(text: String?): Boolean {
+            return Pattern.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", text!!)
+        }
+    }
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -38,7 +43,6 @@ class RegistrationFragment : Fragment() {
     ): View {
         _binding = RegistrationFragmentBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        sharedPreferences = activity!!.getPreferences(Context.MODE_PRIVATE)
         applyEvents()
         comebackAfterOnBackPressed()
         return root
@@ -83,14 +87,6 @@ class RegistrationFragment : Fragment() {
         binding.textboxPhone.addTextChangedListener(CorrectText(binding.textboxPhone, "+7 (###) ##-##-###"))
     }
 
-    fun isCorrectPhone(text: String?): Boolean {
-        return text?.length == 18 && Pattern.matches("^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}", text)
-    }
-
-    fun isCorrectEmail(text: String?): Boolean {
-        return Pattern.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", text!!)
-    }
-
     private fun setVisibleNavigationBottomView(status : Boolean){
         if(status) activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)!!.visibility = View.VISIBLE
         else activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)!!.visibility = View.GONE
@@ -115,7 +111,7 @@ class RegistrationFragment : Fragment() {
     }
 
     private fun wrapper(key: String, editText: Consumer<String>) {
-        Optional.ofNullable(sharedPreferences!!.getString(key, null))
+        Optional.ofNullable(sharedPreferences.getString(key, null))
                 .ifPresent(editText)
     }
 
@@ -125,7 +121,7 @@ class RegistrationFragment : Fragment() {
     }
 
     private fun saveLastState() {
-        sharedPreferences!!.edit()
+        sharedPreferences.edit()
                 .putString(KEY_PHONE, binding.textboxPhone.text.toString()) //запоминаем введённые данные
                 .putString(KEY_EMAIL, binding.textboxEmail.text.toString())
                 .putString(KEY_LOGIN, binding.textboxLoginReg.text.toString())

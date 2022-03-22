@@ -29,6 +29,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DecodeFormat
 import com.example.vkr.R
 import com.example.vkr.activity.registration.RegistrationActivity
+import com.example.vkr.activity.registration.RegistrationActivity.Companion.sharedPreferences
 import com.example.vkr.databinding.FragmentEducationBinding
 import com.example.vkr.utils.*
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -45,22 +46,20 @@ import kotlin.coroutines.suspendCoroutine
 class EducationFragment: Fragment() {
     private var _binding: FragmentEducationBinding? = null
     private val binding get() = _binding!!
-    var sharedPreferences : SharedPreferences? = null
     private var bitmap1 : Bitmap? = null
     private var bitmap2 : Bitmap? = null
     var listRes: MutableList<String> = ArrayList()
 
     companion object {
-        @JvmStatic var PIC_CODE : Int = 0
+        var PIC_CODE : Int = 0
+        val KEY_TYPE_EDUCATION_POSITION = "selected_position"
+        val KEY_NAME_TYPE_EDUCATION = "name_type_education"
+        val KEY_ID_EDUCATION = "id_education"
+        val KEY_DATE_OF_ISSUE_OF_EDUCATION = "date_of_issue_of_education"
+        val KEY_REGISTRATION_NUMBER = "registration_number"
+        val KEY_EDUCATION_PICTURE1 = "educationPicture1"
+        val KEY_EDUCATION_PICTURE2 = "educationPicture2"
     }
-
-    val KEY_TYPE_EDUCATION_POSITION = "selected_position"
-    val KEY_NAME_TYPE_EDUCATION = "name_type_education"
-    val KEY_ID_EDUCATION = "id_education"
-    val KEY_DATE_OF_ISSUE_OF_EDUCATION = "date_of_issue_of_education"
-    val KEY_REGISTRATION_NUMBER = "registration_number"
-    val KEY_EDUCATION_PICTURE1 = "educationPicture1"
-    val KEY_EDUCATION_PICTURE2 = "educationPicture2"
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -71,7 +70,6 @@ class EducationFragment: Fragment() {
         RegistrationActivity.next.isEnabled = false
         RegistrationActivity.previous.isEnabled = false
         val root: View = binding.root
-        sharedPreferences = activity!!.getPreferences(MODE_PRIVATE)
         initComponents()
         applyEvents()
         lifecycleScope.launch { comebackAfterOnBackPressed() }
@@ -114,7 +112,7 @@ class EducationFragment: Fragment() {
 
     private suspend fun comebackAfterOnBackPressed() {
         return coroutineScope {
-            val restoredText1 = sharedPreferences!!.getString(KEY_TYPE_EDUCATION_POSITION, null)
+            val restoredText1 = sharedPreferences.getString(KEY_TYPE_EDUCATION_POSITION, null)
             Handler(Looper.getMainLooper()).post {
                 binding.listboxDocumentsOfEducation.setSelection(restoredText1?.toInt() ?: 0)
                 wrapper(KEY_ID_EDUCATION, binding.textboxIdEducation::setText)
@@ -122,7 +120,7 @@ class EducationFragment: Fragment() {
                 wrapper(KEY_REGISTRATION_NUMBER, binding.textboxRegistrationNumber::setText)
             }
 
-            val restoredText2 = sharedPreferences!!.getString(KEY_EDUCATION_PICTURE1, null)
+            val restoredText2 = sharedPreferences.getString(KEY_EDUCATION_PICTURE1, null)
             if (restoredText2 != null) {
                 bitmap1 = ConvertClass.convertStringToBitmap(restoredText2)
                 Handler(Looper.getMainLooper()).post {
@@ -133,7 +131,7 @@ class EducationFragment: Fragment() {
                         .into(binding.educationDocument1)
                 }
             }
-            val restoredText3 = sharedPreferences!!.getString(KEY_EDUCATION_PICTURE2, null)
+            val restoredText3 = sharedPreferences.getString(KEY_EDUCATION_PICTURE2, null)
             if (restoredText3 != null) {
                 bitmap2 = ConvertClass.convertStringToBitmap(restoredText3)
                 Handler(Looper.getMainLooper()).post {
@@ -153,7 +151,7 @@ class EducationFragment: Fragment() {
         }
     }
     private fun wrapper(key: String, editText: Consumer<String>) {
-        Optional.ofNullable(sharedPreferences!!.getString(key, null))
+        Optional.ofNullable(sharedPreferences.getString(key, null))
                 .ifPresent(editText)
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -204,7 +202,7 @@ class EducationFragment: Fragment() {
         var selectedItem = binding.listboxDocumentsOfEducation.selectedItem?.toString()
         if(binding.listboxDocumentsOfEducation.selectedItem == null) selectedItem = ""
 
-        sharedPreferences!!.edit()
+        sharedPreferences.edit()
             .putString(KEY_TYPE_EDUCATION_POSITION, binding.listboxDocumentsOfEducation.selectedItemPosition.toString())
             .putString(KEY_NAME_TYPE_EDUCATION, selectedItem)
             .putString(KEY_ID_EDUCATION, binding.textboxIdEducation.text.toString())
@@ -213,7 +211,7 @@ class EducationFragment: Fragment() {
             .apply()
 
         return coroutineScope {
-            sharedPreferences!!.edit()
+            sharedPreferences.edit()
                 .putString(KEY_EDUCATION_PICTURE1, ConvertClass.convertBitmapToString(bitmap1))
                 .putString(KEY_EDUCATION_PICTURE2, ConvertClass.convertBitmapToString(bitmap2))
                 .apply()
@@ -251,7 +249,7 @@ class EducationFragment: Fragment() {
                 binding.listboxDocumentsOfEducation.adapter =
                     MySpinnerAdapter(context!!, R.layout.spinner_item, listRes)
 
-                val restoredText = sharedPreferences!!.getString(KEY_TYPE_EDUCATION_POSITION, null)
+                val restoredText = sharedPreferences.getString(KEY_TYPE_EDUCATION_POSITION, null)
 
                 if (restoredText != null) binding.listboxDocumentsOfEducation.setSelection(restoredText.toInt())
             }

@@ -41,12 +41,15 @@ class SplashScreen : AppCompatActivity() {
         setContentView(R.layout.splash_screen_activity)
         val logoImageView = findViewById<ImageView>(R.id.splash_logo)
         val mainLayout = findViewById<LinearLayout>(R.id.splash_layout_main)
+        // FIXME: подумать над кодировкой и добавить фото Ксюши, и тэг "сам знаешь кто здесь должен быть" (mini97)
+        // FIXME: подумать над вероятностью появления каждой картинки
+        // FIXME: sharedPreference в registration сделать общий 
         when(Random.nextInt(1, 4)){
             1 -> {
                 mainLayout.setBackgroundColor(applicationContext.getColor(R.color.color_for_splash_screen1))
                 Glide.with(this)
                     .load(R.drawable.splash_screen1)
-                    .format(DecodeFormat.PREFER_ARGB_8888)
+                    .format(DecodeFormat.PREFER_RGB_565)
                     .into(logoImageView)
                 window.navigationBarColor = applicationContext.getColor(R.color.blue_700)
                 window.statusBarColor = applicationContext.getColor(R.color.blue_700)
@@ -55,7 +58,7 @@ class SplashScreen : AppCompatActivity() {
                 mainLayout.setBackgroundColor(applicationContext.getColor(R.color.color_for_splash_screen2))
                 Glide.with(this)
                     .load(R.drawable.splash_screen2)
-                    .format(DecodeFormat.PREFER_ARGB_8888)
+                    .format(DecodeFormat.PREFER_RGB_565)
                     .into(logoImageView)
                 window.navigationBarColor = Color.parseColor("#000080")
                 window.statusBarColor = Color.parseColor("#000080")
@@ -64,7 +67,7 @@ class SplashScreen : AppCompatActivity() {
                 mainLayout.setBackgroundColor(applicationContext.getColor(R.color.color_for_splash_screen3))
                 Glide.with(this)
                     .load(R.drawable.splash_screen3)
-                    .format(DecodeFormat.PREFER_ARGB_8888)
+                    .format(DecodeFormat.PREFER_RGB_565)
                     .into(logoImageView)
                 window.navigationBarColor = applicationContext.getColor(R.color.orange_700)
                 window.statusBarColor = applicationContext.getColor(R.color.orange_700)

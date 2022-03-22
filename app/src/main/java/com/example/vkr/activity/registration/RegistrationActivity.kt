@@ -31,13 +31,12 @@ class RegistrationActivity : AppCompatActivity() {
     private var fragments = listOf(RegistrationFragment(), Passport1Fragment(), Passport2Fragment(), Passport3Fragment(),
                                    SnillsFragment(), EducationFragment(), AchievFragment(), PrivilegesFragment(), FinishFragment())
 
-    var sharedPreferences : SharedPreferences? = null
-
     companion object {
         lateinit var next : MenuItem
         lateinit var previous : MenuItem
         lateinit var info : MenuItem
         var step : Int = 0
+        lateinit var sharedPreferences : SharedPreferences
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
