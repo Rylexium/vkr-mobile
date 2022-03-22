@@ -44,10 +44,9 @@
                 android:id="@+id/textview_institut"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="10sp"
                 android:textColor="@color/white"
-                android:paddingBottom="10sp"
-                android:textSize="24sp"
+                android:elegantTextHeight="true"
+                android:textSize="25sp"
                 android:text="Естественнонаучный институт"
                 />
 
@@ -77,7 +76,6 @@
                         android:paddingTop="10sp"
                         android:textColor="@color/white"
                         android:text="Общий конкурс"
-                        android:elegantTextHeight="true"
                         android:textSize="20sp" />
 
                     <TextView
@@ -85,10 +83,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:paddingTop="10sp"
+                        android:elegantTextHeight="true"
                         android:textColor="@color/white"
-                        android:text="123 / 24"
-                        android:textSize="22sp" />
+                        android:text="24"
+                        android:textSize="26sp" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -96,7 +94,6 @@
                         android:gravity="center"
                         android:paddingTop="10sp"
                         android:text="Контракт"
-                        android:elegantTextHeight="true"
                         android:textColor="@color/white"
                         android:textSize="20sp" />
 
@@ -106,9 +103,10 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:paddingTop="10sp"
-                        android:text="150 / 25"
+                        android:text="150"
+                        android:elegantTextHeight="true"
                         android:textColor="@color/white"
-                        android:textSize="22sp" />
+                        android:textSize="26sp" />
 
                 </LinearLayout>
 
@@ -134,7 +132,7 @@
                         android:text="Очная"
                         android:elegantTextHeight="true"
                         android:textColor="@color/white"
-                        android:textSize="28sp" />
+                        android:textSize="30sp" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

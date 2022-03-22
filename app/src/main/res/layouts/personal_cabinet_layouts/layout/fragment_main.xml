@@ -115,7 +115,7 @@
                             android:text="СНИЛС"
                             android:textStyle="bold"
                             android:textSize="20sp"
-                            android:textColor="@color/grey"
+                            android:textColor="@color/black"
                             />
                         <TextView
                             android:id="@+id/textview_snills"
@@ -127,7 +127,7 @@
                             android:elegantTextHeight="true"
                             android:layout_marginStart="15dp"
                             android:textSize="20sp"
-                            android:textColor="@color/grey"
+                            android:textColor="@color/black"
                             />
                     </LinearLayout>
                     <LinearLayout
@@ -143,7 +143,7 @@
                             android:elegantTextHeight="true"
                             android:textSize="20sp"
                             android:textStyle="bold"
-                            android:textColor="@color/grey"
+                            android:textColor="@color/black"
                             />
                         <TextView
                             android:id="@+id/textview_date_of_birthday"
@@ -155,7 +155,7 @@
                             android:textStyle="bold"
                             android:textSize="20sp"
                             android:layout_marginStart="15dp"
-                            android:textColor="@color/grey"
+                            android:textColor="@color/black"
                             />
                     </LinearLayout>
                     <LinearLayout
@@ -171,7 +171,7 @@
                             android:elegantTextHeight="true"
                             android:textSize="20sp"
                             android:textStyle="bold"
-                            android:textColor="@color/grey"
+                            android:textColor="@color/black"
                             />
                         <TextView
                             android:id="@+id/textview_sex"
@@ -183,7 +183,7 @@
                             android:textStyle="bold"
                             android:textSize="20sp"
                             android:layout_marginStart="15dp"
-                            android:textColor="@color/grey"
+                            android:textColor="@color/black"
                             />
                     </LinearLayout>
 
@@ -200,7 +200,7 @@
                             android:elegantTextHeight="true"
                             android:textSize="20sp"
                             android:textStyle="bold"
-                            android:textColor="@color/grey"
+                            android:textColor="@color/black"
                             />
                         <TextView
                             android:id="@+id/textview_nationality"
@@ -212,7 +212,7 @@
                             android:textSize="20sp"
                             android:textStyle="bold"
                             android:layout_marginStart="15dp"
-                            android:textColor="@color/grey"
+                            android:textColor="@color/black"
                             />
                     </LinearLayout>
 
@@ -230,7 +230,7 @@
                             android:elegantTextHeight="true"
                             android:textSize="20sp"
                             android:textStyle="bold"
-                            android:textColor="@color/grey"
+                            android:textColor="@color/black"
                             />
                         <TextView
                             android:id="@+id/textview_passport"
@@ -242,7 +242,7 @@
                             android:textSize="20sp"
                             android:textStyle="bold"
                             android:layout_marginStart="15dp"
-                            android:textColor="@color/grey"
+                            android:textColor="@color/black"
                             />
                     </LinearLayout>
 
@@ -260,7 +260,7 @@
                             android:elegantTextHeight="true"
                             android:textSize="20sp"
                             android:textStyle="bold"
-                            android:textColor="@color/grey"
+                            android:textColor="@color/black"
                             />
                         <TextView
                             android:id="@+id/textview_departament_code"
@@ -273,7 +273,7 @@
                             android:textSize="20sp"
                             android:textStyle="bold"
                             android:layout_marginStart="15dp"
-                            android:textColor="@color/grey"
+                            android:textColor="@color/black"
                             />
                     </LinearLayout>
                     <LinearLayout
@@ -290,7 +290,7 @@
                             android:elegantTextHeight="true"
                             android:textStyle="bold"
                             android:textSize="20sp"
-                            android:textColor="@color/grey"
+                            android:textColor="@color/black"
                             />
                         <TextView
                             android:id="@+id/textview_date_of_issing_passport"
@@ -303,7 +303,7 @@
                             android:textSize="20sp"
                             android:textStyle="bold"
                             android:layout_marginStart="15dp"
-                            android:textColor="@color/grey"
+                            android:textColor="@color/black"
                             />
                     </LinearLayout>
                 </LinearLayout>
@@ -373,7 +373,7 @@
                             android:layout_weight="0.52"
                             android:textSize="20sp"
                             android:textStyle="bold"
-                            android:textColor="@color/grey"
+                            android:textColor="@color/black"
                             />
                         <TextView
                             android:id="@+id/textview_const_address"
@@ -386,7 +386,7 @@
                             android:textSize="20sp"
                             android:textStyle="bold"
                             android:layout_marginStart="15dp"
-                            android:textColor="@color/grey"
+                            android:textColor="@color/black"
                             />
                     </LinearLayout>
                     <LinearLayout
@@ -404,7 +404,7 @@
                             android:breakStrategy="simple"
                             android:textSize="20sp"
                             android:textStyle="bold"
-                            android:textColor="@color/grey"
+                            android:textColor="@color/black"
                             />
                         <TextView
                             android:id="@+id/textview_actual_address"
@@ -417,7 +417,7 @@
                             android:textSize="20sp"
                             android:textStyle="bold"
                             android:layout_marginStart="15dp"
-                            android:textColor="@color/grey"
+                            android:textColor="@color/black"
                             />
                     </LinearLayout>
                 </LinearLayout>
@@ -471,7 +471,7 @@
                             android:elegantTextHeight="true"
                             android:textSize="20sp"
                             android:textStyle="bold"
-                            android:textColor="@color/grey"
+                            android:textColor="@color/black"
                             />
                         <TextView
                             android:id="@+id/textview_id_education"
@@ -484,7 +484,7 @@
                             android:textSize="20sp"
                             android:textStyle="bold"
                             android:layout_marginStart="15dp"
-                            android:textColor="@color/grey"
+                            android:textColor="@color/black"
                             />
                     </LinearLayout>
                     <LinearLayout
@@ -500,7 +500,7 @@
                             android:elegantTextHeight="true"
                             android:textSize="20sp"
                             android:textStyle="bold"
-                            android:textColor="@color/grey"
+                            android:textColor="@color/black"
                             />
                         <TextView
                             android:id="@+id/textview_number_education"
@@ -513,7 +513,7 @@
                             android:textSize="20sp"
                             android:textStyle="bold"
                             android:layout_marginStart="15dp"
-                            android:textColor="@color/grey"
+                            android:textColor="@color/black"
                             />
                     </LinearLayout>
                     <LinearLayout
@@ -529,7 +529,7 @@
                             android:elegantTextHeight="true"
                             android:textSize="20sp"
                             android:textStyle="bold"
-                            android:textColor="@color/grey"
+                            android:textColor="@color/black"
                             />
                         <TextView
                             android:id="@+id/textview_reg_number_education"
@@ -542,7 +542,7 @@
                             android:textSize="20sp"
                             android:textStyle="bold"
                             android:layout_marginStart="15dp"
-                            android:textColor="@color/grey"
+                            android:textColor="@color/black"
                             />
                     </LinearLayout>
                     <LinearLayout
@@ -557,7 +557,7 @@
                             android:text="Дата выдачи документа об образовании"
                             android:textSize="20sp"
                             android:textStyle="bold"
-                            android:textColor="@color/grey"
+                            android:textColor="@color/black"
                             />
                         <TextView
                             android:id="@+id/textview_date_of_issing_education"
@@ -570,7 +570,7 @@
                             android:textSize="20sp"
                             android:textStyle="bold"
                             android:layout_marginStart="15dp"
-                            android:textColor="@color/grey"
+                            android:textColor="@color/black"
                             />
                     </LinearLayout>
 
@@ -637,7 +637,7 @@
                         android:elegantTextHeight="true"
                         android:textStyle="bold"
                         android:textSize="20sp"
-                        android:textColor="@color/grey"
+                        android:textColor="@color/black"
                         />
                     <TextView
                         android:id="@+id/textview_privilege"
@@ -649,7 +649,7 @@
                         android:layout_gravity="center|start"
                         android:textSize="20sp"
                         android:layout_marginStart="15dp"
-                        android:textColor="@color/grey"
+                        android:textColor="@color/black"
                         />
                 </LinearLayout>
 
