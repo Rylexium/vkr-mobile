@@ -34,7 +34,7 @@
                 android:id="@+id/textview_speciality"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="26sp"
+                android:textSize="29sp"
                 android:elegantTextHeight="true"
                 android:text="02.03.03 Математическое обеспечение и администрирование информационных систем"
                 android:textColor="@color/white"
