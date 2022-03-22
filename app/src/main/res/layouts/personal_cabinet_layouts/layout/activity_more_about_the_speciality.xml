@@ -53,6 +53,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
+                    android:elegantTextHeight="true"
                     android:textSize="28sp"
                     />
 
@@ -262,6 +263,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingStart="9dp"
+                android:paddingEnd="9dp"
                 android:paddingTop="9dp"
                 android:gravity="center"
                 >
@@ -287,8 +289,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingStart="9dp"
-                android:paddingEnd="9dp"
-                android:paddingTop="9dp"
+                android:paddingEnd="15dp"
+                android:paddingTop="15dp"
                 android:gravity="center"
                 >
                 <TextView
@@ -303,6 +305,7 @@
                     android:id="@+id/description_of_speciality"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:elegantTextHeight="true"
                     android:textSize="18sp"
                     android:textColor="@color/white"
                     />
@@ -328,8 +331,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="5dp"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="5dp"
                         android:paddingTop="5dp"
                         android:paddingBottom="5dp"
                         >
@@ -381,8 +384,8 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:animateLayoutChanges="true"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="5dp"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="5dp"
                         android:paddingTop="5dp"
                         android:paddingBottom="5dp"
                         >
@@ -432,8 +435,8 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:animateLayoutChanges="true"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="5dp"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="5dp"
                         android:paddingTop="5dp"
                         android:paddingBottom="5dp"
                         >

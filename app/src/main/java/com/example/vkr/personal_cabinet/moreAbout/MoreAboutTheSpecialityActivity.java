@@ -159,7 +159,7 @@ public class MoreAboutTheSpecialityActivity extends AppCompatActivity {
                     it.setIcon(DrawableCompat.wrap(Objects.requireNonNull(ContextCompat.getDrawable(this, R.drawable.ic_baseline_favorite_24))));
                 }
                 else {
-                    Snackbar.make(it, "Вы не можете выбрать больше 3 специальностей...", Snackbar.LENGTH_LONG)
+                    Snackbar.make(it, "Вы не можете выбрать больше 3 специальностей", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 }
                 return true;

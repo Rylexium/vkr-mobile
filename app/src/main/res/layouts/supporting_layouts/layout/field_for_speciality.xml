@@ -8,32 +8,34 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="0dp"
+        android:layout_marginTop="18sp"
+        app:cardCornerRadius="10sp"
+        app:cardElevation="0sp"
         >
         <LinearLayout
             android:id="@+id/main_speciality_layout"
             android:background="@drawable/side_nav_bar"
             android:layout_width="match_parent"
             android:orientation="vertical"
-            android:paddingBottom="20dp"
-            android:paddingStart="9dp"
-            android:paddingEnd="9dp"
+            android:paddingBottom="18sp"
+            android:paddingStart="9sp"
+            android:paddingEnd="9sp"
             android:layout_height="wrap_content" >
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingTop="5sp"
                 android:text="Направление"
                 android:textColor="@color/white"
-                android:textSize="22dp"
+                android:textSize="22sp"
                 />
 
             <TextView
                 android:id="@+id/textview_speciality"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="28dp"
+                android:textSize="28sp"
+                android:elegantTextHeight="true"
                 android:text="02.03.03 Математическое обеспечение и администрирование информационных систем"
                 android:textColor="@color/white"
                 />
@@ -42,10 +44,10 @@
                 android:id="@+id/textview_institut"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="10dp"
+                android:paddingTop="10sp"
                 android:textColor="@color/white"
-                android:paddingBottom="10dp"
-                android:textSize="24dp"
+                android:paddingBottom="10sp"
+                android:textSize="24sp"
                 android:text="Естественнонаучный институт"
                 />
 
@@ -56,6 +58,7 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="15sp"
                     android:orientation="vertical">
 
                     <TextView
@@ -63,46 +66,49 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:text="Заявлений / Мест"
+                        android:elegantTextHeight="true"
                         android:textColor="@color/white"
-                        android:textSize="20dp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:paddingTop="10dp"
+                        android:paddingTop="10sp"
                         android:textColor="@color/white"
                         android:text="Общий конкурс"
-                        android:textSize="20dp" />
+                        android:elegantTextHeight="true"
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/textview_general_competition"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:paddingTop="10dp"
+                        android:paddingTop="10sp"
                         android:textColor="@color/white"
                         android:text="123 / 24"
-                        android:textSize="20dp" />
+                        android:textSize="22sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:paddingTop="10dp"
+                        android:paddingTop="10sp"
                         android:text="Контракт"
+                        android:elegantTextHeight="true"
                         android:textColor="@color/white"
-                        android:textSize="20dp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/textview_сontract"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:paddingTop="10dp"
-                        android:textColor="@color/white"
+                        android:paddingTop="10sp"
                         android:text="150 / 25"
-                        android:textSize="20dp" />
+                        android:textColor="@color/white"
+                        android:textSize="22sp" />
 
                 </LinearLayout>
 
@@ -116,19 +122,19 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Форма обучения"
+                        android:elegantTextHeight="true"
                         android:textColor="@color/white"
-                        android:textSize="20dp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/textview_type_of_study"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="26dp"
                         android:text="Очная"
+                        android:elegantTextHeight="true"
                         android:textColor="@color/white"
-                        android:textSize="30dp" />
+                        android:textSize="28sp" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
