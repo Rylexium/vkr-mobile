@@ -175,7 +175,7 @@ class SplashScreen : AppCompatActivity() {
                 textView.setTextColor(ContextCompat.getColor(baseContext, R.color.dark_red))
                 viewLayout.addView(textView)
                 Snackbar.make(textView, "Сам знаешь кто здесь должен быть!!!", Snackbar.LENGTH_SHORT)
-                    .setAction("И кто же?") { startActivity(Intent(Intent.ACTION_VIEW).setData(Uri.parse("https://vk.com/378508088"))) } //t.md63
+                    .setAction("И кто же?") { startActivity(Intent(Intent.ACTION_VIEW).setData(Uri.parse("https://vk.com/id378508088"))) } //t.md63
                     .show()
                 window.navigationBarColor = applicationContext.getColor(R.color.black)
                 window.statusBarColor = applicationContext.getColor(R.color.black)
