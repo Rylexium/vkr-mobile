@@ -56,7 +56,7 @@ class SplashScreen : AppCompatActivity() {
         setTheme()
         sharedPreferences = getPreferences(MODE_PRIVATE)
         viewLayout.alpha = 0f
-        viewLayout.animate().setDuration(Random.nextInt(1000, 2500).toLong()).alpha(1f).withEndAction{
+       viewLayout.animate().setDuration(Random.nextInt(500, 1000).toLong()).alpha(1f).withEndAction{
             lifecycleScope.launch {
 
                 run tryToConnect@{
@@ -68,10 +68,11 @@ class SplashScreen : AppCompatActivity() {
                         delay(1000)
                     }
                 }
+                delay(500)
                 Handler(Looper.getMainLooper()).post { viewLayout.removeView(progressBar) }
                 authorization()
             }
-        }
+       }
     }
 
 
