@@ -88,6 +88,10 @@ public class OpenActivity {
         activity.startActivity(new Intent(activity, AdmissionActivity.class));
         return true;
     }
+    public static boolean openMissedMan(Activity activity){
+        activity.startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse("https://vk.com/id378508088"))); //tmd63
+        return true;
+    }
 
 
 }

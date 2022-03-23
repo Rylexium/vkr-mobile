@@ -23,6 +23,7 @@ import com.bumptech.glide.load.DecodeFormat
 import com.example.vkr.R
 import com.example.vkr.activity.authorization.AuthorizationActivity
 import com.example.vkr.utils.OpenActivity
+import com.example.vkr.utils.OpenActivity.openMissedMan
 import com.example.vkr.utils.ShowToast
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.android.material.snackbar.Snackbar
@@ -181,7 +182,7 @@ class SplashScreen : AppCompatActivity() {
                 textView.setTextColor(ContextCompat.getColor(baseContext, R.color.dark_red))
                 viewLayout.addView(textView)
                 Snackbar.make(textView, "Сам знаешь кто здесь должен быть!!!", Snackbar.LENGTH_SHORT)
-                    .setAction("И кто же?") { startActivity(Intent(Intent.ACTION_VIEW).setData(Uri.parse("https://vk.com/id378508088"))) } //t.md63
+                    .setAction("И кто же?") { openMissedMan(this) }
                     .show()
                 window.navigationBarColor = applicationContext.getColor(R.color.black)
                 window.statusBarColor = applicationContext.getColor(R.color.black)
