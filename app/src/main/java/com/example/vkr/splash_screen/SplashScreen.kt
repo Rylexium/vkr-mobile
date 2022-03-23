@@ -56,7 +56,7 @@ class SplashScreen : AppCompatActivity() {
         setTheme()
         sharedPreferences = getPreferences(MODE_PRIVATE)
         viewLayout.alpha = 0f
-       viewLayout.animate().setDuration(Random.nextInt(500, 1000).toLong()).alpha(1f).withEndAction{
+        viewLayout.animate().setDuration(Random.nextInt(500, 1000).toLong()).alpha(1f).withEndAction{
             lifecycleScope.launch {
 
                 run tryToConnect@{
