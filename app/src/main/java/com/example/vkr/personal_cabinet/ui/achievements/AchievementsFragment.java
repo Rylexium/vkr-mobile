@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
@@ -46,6 +47,7 @@ public class AchievementsFragment extends Fragment {
 
     private View binding;
     private LinearLayout mainLayout;
+    private ProgressBar progressBar;
     private static final List<String> achievements = new ArrayList<>();
 
     private float mTouchPosition;
@@ -58,7 +60,6 @@ public class AchievementsFragment extends Fragment {
 
         binding = inflater.inflate(R.layout.fragment_achievements, container, false);
         mainLayout = binding.findViewById(R.id.fragment_achievements_layout);
-
         if(achievements.isEmpty()) downloadPrivileges();
         else achievements.forEach(item -> onAddField(ConvertClass.convertStringToBitmap(item)));
 
@@ -86,6 +87,11 @@ public class AchievementsFragment extends Fragment {
 
 
     private void downloadPrivileges(){
+        if(progressBar == null){
+            progressBar = new ProgressBar(getContext());
+            progressBar.setPadding(0,30,0, 0);
+            mainLayout.addView(progressBar);
+        }
         AndroidNetworking.get("https://vkr1-app.herokuapp.com/abit/achievements?id=" + idAbit)
                 .setPriority(Priority.HIGH)
                 .setOkHttpClient(new OkHttpClient.Builder()
@@ -95,16 +101,15 @@ public class AchievementsFragment extends Fragment {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        mainLayout.removeView(progressBar);
+                        progressBar = null;
                         try {
                             new ObjectMapper().readTree(response.toString()).forEach(item -> {
                                 if(!item.asText().equals("null") && !item.asText().equals("")) {
                                     achievements.add(item.asText());
                                     onAddField(ConvertClass.convertStringToBitmap(item.asText()));
                                 }
-                                else{
-                                    ShowToast.show(getContext(), "Нет изображений с вашими достижениями");
-                                    return;
-                                }
+                                else ShowToast.show(getContext(), "Нет изображений с вашими достижениями");
                             });
                         }
                         catch(Exception ignored){ }

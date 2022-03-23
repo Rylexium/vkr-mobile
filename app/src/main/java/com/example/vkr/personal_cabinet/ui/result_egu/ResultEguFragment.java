@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 
 import com.example.vkr.personal_cabinet.PersonalCabinetActivity;
 import com.example.vkr.utils.AnimationHideFab;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.fragment.app.Fragment;
 
@@ -19,7 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
+import android.widget.ProgressBar;
 
 import com.example.vkr.R;
 
@@ -101,9 +100,14 @@ public class ResultEguFragment extends Fragment {
     }
 
     private void awaitData(){
+        layoutOfExams.addView(new ProgressBar(getContext()));
+        layoutOfExams.getChildAt(0).setPadding(0, 30, 0, 0);
         new Thread(()-> {
             while (viewModel.getExams().size() == 0 || viewModel.getMinPointsExams().size() == 0);
-            new Handler(Looper.getMainLooper()).post(this::fillTable);
+            new Handler(Looper.getMainLooper()).post(() -> {
+                layoutOfExams.removeViewAt(0);
+                fillTable();
+            });
         }).start();
     }
 

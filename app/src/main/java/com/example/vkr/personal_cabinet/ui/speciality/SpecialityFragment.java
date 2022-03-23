@@ -24,6 +24,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -59,6 +60,8 @@ public class SpecialityFragment extends Fragment {
     private final Integer next = 26;
 
     private static Integer countSpeciality = 0;
+
+    private ProgressBar progressBar;
 
     private float mTouchPosition;
     private float mReleasePosition;
@@ -124,8 +127,6 @@ public class SpecialityFragment extends Fragment {
             int bottom = (scrollView.getChildAt(scrollView.getChildCount() - 1)).getHeight() - scrollView.getHeight() - scrollY;
             if (bottom == 0 && !isBottom) {
                 if (!isAllSpecialityDownload) {
-                    Snackbar.make(scrollView, "Подождите, идёт загрузка...", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
                     isBottom = true;
                     downloadSpeciality();
                 } else
@@ -187,6 +188,10 @@ public class SpecialityFragment extends Fragment {
 
     private void downloadSpeciality(){
         if(isAllSpecialityDownload) return;
+        if(countSpeciality != 0 && countSpeciality == speciality.size()){
+            isAllSpecialityDownload = true;
+            return;
+        }
         String url;
         if(Integer.parseInt(idEducation) < 5)
             url = "https://vkr1-app.herokuapp.com/speciality/abit/min";
@@ -194,6 +199,12 @@ public class SpecialityFragment extends Fragment {
             url = "https://vkr1-app.herokuapp.com/speciality/magistr/min";
         else
             url = "https://vkr1-app.herokuapp.com/speciality/aspirant/min";
+
+        if(progressBar == null) {
+            progressBar = new ProgressBar(getContext());
+            progressBar.setPadding(0,30,0, 0);
+            specialityLayout.addView(progressBar);
+        }
 
         AndroidNetworking.get(url + "?start=" + start.toString() + "&next=" + end.toString())
                 .setPriority(Priority.IMMEDIATE)
@@ -204,14 +215,20 @@ public class SpecialityFragment extends Fragment {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        specialityLayout.removeView(progressBar);
+                        progressBar = null;
                         try {
                             JsonNode jsonNode = new ObjectMapper().readTree(response.toString());
 
                             if(speciality.size() != 0)
-                                jsonNode.get("speciality").forEach(item -> {
-                                    if (!item.get("specialityMinInfo").get("id").asText().equals(speciality.get(start - 1).get(0))) return;
-                                });
+                                for(JsonNode item : jsonNode.get("speciality")) {
+                                    Log.e("item", item.get("specialityMinInfo").get("id").asText() + " " + item.get("typeOfStudy").asText());
+                                    Log.e("speciality", speciality.get(start - 1).get(0) + " " + speciality.get(start - 1).get(3));
+                                    if (item.get("specialityMinInfo").get("id").asText().equals(speciality.get(start - 1).get(0)) &&
+                                            item.get("typeOfStudy").asText().equals(speciality.get(start - 1).get(3)))
+                                        return;
 
+                                }
 
                             countSpeciality = jsonNode.get("len").asInt();
                             jsonNode.get("speciality").forEach(item -> speciality.add(asList(

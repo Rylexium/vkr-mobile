@@ -25,6 +25,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -273,6 +274,8 @@ public class StatementFragment extends Fragment {
 
     private void downloadTypeOfFinancing(){
         if(listFinancing != null) return;
+        linearLayout.addView(new ProgressBar(getContext()));
+        linearLayout.getChildAt(0).setPadding(0, 30, 0, 0);
         AndroidNetworking.get("https://vkr1-app.herokuapp.com/type_of_financing")
                 .setPriority(Priority.HIGH)
                 .setOkHttpClient(new OkHttpClient.Builder()

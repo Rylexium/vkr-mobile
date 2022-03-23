@@ -43,6 +43,7 @@ class SplashScreen : AppCompatActivity() {
     private lateinit var logoImageView : ImageView
     private lateinit var mainLayout : LinearLayout
     private lateinit var viewLayout : LinearLayout
+    private lateinit var progressBar : ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,6 +68,7 @@ class SplashScreen : AppCompatActivity() {
                         delay(1000)
                     }
                 }
+                Handler(Looper.getMainLooper()).post { viewLayout.removeView(progressBar) }
                 authorization()
             }
         }
@@ -135,8 +137,11 @@ class SplashScreen : AppCompatActivity() {
 
 
     private fun setTheme() {
+        progressBar = ProgressBar(this)
+        progressBar.setPadding(0,30,0, 0)
+        viewLayout.addView(progressBar)
         when (Random.nextInt(1, 100)) {
-            in 1..25 -> { // 25%
+            in 1..30 -> { // 30%
                 mainLayout.setBackgroundColor(applicationContext.getColor(R.color.color_for_splash_screen1))
                 Glide.with(this)
                     .load(R.drawable.splash_screen1)
@@ -145,7 +150,7 @@ class SplashScreen : AppCompatActivity() {
                 window.navigationBarColor = applicationContext.getColor(R.color.blue_700)
                 window.statusBarColor = applicationContext.getColor(R.color.blue_700)
             }
-            in 26..50 -> { // 25%
+            in 31..60 -> { // 30%
                 mainLayout.setBackgroundColor(applicationContext.getColor(R.color.color_for_splash_screen2))
                 Glide.with(this)
                     .load(R.drawable.splash_screen2)
@@ -154,7 +159,7 @@ class SplashScreen : AppCompatActivity() {
                 window.navigationBarColor = Color.parseColor("#000080")
                 window.statusBarColor = Color.parseColor("#000080")
             }
-            in 51..75 -> { // 25%
+            in 61..90 -> { // 30%
                 mainLayout.setBackgroundColor(applicationContext.getColor(R.color.color_for_splash_screen3))
                 Glide.with(this)
                     .load(R.drawable.splash_screen3)
@@ -163,7 +168,7 @@ class SplashScreen : AppCompatActivity() {
                 window.navigationBarColor = applicationContext.getColor(R.color.orange_700)
                 window.statusBarColor = applicationContext.getColor(R.color.orange_700)
             }
-            in 76..85 -> { // 10%
+            in 91..95 -> { // 5%
                 mainLayout.setBackgroundColor(applicationContext.getColor(R.color.grey))
                 //viewLayout.removeView(logoImageView)
                 viewLayout.removeAllViews()
@@ -180,7 +185,7 @@ class SplashScreen : AppCompatActivity() {
                 window.navigationBarColor = applicationContext.getColor(R.color.black)
                 window.statusBarColor = applicationContext.getColor(R.color.black)
             }
-            in 86..100 -> { // 15%
+            in 96..100 -> { // 5%
                 mainLayout.setBackgroundColor(applicationContext.getColor(R.color.grey))
                 //viewLayout.removeView(logoImageView)
                 viewLayout.removeAllViews()

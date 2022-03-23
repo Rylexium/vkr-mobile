@@ -23,6 +23,7 @@ import androidx.fragment.app.Fragment;
 
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
@@ -40,6 +41,7 @@ import org.json.JSONObject;
 
 public class MainFragment extends Fragment {
     private FragmentMainBinding binding;
+    private ProgressBar progressBar;
 
     private static String loginString;
     private static String sexString;
@@ -74,7 +76,9 @@ public class MainFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentMainBinding.inflate(inflater, container, false);
-
+        progressBar = new ProgressBar(getContext());
+        progressBar.setPadding(0,30,0, 0);
+        binding.fragmentMainMainLayout.addView(progressBar);
         mainViewModel = new ViewModelProvider(this, (ViewModelProvider.Factory) new ViewModelProvider.NewInstanceFactory()).get(MainViewModel.class);
         initHomeViewModel();
         initComponents();
@@ -379,6 +383,7 @@ public class MainFragment extends Fragment {
     }
 
     private void initComponents() {
+        binding.fragmentMainMainLayout.removeView(progressBar);
         binding.textviewLogin.setText(loginString);
         binding.textviewSnills.setText(PersonalCabinetActivity.idAbit);
         binding.textviewSex.setText(sexString);
