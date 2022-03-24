@@ -177,29 +177,6 @@ public class MainFragment extends Fragment {
                 isDownloadImagePrivilege = !isDownloadImagePrivilege;
             }
         });
-
-        binding.getRoot().setOnTouchListener((view, event) -> {
-            if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                mTouchPosition = event.getY();
-            }
-            if (event.getAction() == MotionEvent.ACTION_UP) {
-                mReleasePosition = event.getY();
-
-                if (mTouchPosition - mReleasePosition > 0) // user scroll down
-                    AnimationHideFab.hide(PersonalCabinetActivity.fab);
-                else //user scroll up
-                    AnimationHideFab.show(PersonalCabinetActivity.fab);
-            }
-            return false;
-        });
-
-        binding.scrollviewHomeFragment.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
-            //work with fab
-            if (scrollY == 0 || (scrollY < oldScrollY && !PersonalCabinetActivity.fab.isShown())) //show
-                AnimationHideFab.show(PersonalCabinetActivity.fab);
-            else if (scrollY > oldScrollY && PersonalCabinetActivity.fab.isShown()) //hide
-                AnimationHideFab.hide(PersonalCabinetActivity.fab);
-        });
     }
 
     private void downloadImagesPassport(){

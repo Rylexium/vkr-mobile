@@ -41,7 +41,6 @@ public class ResultEguFragment extends Fragment {
         layoutOfExams = binding.findViewById(R.id.layout_of_exams);
         viewModel = new ResultEguViewModel();
         initComponents();
-        applyEvents();
         return binding.getRootView();
     }
     private void onAddField(String nameExam, String pointsExam, String yearExam) {
@@ -74,23 +73,6 @@ public class ResultEguFragment extends Fragment {
         points.setText(String.valueOf(viewModel.getExams().stream().mapToInt(e -> Integer.parseInt(e.get(1))).sum()));
 
         layoutOfExams.addView(rowView);
-    }
-
-    private void applyEvents(){
-        binding.getRootView().setOnTouchListener((view, event) -> {
-            if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                mTouchPosition = event.getY();
-            }
-            if (event.getAction() == MotionEvent.ACTION_UP) {
-                mReleasePosition = event.getY();
-
-                if (mTouchPosition - mReleasePosition > 0) // user scroll down
-                    AnimationHideFab.hide(PersonalCabinetActivity.fab);
-                else //user scroll up
-                    AnimationHideFab.show(PersonalCabinetActivity.fab);
-            }
-            return false;
-        });
     }
 
     private void fillTable(){

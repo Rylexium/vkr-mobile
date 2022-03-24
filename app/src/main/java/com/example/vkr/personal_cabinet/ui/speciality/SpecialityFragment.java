@@ -138,18 +138,6 @@ public class SpecialityFragment extends Fragment {
                 SpecialityFragment.scrollY = scrollView.getScrollY();
             }
         });
-        binding.getRootView().setOnTouchListener((view, event) -> {
-            if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                mTouchPosition = event.getY();
-            }
-            if (event.getAction() == MotionEvent.ACTION_UP) {
-                mReleasePosition = event.getY();
-
-                if (mTouchPosition - mReleasePosition > 0) AnimationHideFab.hide(PersonalCabinetActivity.fab);// user scroll down
-                else AnimationHideFab.show(PersonalCabinetActivity.fab); //user scroll up
-            }
-            return false;
-        });
     }
 
     private void initComponents() {

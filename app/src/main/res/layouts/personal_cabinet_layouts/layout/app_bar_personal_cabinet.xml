@@ -36,6 +36,7 @@
         android:scaleType="fitXY"
         app:maxImageSize="56dip"
         app:backgroundTint="@android:color/transparent"
+        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
         app:srcCompat="@drawable/vk" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

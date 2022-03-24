@@ -62,27 +62,7 @@ public class AchievementsFragment extends Fragment {
         mainLayout = binding.findViewById(R.id.fragment_achievements_layout);
         if(achievements.isEmpty()) downloadPrivileges();
         else achievements.forEach(item -> onAddField(ConvertClass.convertStringToBitmap(item)));
-
-        applyEvents();
         return binding.getRootView();
-    }
-
-
-    private void applyEvents(){
-        binding.getRootView().setOnTouchListener((view, event) -> {
-            if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                mTouchPosition = event.getY();
-            }
-            if (event.getAction() == MotionEvent.ACTION_UP) {
-                mReleasePosition = event.getY();
-
-                if (mTouchPosition - mReleasePosition > 0) // user scroll down
-                    AnimationHideFab.hide(PersonalCabinetActivity.fab);
-                else //user scroll up
-                    AnimationHideFab.show(PersonalCabinetActivity.fab);
-            }
-            return false;
-        });
     }
 
 
