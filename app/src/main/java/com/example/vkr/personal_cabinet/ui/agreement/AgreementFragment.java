@@ -145,6 +145,8 @@ public class AgreementFragment extends Fragment {
         } catch (IOException e) {
             e.printStackTrace();
             ShowToast.show(getContext(), "Не удалось сформировать файл");
+            pdfDocument.close();
+            return;
         }
         pdfDocument.close();
         Snackbar.make(PersonalCabinetActivity.fab, "Файл сформирован и скачан", Snackbar.LENGTH_SHORT)

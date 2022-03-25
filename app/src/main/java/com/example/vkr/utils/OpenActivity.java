@@ -3,6 +3,7 @@ package com.example.vkr.utils;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 
 import com.example.vkr.R;
 import com.example.vkr.activity.admission.AdmissionActivity;
@@ -99,8 +100,10 @@ public class OpenActivity {
                 })
                 .setOnSecondItem(() -> {
                     Intent target = new Intent(Intent.ACTION_VIEW);
-                    target.setDataAndType(Uri.fromFile(file), "application/pdf");
-                    target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                    target.setDataAndType(Uri.parse(file.getAbsolutePath()), "application/pdf");
+                    target.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    target.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    target.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                     activity.startActivity(Intent.createChooser(target, "Open File"));
                 });
         return true;
