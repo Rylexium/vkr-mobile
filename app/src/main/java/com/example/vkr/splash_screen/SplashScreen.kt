@@ -182,6 +182,8 @@ class SplashScreen : AppCompatActivity() {
                 textView.setTextColor(ContextCompat.getColor(baseContext, R.color.dark_red))
                 viewLayout.addView(textView)
                 Snackbar.make(textView, "Сам знаешь кто здесь должен быть!!!", Snackbar.LENGTH_SHORT)
+                    .setTextColor(ContextCompat.getColor(applicationContext, R.color.white))
+                    .setActionTextColor(ContextCompat.getColor(applicationContext, R.color.white))
                     .setAction("И кто же?") { openMissedMan(this) }
                     .show()
                 window.navigationBarColor = applicationContext.getColor(R.color.black)

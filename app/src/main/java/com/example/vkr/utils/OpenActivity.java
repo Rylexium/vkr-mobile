@@ -1,15 +1,11 @@
 package com.example.vkr.utils;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 
-import androidx.appcompat.app.AlertDialog;
-
 import com.example.vkr.R;
 import com.example.vkr.activity.admission.AdmissionActivity;
-import com.example.vkr.activity.authorization.AuthorizationActivity;
 import com.example.vkr.activity.authorization.QuestionsActivity;
 import com.example.vkr.activity.maps.GoogleMapsActivity;
 import com.example.vkr.activity.maps.YandexMapsActivity;
@@ -18,11 +14,6 @@ import com.example.vkr.activity.registration.RegistrationActivity;
 import com.example.vkr.activity.support.ChangePasswordActivity;
 import com.example.vkr.personal_cabinet.PersonalCabinetActivity;
 import com.example.vkr.activity.support.SupportActivity;
-import com.example.vkr.personal_cabinet.ui.achievements.AchievementsFragment;
-import com.example.vkr.personal_cabinet.ui.home.MainFragment;
-import com.example.vkr.personal_cabinet.ui.result_egu.ResultEguFragment;
-import com.example.vkr.personal_cabinet.ui.speciality.SpecialityFragment;
-import com.example.vkr.personal_cabinet.ui.statement.StatementFragment;
 import com.example.vkr.personal_cabinet.ui.statement.ViewPdfActivity;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -108,7 +99,7 @@ public class OpenActivity {
                 })
                 .setOnSecondItem(() -> {
                     Intent target = new Intent(Intent.ACTION_VIEW);
-                    target.setDataAndType(Uri.fromFile(file),"application/pdf");
+                    target.setDataAndType(Uri.fromFile(file), "application/pdf");
                     target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                     activity.startActivity(Intent.createChooser(target, "Open File"));
                 });
