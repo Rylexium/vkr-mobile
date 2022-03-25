@@ -25,7 +25,7 @@ public class ResultEguFragment extends Fragment {
     private View binding;
     private LinearLayout layoutOfExams;
 
-    private static ResultEguViewModel viewModel;
+    public static ResultEguViewModel viewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {

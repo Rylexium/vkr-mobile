@@ -20,6 +20,7 @@
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/ic_baseline_book_24.xml" value="0.3675" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/ic_baseline_check_24.xml" value="0.33" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/ic_baseline_description_24.xml" value="0.2925" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/ic_baseline_exit_to_app_24.xml" value="0.211" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.205" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.205" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.196" />
@@ -28,6 +29,7 @@
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/ic_baseline_photo_24.xml" value="0.211" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/ic_baseline_photo_camera_24.xml" value="0.211" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/ic_baseline_place_24.xml" value="0.25" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/ic_baseline_screenshot_24.xml" value="0.211" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1965" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/ic_wave.xml" value="0.298" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/drawable/round_btn.xml" value="0.3675" />
@@ -71,7 +73,7 @@
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/layout/fragment_achievements.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/layout/fragment_achievements_reg.xml" value="0.20625" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/layout/fragment_achievments.xml" value="0.20953545232273837" />
-        <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/layout/fragment_agreement.xml" value="0.18854166666666666" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/layout/fragment_agreement.xml" value="0.25" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/layout/fragment_distance.xml" value="0.1" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/layout/fragment_education.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/layout/fragment_full_time.xml" value="0.25" />
@@ -86,6 +88,7 @@
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/layout/google_maps_activity.xml" value="0.16203505771697307" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/layout/nav_header_personal_cabinet.xml" value="0.25" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/layout/personal_cabinet_activity.xml" value="0.22" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/layout/view_pdf_activity.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/layout/yandex_maps_activity.xml" value="0.2497733454215775" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/menu/menu_institut.xml" value="0.19739583333333333" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/VKR/app/src/main/res/layouts/personal_cabinet_layouts/menu/menu_speciality.xml" value="0.36666666666666664" />

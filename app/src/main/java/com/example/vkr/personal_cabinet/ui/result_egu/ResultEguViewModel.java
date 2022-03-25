@@ -35,10 +35,8 @@ public class ResultEguViewModel extends ViewModel {
     private int countTry2 = 0;
 
     public ResultEguViewModel() {
-        new Thread(() -> {
-            downloadExams();
-            downloadMinPointsExams();
-        }).start();
+        downloadExams();
+        downloadMinPointsExams();
     }
 
 
@@ -55,7 +53,7 @@ public class ResultEguViewModel extends ViewModel {
     public void downloadExams(){
         if(exams.size() != 0) return;
         AndroidNetworking.get("https://vkr1-app.herokuapp.com/abit/exams?id_abit=" + PersonalCabinetActivity.idAbit)
-                .setPriority(Priority.HIGH)
+                .setPriority(Priority.IMMEDIATE)
                 .setOkHttpClient(new OkHttpClient.Builder()
                         .connectTimeout(2, TimeUnit.SECONDS)
                         .build())
@@ -89,7 +87,7 @@ public class ResultEguViewModel extends ViewModel {
     public void downloadMinPointsExams(){
         if(minPointsExams.size() != 0) return;
         AndroidNetworking.get("https://vkr1-app.herokuapp.com/speciality_exams/min")
-                .setPriority(Priority.HIGH)
+                .setPriority(Priority.IMMEDIATE)
                 .setOkHttpClient(new OkHttpClient.Builder()
                         .connectTimeout(2, TimeUnit.SECONDS)
                         .build())

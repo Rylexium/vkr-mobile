@@ -23,8 +23,11 @@ import com.example.vkr.personal_cabinet.ui.home.MainFragment;
 import com.example.vkr.personal_cabinet.ui.result_egu.ResultEguFragment;
 import com.example.vkr.personal_cabinet.ui.speciality.SpecialityFragment;
 import com.example.vkr.personal_cabinet.ui.statement.StatementFragment;
+import com.example.vkr.personal_cabinet.ui.statement.ViewPdfActivity;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
+
+import java.io.File;
 
 public class OpenActivity {
 
@@ -84,12 +87,31 @@ public class OpenActivity {
                 .putExtra("login", login));
         return true;
     }
+
     public static boolean openAdmissionSteps(Activity activity){
         activity.startActivity(new Intent(activity, AdmissionActivity.class));
         return true;
     }
+
     public static boolean openMissedMan(Activity activity){
         activity.startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse("https://vk.com/id378508088"))); //tmd63
+        return true;
+    }
+
+    public static boolean openPDF(Activity activity, File file) {
+        new ShowBottomDialog().showDialog(activity, "Что открыть?",
+                activity.getDrawable(R.drawable.ic_baseline_screenshot_24), "В приложении",
+                activity.getDrawable(R.drawable.ic_baseline_exit_to_app_24), "В проводнике")
+                .setOnFirstItem(() ->{
+                    ViewPdfActivity.file = file;
+                    activity.startActivity(new Intent(activity, ViewPdfActivity.class));
+                })
+                .setOnSecondItem(() -> {
+                    Intent target = new Intent(Intent.ACTION_VIEW);
+                    target.setDataAndType(Uri.fromFile(file),"application/pdf");
+                    target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                    activity.startActivity(Intent.createChooser(target, "Open File"));
+                });
         return true;
     }
 

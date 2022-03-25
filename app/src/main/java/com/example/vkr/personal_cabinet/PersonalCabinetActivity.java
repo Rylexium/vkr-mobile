@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.vkr.personal_cabinet.ui.result_egu.ResultEguViewModel;
 import com.example.vkr.utils.ShowCustomDialog;
 import com.example.vkr.utils.ShowToast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -64,6 +65,11 @@ public class PersonalCabinetActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private PersonalCabinetActivityBinding binding;
 
+
+    public static String resFio;
+    public static String dateOfBirthday;
+    public static String resEmailPhone;
+
     public static String idAbit;
     public static String idEducation;
 
@@ -82,7 +88,7 @@ public class PersonalCabinetActivity extends AppCompatActivity {
         setSupportActionBar(binding.appBarPersonalCabinet.toolbar);
         binding.appBarPersonalCabinet.fab.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW)
                                                                                 .setData(Uri.parse("https://vk.com/moais_samara"))));
-
+        ResultEguFragment.viewModel = new ResultEguViewModel();
         fab = binding.appBarPersonalCabinet.fab;
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
@@ -196,6 +202,10 @@ public class PersonalCabinetActivity extends AppCompatActivity {
         idEducation = null;
         typeOfStudy = null;
         instituts = null;
+
+        resFio = null;
+        dateOfBirthday = null;
+        resEmailPhone = null;
     }
 
     private void initComponents(){
@@ -227,13 +237,15 @@ public class PersonalCabinetActivity extends AppCompatActivity {
                         new Thread(()->{
                             try {
                                 JsonNode jsonNode = new ObjectMapper().readTree(response.toString());
-                                String resFio =  jsonNode.get("abit").get("family").asText()
+                                resFio =  jsonNode.get("abit").get("family").asText()
                                         + " " +  jsonNode.get("abit").get("name").asText()
                                         + " " + (!jsonNode.get("abit").get("patronymic").toString().equals("null")? jsonNode.get("abit").get("patronymic").asText() : "");
-                                String resEmailPhone = "Почта: " + (!jsonNode.get("abit").get("email").toString().equals("null")?
+                                resEmailPhone = "Почта: " + (!jsonNode.get("abit").get("email").toString().equals("null")?
                                         jsonNode.get("abit").get("email").asText() : "-")
-                                        + '\n' + "Телефон: " + (!jsonNode.get("abit").get("phone").toString().equals("null") ?
+                                        + "\n" + "Телефон: " + (!jsonNode.get("abit").get("phone").toString().equals("null") ?
                                         doNicePhone(jsonNode.get("abit").get("phone").asText()) : "-");
+
+                                dateOfBirthday = jsonNode.get("abit").get("date_of_birthday").asText();
 
                                 new Handler(Looper.getMainLooper()).post(()->{
                                     fio.setText(resFio);
