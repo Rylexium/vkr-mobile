@@ -89,33 +89,33 @@ public class ResultEguViewModel extends ViewModel {
     public void downloadMinPointsExams(){
         if(minPointsExams.size() != 0) return;
         AndroidNetworking.get("https://vkr1-app.herokuapp.com/speciality_exams/min")
-            .setPriority(Priority.HIGH)
-            .setOkHttpClient(new OkHttpClient.Builder()
-                    .connectTimeout(2, TimeUnit.SECONDS)
-                    .build())
-            .build()
-            .getAsJSONArray(new JSONArrayRequestListener() {
-                @Override
-                public void onResponse(JSONArray response) {
-                    if(minPointsExams.size() != 0) return;
-                    try {
-                        JsonNode jsonNode = new ObjectMapper().readTree(response.toString());
-                        for (int i = 0; i < jsonNode.size(); i++)
-                            minPointsExams.put(jsonNode.get(i).get("name").toString().replace("\"", ""),
-                                    jsonNode.get(i).get("min_points").toString());
+                .setPriority(Priority.HIGH)
+                .setOkHttpClient(new OkHttpClient.Builder()
+                        .connectTimeout(2, TimeUnit.SECONDS)
+                        .build())
+                .build()
+                .getAsJSONArray(new JSONArrayRequestListener() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        if(minPointsExams.size() != 0) return;
+                        try {
+                            JsonNode jsonNode = new ObjectMapper().readTree(response.toString());
+                            for (int i = 0; i < jsonNode.size(); i++)
+                                minPointsExams.put(jsonNode.get(i).get("name").toString().replace("\"", ""),
+                                        jsonNode.get(i).get("min_points").toString());
 
-                    } catch (JsonProcessingException e) {
-                        e.printStackTrace();
+                        } catch (JsonProcessingException e) {
+                            e.printStackTrace();
+                        }
                     }
-                }
 
-                @Override
-                public void onError(ANError error) {
-                    countTry2 += 1;
-                    if(countTry2 % 8 == 0) ShowToast.show(PersonalCabinetActivity.fab.getContext(), "Проверьте подключение к интернету");
-                    new Handler().postDelayed(() -> downloadMinPointsExams(), 1000);
-                }
-            });
+                    @Override
+                    public void onError(ANError error) {
+                        countTry2 += 1;
+                        if(countTry2 % 8 == 0) ShowToast.show(PersonalCabinetActivity.fab.getContext(), "Проверьте подключение к интернету");
+                        new Handler().postDelayed(() -> downloadMinPointsExams(), 1000);
+                    }
+                });
     }
 
 }

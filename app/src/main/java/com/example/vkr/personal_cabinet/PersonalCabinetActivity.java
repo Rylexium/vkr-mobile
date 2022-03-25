@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.Menu;
 
 import com.example.vkr.utils.ShowCustomDialog;
+import com.example.vkr.utils.ShowToast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
@@ -22,6 +23,7 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.androidnetworking.AndroidNetworking;
@@ -50,6 +52,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
 
 public class PersonalCabinetActivity extends AppCompatActivity {
     private NavigationView navigationView;
@@ -65,6 +70,7 @@ public class PersonalCabinetActivity extends AppCompatActivity {
     public static List<Map<String, String>> specialitysAbit; //кэш
     public static Map<String, String> typeOfStudy;
     public static Map<String, String> instituts;
+    public static List<String> listFinancing;
 
     public static FloatingActionButton fab;
 
@@ -184,6 +190,8 @@ public class PersonalCabinetActivity extends AppCompatActivity {
     private void clearData(){
         idAbit = null;
         if(specialitysAbit != null)specialitysAbit.clear();
+        if(listFinancing != null) listFinancing.clear();
+        listFinancing = null;
         specialitysAbit = null;
         idEducation = null;
         typeOfStudy = null;
@@ -206,6 +214,7 @@ public class PersonalCabinetActivity extends AppCompatActivity {
         downloadTypeOfStudy();
         downloadSpecialitysAbit();
         downloadInstituts();
+        downloadTypeOfFinancing();
     }
 
     private void downloadAbit(){
@@ -376,6 +385,31 @@ public class PersonalCabinetActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(ANError anError){ }
+                });
+    }
+    private void downloadTypeOfFinancing(){
+        if(listFinancing != null) return;
+        AndroidNetworking.get("https://vkr1-app.herokuapp.com/type_of_financing")
+                .setPriority(Priority.HIGH)
+                .setOkHttpClient(new OkHttpClient.Builder()
+                        .connectTimeout(2, TimeUnit.SECONDS)
+                        .build())
+                .build()
+                .getAsJSONArray(new JSONArrayRequestListener() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        if(listFinancing != null) return;
+                        try {
+                            listFinancing = new ArrayList<>();
+                            JsonNode jsonNode = new ObjectMapper().readTree(response.toString());
+                            jsonNode.forEach(item -> listFinancing.add(item.get("name").asText()));
+                        } catch (JsonProcessingException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) { }
                 });
     }
 }

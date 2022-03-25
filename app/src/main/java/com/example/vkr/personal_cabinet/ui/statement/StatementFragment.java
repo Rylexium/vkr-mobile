@@ -12,37 +12,28 @@ import android.os.Handler;
 import android.os.Looper;
 import androidx.annotation.NonNull;
 
-import com.example.vkr.utils.AnimationHideFab;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
-import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.example.vkr.R;
 import com.example.vkr.personal_cabinet.PersonalCabinetActivity;
 import com.example.vkr.personal_cabinet.moreAbout.MoreAboutTheInstitutActivity;
 import com.example.vkr.personal_cabinet.moreAbout.MoreAboutTheSpecialityActivity;
 import com.example.vkr.utils.ShowToast;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -52,28 +43,16 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
-
-import okhttp3.OkHttpClient;
 
 public class StatementFragment extends Fragment {
 
     private LinearLayout linearLayout;
     private View binding;
 
-    private float mTouchPosition;
-    private float mReleasePosition;
-
     private Button buttonSubmitStatement;
     private TextView supportTextView;
-
-    private static List<String> listFinancing;
-    private int countTry = 0;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -87,28 +66,13 @@ public class StatementFragment extends Fragment {
 
 
     private void applyEvents(){
-        binding.getRootView().setOnTouchListener((view, event) -> {
-            if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                mTouchPosition = event.getY();
-            }
-            if (event.getAction() == MotionEvent.ACTION_UP) {
-                mReleasePosition = event.getY();
-
-                if (mTouchPosition - mReleasePosition > 0) // user scroll down
-                    AnimationHideFab.hide(PersonalCabinetActivity.fab);
-                else //user scroll up
-                    AnimationHideFab.show(PersonalCabinetActivity.fab);
-            }
-            return false;
-        });
-
         buttonSubmitStatement.setOnClickListener(this::onClick);
     }
 
     private void initComponents(){
         linearLayout = binding.findViewById(R.id.layout_of_statement);
         buttonSubmitStatement = binding.findViewById(R.id.button_submit_statement);
-        downloadTypeOfFinancing();
+        fillSpeciality();
     }
 
     private boolean isValidPriority(){
@@ -134,7 +98,7 @@ public class StatementFragment extends Fragment {
     private void onAddField(String idSpeciality, String nameSpeciality,
                             String nameInstitut, String nameTypeOfStudy,
                             String valueOfDateOfStatement, String valueFinancing, String valuePriority) {
-        if(listFinancing == null) return;
+        if(PersonalCabinetActivity.listFinancing == null) return;
 
         LayoutInflater inflater = (LayoutInflater) Objects.requireNonNull(getActivity()).getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View rowView = inflater.inflate(R.layout.field_for_statement, null);
@@ -163,7 +127,7 @@ public class StatementFragment extends Fragment {
                     .putExtra("id", PersonalCabinetActivity.instituts.get(nameInstitut)));
         });
 
-        spinnerFinancing.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, listFinancing));
+        spinnerFinancing.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, PersonalCabinetActivity.listFinancing));
         spinnerFinancing.setSelection(valueFinancing != null && !valueFinancing.equals("null") ? Integer.parseInt(valueFinancing) - 1: 0);
 
         spinnerPriority.setSelection(valuePriority != null && !valuePriority.equals("null")? Integer.parseInt(valuePriority) - 1 : 0);
@@ -187,8 +151,6 @@ public class StatementFragment extends Fragment {
         specialitysAbit = null;
         if(typeOfStudy != null) typeOfStudy.clear();
         typeOfStudy = null;
-        if(listFinancing != null) listFinancing.clear();
-        listFinancing = null;
     }
 
     private void fillSpeciality(){
@@ -196,7 +158,7 @@ public class StatementFragment extends Fragment {
         new Thread(()->{
             //сортируем по приоритету
             specialitysAbit.sort(Comparator.comparing(
-                    map -> Integer.parseInt(map.get("priority") == null || map.get("priority").equals("null") ? "0" : map.get("priority"))));
+                    map -> Integer.parseInt(map.get("priority") == null || Objects.equals(map.get("priority"), "null") ? "0" : map.get("priority"))));
             new Handler(Looper.getMainLooper()).post(() -> {
                 for (int i = 0; i < specialitysAbit.size(); ++i)
                     onAddField(specialitysAbit.get(i).get("id_spec"), specialitysAbit.get(i).get("name_spec"),
@@ -270,38 +232,5 @@ public class StatementFragment extends Fragment {
 
             ShowToast.show(getActivity(), "Успешно");
         }
-    }
-
-    private void downloadTypeOfFinancing(){
-        if(listFinancing != null) return;
-        linearLayout.addView(new ProgressBar(getContext()));
-        linearLayout.getChildAt(0).setPadding(0, 30, 0, 0);
-        AndroidNetworking.get("https://vkr1-app.herokuapp.com/type_of_financing")
-                .setPriority(Priority.HIGH)
-                .setOkHttpClient(new OkHttpClient.Builder()
-                        .connectTimeout(2, TimeUnit.SECONDS)
-                        .build())
-                .build()
-                .getAsJSONArray(new JSONArrayRequestListener() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        if(listFinancing != null) return;
-                        try {
-                            listFinancing = new ArrayList<>();
-                            JsonNode jsonNode = new ObjectMapper().readTree(response.toString());
-                            jsonNode.forEach(item -> listFinancing.add(item.get("name").asText()));
-                            fillSpeciality();
-                        } catch (JsonProcessingException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void onError(ANError anError) {
-                        countTry += 1;
-                        if(countTry % 10 == 0) ShowToast.show(getContext(), "Проверьте подключение к интернету");
-                        new Handler().postDelayed(() -> downloadTypeOfFinancing(), 1000);
-                    }
-                });
     }
 }

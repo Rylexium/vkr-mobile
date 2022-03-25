@@ -7,13 +7,9 @@ import android.os.Handler;
 import android.os.Looper;
 import androidx.annotation.NonNull;
 
-import com.example.vkr.personal_cabinet.PersonalCabinetActivity;
-import com.example.vkr.utils.AnimationHideFab;
-
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -28,9 +24,6 @@ public class ResultEguFragment extends Fragment {
 
     private View binding;
     private LinearLayout layoutOfExams;
-
-    private float mTouchPosition;
-    private float mReleasePosition;
 
     private static ResultEguViewModel viewModel;
 
