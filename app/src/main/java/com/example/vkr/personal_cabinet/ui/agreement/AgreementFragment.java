@@ -3,6 +3,7 @@ package com.example.vkr.personal_cabinet.ui.agreement;
 import static com.example.vkr.personal_cabinet.PersonalCabinetActivity.specialitysAbit;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Paint;
@@ -16,6 +17,9 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -103,57 +107,63 @@ public class AgreementFragment extends Fragment {
     public void createPDF(){
         ActivityCompat.requestPermissions(Objects.requireNonNull(getActivity()),
                 new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED);
-        PdfDocument pdfDocument = new PdfDocument();
-        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(1600, 1600, 1).create();
-        PdfDocument.Page page = pdfDocument.startPage(pageInfo);
+        new Thread(()-> {
+            while(ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED);
 
-        Paint paint = new Paint();
-        int x = 10, y = 25, step = 25;
-        textBodyExams = "\n";
-        ResultEguFragment.viewModel.getExams().forEach(item -> textBodyExams +=
-                "\t\t\t\t\t\t\t\t\tПредмет : " + item.get(0) +
-                "\n\t\t\t\t\t\t\t\t\tКоличество баллов : " + item.get(1) +
-                "\n\t\t\t\t\t\t\t\t\tГод сдачи : " + item.get(2) + "\n\n");
+            PdfDocument pdfDocument = new PdfDocument();
+            PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(1600, 1400, 1).create();
+            PdfDocument.Page page = pdfDocument.startPage(pageInfo);
 
-        StringBuilder emailPhone = new StringBuilder();
-        for(String line : PersonalCabinetActivity.resEmailPhone.split("\n"))
-            emailPhone.append("\t\t\t\t\t\t\t\t\t" + line + "\n");
+            Paint paint = new Paint();
+            textBodyExams = "\n";
+            ResultEguFragment.viewModel.getExams().forEach(item -> textBodyExams +=
+                            "\t\t\t\t\t\t\t\t\tПредмет : " + item.get(0) +
+                            "\n\t\t\t\t\t\t\t\t\tКоличество баллов : " + item.get(1) +
+                            "\n\t\t\t\t\t\t\t\t\tГод сдачи : " + item.get(2) + "\n\n");
 
-        List<String> lineInfo = Arrays.asList(
-                "1. Абитуриент : " + PersonalCabinetActivity.resFio,
-                "2. Дата рождения : " + PersonalCabinetActivity.dateOfBirthday,
-                "3. Специальности : \n" + bodySpecialities(),
-                "4. Сведение о ЕГЭ : " + textBodyExams,
-                "5. Необходимость в обжитии : _______ (да/нет)",
-                "6. Контактные данные : \n" + emailPhone,
-                "7. Дата заполнения : " + new SimpleDateFormat("dd-MM-yyyy").format(new Date()),
-                "8. Подпись абитуриента : __________\n\n\n\n\n");
-        for(String line : lineInfo) {
-            for(String line1 : line.split("\n")) {
-                page.getCanvas().drawText(line1, x, y, paint);
-                y += step;
-            }
-        }
+            StringBuilder emailPhone = new StringBuilder();
+            for (String line : PersonalCabinetActivity.resEmailPhone.split("\n"))
+                emailPhone.append("\t\t\t\t\t\t\t\t\t" + line + "\n");
 
-        pdfDocument.finishPage(page);
+            new Handler(Looper.getMainLooper()).post(()->{
+                int x = 10, y = 25, step = 25;
+                List<String> lineInfo = Arrays.asList(
+                        "1. Абитуриент : " + PersonalCabinetActivity.resFio,
+                        "2. Дата рождения : " + PersonalCabinetActivity.dateOfBirthday,
+                        "3. Специальности : \n" + bodySpecialities(),
+                        "4. Сведение о ЕГЭ : " + textBodyExams,
+                        "5. Необходимость в обжитии : _______ (да/нет)",
+                        "6. Контактные данные : \n" + emailPhone,
+                        "7. Дата заполнения : " + new SimpleDateFormat("dd-MM-yyyy").format(new Date()),
+                        "8. Подпись абитуриента : __________\n\n\n\n\n");
+                for (String line : lineInfo) {
+                    for (String line1 : line.split("\n")) {
+                        page.getCanvas().drawText(line1, x, y, paint);
+                        y += step;
+                    }
+                }
 
-        File file = new File(Environment.getExternalStorageDirectory(), "Согласие на зачисление.pdf");
-        scanFile(file, "pdf"); //индексируем, чтобы появился файл
-        try {
-            pdfDocument.writeTo(new FileOutputStream(file));
-            ShowToast.show(getContext(), "Путь файла : " + file.getAbsolutePath());
-        } catch (IOException e) {
-            e.printStackTrace();
-            ShowToast.show(getContext(), "Не удалось сформировать файл");
-            pdfDocument.close();
-            return;
-        }
-        pdfDocument.close();
-        Snackbar.make(PersonalCabinetActivity.fab, "Файл сформирован и скачан", Snackbar.LENGTH_SHORT)
-                .setAction("Посмотреть", (view)-> OpenActivity.openPDF(getActivity(), file))
-                .setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.white))
-                .setActionTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.white))
-                .show();
+                pdfDocument.finishPage(page);
+
+                File file = new File(Environment.getExternalStorageDirectory(), "Согласие на зачисление.pdf");
+                scanFile(file, "pdf"); //индексируем, чтобы появился файл
+                try {
+                    pdfDocument.writeTo(new FileOutputStream(file));
+                    ShowToast.show(getContext(), "Путь файла : " + file.getAbsolutePath());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    ShowToast.show(getContext(), "Не удалось сформировать файл");
+                    pdfDocument.close();
+                    return;
+                }
+                pdfDocument.close();
+                Snackbar.make(PersonalCabinetActivity.fab, "Файл сформирован и скачан", Snackbar.LENGTH_SHORT)
+                        .setAction("Посмотреть", (view) -> OpenActivity.openPDF(getActivity(), file))
+                        .setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.white))
+                        .setActionTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.white))
+                        .show();
+            });
+        }).start();
     }
 
     public void scanFile(File f, String mimeType) {
