@@ -117,11 +117,12 @@ public class AgreementFragment extends Fragment {
 
             if(new File(Environment.getExternalStorageDirectory() + "/Download/Согласие на зачисление.pdf").exists()) {
                 new Handler(Looper.getMainLooper()).post(()->
-                        new ShowCustomDialog().showDialog(getActivity(), null,
+                        new ShowCustomDialog().showDialog(getActivity(), ContextCompat.getDrawable(getContext(), R.drawable.ic_baseline_create_new_folder_24),
                                 "Создание файла", "Такой файл уже существует. Заменить?",
                                 "Да", "Нет")
                                 .setOnYes(() -> isChange = true)
-                                .setOnNo(() -> isChange = false));
+                                .setOnNo(() -> isChange = false)
+                                .setOnDismiss(() -> isChange = false));
 
                 while (isChange == null) { System.out.println("f"); } //ждём ответа от пользователя
 
