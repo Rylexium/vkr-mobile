@@ -1,9 +1,10 @@
 package com.example.vkr.utils;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
-import android.util.Log;
+import android.widget.Toast;
 
 import com.example.vkr.R;
 import com.example.vkr.activity.admission.AdmissionActivity;
@@ -99,12 +100,16 @@ public class OpenActivity {
                     activity.startActivity(new Intent(activity, ViewPdfActivity.class));
                 })
                 .setOnSecondItem(() -> {
-                    Intent target = new Intent(Intent.ACTION_VIEW);
-                    target.setDataAndType(Uri.parse(file.getAbsolutePath()), "application/pdf");
-                    target.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    target.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                    target.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                    activity.startActivity(Intent.createChooser(target, "Open File"));
+                    try {
+                        activity.startActivity(new Intent(Intent.ACTION_VIEW)
+                                .setDataAndTypeAndNormalize(Uri.parse(file.getAbsolutePath()), "application/pdf")
+                                .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                    }
+                    catch (ActivityNotFoundException e) {
+                        Toast.makeText(activity,
+                                "Нет доступных приложений для просмотра PDF",
+                                Toast.LENGTH_SHORT).show();
+                    }
                 });
         return true;
     }

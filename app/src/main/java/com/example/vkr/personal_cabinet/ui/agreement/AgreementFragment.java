@@ -3,7 +3,6 @@ package com.example.vkr.personal_cabinet.ui.agreement;
 import static com.example.vkr.personal_cabinet.PersonalCabinetActivity.specialitysAbit;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Paint;
@@ -19,7 +18,6 @@ import androidx.fragment.app.Fragment;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +27,7 @@ import com.example.vkr.R;
 import com.example.vkr.personal_cabinet.PersonalCabinetActivity;
 import com.example.vkr.personal_cabinet.ui.result_egu.ResultEguFragment;
 import com.example.vkr.utils.OpenActivity;
+import com.example.vkr.utils.ShowCustomDialog;
 import com.example.vkr.utils.ShowToast;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -49,6 +48,8 @@ public class AgreementFragment extends Fragment {
     private Button downloadAgreement;
     private Button loadAgreement;
     private View binding;
+    private Boolean isChange = null;
+    private Thread threadCreatePDF;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -72,12 +73,10 @@ public class AgreementFragment extends Fragment {
 
     private void applyEvents(){
         downloadAgreement.setOnClickListener(view -> createPDF());
-        loadAgreement.setOnClickListener(view -> {
-            startActivity(Intent.createChooser(new Intent()
-                    .putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
-                    .setType("application/pdf")
-                    .setAction(Intent.ACTION_GET_CONTENT), "Выберите pdf файл"));
-        });
+        loadAgreement.setOnClickListener(view -> startActivity(Intent.createChooser(new Intent()
+                                                    .putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+                                                    .setType("application/pdf")
+                                                    .setAction(Intent.ACTION_GET_CONTENT), "Выберите pdf файл")));
     }
 
     private String bodySpecialities() {
@@ -107,8 +106,28 @@ public class AgreementFragment extends Fragment {
     public void createPDF(){
         ActivityCompat.requestPermissions(Objects.requireNonNull(getActivity()),
                 new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED);
-        new Thread(()-> {
+
+        String textBodySpecialities = bodySpecialities();
+        isChange = null;
+
+        if(threadCreatePDF != null && threadCreatePDF.isAlive()) return;
+
+        threadCreatePDF = new Thread(()-> {
             while(ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED);
+
+            if(new File(Environment.getExternalStorageDirectory() + "/Download/Согласие на зачисление.pdf").exists()) {
+                new Handler(Looper.getMainLooper()).post(()->
+                        new ShowCustomDialog().showDialog(getActivity(), null,
+                                "Создание файла", "Такой файл уже существует. Заменить?",
+                                "Да", "Нет")
+                                .setOnYes(() -> isChange = true)
+                                .setOnNo(() -> isChange = false));
+
+                while (isChange == null) { System.out.println("f"); } //ждём ответа от пользователя
+
+                if(!isChange)
+                    return;
+            }
 
             PdfDocument pdfDocument = new PdfDocument();
             PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(1600, 1400, 1).create();
@@ -125,45 +144,43 @@ public class AgreementFragment extends Fragment {
             for (String line : PersonalCabinetActivity.resEmailPhone.split("\n"))
                 emailPhone.append("\t\t\t\t\t\t\t\t\t" + line + "\n");
 
-            new Handler(Looper.getMainLooper()).post(()->{
-                int x = 10, y = 25, step = 25;
-                List<String> lineInfo = Arrays.asList(
-                        "1. Абитуриент : " + PersonalCabinetActivity.resFio,
-                        "2. Дата рождения : " + PersonalCabinetActivity.dateOfBirthday,
-                        "3. Специальности : \n" + bodySpecialities(),
-                        "4. Сведение о ЕГЭ : " + textBodyExams,
-                        "5. Необходимость в обжитии : _______ (да/нет)",
-                        "6. Контактные данные : \n" + emailPhone,
-                        "7. Дата заполнения : " + new SimpleDateFormat("dd-MM-yyyy").format(new Date()),
-                        "8. Подпись абитуриента : __________\n\n\n\n\n");
-                for (String line : lineInfo) {
-                    for (String line1 : line.split("\n")) {
-                        page.getCanvas().drawText(line1, x, y, paint);
-                        y += step;
-                    }
+            int x = 10, y = 25, step = 25;
+            List<String> lineInfo = Arrays.asList(
+                    "1. Абитуриент : " + PersonalCabinetActivity.resFio,
+                    "2. Дата рождения : " + PersonalCabinetActivity.dateOfBirthday,
+                    "3. Специальности : \n" + textBodySpecialities,
+                    "4. Сведение о ЕГЭ : " + textBodyExams,
+                    "5. Необходимость в обжитии : _______ (да/нет)",
+                    "6. Контактные данные : \n" + emailPhone,
+                    "7. Дата заполнения : " + new SimpleDateFormat("dd-MM-yyyy").format(new Date()),
+                    "8. Подпись абитуриента : __________\n\n\n\n\n");
+            for (String line : lineInfo) {
+                for (String line1 : line.split("\n")) {
+                    page.getCanvas().drawText(line1, x, y, paint);
+                    y += step;
                 }
+            }
+            pdfDocument.finishPage(page);
 
-                pdfDocument.finishPage(page);
-
-                File file = new File(Environment.getExternalStorageDirectory(), "Согласие на зачисление.pdf");
-                scanFile(file, "pdf"); //индексируем, чтобы появился файл
-                try {
-                    pdfDocument.writeTo(new FileOutputStream(file));
-                    ShowToast.show(getContext(), "Путь файла : " + file.getAbsolutePath());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    ShowToast.show(getContext(), "Не удалось сформировать файл");
-                    pdfDocument.close();
-                    return;
-                }
+            File file = new File(Environment.getExternalStorageDirectory() + "/Download/", "Согласие на зачисление.pdf");
+            scanFile(file, "pdf"); //индексируем, чтобы появился файл
+            try {
+                pdfDocument.writeTo(new FileOutputStream(file));
+                new Handler(Looper.getMainLooper()).post(() -> ShowToast.show(getContext(), "Путь файла : /Download/Согласие на зачисление.pdf"));
+            } catch (IOException e) {
+                e.printStackTrace();
+                new Handler(Looper.getMainLooper()).post(() -> ShowToast.show(getContext(), "Не удалось сформировать файл"));
                 pdfDocument.close();
-                Snackbar.make(PersonalCabinetActivity.fab, "Файл сформирован и скачан", Snackbar.LENGTH_SHORT)
-                        .setAction("Посмотреть", (view) -> OpenActivity.openPDF(getActivity(), file))
-                        .setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.white))
-                        .setActionTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.white))
-                        .show();
-            });
-        }).start();
+                return;
+            }
+            pdfDocument.close();
+            Snackbar.make(PersonalCabinetActivity.fab, "Файл сформирован и скачан", Snackbar.LENGTH_SHORT)
+                    .setAction("Посмотреть", (view) -> OpenActivity.openPDF(getActivity(), file))
+                    .setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.white))
+                    .setActionTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.white))
+                    .show();
+        });
+        threadCreatePDF.start();
     }
 
     public void scanFile(File f, String mimeType) {

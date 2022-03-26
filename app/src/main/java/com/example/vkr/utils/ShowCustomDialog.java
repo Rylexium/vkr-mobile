@@ -43,6 +43,7 @@ public class ShowCustomDialog {
         no.setText(negativeText);
         yes.setText(positiveText);
 
+        yes.setOnClickListener(view -> dialog.dismiss());
         no.setOnClickListener(view -> dialog.dismiss());
 
         dialog.show();
