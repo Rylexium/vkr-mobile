@@ -11,8 +11,8 @@ import android.view.View;
 import android.view.Menu;
 
 import com.example.vkr.personal_cabinet.ui.result_egu.ResultEguViewModel;
+import com.example.vkr.utils.LoadingDialog;
 import com.example.vkr.utils.ShowCustomDialog;
-import com.example.vkr.utils.ShowToast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
@@ -24,7 +24,6 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.androidnetworking.AndroidNetworking;
@@ -210,7 +209,7 @@ public class PersonalCabinetActivity extends AppCompatActivity {
         selectedPage = 0;
     }
 
-    private void initComponents(){
+    private void initComponents() {
         navigationView = findViewById(R.id.nav_view);
         navigationView.getMenu().findItem(R.id.nav_exit).setOnMenuItemClickListener(menuItem -> {
             onBackPressed();

@@ -8,6 +8,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
+
+import com.example.vkr.utils.LoadingDialog;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
@@ -44,6 +46,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
 
 public class MoreAboutTheSpecialityActivity extends AppCompatActivity {
 
@@ -78,6 +83,8 @@ public class MoreAboutTheSpecialityActivity extends AppCompatActivity {
     private String competencies, professions, partners;
     private boolean isCompetencies = false, isProfessions = false, isPartners = false;
     private MenuItem favoriteItem;
+
+    private LoadingDialog loadingDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -208,6 +215,9 @@ public class MoreAboutTheSpecialityActivity extends AppCompatActivity {
     }
 
     private void initComponents() {
+        loadingDialog = new LoadingDialog(this);
+        loadingDialog.startLoadingDialog();
+
         idSpec = getIntent().getStringExtra("id");
         institutOfSpeciality = findViewById(R.id.institut_of_speciality);
         facultOfSpeciality = findViewById(R.id.facult_of_speciality);
@@ -231,8 +241,16 @@ public class MoreAboutTheSpecialityActivity extends AppCompatActivity {
         partnersOfSpeciality = findViewById(R.id.partners_of_speciality);
 
         typeOfStudy = PersonalCabinetActivity.typeOfStudy.get(getIntent().getStringExtra("type_of_study"));
-        downloadSpeciality();
-        downloadMinExams();
+
+        new Thread(() -> {
+            downloadSpeciality();
+            downloadMinExams();
+        }).start();
+        
+        new Thread(() -> {
+            while (nameOfSpeciality.getText().equals(""));
+            loadingDialog.dismissDialog();
+        }).start();
 
         for(int i=0; i<specialitysAbit.size() && !favorite; ++i)
             if(Objects.equals(specialitysAbit.get(i).get("id_spec"), idSpec)
@@ -244,106 +262,108 @@ public class MoreAboutTheSpecialityActivity extends AppCompatActivity {
     private void downloadSpeciality(){
         AndroidNetworking.get("https://vkr1-app.herokuapp.com/speciality?id=" + idSpec +"&type_of_study=" + typeOfStudy)
                 .setPriority(Priority.IMMEDIATE)
+                .setOkHttpClient(new OkHttpClient.Builder()
+                        .connectTimeout(2, TimeUnit.SECONDS)
+                        .build())
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        new Thread(()->{
-                            try {
-                                JsonNode jsonNode = new ObjectMapper().readTree(response.toString());
-                                competencies = !jsonNode.get("speciality").get("competencies").toString().equals("null")?
-                                        jsonNode.get("speciality").get("competencies").asText() : "-";
+                        if(competencies != null) return;
+                        try {
+                            JsonNode jsonNode = new ObjectMapper().readTree(response.toString());
+                            competencies = !jsonNode.get("speciality").get("competencies").toString().equals("null")?
+                                    jsonNode.get("speciality").get("competencies").asText() : "-";
 
-                                professions = !jsonNode.get("speciality").get("professions").toString().equals("null")?
-                                        jsonNode.get("speciality").get("professions").asText() : "-";
+                            professions = !jsonNode.get("speciality").get("professions").toString().equals("null")?
+                                    jsonNode.get("speciality").get("professions").asText() : "-";
 
-                                partners = !jsonNode.get("speciality").get("partners").toString().equals("null")?
-                                        jsonNode.get("speciality").get("partners").asText() : "-";
+                            partners = !jsonNode.get("speciality").get("partners").toString().equals("null")?
+                                    jsonNode.get("speciality").get("partners").asText() : "-";
 
-                                new Handler(Looper.getMainLooper()).post(() -> {
-                                    idOfSpeciality.setText(String.format("Код: %s", jsonNode.get("speciality").get("id").asText()));
-                                    nameOfSpeciality.setText(jsonNode.get("speciality").get("name").asText());
-                                    institutOfSpeciality.setText(jsonNode.get("institution").get("name") == null? "-" :jsonNode.get("institution").get("name").asText());
+                            new Handler(Looper.getMainLooper()).post(() -> {
+                                idOfSpeciality.setText(String.format("Код: %s", jsonNode.get("speciality").get("id").asText()));
+                                nameOfSpeciality.setText(jsonNode.get("speciality").get("name").asText());
+                                institutOfSpeciality.setText(jsonNode.get("institution").get("name") == null? "-" :jsonNode.get("institution").get("name").asText());
 
-                                    if (jsonNode.get("speciality").get("facult") == null)
-                                        mainLayout.removeView(facultOfSpeciality);
-                                    else facultOfSpeciality.setText(jsonNode.get("speciality").get("facult").get("name").asText());
+                                if (jsonNode.get("speciality").get("facult") == null)
+                                    mainLayout.removeView(facultOfSpeciality);
+                                else facultOfSpeciality.setText(jsonNode.get("speciality").get("facult").get("name").asText());
 
-                                    fioCuratorOfSpeciality.setText(String.format("Куратор: %s", jsonNode.get("speciality").get("curator").toString().equals("null")? '-' :
-                                            jsonNode.get("curator").get("family").asText() + " " + jsonNode.get("curator").get("name").asText() + " "
-                                                    + jsonNode.get("curator").get("patronymic").asText()));
+                                fioCuratorOfSpeciality.setText(String.format("Куратор: %s", jsonNode.get("speciality").get("curator").toString().equals("null")? '-' :
+                                        jsonNode.get("curator").get("family").asText() + " " + jsonNode.get("curator").get("name").asText() + " "
+                                                + jsonNode.get("curator").get("patronymic").asText()));
 
-                                    phoneOfSpeciality.setText(String.format("Номер для связи: %s",
-                                            jsonNode.get("speciality").get("contact_number").toString().equals("null")?
-                                                    '-' : jsonNode.get("speciality").get("contact_number").asText()));
+                                phoneOfSpeciality.setText(String.format("Номер для связи: %s",
+                                        jsonNode.get("speciality").get("contact_number").toString().equals("null")?
+                                                '-' : jsonNode.get("speciality").get("contact_number").asText()));
 
-                                    if (!jsonNode.get("speciality").get("studying_time").toString().equals("null"))
-                                        studyingTimeOfSpeciality.setText(String.format("%s %s", jsonNode.get("speciality").get("studying_time"), //tyt
-                                                jsonNode.get("speciality").get("studying_time").asInt() < 5 ? "года" : "лет"));
+                                if (!jsonNode.get("speciality").get("studying_time").toString().equals("null"))
+                                    studyingTimeOfSpeciality.setText(String.format("%s %s", jsonNode.get("speciality").get("studying_time"), //tyt
+                                            jsonNode.get("speciality").get("studying_time").asInt() < 5 ? "года" : "лет"));
 
-                                    typeOfStudyOfSpeciality.setText(jsonNode.get("typeOfStudy").get("name").asText());
-                                    budgetOfSpeciality.setText(jsonNode.get("speciality").get("budget").toString());
+                                typeOfStudyOfSpeciality.setText(jsonNode.get("typeOfStudy").get("name").asText());
+                                budgetOfSpeciality.setText(jsonNode.get("speciality").get("budget").toString());
 
-                                    if (!jsonNode.get("speciality").get("pay_per_year").toString().equals("null"))
-                                        payPerYearOfSpeciality.setText(jsonNode.get("speciality").get("pay_per_year").toString().length() == 5 ?
-                                                new StringBuilder(jsonNode.get("speciality").get("pay_per_year").toString()).insert(2, ' ').toString() :
-                                                new StringBuilder(jsonNode.get("speciality").get("pay_per_year").toString()).insert(3, ' ').toString());
+                                if (!jsonNode.get("speciality").get("pay_per_year").toString().equals("null"))
+                                    payPerYearOfSpeciality.setText(jsonNode.get("speciality").get("pay_per_year").toString().length() == 5 ?
+                                            new StringBuilder(jsonNode.get("speciality").get("pay_per_year").toString()).insert(2, ' ').toString() :
+                                            new StringBuilder(jsonNode.get("speciality").get("pay_per_year").toString()).insert(3, ' ').toString());
 
-                                    payOfSpeciality.setText(jsonNode.get("speciality").get("pay").toString());
+                                payOfSpeciality.setText(jsonNode.get("speciality").get("pay").toString());
 
-                                    descriptionOfSpeciality.setText(jsonNode.get("speciality").get("description").toString().equals("null")?
-                                            "-" : jsonNode.get("speciality").get("description").asText());
+                                descriptionOfSpeciality.setText(jsonNode.get("speciality").get("description").toString().equals("null")?
+                                        "-" : jsonNode.get("speciality").get("description").asText());
 
-                                    passingScoreOfSpeciality.setText(jsonNode.get("speciality").get("passing_score").toString().equals("null")?
-                                            "-" : jsonNode.get("speciality").get("passing_score").toString());
+                                passingScoreOfSpeciality.setText(jsonNode.get("speciality").get("passing_score").toString().equals("null")?
+                                        "-" : jsonNode.get("speciality").get("passing_score").toString());
 
-                                    favoriteItem.setEnabled(true);
-                                });
-                            } catch (JsonProcessingException e) {
-                                e.printStackTrace();
-                            }
-                        }).start();
+                                favoriteItem.setEnabled(true);
+                            });
+                        } catch (JsonProcessingException e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override
-                    public void onError(ANError anError) { }
+                    public void onError(ANError anError) { new Handler().postDelayed(() -> downloadSpeciality(), 1000);  }
                 });
     }
 
     private void downloadMinExams(){
         AndroidNetworking.get("https://vkr1-app.herokuapp.com/speciality_exams?id_spec=" + idSpec)
                 .setPriority(Priority.HIGH)
+                .setOkHttpClient(new OkHttpClient.Builder()
+                        .connectTimeout(2, TimeUnit.SECONDS)
+                        .build())
                 .build()
                 .getAsJSONArray(new JSONArrayRequestListener() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        new Thread(()->{
-                            try {
-                                exams = new ArrayList<>();
-                                JsonNode jsonNode = new ObjectMapper().readTree(response.toString());
-                                jsonNode.forEach(item -> exams.add(asList(item.get("exams").get("name").asText(),
-                                                                          item.get("specialityExams").get("min_points").toString())));
-                                new Handler(Looper.getMainLooper()).post(() -> {
-                                    for(int i=0; i<exams.size(); i++){
-                                        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                                        View rowView = inflater.inflate(R.layout.field_for_min_exam, null);
-                                        TextView text = rowView.findViewById(R.id.name_exam);
-                                        TextView points = rowView.findViewById(R.id.min_points_exam);
-                                        text.setText(exams.get(i).get(0));
-                                        points.setText(exams.get(i).get(1));
-                                        layoutOfExamsForSpeciality.addView(rowView);
-                                    }
-                                });
-
-
-                            } catch (JsonProcessingException e) {
-                                e.printStackTrace();
-                            }
-                        }).start();
+                        if(exams != null) return;
+                        try {
+                            exams = new ArrayList<>();
+                            JsonNode jsonNode = new ObjectMapper().readTree(response.toString());
+                            jsonNode.forEach(item -> exams.add(asList(item.get("exams").get("name").asText(),
+                                                                      item.get("specialityExams").get("min_points").toString())));
+                            new Handler(Looper.getMainLooper()).post(() -> {
+                                for(int i=0; i<exams.size(); i++){
+                                    LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                                    View rowView = inflater.inflate(R.layout.field_for_min_exam, null);
+                                    TextView text = rowView.findViewById(R.id.name_exam);
+                                    TextView points = rowView.findViewById(R.id.min_points_exam);
+                                    text.setText(exams.get(i).get(0));
+                                    points.setText(exams.get(i).get(1));
+                                    layoutOfExamsForSpeciality.addView(rowView);
+                                }
+                            });
+                        } catch (JsonProcessingException e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override
-                    public void onError(ANError anError) { }
+                    public void onError(ANError anError) { new Handler().postDelayed(() -> downloadMinExams(), 1000); }
                 });
     }
 

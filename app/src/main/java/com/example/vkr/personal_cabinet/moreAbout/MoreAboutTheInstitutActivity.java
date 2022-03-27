@@ -6,12 +6,13 @@ import android.animation.LayoutTransition;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
-import android.os.Handler;
-import android.os.Looper;
+
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.cardview.widget.CardView;
+
+import android.os.Handler;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
 import android.util.Log;
@@ -30,6 +31,7 @@ import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.example.vkr.R;
 import com.example.vkr.personal_cabinet.PersonalCabinetActivity;
+import com.example.vkr.utils.LoadingDialog;
 import com.example.vkr.utils.OpenActivity;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -41,6 +43,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
 
 public class MoreAboutTheInstitutActivity extends AppCompatActivity {
     private int id;
@@ -53,6 +58,7 @@ public class MoreAboutTheInstitutActivity extends AppCompatActivity {
     private List<List<String>> specialitys = new ArrayList<>();;
     private boolean isPressed = false;
 
+    private LoadingDialog loadingDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +122,9 @@ public class MoreAboutTheInstitutActivity extends AppCompatActivity {
 
 
     private void initComponents() {
+        loadingDialog = new LoadingDialog(this);
+        loadingDialog.startLoadingDialog();
+
         id = Integer.parseInt(getIntent().getStringExtra("id"));
 
         nameOfInstitut = findViewById(R.id.name_of_institut);
@@ -127,6 +136,11 @@ public class MoreAboutTheInstitutActivity extends AppCompatActivity {
 
         downloadSpecialitys();
         downloadInfoInstituts();
+
+        new Thread(() -> {
+            while (nameOfInstitut.getText().equals(""));
+            loadingDialog.dismissDialog();
+        }).start();
     }
 
     private void downloadSpecialitys(){
@@ -137,6 +151,9 @@ public class MoreAboutTheInstitutActivity extends AppCompatActivity {
             url = "https://vkr1-app.herokuapp.com/speciality/magistr/info?id_institut=" + getIntent().getStringExtra("id");
         AndroidNetworking.get(url)
             .setPriority(Priority.IMMEDIATE)
+            .setOkHttpClient(new OkHttpClient.Builder()
+                    .connectTimeout(2, TimeUnit.SECONDS)
+                    .build())
             .build()
             .getAsJSONArray(new JSONArrayRequestListener() {
                 @Override
@@ -154,7 +171,7 @@ public class MoreAboutTheInstitutActivity extends AppCompatActivity {
 
                 @Override
                 public void onError(ANError anError) {
-                    Log.e("", "error");
+                    new Handler().postDelayed(() -> downloadSpecialitys(), 1000);
                 }
             });
     }
@@ -162,6 +179,9 @@ public class MoreAboutTheInstitutActivity extends AppCompatActivity {
         Activity activity = this;
         AndroidNetworking.get("https://vkr1-app.herokuapp.com/institutions?id=" + getIntent().getStringExtra("id"))
                 .setPriority(Priority.HIGH)
+                .setOkHttpClient(new OkHttpClient.Builder()
+                        .connectTimeout(2, TimeUnit.SECONDS)
+                        .build())
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
@@ -213,7 +233,7 @@ public class MoreAboutTheInstitutActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onError(ANError anError) { }
+                    public void onError(ANError anError) { new Handler().postDelayed(() -> downloadInfoInstituts(), 1000); }
                 });
     }
 
