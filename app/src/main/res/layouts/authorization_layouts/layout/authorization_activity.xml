@@ -139,7 +139,7 @@
                 android:layout_marginEnd="25dp"
                 android:clickable="true"
                 android:gravity="center"
-                android:text="Подать заявление"
+                android:text="@string/submit_an_application"
                 android:textColor="@color/grey"
                 android:textSize="23sp" />
 
@@ -152,7 +152,7 @@
                 android:layout_marginEnd="25dp"
                 android:clickable="true"
                 android:gravity="center"
-                android:text="Восстановить доступ"
+                android:text="@string/restore_access"
                 android:textColor="@color/grey"
                 android:textSize="23sp" />
 
@@ -165,16 +165,28 @@
                 android:layout_marginEnd="25dp"
                 android:clickable="true"
                 android:gravity="center"
-                android:text="Часто задаваемые вопросы"
+                android:text="@string/frequently_asked_question"
                 android:textColor="@color/grey"
                 android:textSize="23sp" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <View
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="110dp" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="@drawable/ic_wave"
+                android:rotation="180"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:background="@color/blue_200" />
+        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>

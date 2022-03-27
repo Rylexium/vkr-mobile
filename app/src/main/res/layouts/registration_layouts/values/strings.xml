@@ -103,4 +103,8 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="example_institute"><u>Естественнонаучный институт</u></string>
+    <string name="frequently_asked_question"><u>Часто задаваемые вопросы</u></string>
+    <string name="submit_an_application"><u>Подать заявление</u></string>
+    <string name="restore_access"><u>Восстановить доступ</u></string>
 </resources>

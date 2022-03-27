@@ -6,6 +6,7 @@ import static java.util.Arrays.asList;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -83,7 +84,7 @@ public class SpecialityFragment extends Fragment {
         final View rowView = inflater.inflate(R.layout.field_for_speciality, null);
 
         TextView name = rowView.findViewById(R.id.textview_speciality); //02.03.03 МОАИС
-        TextView institut = rowView.findViewById(R.id.textview_institut); //Естественнонаучный институт
+        TextView institute = rowView.findViewById(R.id.textview_institut); //Естественнонаучный институт
         TextView typeOfStudy = rowView.findViewById(R.id.textview_type_of_study); //Очная
         TextView generalCompetition = rowView.findViewById(R.id.textview_general_competition); // 253 / 25
         TextView contract = rowView.findViewById(R.id.textview_сontract); // 123 / 75
@@ -97,9 +98,9 @@ public class SpecialityFragment extends Fragment {
                     .putExtra("type_of_study", nameTypeOfStudy));
         });
 
-        institut.setOnClickListener(view ->{
-            institut.setEnabled(false);
-            new Handler().postDelayed(() -> institut.setEnabled(true),2000);
+        institute.setOnClickListener(view ->{
+            institute.setEnabled(false);
+            new Handler().postDelayed(() -> institute.setEnabled(true),2000);
             startActivity(new Intent(binding.getContext(), MoreAboutTheInstitutActivity.class)
                     .putExtra("name_institut", nameInstitut)
                     .putExtra("id", PersonalCabinetActivity.instituts.get(nameInstitut)));
@@ -107,7 +108,10 @@ public class SpecialityFragment extends Fragment {
 
 
         name.setText(String.format("%s %s", idSpeciality, nameSpeciality));
-        institut.setText(nameInstitut.equals("null")? "" : nameInstitut);
+
+        institute.setText(nameInstitut.equals("null")? "" : nameInstitut);
+        institute.setPaintFlags(institute.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+
         typeOfStudy.setText(nameTypeOfStudy);
         generalCompetition.setText(valueGeneralCompetition);
         contract.setText(valueContract);

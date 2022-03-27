@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.Gravity
+import android.view.RoundedCorner
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -19,6 +20,9 @@ import com.androidnetworking.interfaces.JSONArrayRequestListener
 import com.androidnetworking.interfaces.JSONObjectRequestListener
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DecodeFormat
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.example.vkr.R
 import com.example.vkr.activity.authorization.AuthorizationActivity
 import com.example.vkr.utils.OpenActivity
@@ -171,7 +175,6 @@ class SplashScreen : AppCompatActivity() {
             }
             in 91..95 -> { // 5%
                 mainLayout.setBackgroundColor(applicationContext.getColor(R.color.grey))
-                //viewLayout.removeView(logoImageView)
                 viewLayout.removeAllViews()
                 val textView = TextView(this)
                 textView.text = "Сам знаешь кто здесь должен быть"
@@ -189,12 +192,14 @@ class SplashScreen : AppCompatActivity() {
                 window.statusBarColor = applicationContext.getColor(R.color.black)
             }
             in 96..100 -> { // 5%
-                mainLayout.setBackgroundColor(applicationContext.getColor(R.color.grey))
-                //viewLayout.removeView(logoImageView)
-                viewLayout.removeAllViews()
-                window.navigationBarColor = applicationContext.getColor(R.color.black)
-                window.statusBarColor = applicationContext.getColor(R.color.black)
-                ShowToast.show(baseContext, "Ничего пока не придумал")
+                mainLayout.setBackgroundColor(Color.parseColor("#b88307"))
+                Glide.with(this)
+                    .load(R.drawable.apelsinka)
+                    .format(DecodeFormat.PREFER_RGB_565)
+                    .apply(RequestOptions.bitmapTransform(RoundedCorners(16)))
+                    .into(logoImageView)
+                window.navigationBarColor = Color.parseColor("#674101")
+                window.statusBarColor = Color.parseColor("#674101")
             }
         }
     }

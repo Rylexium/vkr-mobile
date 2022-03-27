@@ -47,7 +47,7 @@
                 android:textColor="@color/white"
                 android:elegantTextHeight="true"
                 android:textSize="22sp"
-                android:text="Естественнонаучный институт"
+                android:text="@string/example_institute"
                 />
 
             <LinearLayout

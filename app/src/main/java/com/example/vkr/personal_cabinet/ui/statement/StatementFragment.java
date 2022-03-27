@@ -6,6 +6,7 @@ import static com.example.vkr.personal_cabinet.PersonalCabinetActivity.typeOfStu
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
@@ -105,7 +106,7 @@ public class StatementFragment extends Fragment {
         final View rowView = inflater.inflate(R.layout.field_for_statement, null);
 
         TextView name = rowView.findViewById(R.id.textview_speciality); //02.03.03 МОАИС
-        TextView institut = rowView.findViewById(R.id.textview_institut); //Естественнонаучный институт
+        TextView institute = rowView.findViewById(R.id.textview_institut); //Естественнонаучный институт
         TextView typeOfStudy = rowView.findViewById(R.id.textview_type_of_study); //Очная
         TextView dateOfStatement = rowView.findViewById(R.id.date_of_statement); //22.04.2022
 
@@ -120,9 +121,9 @@ public class StatementFragment extends Fragment {
                     .putExtra("type_of_study", nameTypeOfStudy));
         });
 
-        institut.setOnClickListener(view ->{
-            institut.setEnabled(false);
-            new Handler().postDelayed(() -> institut.setEnabled(true),2000);
+        institute.setOnClickListener(view ->{
+            institute.setEnabled(false);
+            new Handler().postDelayed(() -> institute.setEnabled(true),2000);
             startActivity(new Intent(binding.getContext(), MoreAboutTheInstitutActivity.class)
                     .putExtra("name_institut", nameInstitut)
                     .putExtra("id", PersonalCabinetActivity.instituts.get(nameInstitut)));
@@ -134,7 +135,10 @@ public class StatementFragment extends Fragment {
         spinnerPriority.setSelection(valuePriority != null && !valuePriority.equals("null")? Integer.parseInt(valuePriority) - 1 : 0);
 
         name.setText(String.format("%s %s", idSpeciality, nameSpeciality));
-        institut.setText(nameInstitut);
+
+        institute.setText(nameInstitut);
+        institute.setPaintFlags(institute.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+
         typeOfStudy.setText(nameTypeOfStudy);
         dateOfStatement.setText(valueOfDateOfStatement != null && !valueOfDateOfStatement.equals("null")? valueOfDateOfStatement :  "-");
         linearLayout.addView(rowView);
