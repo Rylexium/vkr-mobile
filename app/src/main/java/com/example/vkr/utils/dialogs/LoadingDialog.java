@@ -1,4 +1,4 @@
-package com.example.vkr.utils;
+package com.example.vkr.utils.dialogs;
 
 import android.app.Activity;
 import android.app.AlertDialog;

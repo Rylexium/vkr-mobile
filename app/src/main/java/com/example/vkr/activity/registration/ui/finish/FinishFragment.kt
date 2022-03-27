@@ -21,7 +21,7 @@ import com.example.vkr.activity.registration.ui.registration.RegistrationFragmen
 import com.example.vkr.activity.registration.ui.snills.SnillsFragment
 import com.example.vkr.databinding.FragmentFinishBinding
 import com.example.vkr.utils.HashPass
-import com.example.vkr.utils.ShowToast
+import com.example.vkr.utils.dialogs.ShowToast
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 

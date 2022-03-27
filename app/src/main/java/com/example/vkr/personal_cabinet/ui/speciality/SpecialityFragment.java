@@ -12,7 +12,7 @@ import android.os.Handler;
 import androidx.annotation.NonNull;
 
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
-import com.example.vkr.utils.ShowToast;
+import com.example.vkr.utils.dialogs.ShowToast;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.fragment.app.Fragment;
 

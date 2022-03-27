@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.example.vkr.utils.NonFocusingScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.example.vkr.utils.custom_views.NonFocusingScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/education_document_view"
     android:layout_width="match_parent"
@@ -51,4 +51,4 @@
 
 
     </LinearLayout>
-</com.example.vkr.utils.NonFocusingScrollView>
+</com.example.vkr.utils.custom_views.NonFocusingScrollView>

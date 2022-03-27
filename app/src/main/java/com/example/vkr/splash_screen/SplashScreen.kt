@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
-import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -24,7 +23,7 @@ import com.example.vkr.R
 import com.example.vkr.activity.authorization.AuthorizationActivity
 import com.example.vkr.utils.OpenActivity
 import com.example.vkr.utils.OpenActivity.openMissedMan
-import com.example.vkr.utils.ShowToast
+import com.example.vkr.utils.dialogs.ShowToast
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.delay

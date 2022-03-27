@@ -1,9 +1,7 @@
 package com.example.vkr.activity.registration.ui.education
 
 import android.app.Activity
-import android.content.Context.MODE_PRIVATE
 import android.content.Intent
-import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
@@ -32,6 +30,9 @@ import com.example.vkr.activity.registration.RegistrationActivity
 import com.example.vkr.activity.registration.RegistrationActivity.Companion.sharedPreferences
 import com.example.vkr.databinding.FragmentEducationBinding
 import com.example.vkr.utils.*
+import com.example.vkr.utils.dialogs.SelectDateClass
+import com.example.vkr.utils.dialogs.SelectImageClass
+import com.example.vkr.utils.dialogs.ShowToast
 import com.fasterxml.jackson.databind.ObjectMapper
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch

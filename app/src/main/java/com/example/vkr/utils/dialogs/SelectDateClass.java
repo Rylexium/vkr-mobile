@@ -1,4 +1,4 @@
-package com.example.vkr.utils;
+package com.example.vkr.utils.dialogs;
 
 import android.app.DatePickerDialog;
 import androidx.appcompat.app.AppCompatActivity;

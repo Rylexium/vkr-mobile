@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DecodeFormat;
 import com.example.vkr.personal_cabinet.PersonalCabinetActivity;
-import com.example.vkr.utils.ShowToast;
+import com.example.vkr.utils.dialogs.ShowToast;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;

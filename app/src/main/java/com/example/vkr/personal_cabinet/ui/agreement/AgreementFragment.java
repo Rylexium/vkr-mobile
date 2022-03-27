@@ -27,8 +27,8 @@ import com.example.vkr.R;
 import com.example.vkr.personal_cabinet.PersonalCabinetActivity;
 import com.example.vkr.personal_cabinet.ui.result_egu.ResultEguFragment;
 import com.example.vkr.utils.OpenActivity;
-import com.example.vkr.utils.ShowCustomDialog;
-import com.example.vkr.utils.ShowToast;
+import com.example.vkr.utils.dialogs.ShowCustomDialog;
+import com.example.vkr.utils.dialogs.ShowToast;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.io.File;

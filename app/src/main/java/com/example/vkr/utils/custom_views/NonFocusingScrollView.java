@@ -1,4 +1,4 @@
-package com.example.vkr.utils;
+package com.example.vkr.utils.custom_views;
 
 import android.content.Context;
 import android.graphics.Rect;

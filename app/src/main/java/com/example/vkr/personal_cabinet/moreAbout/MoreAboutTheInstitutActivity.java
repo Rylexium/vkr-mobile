@@ -31,7 +31,7 @@ import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.example.vkr.R;
 import com.example.vkr.personal_cabinet.PersonalCabinetActivity;
-import com.example.vkr.utils.LoadingDialog;
+import com.example.vkr.utils.dialogs.LoadingDialog;
 import com.example.vkr.utils.OpenActivity;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;

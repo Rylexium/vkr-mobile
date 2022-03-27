@@ -3,7 +3,6 @@ package com.example.vkr.personal_cabinet.ui.result_egu;
 import static java.util.Arrays.asList;
 
 import android.os.Handler;
-import android.view.View;
 
 import androidx.lifecycle.ViewModel;
 
@@ -12,7 +11,7 @@ import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.example.vkr.personal_cabinet.PersonalCabinetActivity;
-import com.example.vkr.utils.ShowToast;
+import com.example.vkr.utils.dialogs.ShowToast;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

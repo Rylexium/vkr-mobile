@@ -17,6 +17,7 @@ import com.example.vkr.activity.support.ChangePasswordActivity;
 import com.example.vkr.personal_cabinet.PersonalCabinetActivity;
 import com.example.vkr.activity.support.SupportActivity;
 import com.example.vkr.personal_cabinet.ui.statement.ViewPdfActivity;
+import com.example.vkr.utils.dialogs.ShowBottomDialog;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 

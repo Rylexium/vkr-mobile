@@ -2,9 +2,7 @@ package com.example.vkr.activity.registration.ui.passport3
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.Context.MODE_PRIVATE
 import android.content.Intent
-import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -26,8 +24,8 @@ import com.example.vkr.activity.registration.RegistrationActivity
 import com.example.vkr.activity.registration.RegistrationActivity.Companion.sharedPreferences
 import com.example.vkr.databinding.FragmentPassport3Binding
 import com.example.vkr.utils.ConvertClass
-import com.example.vkr.utils.SelectImageClass
-import com.example.vkr.utils.ShowCustomDialog
+import com.example.vkr.utils.dialogs.SelectImageClass
+import com.example.vkr.utils.dialogs.ShowCustomDialog
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import java.util.*
@@ -156,7 +154,8 @@ class Passport3Fragment : Fragment() {
     private fun showYesNoDialog(motionEvent: MotionEvent): Boolean {
         //если не первый раз нажимаем на одну это же поля или уже сказали "Да"
         if (motionEvent.action != MotionEvent.ACTION_UP || isYes) return false
-        ShowCustomDialog().showDialog(this.activity, this.activity?.getDrawable(R.drawable.ic_baseline_room_24),
+        ShowCustomDialog()
+            .showDialog(this.activity, this.activity?.getDrawable(R.drawable.ic_baseline_room_24),
             "Место жительства", "Место прописки соответствует фактическому месту проживания?",
             "Да", "Нет")
             .setOnYes {
@@ -173,7 +172,8 @@ class Passport3Fragment : Fragment() {
         var bitmap : Bitmap? = null
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
-                SelectImageClass.CAMERA -> bitmap = BitmapFactory.decodeFile(SelectImageClass.currentPhotoPath)
+                SelectImageClass.CAMERA -> bitmap = BitmapFactory.decodeFile(
+                    SelectImageClass.currentPhotoPath)
                 SelectImageClass.GALLERY -> bitmap = ConvertClass.decodeUriToBitmap(context, data?.data)
             }
 

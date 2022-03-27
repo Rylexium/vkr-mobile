@@ -1,16 +1,13 @@
 package com.example.vkr.activity.registration.ui.passport2
 
 import android.app.Activity
-import android.content.Context.MODE_PRIVATE
 import android.content.Intent
-import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.fragment.app.Fragment
 import androidx.core.content.ContextCompat
@@ -18,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
@@ -28,6 +24,8 @@ import com.example.vkr.activity.registration.RegistrationActivity
 import com.example.vkr.activity.registration.RegistrationActivity.Companion.sharedPreferences
 import com.example.vkr.databinding.FragmentPassport2Binding
 import com.example.vkr.utils.*
+import com.example.vkr.utils.dialogs.SelectDateClass
+import com.example.vkr.utils.dialogs.SelectImageClass
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import java.util.*
@@ -133,7 +131,8 @@ class Passport2Fragment : Fragment() {
         var bitmap: Bitmap? = null
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
-                SelectImageClass.CAMERA -> bitmap = BitmapFactory.decodeFile(SelectImageClass.currentPhotoPath)
+                SelectImageClass.CAMERA -> bitmap = BitmapFactory.decodeFile(
+                    SelectImageClass.currentPhotoPath)
                 SelectImageClass.GALLERY -> bitmap = ConvertClass.decodeUriToBitmap(context, data?.data)
             }
 

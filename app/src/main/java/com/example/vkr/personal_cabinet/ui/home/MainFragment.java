@@ -32,7 +32,7 @@ import com.example.vkr.R;
 import com.example.vkr.databinding.FragmentMainBinding;
 import com.example.vkr.personal_cabinet.PersonalCabinetActivity;
 import com.example.vkr.utils.ConvertClass;
-import com.example.vkr.utils.ShowToast;
+import com.example.vkr.utils.dialogs.ShowToast;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

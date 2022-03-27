@@ -1,8 +1,6 @@
 package com.example.vkr.activity.registration.ui.passport1
 
 import android.content.Context.MODE_PRIVATE
-import android.content.SharedPreferences
-import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
@@ -26,8 +24,8 @@ import com.example.vkr.R
 import com.example.vkr.activity.registration.RegistrationActivity.Companion.sharedPreferences
 import com.example.vkr.databinding.FragmentPassport1Binding
 import com.example.vkr.utils.*
+import com.example.vkr.utils.dialogs.SelectDateClass
 import com.fasterxml.jackson.databind.ObjectMapper
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.json.JSONArray
 import java.util.*

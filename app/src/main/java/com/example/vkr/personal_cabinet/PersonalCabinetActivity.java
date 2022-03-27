@@ -11,8 +11,7 @@ import android.view.View;
 import android.view.Menu;
 
 import com.example.vkr.personal_cabinet.ui.result_egu.ResultEguViewModel;
-import com.example.vkr.utils.LoadingDialog;
-import com.example.vkr.utils.ShowCustomDialog;
+import com.example.vkr.utils.dialogs.ShowCustomDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 

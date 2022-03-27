@@ -9,7 +9,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 
-import com.example.vkr.utils.LoadingDialog;
+import com.example.vkr.utils.dialogs.LoadingDialog;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;

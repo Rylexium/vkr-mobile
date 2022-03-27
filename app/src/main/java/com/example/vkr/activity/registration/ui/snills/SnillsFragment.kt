@@ -3,9 +3,7 @@ package com.example.vkr.activity.registration.ui.snills
 import com.example.vkr.R
 
 import android.app.Activity.RESULT_OK
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
@@ -28,7 +26,7 @@ import com.example.vkr.activity.registration.RegistrationActivity.Companion.shar
 import com.example.vkr.databinding.FragmentSnillsBinding
 import com.example.vkr.utils.ConvertClass
 import com.example.vkr.utils.CorrectText
-import com.example.vkr.utils.SelectImageClass
+import com.example.vkr.utils.dialogs.SelectImageClass
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import java.util.regex.Pattern
@@ -75,7 +73,8 @@ class SnillsFragment : Fragment() {
         if (resultCode == RESULT_OK) {
             var bitmap : Bitmap? = null
             when (requestCode) {
-                SelectImageClass.CAMERA -> bitmap = BitmapFactory.decodeFile(SelectImageClass.currentPhotoPath)
+                SelectImageClass.CAMERA -> bitmap = BitmapFactory.decodeFile(
+                    SelectImageClass.currentPhotoPath)
                 SelectImageClass.GALLERY -> bitmap = ConvertClass.decodeUriToBitmap(context, data?.data)
             }
             if(bitmap != null)

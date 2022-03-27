@@ -1,4 +1,4 @@
-package com.example.vkr.utils;
+package com.example.vkr.utils.dialogs;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -6,7 +6,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;

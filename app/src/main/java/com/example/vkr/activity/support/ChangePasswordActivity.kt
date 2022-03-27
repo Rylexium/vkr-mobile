@@ -24,7 +24,7 @@ import com.example.vkr.R
 import com.example.vkr.activity.authorization.AuthorizationActivity
 import com.example.vkr.utils.HashPass
 import com.example.vkr.utils.HideKeyboardClass
-import com.example.vkr.utils.ShowToast
+import com.example.vkr.utils.dialogs.ShowToast
 import com.google.android.material.textfield.TextInputEditText
 import org.json.JSONObject
 

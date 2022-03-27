@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import com.example.vkr.R
 import com.example.vkr.databinding.FragmentFullTimeBinding
 import com.example.vkr.personal_cabinet.PersonalCabinetActivity
-import com.example.vkr.utils.ShowToast
+import com.example.vkr.utils.dialogs.ShowToast
 
 class FullTimeFragment : Fragment() {
     private var _binding: FragmentFullTimeBinding? = null

@@ -33,7 +33,7 @@ import com.example.vkr.R;
 import com.example.vkr.personal_cabinet.PersonalCabinetActivity;
 import com.example.vkr.personal_cabinet.moreAbout.MoreAboutTheInstitutActivity;
 import com.example.vkr.personal_cabinet.moreAbout.MoreAboutTheSpecialityActivity;
-import com.example.vkr.utils.ShowToast;
+import com.example.vkr.utils.dialogs.ShowToast;
 
 import org.json.JSONArray;
 import org.json.JSONException;

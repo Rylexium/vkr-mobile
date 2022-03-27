@@ -1,4 +1,4 @@
-package com.example.vkr.utils;
+package com.example.vkr.utils.dialogs;
 
 import android.content.Context;
 import android.widget.Toast;

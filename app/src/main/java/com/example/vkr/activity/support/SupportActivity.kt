@@ -24,7 +24,7 @@ import com.androidnetworking.interfaces.JSONObjectRequestListener
 import com.example.vkr.R
 import com.example.vkr.utils.HideKeyboardClass
 import com.example.vkr.utils.OpenActivity
-import com.example.vkr.utils.ShowToast
+import com.example.vkr.utils.dialogs.ShowToast
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.GlobalScope
