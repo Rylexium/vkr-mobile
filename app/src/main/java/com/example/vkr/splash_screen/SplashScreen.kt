@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.Gravity
-import android.view.RoundedCorner
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -20,7 +19,6 @@ import com.androidnetworking.interfaces.JSONArrayRequestListener
 import com.androidnetworking.interfaces.JSONObjectRequestListener
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DecodeFormat
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.example.vkr.R
@@ -164,7 +162,7 @@ class SplashScreen : AppCompatActivity() {
                 window.navigationBarColor = Color.parseColor("#000080")
                 window.statusBarColor = Color.parseColor("#000080")
             }
-            in 61..90 -> { // 30%
+            in 61..89 -> { // 29%
                 mainLayout.setBackgroundColor(applicationContext.getColor(R.color.color_for_splash_screen3))
                 Glide.with(this)
                     .load(R.drawable.splash_screen3)
@@ -173,7 +171,7 @@ class SplashScreen : AppCompatActivity() {
                 window.navigationBarColor = applicationContext.getColor(R.color.orange_700)
                 window.statusBarColor = applicationContext.getColor(R.color.orange_700)
             }
-            in 91..95 -> { // 5%
+            in 90..91 -> { // 2%
                 mainLayout.setBackgroundColor(applicationContext.getColor(R.color.grey))
                 viewLayout.removeAllViews()
                 val textView = TextView(this)
@@ -191,7 +189,7 @@ class SplashScreen : AppCompatActivity() {
                 window.navigationBarColor = applicationContext.getColor(R.color.black)
                 window.statusBarColor = applicationContext.getColor(R.color.black)
             }
-            in 96..100 -> { // 5%
+            in 92..95 -> { // 3%
                 mainLayout.setBackgroundColor(Color.parseColor("#b88307"))
                 Glide.with(this)
                     .load(R.drawable.apelsinka)
@@ -200,6 +198,36 @@ class SplashScreen : AppCompatActivity() {
                     .into(logoImageView)
                 window.navigationBarColor = Color.parseColor("#674101")
                 window.statusBarColor = Color.parseColor("#674101")
+            }
+            in 95..96 -> { // 2%
+                mainLayout.setBackgroundColor(Color.parseColor("#02bfcd"))
+                Glide.with(this)
+                    .load(R.drawable.cat1)
+                    .format(DecodeFormat.PREFER_RGB_565)
+                    .apply(RequestOptions.bitmapTransform(RoundedCorners(16)))
+                    .into(logoImageView)
+                window.navigationBarColor = Color.parseColor("#1e213f")
+                window.statusBarColor = Color.parseColor("#1e213f")
+            }
+            in 97..98 -> { // 2%
+                mainLayout.setBackgroundColor(Color.parseColor("#c09a79"))
+                Glide.with(this)
+                    .load(R.drawable.cat2)
+                    .format(DecodeFormat.PREFER_RGB_565)
+                    .apply(RequestOptions.bitmapTransform(RoundedCorners(16)))
+                    .into(logoImageView)
+                window.navigationBarColor = Color.parseColor("#896e63")
+                window.statusBarColor = Color.parseColor("#896e63")
+            }
+            in 99..100 -> { // 2%
+                mainLayout.setBackgroundColor(Color.parseColor("#433933"))
+                Glide.with(this)
+                    .load(R.drawable.cat3)
+                    .format(DecodeFormat.PREFER_RGB_565)
+                    .apply(RequestOptions.bitmapTransform(RoundedCorners(16)))
+                    .into(logoImageView)
+                window.navigationBarColor = Color.parseColor("#272020")
+                window.statusBarColor = Color.parseColor("#272020")
             }
         }
     }
