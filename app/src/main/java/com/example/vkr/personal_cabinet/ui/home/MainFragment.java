@@ -68,12 +68,10 @@ public class MainFragment extends Fragment {
 
     private static MainViewModel mainViewModel;
 
-    private float mTouchPosition;
-    private float mReleasePosition;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
+        PersonalCabinetActivity.selectedPage = 0;
         binding = FragmentMainBinding.inflate(inflater, container, false);
         progressBar = new ProgressBar(getContext());
         progressBar.setPadding(0,30,0, 0);

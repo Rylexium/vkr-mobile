@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DecodeFormat;
+import com.example.vkr.personal_cabinet.PersonalCabinetActivity;
 import com.example.vkr.utils.ShowToast;
 import androidx.fragment.app.Fragment;
 
@@ -43,14 +44,12 @@ public class AchievementsFragment extends Fragment {
     private ProgressBar progressBar;
     private static final List<String> achievements = new ArrayList<>();
 
-    private float mTouchPosition;
-    private float mReleasePosition;
-
     private int countTry = 0;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
+        PersonalCabinetActivity.selectedPage = 2;
         binding = inflater.inflate(R.layout.fragment_achievements, container, false);
         mainLayout = binding.findViewById(R.id.fragment_achievements_layout);
         if(achievements.isEmpty()) downloadPrivileges();

@@ -57,6 +57,7 @@ public class StatementFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
+        PersonalCabinetActivity.selectedPage = 4;
         binding = inflater.inflate(R.layout.fragment_statement, container, false);
         initComponents();
         applyEvents();

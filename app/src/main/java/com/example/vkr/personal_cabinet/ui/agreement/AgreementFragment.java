@@ -60,6 +60,7 @@ public class AgreementFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
+        PersonalCabinetActivity.selectedPage = 5;
         binding = inflater.inflate(R.layout.fragment_agreement, container, false);
         initComponents();
         applyEvents();

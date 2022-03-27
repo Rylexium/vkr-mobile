@@ -58,9 +58,6 @@ public class SpecialityFragment extends Fragment {
 
     private ProgressBar progressBar;
 
-    private float mTouchPosition;
-    private float mReleasePosition;
-
     private static boolean isBottom = false; // дошли до конца
     private static boolean isAllSpecialityDownload = false;
 
@@ -71,6 +68,7 @@ public class SpecialityFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
+        PersonalCabinetActivity.selectedPage = 3;
         binding = inflater.inflate(R.layout.fragment_speciality, container, false);
         initComponents();
         applyEvents();

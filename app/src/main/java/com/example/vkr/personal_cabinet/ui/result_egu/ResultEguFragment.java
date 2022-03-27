@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.example.vkr.R;
+import com.example.vkr.personal_cabinet.PersonalCabinetActivity;
 
 import java.util.Objects;
 
@@ -30,6 +31,7 @@ public class ResultEguFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
+        PersonalCabinetActivity.selectedPage = 1;
         binding = inflater.inflate(R.layout.fragment_result_egu, container, false);
         layoutOfExams = binding.findViewById(R.id.layout_of_exams);
         viewModel = new ResultEguViewModel();

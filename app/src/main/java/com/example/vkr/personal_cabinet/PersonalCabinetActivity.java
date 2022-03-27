@@ -66,6 +66,7 @@ public class PersonalCabinetActivity extends AppCompatActivity {
     private PersonalCabinetActivityBinding binding;
 
 
+    public static int selectedPage = 0;
     public static String resFio;
     public static String dateOfBirthday;
     public static String resEmailPhone;
@@ -98,8 +99,7 @@ public class PersonalCabinetActivity extends AppCompatActivity {
                 R.id.nav_agreement,
                 R.id.nav_egu,
                 R.id.nav_speciality,
-                R.id.nav_statement,
-                R.id.nav_exit) //перечислить layout
+                R.id.nav_statement) //перечислить layout
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_personal_cabinet);
@@ -153,7 +153,7 @@ public class PersonalCabinetActivity extends AppCompatActivity {
                     StatementFragment.clearData();
                     AchievementsFragment.clearData();
                 })
-                .setOnDismiss(() -> navigationView.getMenu().findItem(R.id.nav_home).setChecked(true));
+                .setOnDismiss(() -> navigationView.getMenu().getItem(selectedPage).setChecked(true));
     }
 
 
@@ -206,6 +206,8 @@ public class PersonalCabinetActivity extends AppCompatActivity {
         resFio = null;
         dateOfBirthday = null;
         resEmailPhone = null;
+
+        selectedPage = 0;
     }
 
     private void initComponents(){
