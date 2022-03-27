@@ -56,6 +56,7 @@ class SplashScreen : AppCompatActivity() {
         viewLayout = findViewById(R.id.splash_layout)
 
         setTheme()
+
         sharedPreferences = getPreferences(MODE_PRIVATE)
         viewLayout.alpha = 0f
         viewLayout.animate().setDuration(Random.nextInt(500, 1000).toLong()).alpha(1f).withEndAction{
@@ -74,7 +75,7 @@ class SplashScreen : AppCompatActivity() {
                 Handler(Looper.getMainLooper()).post { viewLayout.removeView(progressBar) }
                 authorization()
             }
-       }
+        }
     }
 
 
@@ -143,8 +144,8 @@ class SplashScreen : AppCompatActivity() {
         progressBar = ProgressBar(this)
         progressBar.setPadding(0,30,0, 0)
         viewLayout.addView(progressBar)
-        when (Random.nextInt(1, 100)) {
-            in 1..30 -> { // 30%
+        when (Random.nextInt(0, 100)) {
+            in 0..29 -> { // 29%
                 mainLayout.setBackgroundColor(applicationContext.getColor(R.color.color_for_splash_screen1))
                 Glide.with(this)
                     .load(R.drawable.splash_screen1)
@@ -153,7 +154,7 @@ class SplashScreen : AppCompatActivity() {
                 window.navigationBarColor = applicationContext.getColor(R.color.blue_700)
                 window.statusBarColor = applicationContext.getColor(R.color.blue_700)
             }
-            in 31..60 -> { // 30%
+            in 30..59 -> { // 29%
                 mainLayout.setBackgroundColor(applicationContext.getColor(R.color.color_for_splash_screen2))
                 Glide.with(this)
                     .load(R.drawable.splash_screen2)
@@ -162,7 +163,7 @@ class SplashScreen : AppCompatActivity() {
                 window.navigationBarColor = Color.parseColor("#000080")
                 window.statusBarColor = Color.parseColor("#000080")
             }
-            in 61..89 -> { // 29%
+            in 60..88 -> { // 28%
                 mainLayout.setBackgroundColor(applicationContext.getColor(R.color.color_for_splash_screen3))
                 Glide.with(this)
                     .load(R.drawable.splash_screen3)
@@ -171,7 +172,7 @@ class SplashScreen : AppCompatActivity() {
                 window.navigationBarColor = applicationContext.getColor(R.color.orange_700)
                 window.statusBarColor = applicationContext.getColor(R.color.orange_700)
             }
-            in 90..91 -> { // 2%
+            in 89..90 -> { // 2%
                 mainLayout.setBackgroundColor(applicationContext.getColor(R.color.grey))
                 viewLayout.removeAllViews()
                 val textView = TextView(this)
@@ -189,7 +190,7 @@ class SplashScreen : AppCompatActivity() {
                 window.navigationBarColor = applicationContext.getColor(R.color.black)
                 window.statusBarColor = applicationContext.getColor(R.color.black)
             }
-            in 92..95 -> { // 3%
+            in 91..94 -> { // 3%
                 mainLayout.setBackgroundColor(Color.parseColor("#b88307"))
                 Glide.with(this)
                     .load(R.drawable.apelsinka)
