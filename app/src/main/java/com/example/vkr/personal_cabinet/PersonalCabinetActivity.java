@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.vkr.personal_cabinet.ui.home.MainViewModel;
 import com.example.vkr.personal_cabinet.ui.result_egu.ResultEguViewModel;
 import com.example.vkr.utils.dialogs.ShowCustomDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -245,7 +246,7 @@ public class PersonalCabinetActivity extends AppCompatActivity {
                                         + "\n" + "Телефон: " + (!jsonNode.get("abit").get("phone").toString().equals("null") ?
                                         doNicePhone(jsonNode.get("abit").get("phone").asText()) : "-");
 
-                                dateOfBirthday = jsonNode.get("abit").get("date_of_birthday").asText();
+                                dateOfBirthday = MainViewModel.doCorrectDate(jsonNode.get("abit").get("date_of_birthday").asText());
 
                                 new Handler(Looper.getMainLooper()).post(()->{
                                     fio.setText(resFio);

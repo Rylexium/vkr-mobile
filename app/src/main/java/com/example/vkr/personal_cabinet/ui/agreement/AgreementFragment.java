@@ -85,7 +85,8 @@ public class AgreementFragment extends Fragment {
         specialitysAbit.sort(Comparator.comparing(
                 map -> Integer.parseInt(map.get("priority") == null || Objects.equals(map.get("priority"), "null") ? "0" : map.get("priority"))));
         specialitysAbit.forEach(item -> {
-            res.append("\t\t\t\t\t\t\t\t\t" + item.get("institution") + "\n" +
+            res.append(
+                    (!item.get("institution").equals("null")? "\t\t\t\t\t\t\t\t\t" + item.get("institution") + "\n" : "") +
                     "\t\t\t\t\t\t\t\t\t" + item.get("id_spec") + " " + item.get("name_spec") + "\n" +
                     "\t\t\t\t\t\t\t\t\t" + "Форма обучения : " + item.get("typeOfStudy") + "\n" +
                     "\t\t\t\t\t\t\t\t\t" + "Условия обучения : " + PersonalCabinetActivity.listFinancing.get(
@@ -151,7 +152,7 @@ public class AgreementFragment extends Fragment {
                     "1. Абитуриент : " + PersonalCabinetActivity.resFio,
                     "2. Дата рождения : " + PersonalCabinetActivity.dateOfBirthday,
                     "3. Специальности : \n" + textBodySpecialities,
-                    "4. Сведение о ЕГЭ : " + textBodyExams,
+                    "4. Сведение о экзаменах : " + textBodyExams,
                     "5. Необходимость в обжитии : _______ (да/нет)",
                     "6. Контактные данные : \n" + emailPhone,
                     "7. Дата заполнения : " + new SimpleDateFormat("dd-MM-yyyy").format(new Date()),

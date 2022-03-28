@@ -99,7 +99,7 @@ public class MainViewModel extends ViewModel {
     public void postPrivilege(String text) { privilege.postValue(text); }
 
 
-    private String doCorrectDate(@NonNull String text){
+    public static String doCorrectDate(@NonNull String text){
         int index = text.indexOf('+');
         return index == -1 ? text : text.substring(0, index);
     }
