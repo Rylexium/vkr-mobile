@@ -83,13 +83,14 @@ public class SpecialityFragment extends Fragment {
         LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View rowView = inflater.inflate(R.layout.field_for_speciality, null);
 
+        LinearLayout mainLayout = rowView.findViewById(R.id.main_speciality_layout);
+
         TextView name = rowView.findViewById(R.id.textview_speciality); //02.03.03 МОАИС
         TextView institute = rowView.findViewById(R.id.textview_institut); //Естественнонаучный институт
         TextView typeOfStudy = rowView.findViewById(R.id.textview_type_of_study); //Очная
         TextView generalCompetition = rowView.findViewById(R.id.textview_general_competition); // 253 / 25
         TextView contract = rowView.findViewById(R.id.textview_сontract); // 123 / 75
 
-        LinearLayout mainLayout = rowView.findViewById(R.id.main_speciality_layout);
         mainLayout.setOnClickListener(view -> {
             mainLayout.setEnabled(false);
             new Handler().postDelayed(() -> mainLayout.setEnabled(true),2000); //иначе 2-й клик будет доступен и откроется сразу 2 окна
@@ -98,20 +99,22 @@ public class SpecialityFragment extends Fragment {
                     .putExtra("type_of_study", nameTypeOfStudy));
         });
 
-        institute.setOnClickListener(view ->{
-            institute.setEnabled(false);
-            new Handler().postDelayed(() -> institute.setEnabled(true),2000);
-            startActivity(new Intent(binding.getContext(), MoreAboutTheInstitutActivity.class)
-                    .putExtra("name_institut", nameInstitut)
-                    .putExtra("id", PersonalCabinetActivity.instituts.get(nameInstitut)));
-        });
-
 
         name.setText(String.format("%s %s", idSpeciality, nameSpeciality));
 
-        institute.setText(nameInstitut.equals("null")? "" : nameInstitut);
-        institute.setPaintFlags(institute.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-
+        if(nameInstitut.equals("null"))
+            mainLayout.removeView(institute);
+        else {
+            institute.setText(nameInstitut);
+            institute.setPaintFlags(institute.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+            institute.setOnClickListener(view -> {
+                institute.setEnabled(false);
+                new Handler().postDelayed(() -> institute.setEnabled(true),2000);
+                startActivity(new Intent(binding.getContext(), MoreAboutTheInstitutActivity.class)
+                        .putExtra("name_institut", nameInstitut)
+                        .putExtra("id", PersonalCabinetActivity.instituts.get(nameInstitut)));
+            });
+        }
         typeOfStudy.setText(nameTypeOfStudy);
         generalCompetition.setText(valueGeneralCompetition);
         contract.setText(valueContract);

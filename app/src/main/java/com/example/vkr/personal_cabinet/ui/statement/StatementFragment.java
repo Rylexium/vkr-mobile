@@ -105,6 +105,8 @@ public class StatementFragment extends Fragment {
         LayoutInflater inflater = (LayoutInflater) Objects.requireNonNull(getActivity()).getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View rowView = inflater.inflate(R.layout.field_for_statement, null);
 
+        LinearLayout mainLayout = rowView.findViewById(R.id.main_statement_layout);
+
         TextView name = rowView.findViewById(R.id.textview_speciality); //02.03.03 МОАИС
         TextView institute = rowView.findViewById(R.id.textview_institut); //Естественнонаучный институт
         TextView typeOfStudy = rowView.findViewById(R.id.textview_type_of_study); //Очная
@@ -121,13 +123,19 @@ public class StatementFragment extends Fragment {
                     .putExtra("type_of_study", nameTypeOfStudy));
         });
 
-        institute.setOnClickListener(view ->{
-            institute.setEnabled(false);
-            new Handler().postDelayed(() -> institute.setEnabled(true),2000);
-            startActivity(new Intent(binding.getContext(), MoreAboutTheInstitutActivity.class)
-                    .putExtra("name_institut", nameInstitut)
-                    .putExtra("id", PersonalCabinetActivity.instituts.get(nameInstitut)));
-        });
+        if(nameInstitut.equals("null"))
+            mainLayout.removeView(institute);
+        else {
+            institute.setText(nameInstitut);
+            institute.setPaintFlags(institute.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+            institute.setOnClickListener(view -> {
+                institute.setEnabled(false);
+                new Handler().postDelayed(() -> institute.setEnabled(true),2000);
+                startActivity(new Intent(binding.getContext(), MoreAboutTheInstitutActivity.class)
+                        .putExtra("name_institut", nameInstitut)
+                        .putExtra("id", PersonalCabinetActivity.instituts.get(nameInstitut)));
+            });
+        }
 
         spinnerFinancing.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, PersonalCabinetActivity.listFinancing));
         spinnerFinancing.setSelection(valueFinancing != null && !valueFinancing.equals("null") ? Integer.parseInt(valueFinancing) - 1: 0);
@@ -135,9 +143,6 @@ public class StatementFragment extends Fragment {
         spinnerPriority.setSelection(valuePriority != null && !valuePriority.equals("null")? Integer.parseInt(valuePriority) - 1 : 0);
 
         name.setText(String.format("%s %s", idSpeciality, nameSpeciality));
-
-        institute.setText(nameInstitut);
-        institute.setPaintFlags(institute.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
         typeOfStudy.setText(nameTypeOfStudy);
         dateOfStatement.setText(valueOfDateOfStatement != null && !valueOfDateOfStatement.equals("null")? valueOfDateOfStatement :  "-");

@@ -5,7 +5,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,6 +13,7 @@
         app:cardElevation="0sp"
         >
         <LinearLayout
+            android:id="@+id/main_statement_layout"
             android:background="@drawable/cradient_for_statement1"
             android:layout_width="match_parent"
             android:orientation="vertical"
