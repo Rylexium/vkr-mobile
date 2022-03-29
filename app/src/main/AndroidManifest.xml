@@ -23,7 +23,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VKR">
         <activity
-            android:name=".personal_cabinet.ui.statement.ViewPdfActivity"
+            android:name=".personal_cabinet.ui.agreement.ViewPdfActivity"
             android:exported="false" />
 
         <provider

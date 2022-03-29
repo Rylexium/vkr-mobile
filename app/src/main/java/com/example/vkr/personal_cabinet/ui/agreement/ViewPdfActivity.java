@@ -1,4 +1,4 @@
-package com.example.vkr.personal_cabinet.ui.statement;
+package com.example.vkr.personal_cabinet.ui.agreement;
 
 import androidx.appcompat.app.AppCompatActivity;
 
