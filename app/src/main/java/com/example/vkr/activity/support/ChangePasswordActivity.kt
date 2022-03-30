@@ -42,6 +42,8 @@ class ChangePasswordActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.change_password_activity)
         Log.e("login", intent.getStringExtra("login").toString())
+        window.navigationBarColor = applicationContext.getColor(R.color.orange_700)
+        window.statusBarColor = applicationContext.getColor(R.color.orange_700)
         initComponents()
         applyEvents()
     }
