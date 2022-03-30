@@ -59,6 +59,7 @@
                 android:textColorHighlight="@color/blue_700"
                 android:maxLength="16"
                 android:textColor="@color/white"
+                android:digits="@string/only_numbers"
                 android:drawablePadding="8dp"
                 android:textSize="17sp"
                 tools:ignore="TouchTargetSizeCheck" />

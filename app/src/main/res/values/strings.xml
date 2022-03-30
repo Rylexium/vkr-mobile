@@ -6,7 +6,7 @@
     <string name="alfavit_for_any"> abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZабвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ.,</string>
     <string name="alfavit_russian">абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ</string>
     <string name="alfavit_for_password">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.!?,</string>
-    <string name="only_numbers">0123456789</string>
+    <string name="only_numbers">0123456789() </string>
     <string name="for_date">0123456789.</string>
 
 
