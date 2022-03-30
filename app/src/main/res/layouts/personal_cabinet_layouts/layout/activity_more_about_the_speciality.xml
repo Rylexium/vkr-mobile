@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_scrollFlags="scroll|enterAlways"
-            android:background="@drawable/side_nav_bar"
+            android:background="@drawable/side_nav_bar1"
             android:orientation="vertical"
             >
             <LinearLayout
