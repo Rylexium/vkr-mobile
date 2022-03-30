@@ -199,30 +199,37 @@ public class MoreAboutTheInstitutActivity extends AppCompatActivity {
                             switch (id){
                                 case 1:
                                     findViewById(R.id.more_about_the_institut_main_layout).setBackground(ContextCompat.getDrawable(activity, R.drawable.cradient1));
+                                    findViewById(R.id.discription_of_institut_background).setBackgroundColor(Color.parseColor("#191970"));
                                     card.setCardBackgroundColor(Color.parseColor("#191970"));
                                     break;
                                 case 2:
                                     findViewById(R.id.more_about_the_institut_main_layout).setBackground(ContextCompat.getDrawable(activity, R.drawable.cradient2));
+                                    findViewById(R.id.discription_of_institut_background).setBackgroundColor(Color.parseColor("#CD5C5C"));
                                     card.setCardBackgroundColor(Color.parseColor("#CD5C5C"));
                                     break;
                                 case 3:
                                     findViewById(R.id.more_about_the_institut_main_layout).setBackground(ContextCompat.getDrawable(activity, R.drawable.cradient3));
+                                    findViewById(R.id.discription_of_institut_background).setBackgroundColor(Color.parseColor("#8A2BE2"));
                                     card.setCardBackgroundColor(Color.parseColor("#8A2BE2"));
                                     break;
                                 case 4:
                                     findViewById(R.id.more_about_the_institut_main_layout).setBackground(ContextCompat.getDrawable(activity, R.drawable.cradient4));
+                                    findViewById(R.id.discription_of_institut_background).setBackgroundColor(Color.parseColor("#013220"));
                                     card.setCardBackgroundColor(Color.parseColor("#013220"));
                                     break;
                                 case 5:
                                     findViewById(R.id.more_about_the_institut_main_layout).setBackground(ContextCompat.getDrawable(activity, R.drawable.cradient5));
+                                    findViewById(R.id.discription_of_institut_background).setBackgroundColor(Color.parseColor("#660066"));
                                     card.setCardBackgroundColor(Color.parseColor("#660066"));
                                     break;
                                 case 6:
                                     findViewById(R.id.more_about_the_institut_main_layout).setBackground(ContextCompat.getDrawable(activity, R.drawable.cradient6));
+                                    findViewById(R.id.discription_of_institut_background).setBackgroundColor(Color.parseColor("#660033"));
                                     card.setCardBackgroundColor(Color.parseColor("#660033"));
                                     break;
                                 case 7:
                                     findViewById(R.id.more_about_the_institut_main_layout).setBackground(ContextCompat.getDrawable(activity, R.drawable.cradient7));
+                                    findViewById(R.id.discription_of_institut_background).setBackgroundColor(Color.parseColor("#ff6600"));
                                     card.setCardBackgroundColor(Color.parseColor("#ff6600"));
                                     break;
                             }
