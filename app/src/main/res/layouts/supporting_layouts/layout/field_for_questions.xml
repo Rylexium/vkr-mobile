@@ -16,7 +16,7 @@
         android:layout_marginRight="18dp"
         android:layout_marginBottom="10dp"
         android:text="fdasfgas"
-        android:textSize="18dp"
+        android:textSize="18sp"
         />
 
 </LinearLayout>

@@ -41,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:textSize="34sp"
+                android:textSize="26sp"
                 android:text=""
                 />
 
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:paddingTop="20dp"
-                android:textSize="26sp"
+                android:textSize="20sp"
                 />
 
             <TextView
@@ -60,14 +60,14 @@
                 android:paddingTop="20dp"
                 android:text="По вопросам поступления:"
                 android:textColor="@color/white"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/contact_phone_of_institut"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 />
 
             <TextView
@@ -76,14 +76,14 @@
                 android:textColor="@color/white"
                 android:paddingTop="20dp"
                 android:text="Общая информация"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 />
             <TextView
                 android:id="@+id/discription_of_institut"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 />
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardview_institut"
@@ -99,8 +99,8 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:animateLayoutChanges="true"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="10dp"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="10dp"
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
                     >
@@ -110,7 +110,7 @@
                         android:orientation="horizontal"
                         android:animateLayoutChanges="true"
                         android:gravity="center"
-                        android:paddingLeft="20dp"
+                        android:paddingStart="20dp"
                         >
                         <TextView
                             android:id="@+id/textview_areas_of_training"
