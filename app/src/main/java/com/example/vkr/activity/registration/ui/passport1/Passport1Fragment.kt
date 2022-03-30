@@ -21,11 +21,13 @@ import com.androidnetworking.common.Priority
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONArrayRequestListener
 import com.example.vkr.R
+import com.example.vkr.activity.registration.RegistrationActivity
 import com.example.vkr.activity.registration.RegistrationActivity.Companion.sharedPreferences
 import com.example.vkr.databinding.FragmentPassport1Binding
 import com.example.vkr.utils.*
 import com.example.vkr.utils.dialogs.SelectDateClass
 import com.fasterxml.jackson.databind.ObjectMapper
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import org.json.JSONArray
 import java.util.*
@@ -123,6 +125,11 @@ class Passport1Fragment : Fragment() {
 
         if (binding.textboxPatronymicReg.text?.length!! < 2) binding.textboxPatronymicReg.setTextColor(Color.RED)
         else binding.textboxPatronymicReg.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+
+        RegistrationActivity.next.isEnabled = true
+        RegistrationActivity.previous.isEnabled = true
+        RegistrationActivity.info.isChecked = true
+        RegistrationActivity.info.title = "2/8"
 
     }
 
