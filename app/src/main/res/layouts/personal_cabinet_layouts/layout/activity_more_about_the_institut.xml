@@ -31,7 +31,6 @@
             android:id="@+id/more_about_the_institut_main_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/blue_700"
             android:paddingStart="9dp"
             android:paddingEnd="9dp"
             android:orientation="vertical" >
