@@ -1,16 +1,13 @@
 package com.example.vkr.utils.dialogs;
 
 import android.content.Context;
-import android.widget.Toast;
+
+import com.example.vkr.R;
+import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
 public class ShowToast {
 
-    private static Toast toast;
-
     public static void show(Context mcontext, String text) {
-        if (toast != null)
-            toast.cancel();
-        toast = Toast.makeText(mcontext, text, Toast.LENGTH_SHORT);
-        toast.show();
+        StyleableToast.makeText(mcontext, text, R.style.CustomToast).show();
     }
 }
