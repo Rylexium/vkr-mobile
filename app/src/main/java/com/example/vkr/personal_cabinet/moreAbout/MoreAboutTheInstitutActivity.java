@@ -233,7 +233,6 @@ public class MoreAboutTheInstitutActivity extends AppCompatActivity {
                                     card.setCardBackgroundColor(Color.parseColor("#ff6600"));
                                     break;
                             }
-
                         } catch (JsonProcessingException e) {
                             e.printStackTrace();
                         }
