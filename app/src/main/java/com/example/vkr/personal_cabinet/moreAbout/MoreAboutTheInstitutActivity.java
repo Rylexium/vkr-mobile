@@ -189,6 +189,7 @@ public class MoreAboutTheInstitutActivity extends AppCompatActivity {
                         try {
                             JsonNode jsonNode = new ObjectMapper().readTree(response.toString());
 
+                            getSupportActionBar().setTitle(getIntent().getStringExtra("name_institut"));
                             nameOfInstitut.setText(getIntent().getStringExtra("name_institut"));
                             discriptionOfInstitut.setText(jsonNode.get("institution").get("description").asText());
                             contactPhoneOfInstitut.setText(jsonNode.get("institution").get("contact_phone").asText());

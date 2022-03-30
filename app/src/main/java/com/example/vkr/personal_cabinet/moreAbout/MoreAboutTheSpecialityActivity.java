@@ -282,6 +282,7 @@ public class MoreAboutTheSpecialityActivity extends AppCompatActivity {
                                     jsonNode.get("speciality").get("partners").asText() : "-";
 
                             new Handler(Looper.getMainLooper()).post(() -> {
+                                getSupportActionBar().setTitle(jsonNode.get("speciality").get("id").asText());
                                 idOfSpeciality.setText(String.format("Код: %s", jsonNode.get("speciality").get("id").asText()));
                                 nameOfSpeciality.setText(jsonNode.get("speciality").get("name").asText());
                                 institutOfSpeciality.setText(jsonNode.get("institution").get("name") == null? "-" :jsonNode.get("institution").get("name").asText());
