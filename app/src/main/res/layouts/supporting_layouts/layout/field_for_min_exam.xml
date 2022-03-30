@@ -3,9 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="60dp"
     android:paddingTop="10dp"
-    android:orientation="horizontal"
-    android:layout_weight="2"
-    >
+    android:paddingBottom="10dp"
+    android:orientation="horizontal">
 
     <TextView
         android:id="@+id/name_exam"
@@ -14,14 +13,21 @@
         android:layout_height="match_parent"
         android:textColor="@color/white"
         android:textSize="18sp"
+        android:gravity="left|center"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:text="Математика"
         />
     <TextView
         android:id="@+id/min_points_exam"
         android:layout_width="wrap_content"
         android:layout_weight="0.3"
         android:layout_height="match_parent"
+        android:gravity="center"
         android:textColor="@color/white"
         android:textSize="18sp"
+        android:paddingEnd="20dp"
+        android:text="44"
         />
 
 </LinearLayout>
