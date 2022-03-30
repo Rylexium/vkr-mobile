@@ -30,7 +30,7 @@ class FullTimeFragment : Fragment() {
     private fun initComponents(){ if(PersonalCabinetActivity.idEducation.toInt() < 5) forAbit() else forOther() }
 
     private fun forAbit(){
-        ShowToast.show(context, "Путь поступления на бакалавриат- (специалитет)")
+        ShowToast.show(context, "Путь поступления на бакалавриат (специалитет)")
         addField("1", resources.getString(R.string.title_step1_abit),
             resources.getString(R.string.fulltime_budjet_step1_abit), resources.getString(R.string.fulltime_contract_step1_abit))
 
