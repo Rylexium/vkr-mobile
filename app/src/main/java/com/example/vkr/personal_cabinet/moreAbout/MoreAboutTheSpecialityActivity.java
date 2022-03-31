@@ -11,6 +11,8 @@ import android.os.Looper;
 
 import com.example.vkr.utils.dialogs.LoadingDialog;
 import com.google.android.material.snackbar.Snackbar;
+
+import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.appcompat.app.AppCompatActivity;
@@ -196,8 +198,6 @@ public class MoreAboutTheSpecialityActivity extends AppCompatActivity {
     }
 
     private void setTextForTitle(boolean isPressed, LinearLayout linearLayout, String text, ImageView status){
-        TransitionManager.beginDelayedTransition(linearLayout, new AutoTransition());
-        linearLayout.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGE_APPEARING);
         if(!isPressed){
             LayoutInflater inflater=(LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             final View rowView=inflater.inflate(R.layout.field_for_text, null);
