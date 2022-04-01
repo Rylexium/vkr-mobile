@@ -3,13 +3,18 @@ package com.example.vkr.activity.authorization;
 import android.app.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -17,8 +22,11 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DecodeFormat;
 import com.example.vkr.R;
 import com.example.vkr.splash_screen.SplashScreen;
+import com.example.vkr.utils.ConvertClass;
 import com.example.vkr.utils.HashPass;
 import com.example.vkr.utils.HideKeyboardClass;
 import com.example.vkr.utils.OpenActivity;
@@ -42,6 +50,7 @@ public class AuthorizationActivity extends AppCompatActivity {
     private TextView labelQuestions;
     private TextView labelRememberPassword;
     private TextView labelRegistration;
+    private ImageView logo;
 
     final String KEY_LOGIN = "login";
 
@@ -123,6 +132,13 @@ public class AuthorizationActivity extends AppCompatActivity {
     }
 
     private void initComponents() {
+        logo = findViewById(R.id.ssau_logo);
+        Glide.with(this)
+                .load(BitmapFactory.decodeResource(getResources(), R.drawable.ssau_logo))
+                .format(DecodeFormat.PREFER_ARGB_8888)
+                .into(logo);
+
+
         textBoxLogin = findViewById(R.id.textbox_login);
         textBoxPassword = findViewById(R.id.textbox_password);
         singInBtn = findViewById(R.id.button_singIn);
