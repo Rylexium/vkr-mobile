@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:background="@color/blue_200"
+    android:background="?attr/colorSecondary"
     android:animateLayoutChanges="true"
     tools:context=".activity.authorization.QuestionsActivity">
 
@@ -46,7 +46,7 @@
                     android:id="@+id/documents_needed_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/blue_500"
+                    android:background="?attr/colorPrimary"
                     android:animateLayoutChanges="true"
                     android:orientation="vertical" >
 
@@ -73,7 +73,7 @@
                     android:id="@+id/how_to_apply_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/blue_500"
+                    android:background="?attr/colorPrimary"
                     android:gravity="center"
                     android:animateLayoutChanges="true"
                     android:orientation="vertical" >
@@ -102,7 +102,7 @@
                     android:id="@+id/passing_score_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/blue_500"
+                    android:background="?attr/colorPrimary"
                     android:gravity="center"
                     android:animateLayoutChanges="true"
                     android:orientation="vertical" >
@@ -131,7 +131,7 @@
                     android:id="@+id/medical_card_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/blue_500"
+                    android:background="?attr/colorPrimary"
                     android:gravity="center"
                     android:animateLayoutChanges="true"
                     android:orientation="vertical" >
@@ -159,7 +159,7 @@
                     android:id="@+id/сopy_of_documents_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/blue_500"
+                    android:background="?attr/colorPrimary"
                     android:gravity="center"
                     android:animateLayoutChanges="true"
                     android:orientation="vertical" >
@@ -187,7 +187,7 @@
                     android:id="@+id/digital_signature_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/blue_500"
+                    android:background="?attr/colorPrimary"
                     android:gravity="center"
                     android:animateLayoutChanges="true"
                     android:orientation="vertical" >
@@ -215,7 +215,7 @@
                     android:id="@+id/needed_exams_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/blue_500"
+                    android:background="?attr/colorPrimary"
                     android:gravity="center"
                     android:animateLayoutChanges="true"
                     android:orientation="vertical" >
@@ -243,7 +243,7 @@
                     android:id="@+id/dormitory_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/blue_500"
+                    android:background="?attr/colorPrimary"
                     android:gravity="center"
                     android:animateLayoutChanges="true"
                     android:orientation="vertical" >
@@ -271,7 +271,7 @@
                     android:id="@+id/need_to_be_enrolled_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/blue_500"
+                    android:background="?attr/colorPrimary"
                     android:gravity="center"
                     android:animateLayoutChanges="true"
                     android:orientation="vertical" >

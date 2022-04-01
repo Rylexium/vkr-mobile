@@ -3,12 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/drawable/border.xml" value="0.2985" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/drawable/cursor_black.xml" value="0.2985" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.196" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.196" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/drawable/ic_wave.xml" value="0.2985" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/drawable/round_btn.xml" value="0.2985" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/authorization_layouts/layout/authorization_activity.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/authorization_layouts/layout/change_password_activity.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/authorization_layouts/layout/questions_activity.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/personal_cabinet_layouts/drawable/cradient8.xml" value="0.196" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/personal_cabinet_layouts/drawable/neutral_cradient.xml" value="0.2985" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/personal_cabinet_layouts/drawable/neutral_cradient1.xml" value="0.2985" />
@@ -38,6 +41,15 @@
         <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/registration_layouts/layout/fragment_privileges.xml" value="0.358695652173913" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/registration_layouts/layout/fragment_snills.xml" value="0.358695652173913" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/registration_layouts/layout/registration_activity.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/supporting_layouts/layout/bottomsheetlayout.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/supporting_layouts/layout/custom_dialog.xml" value="0.33" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/supporting_layouts/layout/field.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/supporting_layouts/layout/field_for_change_password.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/supporting_layouts/layout/field_for_exam.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/supporting_layouts/layout/field_for_exam_noedit.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/supporting_layouts/layout/field_for_image.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/supporting_layouts/layout/field_for_min_exam.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/supporting_layouts/layout/field_for_questions.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/supporting_layouts/layout/field_for_speciality.xml" value="0.358695652173913" />
         <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/supporting_layouts/layout/field_for_statement.xml" value="0.358695652173913" />
       </map>

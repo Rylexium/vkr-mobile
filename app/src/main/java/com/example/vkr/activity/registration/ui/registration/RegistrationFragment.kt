@@ -70,19 +70,19 @@ class RegistrationFragment : Fragment() {
         binding.textboxPhone.setOnFocusChangeListener { _, isFocus ->
             setVisibleNavigationBottomView(!isFocus)
             if (!isFocus && !isCorrectPhone(binding.textboxPhone.text.toString())) binding.textboxPhone.setTextColor(Color.RED)
-            else binding.textboxPhone.setTextColor(ContextCompat.getColor(context!!, R.color.white))
+            else binding.textboxPhone.setTextColor(ContextCompat.getColor(context!!, R.color.black_grey))
         }
 
         binding.textboxEmail.setOnFocusChangeListener { _, isFocus ->
             setVisibleNavigationBottomView(!isFocus)
             if (!isFocus && !isCorrectEmail(binding.textboxEmail.text.toString())) binding.textboxEmail.setTextColor(Color.RED)
-            else binding.textboxEmail.setTextColor(ContextCompat.getColor(context!!, R.color.white))
+            else binding.textboxEmail.setTextColor(ContextCompat.getColor(context!!, R.color.black_grey))
         }
 
         binding.textboxPass2Reg.setOnFocusChangeListener { _, isFocus ->
             setVisibleNavigationBottomView(!isFocus)
             if (!isFocus && binding.textboxPassReg.text.toString() != binding.textboxPass2Reg.text.toString()) binding.textboxPass2Reg.setTextColor(Color.RED)
-            else binding.textboxPass2Reg.setTextColor(ContextCompat.getColor(context!!, R.color.white))
+            else binding.textboxPass2Reg.setTextColor(ContextCompat.getColor(context!!, R.color.black_grey))
         }
         binding.textboxPhone.addTextChangedListener(CorrectText(binding.textboxPhone, "+7 (###) ##-##-###"))
     }
@@ -101,13 +101,13 @@ class RegistrationFragment : Fragment() {
         binding.radioButtonIsAgree.isChecked = isAgree
 
         binding.textboxPhone.setTextColor(if (!isCorrectPhone(binding.textboxPhone.text.toString())) Color.RED
-                                          else ContextCompat.getColor(context!!, R.color.white))
+                                          else ContextCompat.getColor(context!!, R.color.black_grey))
 
         binding.textboxEmail.setTextColor(if (!isCorrectEmail(binding.textboxEmail.text.toString())) Color.RED
-                                          else ContextCompat.getColor(context!!, R.color.white))
+                                          else ContextCompat.getColor(context!!, R.color.black_grey))
 
         binding.textboxPass2Reg.setTextColor(if (binding.textboxPass2Reg.text.toString() != binding.textboxPass2Reg.text.toString()) Color.RED
-                                             else ContextCompat.getColor(context!!, R.color.white))
+                                             else ContextCompat.getColor(context!!, R.color.black_grey))
     }
 
     private fun wrapper(key: String, editText: Consumer<String>) {

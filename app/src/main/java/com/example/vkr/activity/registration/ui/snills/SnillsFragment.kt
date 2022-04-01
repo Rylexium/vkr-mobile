@@ -65,7 +65,7 @@ class SnillsFragment : Fragment() {
         binding.textboxSnills.addTextChangedListener(CorrectText(binding.textboxSnills, "###-###-### ##"))
         binding.textboxSnills.setOnFocusChangeListener { _, isFocus -> setVisibleNavigationBottomView(!isFocus)
             if (!isFocus && !isCorrectSnills(binding.textboxSnills.text.toString())) binding.textboxSnills.setTextColor(Color.RED)
-            else binding.textboxSnills.setTextColor(ContextCompat.getColor(context!!, R.color.white)) }
+            else binding.textboxSnills.setTextColor(ContextCompat.getColor(context!!, R.color.black_grey)) }
     }
 
 
@@ -109,7 +109,7 @@ class SnillsFragment : Fragment() {
             }
 
             Handler(Looper.getMainLooper()).post {
-                binding.textboxSnills.setTextColor(if (!isCorrectSnills(binding.textboxSnills.text.toString())) Color.RED else ContextCompat.getColor(context!!, R.color.white))
+                binding.textboxSnills.setTextColor(if (!isCorrectSnills(binding.textboxSnills.text.toString())) Color.RED else ContextCompat.getColor(context!!, R.color.black_grey))
             }
 
             Handler(Looper.getMainLooper()).post{

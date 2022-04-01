@@ -68,13 +68,13 @@ class Passport2Fragment : Fragment() {
                 wrapper(KEY_CODE_UNIT, binding.textboxCodeUnit::setText)
 
                 if (binding.textboxPassportSeries.text?.length!! < 5) binding.textboxPassportSeries.setTextColor(Color.RED)
-                else binding.textboxPassportSeries.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+                else binding.textboxPassportSeries.setTextColor(ContextCompat.getColor(requireContext(), R.color.black_grey))
 
                 if (binding.textboxPassportNumber.text?.length!! < 6) binding.textboxPassportNumber.setTextColor(Color.RED)
-                else binding.textboxPassportNumber.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+                else binding.textboxPassportNumber.setTextColor(ContextCompat.getColor(requireContext(), R.color.black_grey))
 
                 if (binding.textboxCodeUnit.text?.length!! < 7) binding.textboxCodeUnit.setTextColor(Color.RED)
-                else binding.textboxCodeUnit.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+                else binding.textboxCodeUnit.setTextColor(ContextCompat.getColor(requireContext(), R.color.black_grey))
             }
 
             val str: String? = sharedPreferences.getString(KEY_IMAGE_PASSPORT2, null)
@@ -113,17 +113,17 @@ class Passport2Fragment : Fragment() {
         binding.textboxPassportSeries.setOnFocusChangeListener { _, isFocus ->
             setVisibleNavigationBottomView(!isFocus)
             if (!isFocus && binding.textboxPassportSeries.text?.length!! < 5) binding.textboxPassportSeries.setTextColor(Color.RED)
-            else binding.textboxPassportSeries.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+            else binding.textboxPassportSeries.setTextColor(ContextCompat.getColor(requireContext(), R.color.black_grey))
         }
         binding.textboxPassportNumber.setOnFocusChangeListener { _, isFocus ->
             setVisibleNavigationBottomView(!isFocus)
             if (!isFocus && binding.textboxPassportNumber.text?.length!! < 6) binding.textboxPassportNumber.setTextColor(Color.RED)
-            else binding.textboxPassportNumber.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+            else binding.textboxPassportNumber.setTextColor(ContextCompat.getColor(requireContext(), R.color.black_grey))
         }
         binding.textboxCodeUnit.setOnFocusChangeListener { _, isFocus ->
             setVisibleNavigationBottomView(!isFocus)
             if (!isFocus && binding.textboxCodeUnit.text?.length!! < 7) binding.textboxCodeUnit.setTextColor(Color.RED)
-            else binding.textboxCodeUnit.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+            else binding.textboxCodeUnit.setTextColor(ContextCompat.getColor(requireContext(), R.color.black_grey))
         }
     }
 

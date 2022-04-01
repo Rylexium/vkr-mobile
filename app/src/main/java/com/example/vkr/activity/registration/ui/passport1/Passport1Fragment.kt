@@ -118,13 +118,13 @@ class Passport1Fragment : Fragment() {
             binding.listboxNationality.setSelection(sharedPreferences.getString(KEY_NATIONALITY, null)!!.toInt())
         }
         if (binding.textboxFamilyReg.text?.length!! < 2) binding.textboxFamilyReg.setTextColor(Color.RED)
-        else binding.textboxFamilyReg.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+        else binding.textboxFamilyReg.setTextColor(ContextCompat.getColor(requireContext(), R.color.black_grey))
 
         if (binding.textboxNameReg.text?.length!! < 2) binding.textboxNameReg.setTextColor(Color.RED)
-        else binding.textboxNameReg.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+        else binding.textboxNameReg.setTextColor(ContextCompat.getColor(requireContext(), R.color.black_grey))
 
         if (binding.textboxPatronymicReg.text?.length!! < 2) binding.textboxPatronymicReg.setTextColor(Color.RED)
-        else binding.textboxPatronymicReg.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+        else binding.textboxPatronymicReg.setTextColor(ContextCompat.getColor(requireContext(), R.color.black_grey))
 
         RegistrationActivity.next.isEnabled = true
         RegistrationActivity.previous.isEnabled = true
@@ -170,17 +170,17 @@ class Passport1Fragment : Fragment() {
         binding.textboxFamilyReg.setOnFocusChangeListener{ _, isFocus ->
             setVisibleNavigationBottomView(!isFocus)
             if(!isFocus && binding.textboxFamilyReg.text?.length!! < 2) binding.textboxFamilyReg.setTextColor(Color.RED)
-            else binding.textboxFamilyReg.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+            else binding.textboxFamilyReg.setTextColor(ContextCompat.getColor(requireContext(), R.color.black_grey))
         }
         binding.textboxNameReg.setOnFocusChangeListener{ _, isFocus ->
             setVisibleNavigationBottomView(!isFocus)
             if(!isFocus && binding.textboxNameReg.text?.length!! < 2) binding.textboxNameReg.setTextColor(Color.RED)
-            else binding.textboxNameReg.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+            else binding.textboxNameReg.setTextColor(ContextCompat.getColor(requireContext(), R.color.black_grey))
         }
         binding.textboxPatronymicReg.setOnFocusChangeListener { _, isFocus ->
             setVisibleNavigationBottomView(!isFocus)
             if (!isFocus && binding.textboxPatronymicReg.text?.length!! < 2) binding.textboxPatronymicReg.setTextColor(Color.RED)
-            else binding.textboxPatronymicReg.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+            else binding.textboxPatronymicReg.setTextColor(ContextCompat.getColor(requireContext(), R.color.black_grey))
         }
     }
 
