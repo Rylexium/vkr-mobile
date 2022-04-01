@@ -47,13 +47,13 @@
             android:hint="СНИЛС"
             android:textColorHint="@color/grey"
             app:startIconDrawable="@drawable/ic_baseline_fact_check_24"
-            app:boxStrokeColor="@color/blue_700"
+            app:boxStrokeColor="?attr/colorPrimaryDark"
             app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
             >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:textCursorDrawable="@drawable/cursor_black"
-                android:textColorHighlight="@color/blue_700"
+                android:textColorHighlight="?attr/colorPrimaryDark"
                 android:id="@+id/textbox_snills"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

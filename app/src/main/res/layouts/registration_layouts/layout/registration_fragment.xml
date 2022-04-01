@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Регистрация"
-            android:textColor="@color/white"
+            android:textColor="@color/black_grey"
             android:gravity="center"
             android:textSize="35dp"
             android:paddingTop="35dp"
@@ -38,9 +38,9 @@
             android:textColorHint="@color/grey"
             app:startIconDrawable="@drawable/ic_baseline_phone_24"
             app:startIconTintMode="src_atop"
-            app:boxStrokeColor="@color/blue_700"
+            app:boxStrokeColor="?attr/colorPrimaryDark"
             app:endIconMode="clear_text"
-            app:hintTextColor="@color/blue_700"
+            app:hintTextColor="?attr/colorPrimaryDark"
             app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
             >
             <com.fredporciuncula.phonemoji.PhonemojiFlagTextView
@@ -56,9 +56,9 @@
                 android:layout_height="match_parent"
                 app:phonemoji_initialRegionCode="RU"
                 android:textCursorDrawable="@drawable/cursor_black"
-                android:textColorHighlight="@color/blue_700"
+                android:textColorHighlight="?attr/colorPrimaryDark"
                 android:maxLength="16"
-                android:textColor="@color/white"
+                android:textColor="@color/black_grey"
                 android:digits="@string/only_numbers"
                 android:drawablePadding="8dp"
                 android:textSize="17sp"
@@ -77,20 +77,20 @@
             android:textColorHint="@color/grey"
             app:startIconDrawable="@drawable/ic_baseline_email_24"
             app:endIconMode="clear_text"
-            app:boxStrokeColor="@color/blue_700"
+            app:boxStrokeColor="?attr/colorPrimaryDark"
             app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
             >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:textCursorDrawable="@drawable/cursor_black"
-                android:textColorHighlight="@color/blue_700"
+                android:textColorHighlight="?attr/colorPrimaryDark"
                 android:id="@+id/textbox_email"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:digits="@string/alfavit_for_email"
                 android:inputType="textPersonName"
                 android:maxLength="32"
-                android:textColor="@color/white"
+                android:textColor="@color/black_grey"
                 android:drawablePadding="8dp"
                 android:textSize="17sp"
                 tools:ignore="TouchTargetSizeCheck" />
@@ -109,19 +109,19 @@
             android:textColorHint="@color/grey"
             app:startIconDrawable="@drawable/ic_baseline_person_24"
             app:endIconMode="clear_text"
-            app:boxStrokeColor="@color/blue_700"
+            app:boxStrokeColor="?attr/colorPrimaryDark"
             app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:textCursorDrawable="@drawable/cursor_black"
-                android:textColorHighlight="@color/blue_700"
+                android:textColorHighlight="?attr/colorPrimaryDark"
                 android:id="@+id/textbox_login_reg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:digits="@string/alfavit_for_login"
                 android:inputType="textPersonName"
                 android:maxLength="32"
-                android:textColor="@color/white"
+                android:textColor="@color/black_grey"
                 android:drawablePadding="8dp"
                 android:textSize="17sp"
                 tools:ignore="TouchTargetSizeCheck" />
@@ -138,7 +138,7 @@
             app:passwordToggleEnabled="true"
             android:textColorHint="@color/grey"
             app:startIconDrawable="@drawable/ic_baseline_lock_24"
-            app:boxStrokeColor="@color/blue_700"
+            app:boxStrokeColor="?attr/colorPrimaryDark"
             app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
             >
 
@@ -149,8 +149,8 @@
                 android:digits="@string/alfavit_for_login"
                 android:inputType="textPassword"
                 android:maxLength="32"
-                android:textColor="@color/white"
-                android:textColorHighlight="@color/blue_700"
+                android:textColor="@color/black_grey"
+                android:textColorHighlight="?attr/colorPrimaryDark"
                 android:textCursorDrawable="@drawable/cursor_black"
                 android:drawablePadding="8dp"
                 android:textSize="17sp"
@@ -166,7 +166,7 @@
             android:layout_marginEnd="9dp"
             android:hint="Повторите пароль"
             android:textColorHint="@color/grey"
-            app:boxStrokeColor="@color/blue_700"
+            app:boxStrokeColor="?attr/colorPrimaryDark"
             app:startIconDrawable="@drawable/ic_baseline_lock_24"
             app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
             app:passwordToggleEnabled="true"
@@ -174,14 +174,14 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:textCursorDrawable="@drawable/cursor_black"
-                android:textColorHighlight="@color/blue_700"
+                android:textColorHighlight="?attr/colorPrimaryDark"
                 android:id="@+id/textbox_pass2_reg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:digits="@string/alfavit_for_login"
                 android:inputType="textPassword"
                 android:maxLength="32"
-                android:textColor="@color/white"
+                android:textColor="@color/black_grey"
                 android:drawablePadding="8dp"
                 android:textSize="17sp"
                 tools:ignore="TouchTargetSizeCheck" />
@@ -197,7 +197,7 @@
             android:layout_marginTop="12dp"
             android:gravity="center_vertical"
             android:text="Согласие на обработку персональных данных"
-            android:textColor="@color/white"
+            android:textColor="@color/black_grey"
             android:textSize="20sp" />
 
         <TextView

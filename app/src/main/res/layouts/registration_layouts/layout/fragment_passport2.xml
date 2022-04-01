@@ -52,7 +52,7 @@
                     android:hint="Серия паспорта"
                     android:paddingRight="9dp"
                     android:textColorHint="@color/grey"
-                    app:boxStrokeColor="@color/blue_700"
+                    app:boxStrokeColor="?attr/colorPrimaryDark"
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -62,8 +62,8 @@
                         android:digits="@string/only_numbers"
                         android:inputType="phone"
                         android:maxLength="5"
-                        android:textColor="@color/white"
-                        android:textColorHighlight="@color/blue_700"
+                        android:textColor="@color/black_grey"
+                        android:textColorHighlight="?attr/colorPrimaryDark"
                         android:textCursorDrawable="@drawable/cursor_black"
                         android:textSize="17sp"
                         tools:ignore="TouchTargetSizeCheck" />
@@ -77,7 +77,7 @@
                     android:layout_weight="0.5"
                     android:hint="Номер паспорта"
                     android:textColorHint="@color/grey"
-                    app:boxStrokeColor="@color/blue_700"
+                    app:boxStrokeColor="?attr/colorPrimaryDark"
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -87,8 +87,8 @@
                         android:digits="@string/only_numbers"
                         android:inputType="phone"
                         android:maxLength="6"
-                        android:textColor="@color/white"
-                        android:textColorHighlight="@color/blue_700"
+                        android:textColor="@color/black_grey"
+                        android:textColorHighlight="?attr/colorPrimaryDark"
                         android:textCursorDrawable="@drawable/cursor_black"
                         android:textSize="17sp"
                         tools:ignore="TouchTargetSizeCheck" />
@@ -116,7 +116,7 @@
                     android:textColorHint="@color/grey"
                     app:startIconDrawable="@drawable/calendar_icon"
                     app:startIconTintMode="src_atop"
-                    app:boxStrokeColor="@color/blue_700"
+                    app:boxStrokeColor="?attr/colorPrimaryDark"
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
                     >
 
@@ -129,8 +129,8 @@
                         android:focusable="false"
                         android:inputType="phone"
                         android:maxLength="10"
-                        android:textColor="@color/white"
-                        android:textColorHighlight="@color/blue_700"
+                        android:textColor="@color/black_grey"
+                        android:textColorHighlight="?attr/colorPrimaryDark"
                         android:textCursorDrawable="@drawable/cursor_black"
                         android:textSize="17sp"
                         tools:ignore="TouchTargetSizeCheck" />
@@ -144,20 +144,20 @@
                     android:layout_weight="0.5"
                     android:hint="Код подразделения"
                     android:textColorHint="@color/grey"
-                    app:boxStrokeColor="@color/blue_700"
+                    app:boxStrokeColor="?attr/colorPrimaryDark"
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
                     >
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:textCursorDrawable="@drawable/cursor_black"
-                        android:textColorHighlight="@color/blue_700"
+                        android:textColorHighlight="?attr/colorPrimaryDark"
                         android:id="@+id/textbox_code_unit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:digits="@string/only_numbers"
                         android:inputType="phone"
                         android:maxLength="7"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black_grey"
                         android:textSize="17sp"
                         tools:ignore="TouchTargetSizeCheck" />
                 </com.google.android.material.textfield.TextInputLayout>

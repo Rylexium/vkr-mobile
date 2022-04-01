@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:layout_scrollFlags="scroll|enterAlways"
-            android:background="@color/blue_200"
+            android:background="?attr/colorPrimary"
             app:popupTheme="@style/Theme.VKR.PopupOverlay" />
     </com.google.android.material.appbar.AppBarLayout>
     <ScrollView
@@ -359,7 +359,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     app:cardCornerRadius="20dp"
-                    app:cardBackgroundColor="@color/blue_700"
+                    app:cardBackgroundColor="?attr/colorPrimaryDark"
                     app:cardElevation="0dp"
                     >
                     <LinearLayout
@@ -407,7 +407,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     app:cardCornerRadius="20dp"
-                    app:cardBackgroundColor="@color/blue_700"
+                    app:cardBackgroundColor="?attr/colorPrimaryDark"
                     app:cardElevation="0dp"
                     >
                     <LinearLayout
@@ -458,7 +458,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     app:cardCornerRadius="20dp"
-                    app:cardBackgroundColor="@color/blue_700"
+                    app:cardBackgroundColor="?attr/colorPrimaryDark"
                     app:cardElevation="0dp"
                     >
                     <LinearLayout

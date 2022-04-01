@@ -180,7 +180,7 @@ class SplashScreen : AppCompatActivity() {
                 textView.textSize = 24F
                 textView.gravity = Gravity.CENTER
                 textView.layoutParams = viewLayout.layoutParams
-                textView.setTextColor(ContextCompat.getColor(baseContext, R.color.dark_red))
+                textView.setTextColor(ContextCompat.getColor(baseContext, R.color.red_700))
                 viewLayout.addView(textView)
                 Snackbar.make(textView, "Сам знаешь кто здесь должен быть!!!", Snackbar.LENGTH_SHORT)
                     .setTextColor(ContextCompat.getColor(applicationContext, R.color.white))

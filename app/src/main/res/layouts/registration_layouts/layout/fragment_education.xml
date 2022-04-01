@@ -50,13 +50,13 @@
             android:layout_marginTop="9dp"
             android:hint="Номер документа"
             android:textColorHint="@color/grey"
-            app:boxStrokeColor="@color/blue_700"
+            app:boxStrokeColor="?attr/colorPrimaryDark"
             app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
             >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:textCursorDrawable="@drawable/cursor_black"
-                android:textColorHighlight="@color/blue_700"
+                android:textColorHighlight="?attr/colorPrimaryDark"
                 android:id="@+id/textbox_id_education"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -81,13 +81,13 @@
                 android:layout_height="wrap_content"
                 android:hint="Дата выдачи"
                 android:textColorHint="@color/grey"
-                app:boxStrokeColor="@color/blue_700"
+                app:boxStrokeColor="?attr/colorPrimaryDark"
                 app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:textCursorDrawable="@drawable/cursor_black"
-                    android:textColorHighlight="@color/blue_700"
+                    android:textColorHighlight="?attr/colorPrimaryDark"
                     android:id="@+id/textbox_date_of_issue_of_education"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -111,13 +111,13 @@
                 android:hint="Регистрационный номер"
                 android:textColorHint="@color/grey"
                 android:paddingLeft="9dp"
-                app:boxStrokeColor="@color/blue_700"
+                app:boxStrokeColor="?attr/colorPrimaryDark"
                 app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:textCursorDrawable="@drawable/cursor_black"
-                    android:textColorHighlight="@color/blue_700"
+                    android:textColorHighlight="?attr/colorPrimaryDark"
                     android:id="@+id/textbox_registration_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Загрузите ваши льготы"
-            android:textColor="@color/white"
+            android:textColor="@color/black_grey"
             android:textSize="26dp"
             android:gravity="center"
             />

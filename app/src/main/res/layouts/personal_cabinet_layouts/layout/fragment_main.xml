@@ -35,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:animateLayoutChanges="true"
-                android:background="@color/blue_500"
+                android:background="?attr/colorPrimary"
                 >
                 <TextView
                     android:layout_width="0dp"
@@ -90,7 +90,7 @@
                     android:textSize="26dp"
                     android:textStyle="bold"
                     android:gravity="center"
-                    android:background="@color/blue_500"
+                    android:background="?attr/colorPrimary"
                     android:textColor="@color/white"
                     />
                 <LinearLayout
@@ -349,7 +349,7 @@
                     android:elegantTextHeight="true"
                     android:gravity="center"
                     android:textStyle="bold"
-                    android:background="@color/blue_500"
+                    android:background="?attr/colorPrimary"
                     android:textColor="@color/white"
                     />
             <LinearLayout
@@ -447,7 +447,7 @@
                     android:elegantTextHeight="true"
                     android:textStyle="bold"
                     android:gravity="center"
-                    android:background="@color/blue_500"
+                    android:background="?attr/colorPrimary"
                     android:textColor="@color/white"
                     />
                 <LinearLayout
@@ -617,7 +617,7 @@
                     android:elegantTextHeight="true"
                     android:gravity="center"
                     android:textStyle="bold"
-                    android:background="@color/blue_500"
+                    android:background="?attr/colorPrimary"
                     android:textColor="@color/white"
                     />
 

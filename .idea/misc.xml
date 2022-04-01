@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/drawable/cursor_black.xml" value="0.2985" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.196" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.196" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/drawable/ic_wave.xml" value="0.2985" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/drawable/round_btn.xml" value="0.2985" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/authorization_layouts/layout/authorization_activity.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/personal_cabinet_layouts/drawable/cradient8.xml" value="0.196" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/personal_cabinet_layouts/drawable/neutral_cradient.xml" value="0.2985" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/personal_cabinet_layouts/drawable/neutral_cradient1.xml" value="0.2985" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/personal_cabinet_layouts/drawable/side_nav_bar.xml" value="0.196" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/personal_cabinet_layouts/drawable/side_nav_bar1.xml" value="0.2985" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/personal_cabinet_layouts/layout/activity_more_about_the_institut.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/personal_cabinet_layouts/layout/activity_more_about_the_speciality.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/personal_cabinet_layouts/layout/app_bar_personal_cabinet.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/personal_cabinet_layouts/layout/fragment_achievements.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/personal_cabinet_layouts/layout/fragment_agreement.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/personal_cabinet_layouts/layout/fragment_main.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/personal_cabinet_layouts/layout/fragment_result_egu.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/personal_cabinet_layouts/layout/fragment_speciality.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/personal_cabinet_layouts/layout/fragment_statement.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/personal_cabinet_layouts/layout/nav_header_personal_cabinet.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/personal_cabinet_layouts/menu/menu_institut.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/personal_cabinet_layouts/menu/menu_speciality.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/personal_cabinet_layouts/menu/personal_cabinet.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/personal_cabinet_layouts/menu/personal_cabinet_activity_drawer.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/registration_layouts/layout/exams_result_activity.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/registration_layouts/layout/fragment_achiev.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/registration_layouts/layout/fragment_education.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/registration_layouts/layout/fragment_finish.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/registration_layouts/layout/fragment_passport1.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/registration_layouts/layout/fragment_passport2.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/registration_layouts/layout/fragment_passport3.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/registration_layouts/layout/fragment_privileges.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/registration_layouts/layout/fragment_snills.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/registration_layouts/layout/registration_activity.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/supporting_layouts/layout/field_for_speciality.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/aleks/AndroidStudioProjects/vkr-mobile/app/src/main/res/layouts/supporting_layouts/layout/field_for_statement.xml" value="0.358695652173913" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

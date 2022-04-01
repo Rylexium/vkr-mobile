@@ -42,7 +42,7 @@
                     android:gravity="center"
                     android:textSize="30dp"
                     android:textColor="@color/white"
-                    android:background="@color/blue_700"
+                    android:background="?attr/colorPrimaryDark"
                     />
                 <LinearLayout
                     android:orientation="horizontal"
@@ -168,7 +168,7 @@
                     android:gravity="center"
                     android:textSize="30dp"
                     android:textColor="@color/white"
-                    android:background="@color/blue_700"
+                    android:background="?attr/colorPrimaryDark"
                     />
                 <LinearLayout
                     android:orientation="horizontal"
@@ -340,7 +340,7 @@
                     android:gravity="center"
                     android:text="@string/reg_step_3"
                     android:textColor="@color/white"
-                    android:background="@color/blue_700"
+                    android:background="?attr/colorPrimaryDark"
                     android:textSize="30dp"
                     />
 
@@ -466,7 +466,7 @@
                     android:gravity="center"
                     android:text="@string/reg_step_4"
                     android:textColor="@color/white"
-                    android:background="@color/blue_700"
+                    android:background="?attr/colorPrimaryDark"
                     android:textSize="30dp" />
 
                 <LinearLayout
@@ -543,7 +543,7 @@
                     android:gravity="center"
                     android:text="@string/reg_step_5"
                     android:textColor="@color/white"
-                    android:background="@color/blue_700"
+                    android:background="?attr/colorPrimaryDark"
                     android:textSize="30dp" />
 
                 <LinearLayout
@@ -597,7 +597,7 @@
                     android:gravity="center"
                     android:text="@string/reg_step_6"
                     android:textColor="@color/white"
-                    android:background="@color/blue_700"
+                    android:background="?attr/colorPrimaryDark"
                     android:textSize="30dp" />
 
                 <LinearLayout
@@ -701,7 +701,7 @@
                     android:gravity="center"
                     android:text="@string/reg_step_8"
                     android:textColor="@color/white"
-                    android:background="@color/blue_700"
+                    android:background="?attr/colorPrimaryDark"
                     android:textSize="30dp" />
 
                 <LinearLayout

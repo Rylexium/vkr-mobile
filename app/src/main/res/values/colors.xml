@@ -19,7 +19,8 @@
     <color name="color_for_splash_screen1">#0099fa</color>
     <color name="color_for_splash_screen2">#0045a6</color>
     <color name="color_for_splash_screen3">#ff8f00</color>
-    <color name="dark_red">#CA0000</color>
-    <color name="red">#F02E00</color>
+    <color name="red_700">#750000</color>
+    <color name="red_500">#A30000</color>
+    <color name="red_200">#D10000</color>
 
 </resources>
