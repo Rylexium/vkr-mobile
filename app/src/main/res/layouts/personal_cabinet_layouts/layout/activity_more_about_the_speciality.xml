@@ -37,7 +37,7 @@
                 android:id="@+id/layout_more_about_the_speciality"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="6dp"
+                android:paddingTop="4dp"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
                 android:orientation="vertical" >
@@ -115,7 +115,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:padding="6dp"
+                            android:padding="4dp"
                             android:orientation="vertical">
                             <TextView
                                 android:id="@+id/studying_time_of_speciality"
@@ -136,7 +136,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:padding="6dp"
+                            android:padding="4dp"
                             android:orientation="vertical">
                             <TextView
                                 android:id="@+id/type_of_study_of_speciality"
@@ -158,7 +158,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:padding="6dp"
+                            android:padding="4dp"
                             android:orientation="vertical">
                             <TextView
                                 android:id="@+id/budget_of_speciality"
