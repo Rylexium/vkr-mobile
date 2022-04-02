@@ -14,6 +14,7 @@ import com.example.vkr.activity.maps.YandexMapsActivity;
 import com.example.vkr.activity.registration.ExamsResultActivity;
 import com.example.vkr.activity.registration.RegistrationActivity;
 import com.example.vkr.activity.support.ChangePasswordActivity;
+import com.example.vkr.activity.themes.ChangeThemeActivity;
 import com.example.vkr.personal_cabinet.PersonalCabinetActivity;
 import com.example.vkr.activity.support.SupportActivity;
 import com.example.vkr.personal_cabinet.ui.agreement.ViewPdfActivity;
@@ -112,6 +113,10 @@ public class OpenActivity {
                                 Toast.LENGTH_SHORT).show();
                     }
                 });
+        return true;
+    }
+    public static boolean openChangeTheme(Activity activity) {
+        activity.startActivity(new Intent(activity, ChangeThemeActivity.class));
         return true;
     }
 
