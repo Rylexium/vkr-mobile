@@ -107,17 +107,17 @@
                     android:orientation="vertical">
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="3"
+                        android:layout_height="wrap_content"
                         android:paddingStart="9dp"
                         android:paddingEnd="9dp"
                         android:paddingTop="9dp"
+                        android:gravity="center"
                         android:orientation="horizontal" >
                         <LinearLayout
-                            android:layout_width="0dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.5"
                             android:gravity="center"
+                            android:padding="5dp"
                             android:orientation="vertical">
                             <TextView
                                 android:id="@+id/studying_time_of_speciality"
@@ -137,8 +137,8 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.2"
                             android:gravity="center"
+                            android:padding="5dp"
                             android:orientation="vertical">
                             <TextView
                                 android:id="@+id/type_of_study_of_speciality"
@@ -157,10 +157,10 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="0dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.5"
                             android:gravity="center"
+                            android:padding="5dp"
                             android:orientation="vertical">
                             <TextView
                                 android:id="@+id/budget_of_speciality"
@@ -183,11 +183,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
+                        android:gravity="center"
                         android:paddingStart="9dp"
                         android:paddingTop="14sp"
-                        android:paddingEnd="9sp">
+                        android:paddingBottom="9sp"
+                        android:paddingEnd="9sp"
+                        android:baselineAligned="false">
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:orientation="vertical">
@@ -207,9 +210,8 @@
                                 android:textSize="16sp" />
                         </LinearLayout>
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:paddingBottom="9dp"
                             android:layout_weight="1"
                             android:orientation="vertical">
                             <TextView
@@ -378,7 +380,7 @@
                             android:orientation="horizontal"
                             android:gravity="center"
                             android:animateLayoutChanges="true"
-                            >
+                            tools:ignore="UseCompoundDrawables">
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
@@ -466,8 +468,6 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:animateLayoutChanges="true"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="5dp"
                         android:paddingStart="20dp"
                         android:paddingEnd="5dp"
                         android:paddingTop="5dp"
