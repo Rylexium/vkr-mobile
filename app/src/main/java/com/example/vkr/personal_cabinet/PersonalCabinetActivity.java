@@ -1,6 +1,7 @@
 package com.example.vkr.personal_cabinet;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.Menu;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DecodeFormat;
+import com.example.vkr.activity.themes.Themes;
 import com.example.vkr.personal_cabinet.ui.home.MainViewModel;
 import com.example.vkr.personal_cabinet.ui.result_egu.ResultEguViewModel;
 import com.example.vkr.utils.dialogs.ShowCustomDialog;
@@ -88,6 +90,7 @@ public class PersonalCabinetActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(Themes.Companion.getCustomTheme());
         binding = PersonalCabinetActivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setSupportActionBar(binding.appBarPersonalCabinet.toolbar);

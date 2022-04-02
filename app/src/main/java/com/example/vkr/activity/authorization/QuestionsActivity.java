@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.vkr.R;
+import com.example.vkr.activity.themes.Themes;
 
 public class QuestionsActivity extends AppCompatActivity {
 
@@ -61,6 +62,7 @@ public class QuestionsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(Themes.Companion.getCustomTheme());
         setContentView(R.layout.questions_activity);
         if(getSupportActionBar() != null) getSupportActionBar().hide(); //убираем action bar
         initComponents();

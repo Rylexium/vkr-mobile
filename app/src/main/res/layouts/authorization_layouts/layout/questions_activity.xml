@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:background="?attr/colorSecondary"
+    android:background="@color/white"
     android:animateLayoutChanges="true"
     tools:context=".activity.authorization.QuestionsActivity">
 
@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Часто задаваемые вопросы"
-            android:textColor="@color/white"
+            android:textColor="@color/black_grey"
             android:textSize="26dp"
             android:gravity="center"
             />

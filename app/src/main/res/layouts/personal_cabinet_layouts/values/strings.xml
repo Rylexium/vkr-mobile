@@ -14,4 +14,13 @@
         <item>2</item>
         <item>3</item>
     </string-array>
+
+    <string-array name="colors">
+        <item>Стандартный</item>
+        <item>Красный</item>
+        <item>Оранжевый</item>
+        <item>Розовый</item>
+        <item>Зелёный</item>
+        <item>Черный</item>
+    </string-array>
 </resources>

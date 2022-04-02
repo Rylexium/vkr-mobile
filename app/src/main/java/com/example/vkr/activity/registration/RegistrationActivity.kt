@@ -4,9 +4,9 @@ import android.annotation.SuppressLint
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.fragment.app.Fragment
-import androidx.appcompat.app.AppCompatActivity
 import android.view.MotionEvent
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.example.vkr.R
 import com.example.vkr.activity.registration.ui.achievements.AchievFragment
 import com.example.vkr.activity.registration.ui.education.EducationFragment
@@ -17,6 +17,7 @@ import com.example.vkr.activity.registration.ui.passport3.Passport3Fragment
 import com.example.vkr.activity.registration.ui.privileges.PrivilegesFragment
 import com.example.vkr.activity.registration.ui.registration.RegistrationFragment
 import com.example.vkr.activity.registration.ui.snills.SnillsFragment
+import com.example.vkr.activity.themes.Themes.Companion.getCustomTheme
 import com.example.vkr.databinding.RegistrationActivityBinding
 import com.example.vkr.utils.HideKeyboardClass
 import com.example.vkr.utils.dialogs.ShowCustomDialog
@@ -39,6 +40,7 @@ class RegistrationActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(getCustomTheme())
         binding = RegistrationActivityBinding.inflate(layoutInflater)
         sharedPreferences = getPreferences(MODE_PRIVATE)
 

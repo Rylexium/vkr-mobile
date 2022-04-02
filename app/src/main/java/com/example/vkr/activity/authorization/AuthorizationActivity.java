@@ -25,6 +25,7 @@ import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DecodeFormat;
 import com.example.vkr.R;
+import com.example.vkr.activity.themes.Themes;
 import com.example.vkr.splash_screen.SplashScreen;
 import com.example.vkr.utils.ConvertClass;
 import com.example.vkr.utils.HashPass;
@@ -59,6 +60,7 @@ public class AuthorizationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(Themes.Companion.getCustomTheme());
         setContentView(R.layout.authorization_activity);
         if(getSupportActionBar() != null) getSupportActionBar().hide();
         initComponents();

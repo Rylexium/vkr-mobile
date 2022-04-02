@@ -27,6 +27,7 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.example.vkr.R;
+import com.example.vkr.activity.themes.Themes;
 import com.example.vkr.personal_cabinet.PersonalCabinetActivity;
 import com.example.vkr.utils.HideKeyboardClass;
 import com.example.vkr.utils.MySpinnerAdapter;
@@ -53,6 +54,7 @@ public class ExamsResultActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(Themes.Companion.getCustomTheme());
         if(getSupportActionBar() != null) getSupportActionBar().hide(); //убираем action bar
         setContentView(R.layout.exams_result_activity);
         initComponents();
