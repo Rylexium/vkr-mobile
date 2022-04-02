@@ -95,9 +95,8 @@ public class AuthorizationActivity extends AppCompatActivity {
 
     private void comebackAfterOnBackPressed() {
         String restoredText = getPreferences(MODE_PRIVATE).getString("login", null);
-        if (!TextUtils.isEmpty(restoredText)) {
+        if (!TextUtils.isEmpty(restoredText))
             textBoxLogin.setText(restoredText);
-        }
     }
 
     private void ApplyEvents(){
@@ -127,9 +126,7 @@ public class AuthorizationActivity extends AppCompatActivity {
         Activity activity = this;
         logo.setOnClickListener(new DoubleClickListener() {
             @Override
-            public void onDoubleClick(@Nullable View v) {
-                OpenActivity.openChangeTheme(activity);
-            }
+            public void onDoubleClick(@Nullable View v) { OpenActivity.openChangeTheme(activity); }
         });
     }
 
