@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Часто задаваемые вопросы"
-            android:textColor="@color/black_grey"
+            android:textColor="?attr/colorSurface"
             android:textSize="26dp"
             android:gravity="center"
             />
@@ -58,6 +58,8 @@
                         android:text="1. Какие документы нужны для подачи?"
                         android:paddingRight="15dp"
                         android:paddingLeft="15dp"
+                        android:textSize="16sp"
+                        android:textAllCaps="false"
                         android:textColor="?attr/colorSurface" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -86,6 +88,8 @@
                         android:paddingRight="15dp"
                         android:paddingLeft="15dp"
                         android:background="@drawable/round_btn"
+                        android:textSize="16sp"
+                        android:textAllCaps="false"
                         android:textColor="?attr/colorSurface"
                         />
                 </LinearLayout>
@@ -114,6 +118,8 @@
                         android:background="@drawable/round_btn"
                         android:paddingRight="15dp"
                         android:paddingLeft="15dp"
+                        android:textSize="16sp"
+                        android:textAllCaps="false"
                         android:textColor="?attr/colorSurface"
                         />
                 </LinearLayout>
@@ -143,6 +149,8 @@
                         android:background="@drawable/round_btn"
                         android:paddingRight="15dp"
                         android:paddingLeft="15dp"
+                        android:textSize="16sp"
+                        android:textAllCaps="false"
                         android:textColor="?attr/colorSurface"
                         />
                 </LinearLayout>
@@ -171,6 +179,8 @@
                         android:background="@drawable/round_btn"
                         android:paddingRight="15dp"
                         android:paddingLeft="15dp"
+                        android:textSize="16sp"
+                        android:textAllCaps="false"
                         android:textColor="?attr/colorSurface"
                         />
                 </LinearLayout>
@@ -199,6 +209,8 @@
                         android:background="@drawable/round_btn"
                         android:paddingRight="15dp"
                         android:paddingLeft="15dp"
+                        android:textSize="16sp"
+                        android:textAllCaps="false"
                         android:textColor="?attr/colorSurface"
                         />
                 </LinearLayout>
@@ -227,6 +239,8 @@
                         android:paddingLeft="15dp"
                         android:text="7. Какие вступительные испытания?\nНужно ли проходить вступительные, если сдавал ЕГЭ?"
                         android:background="@drawable/round_btn"
+                        android:textSize="16sp"
+                        android:textAllCaps="false"
                         android:textColor="?attr/colorSurface"
                         />
                 </LinearLayout>
@@ -255,6 +269,8 @@
                         android:background="@drawable/round_btn"
                         android:paddingRight="15dp"
                         android:paddingLeft="15dp"
+                        android:textSize="16sp"
+                        android:textAllCaps="false"
                         android:textColor="?attr/colorSurface"
                         />
                 </LinearLayout>
@@ -283,6 +299,8 @@
                         android:background="@drawable/round_btn"
                         android:paddingRight="15dp"
                         android:paddingLeft="15dp"
+                        android:textSize="16sp"
+                        android:textAllCaps="false"
                         android:textColor="?attr/colorSurface"
                         />
                 </LinearLayout>

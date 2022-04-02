@@ -57,8 +57,6 @@ class ChangeThemeActivity : AppCompatActivity() {
     }
 
     private fun applyEvents() {
-        btnAccept.setOnClickListener { acceptTheme() }
-
         colorPicker.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 acceptTheme()
