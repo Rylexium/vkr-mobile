@@ -36,7 +36,7 @@
             android:text="Личный кабинет абитуриента"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:textColor="@color/white"/>
+            android:textColor="?attr/colorSurface"/>
 
         <TextView
             android:id="@+id/header_textView_FIO"

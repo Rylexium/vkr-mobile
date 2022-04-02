@@ -5,7 +5,11 @@
         <item name="colorPrimary">@color/blue_500</item>
         <item name="colorPrimaryDark">@color/blue_700</item>
 
-        <item name="colorAccent">@color/blue_500</item>
+        <item name="colorOnBackground">@color/white</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSurface">@color/white</item>
+
+        <item name="colorAccent">@color/black</item>
         <item name="android:navigationBarColor">@color/black</item>
     </style>
 
@@ -13,7 +17,64 @@
         <item name="colorSecondary">@color/red_200</item>
         <item name="colorPrimary">@color/red_500</item>
         <item name="colorPrimaryDark">@color/red_700</item>
-        <item name="colorAccent">@color/red_500</item>
+
+        <item name="colorOnBackground">@color/white</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSurface">@color/white</item>
+
+        <item name="colorAccent">@color/black</item>
+        <item name="android:navigationBarColor">@color/black</item>
+    </style>
+
+    <style name="Theme.VKR.Orange" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
+        <item name="colorSecondary">@color/orange_200</item>
+        <item name="colorPrimary">@color/orange_500</item>
+        <item name="colorPrimaryDark">@color/orange_700</item>
+
+        <item name="colorOnBackground">@color/white</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSurface">@color/white</item>
+
+        <item name="colorAccent">@color/black</item>
+        <item name="android:navigationBarColor">@color/black</item>
+    </style>
+
+    <style name="Theme.VKR.Purple" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
+        <item name="colorSecondary">@color/purple_200</item>
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryDark">@color/purple_700</item>
+
+        <item name="colorOnBackground">@color/white</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSurface">@color/white</item>
+
+        <item name="colorAccent">@color/black</item>
+        <item name="android:navigationBarColor">@color/black</item>
+    </style>
+
+    <style name="Theme.VKR.Green" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
+        <item name="colorSecondary">@color/green_200</item>
+        <item name="colorPrimary">@color/green_500</item>
+        <item name="colorPrimaryDark">@color/green_700</item>
+
+        <item name="colorOnBackground">@color/white</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="colorAccent">@color/black</item>
+        <item name="android:navigationBarColor">@color/black</item>
+    </style>
+
+    <style name="Theme.VKR.Black" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
+        <item name="colorSecondary">@color/black_200</item>
+        <item name="colorPrimary">@color/black_500</item>
+        <item name="colorPrimaryDark">@color/black_700</item>
+
+        <item name="colorOnBackground">#2b2b2b</item>
+        <item name="colorOnPrimary">@color/grey</item>
+        <item name="colorSurface">#eaeaea</item>
+
+        <item name="colorAccent">@color/black</item>
+        <item name="android:navigationBarColor">@color/black</item>
     </style>
 
     <style name="DialogAnimation">

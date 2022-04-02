@@ -1,26 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="black_grey">#1c1c1c</color>
     <color name="white">#FFFFFFFF</color>
     <color name="custom_white">#E2E5DE</color>
-    <color name="blue_700">#0E47A1</color>
-    <color name="blue_500">#008ce8</color>
-    <color name="blue_200">#64bce9</color>
     <color name="silver">#C0C0C0</color>
     <color name="grey">#434343</color>
-    <color name="orange_500">#D2691E</color>
-    <color name="orange_700">#8B4513</color>
+
     <color name="color_for_splash_screen1">#0099fa</color>
     <color name="color_for_splash_screen2">#0045a6</color>
     <color name="color_for_splash_screen3">#ff8f00</color>
+
+    <color name="blue_700">#0E47A1</color>
+    <color name="blue_500">#008ce8</color>
+    <color name="blue_200">#64bce9</color>
+
+
     <color name="red_700">#750000</color>
     <color name="red_500">#A30000</color>
     <color name="red_200">#D10000</color>
+
+    <color name="orange_700">#8B4513</color>
+    <color name="orange_500">#D2691E</color>
+    <color name="orange_200">#CD853F</color>
+
+    <color name="purple_700">#FF3700B3</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_200">#FFBB86FC</color>
+
+    <color name="green_700">#006400</color>
+    <color name="green_500">#008000</color>
+    <color name="green_200">#228B22</color>
+
+    <color name="black_700">#000000</color>
+    <color name="black_500">@color/black_grey</color>
+    <color name="black_200">#808080</color>
+
 
 </resources>

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:fillViewport="true"
-    android:background="@color/white"
+    android:background="?attr/colorOnBackground"
     android:nestedScrollingEnabled="true"
     android:animateLayoutChanges="true"
     tools:context=".personal_cabinet.ui.home.MainFragment">
@@ -49,7 +49,7 @@
                     android:paddingStart="15dp"
                     android:textSize="24sp"
                     android:gravity="center|left"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorSurface"
                     />
                 <TextView
                     android:id="@+id/textview_login"
@@ -61,7 +61,7 @@
                     android:gravity="center"
                     android:textStyle="bold"
                     android:textSize="24sp"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorSurface"
                     android:layout_marginLeft="9dp"
                     android:layout_marginRight="9dp"
                     />
@@ -74,6 +74,7 @@
             android:layout_marginTop="25dp"
             app:cardCornerRadius="25dp"
             app:cardElevation="10dp"
+            app:cardBackgroundColor="?attr/colorSurface"
             >
             <LinearLayout
                 android:layout_width="match_parent"
@@ -90,7 +91,7 @@
                     android:textStyle="bold"
                     android:gravity="center"
                     android:background="?attr/colorPrimary"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorSurface"
                     />
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -319,7 +320,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="15dp"
                     android:text="Страницы с изображением вашего паспорта"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorSurface"
                     android:background="@drawable/round_btn"
                     />
                 </LinearLayout>
@@ -332,6 +333,7 @@
             android:layout_marginTop="25dp"
             app:cardCornerRadius="25dp"
             app:cardElevation="5dp"
+            app:cardBackgroundColor="?attr/colorSurface"
             >
             <LinearLayout
                 android:layout_width="match_parent"
@@ -348,7 +350,7 @@
                     android:gravity="center"
                     android:textStyle="bold"
                     android:background="?attr/colorPrimary"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorSurface"
                     />
             <LinearLayout
                 android:layout_width="match_parent"
@@ -391,7 +393,6 @@
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        
                         >
                         <TextView
                             android:layout_width="match_parent"
@@ -430,6 +431,7 @@
             android:layout_marginTop="25dp"
             app:cardCornerRadius="25dp"
             app:cardElevation="10dp"
+            app:cardBackgroundColor="?attr/colorSurface"
             >
             <LinearLayout
                 android:layout_width="match_parent"
@@ -445,7 +447,7 @@
                     android:textStyle="bold"
                     android:gravity="center"
                     android:background="?attr/colorPrimary"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorSurface"
                     />
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -585,7 +587,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginTop="15dp"
                         android:text="Страницы с изображением вашего документа об образовании"
-                        android:textColor="@color/white"
+                        android:textColor="?attr/colorSurface"
                         android:background="@drawable/round_btn"
                         />
                 </LinearLayout>
@@ -599,6 +601,7 @@
             android:layout_marginTop="25dp"
             app:cardCornerRadius="25dp"
             app:cardElevation="10dp"
+            app:cardBackgroundColor="?attr/colorSurface"
             >
             <LinearLayout
                 android:layout_width="match_parent"
@@ -614,7 +617,7 @@
                     android:gravity="center"
                     android:textStyle="bold"
                     android:background="?attr/colorPrimary"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorSurface"
                     />
 
                 <LinearLayout
@@ -662,7 +665,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginTop="15dp"
                         android:text="Страницы с изображением вашей привилегии"
-                        android:textColor="@color/white"
+                        android:textColor="?attr/colorSurface"
                         android:background="@drawable/round_btn"
                         />
                 </LinearLayout>

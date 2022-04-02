@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="5sp"
                 android:text="Направление"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorSurface"
                 android:textSize="22sp"
                 />
 
@@ -37,14 +37,14 @@
                 android:textSize="25sp"
                 android:elegantTextHeight="true"
                 android:text="02.03.03 Математическое обеспечение и администрирование информационных систем"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorSurface"
                 />
 
             <TextView
                 android:id="@+id/textview_institut"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorSurface"
                 android:elegantTextHeight="true"
                 android:textSize="22sp"
                 android:text="@string/example_institute"
@@ -65,7 +65,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:paddingTop="10sp"
-                        android:textColor="@color/white"
+                        android:textColor="?attr/colorSurface"
                         android:text="Бюджетные места"
                         android:textSize="18sp" />
 
@@ -75,7 +75,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:elegantTextHeight="true"
-                        android:textColor="@color/white"
+                        android:textColor="?attr/colorSurface"
                         android:text="24"
                         android:textSize="22sp" />
 
@@ -85,7 +85,7 @@
                         android:gravity="center"
                         android:elegantTextHeight="true"
                         android:text="Платные места"
-                        android:textColor="@color/white"
+                        android:textColor="?attr/colorSurface"
                         android:textSize="18sp" />
 
                     <TextView
@@ -96,7 +96,7 @@
 
                         android:text="150"
                         android:elegantTextHeight="true"
-                        android:textColor="@color/white"
+                        android:textColor="?attr/colorSurface"
                         android:textSize="22sp" />
 
                 </LinearLayout>
@@ -111,7 +111,7 @@
                         android:gravity="center"
                         android:paddingTop="10sp"
                         android:text="Форма обучения"
-                        android:textColor="@color/white"
+                        android:textColor="?attr/colorSurface"
                         android:textSize="18sp" />
 
                     <TextView
@@ -121,7 +121,7 @@
                         android:gravity="center"
                         android:text="Очная"
                         android:elegantTextHeight="true"
-                        android:textColor="@color/white"
+                        android:textColor="?attr/colorSurface"
                         android:textSize="25sp" />
                 </LinearLayout>
             </LinearLayout>

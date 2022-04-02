@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:background="@color/white"
+    android:background="?attr/colorSecondary"
     android:animateLayoutChanges="true"
     tools:context=".activity.authorization.QuestionsActivity">
 
@@ -58,7 +58,7 @@
                         android:text="1. Какие документы нужны для подачи?"
                         android:paddingRight="15dp"
                         android:paddingLeft="15dp"
-                        android:textColor="@color/white" />
+                        android:textColor="?attr/colorSurface" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -86,7 +86,7 @@
                         android:paddingRight="15dp"
                         android:paddingLeft="15dp"
                         android:background="@drawable/round_btn"
-                        android:textColor="@color/white"
+                        android:textColor="?attr/colorSurface"
                         />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -114,7 +114,7 @@
                         android:background="@drawable/round_btn"
                         android:paddingRight="15dp"
                         android:paddingLeft="15dp"
-                        android:textColor="@color/white"
+                        android:textColor="?attr/colorSurface"
                         />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -143,7 +143,7 @@
                         android:background="@drawable/round_btn"
                         android:paddingRight="15dp"
                         android:paddingLeft="15dp"
-                        android:textColor="@color/white"
+                        android:textColor="?attr/colorSurface"
                         />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -171,7 +171,7 @@
                         android:background="@drawable/round_btn"
                         android:paddingRight="15dp"
                         android:paddingLeft="15dp"
-                        android:textColor="@color/white"
+                        android:textColor="?attr/colorSurface"
                         />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -199,7 +199,7 @@
                         android:background="@drawable/round_btn"
                         android:paddingRight="15dp"
                         android:paddingLeft="15dp"
-                        android:textColor="@color/white"
+                        android:textColor="?attr/colorSurface"
                         />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -227,7 +227,7 @@
                         android:paddingLeft="15dp"
                         android:text="7. Какие вступительные испытания?\nНужно ли проходить вступительные, если сдавал ЕГЭ?"
                         android:background="@drawable/round_btn"
-                        android:textColor="@color/white"
+                        android:textColor="?attr/colorSurface"
                         />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -255,7 +255,7 @@
                         android:background="@drawable/round_btn"
                         android:paddingRight="15dp"
                         android:paddingLeft="15dp"
-                        android:textColor="@color/white"
+                        android:textColor="?attr/colorSurface"
                         />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -283,7 +283,7 @@
                         android:background="@drawable/round_btn"
                         android:paddingRight="15dp"
                         android:paddingLeft="15dp"
-                        android:textColor="@color/white"
+                        android:textColor="?attr/colorSurface"
                         />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

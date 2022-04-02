@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
     tools:context=".activity.admission.AdmissionActivity"
     android:orientation="vertical">
 
@@ -14,7 +15,7 @@
         app:tabMode="fixed"
         app:tabGravity="fill"
         app:tabIndicatorGravity="stretch"
-        app:tabSelectedTextColor="@color/white"
+        app:tabSelectedTextColor="?attr/colorSurface"
         app:tabIndicatorAnimationMode="elastic"
         app:tabIndicator="@drawable/tab_indicator"
         />

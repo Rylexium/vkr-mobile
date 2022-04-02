@@ -17,6 +17,10 @@ class Themes {
             else when(sharedPreferences.all["color"] as Int) {
                 0 -> R.style.Theme_VKR
                 1 -> R.style.Theme_VKR_Red
+                2 -> R.style.Theme_VKR_Orange
+                3 -> R.style.Theme_VKR_Purple
+                4 -> R.style.Theme_VKR_Green
+                5 -> R.style.Theme_VKR_Black
                 else -> R.style.Theme_VKR
             }
         }

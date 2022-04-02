@@ -11,7 +11,7 @@
         android:id="@+id/text_question"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:textColor="@color/white"
+        android:textColor="?attr/colorSurface"
         android:layout_marginLeft="18dp"
         android:layout_marginRight="18dp"
         android:layout_marginBottom="10dp"

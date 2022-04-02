@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="5sp"
                 android:text="Направление"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorSurface"
                 android:textSize="22sp"
                 />
 
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="25sp"
                 android:text="02.03.03 Математическое обеспечение и администрирование информационных систем"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorSurface"
                 />
 
             <TextView
@@ -44,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorSurface"
                 android:paddingBottom="10dp"
                 android:textSize="22sp"
                 android:text="@string/example_institute"
@@ -67,7 +67,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Форма финансирования"
-                        android:textColor="@color/white"
+                        android:textColor="?attr/colorSurface"
                         android:textSize="18sp" />
 
                     <Spinner
@@ -92,7 +92,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Форма обучения"
-                        android:textColor="@color/white"
+                        android:textColor="?attr/colorSurface"
                         android:textSize="18sp" />
 
                     <TextView
@@ -101,7 +101,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Очная заочная"
-                        android:textColor="@color/white"
+                        android:textColor="?attr/colorSurface"
                         android:textSize="30sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -117,7 +117,7 @@
                     android:layout_marginTop="15dp"
                     android:gravity="center"
                     android:text="Дата подачи заявления"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorSurface"
                     android:textSize="18dp" />
 
                 <TextView
@@ -126,7 +126,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:paddingTop="10dp"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorSurface"
                     android:text="22.04.2022"
                     android:textSize="26sp" />
 
@@ -142,7 +142,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="Приоритет"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorSurface"
                     android:textSize="28sp" />
 
                 <Spinner

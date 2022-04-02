@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
+        app:cardBackgroundColor="?attr/colorSurface"
         app:cardCornerRadius="40dp"
         app:cardElevation="5dp"
         >
@@ -44,7 +45,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="1"
-                        android:textColor="@color/white"
+                        android:textColor="?attr/colorSurface"
                         android:textSize="24sp"
                         android:gravity="center"
                         android:clickable="true"

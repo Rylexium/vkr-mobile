@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:nestedScrollingEnabled="true"
+    android:background="?attr/colorOnBackground"
     tools:context=".personal_cabinet.ui.speciality.SpecialityFragment">
 
     <LinearLayout
