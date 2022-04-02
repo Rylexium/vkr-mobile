@@ -69,8 +69,11 @@
         <item name="colorPrimary">@color/black_500</item>
         <item name="colorPrimaryDark">@color/black_700</item>
 
+        <!-- Цвет фофна-->
         <item name="colorOnBackground">#2b2b2b</item>
         <item name="colorOnPrimary">@color/grey</item>
+
+        <!-- Цвет текста-->
         <item name="colorSurface">#eaeaea</item>
 
         <item name="colorAccent">@color/black</item>

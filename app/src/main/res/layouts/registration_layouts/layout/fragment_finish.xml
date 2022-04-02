@@ -22,6 +22,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:cardBackgroundColor="?attr/colorSurface"
             app:cardCornerRadius="20dp"
             app:cardElevation="5dp"
             >
@@ -40,7 +41,7 @@
                     android:text="@string/reg_step_1"
                     android:gravity="center"
                     android:textSize="30dp"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorSurface"
                     android:background="?attr/colorPrimaryDark"
                     />
                 <LinearLayout
@@ -148,6 +149,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            app:cardBackgroundColor="?attr/colorSurface"
             app:cardCornerRadius="20dp"
             app:cardElevation="5dp"
             >
@@ -165,7 +167,7 @@
                     android:text="@string/reg_step_2"
                     android:gravity="center"
                     android:textSize="30dp"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorSurface"
                     android:background="?attr/colorPrimaryDark"
                     />
                 <LinearLayout
@@ -320,6 +322,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            app:cardBackgroundColor="?attr/colorSurface"
             app:cardCornerRadius="20dp"
             app:cardElevation="5dp"
             >
@@ -336,7 +339,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/reg_step_3"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorSurface"
                     android:background="?attr/colorPrimaryDark"
                     android:textSize="30dp"
                     />
@@ -445,6 +448,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            app:cardBackgroundColor="?attr/colorSurface"
             app:cardCornerRadius="20dp"
             app:cardElevation="5dp"
             >
@@ -461,7 +465,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/reg_step_4"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorSurface"
                     android:background="?attr/colorPrimaryDark"
                     android:textSize="30dp" />
 
@@ -520,6 +524,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            app:cardBackgroundColor="?attr/colorSurface"
             app:cardCornerRadius="20dp"
             app:cardElevation="5dp"
             >
@@ -537,7 +542,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/reg_step_5"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorSurface"
                     android:background="?attr/colorPrimaryDark"
                     android:textSize="30dp" />
 
@@ -573,6 +578,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            app:cardBackgroundColor="?attr/colorSurface"
             app:cardCornerRadius="20dp"
             app:cardElevation="5dp"
             >
@@ -590,7 +596,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/reg_step_6"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorSurface"
                     android:background="?attr/colorPrimaryDark"
                     android:textSize="30dp" />
 
@@ -676,6 +682,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            app:cardBackgroundColor="?attr/colorSurface"
             app:cardCornerRadius="20dp"
             app:cardElevation="5dp"
             >
@@ -693,7 +700,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/reg_step_8"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorSurface"
                     android:background="?attr/colorPrimaryDark"
                     android:textSize="30dp" />
 
@@ -731,7 +738,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="25dp"
         android:background="@drawable/round_btn"
-        android:textColor="@color/white"
+        android:textColor="?attr/colorSurface"
         android:text = "Зарегистрироваться"
         />
 
