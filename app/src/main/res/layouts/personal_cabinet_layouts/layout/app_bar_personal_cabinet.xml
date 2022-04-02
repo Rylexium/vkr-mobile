@@ -32,9 +32,10 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:backgroundTint="@android:color/transparent"
+        android:backgroundTint="?attr/colorPrimaryDark"
         android:scaleType="fitXY"
-        app:maxImageSize="56dip"
+        app:maxImageSize="40dip"
+        app:layout_anchorGravity="center|bottom"
         app:backgroundTint="@android:color/transparent"
         app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
         app:srcCompat="@drawable/vk" />
