@@ -134,7 +134,7 @@ public class AuthorizationActivity extends AppCompatActivity {
     private void initComponents() {
         logo = findViewById(R.id.ssau_logo);
         Glide.with(this)
-                .load(BitmapFactory.decodeResource(getResources(), R.drawable.ssau_logo))
+                .load(BitmapFactory.decodeResource(getResources(), R.drawable.ssau_logo_auth))
                 .format(DecodeFormat.PREFER_ARGB_8888)
                 .into(logo);
 

@@ -1,6 +1,7 @@
 package com.example.vkr.personal_cabinet;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,6 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DecodeFormat;
 import com.example.vkr.personal_cabinet.ui.home.MainViewModel;
 import com.example.vkr.personal_cabinet.ui.result_egu.ResultEguViewModel;
 import com.example.vkr.utils.dialogs.ShowCustomDialog;
@@ -24,6 +27,7 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.androidnetworking.AndroidNetworking;
@@ -60,6 +64,7 @@ public class PersonalCabinetActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private TextView fio;
     private TextView emailPhone;
+    private ImageView logo;
 
     private AppBarConfiguration mAppBarConfiguration;
     private PersonalCabinetActivityBinding binding;
@@ -218,6 +223,11 @@ public class PersonalCabinetActivity extends AppCompatActivity {
         View headerView = navigationView.getHeaderView(0);
         fio = headerView.findViewById(R.id.header_textView_FIO);
         emailPhone = headerView.findViewById(R.id.header_textView_email_phone);
+        logo = headerView.findViewById(R.id.nav_header_logo);
+        Glide.with(this)
+                .load(BitmapFactory.decodeResource(getResources(), R.drawable.ssau_logo_lk))
+                .format(DecodeFormat.PREFER_ARGB_8888)
+                .into(logo);
         idAbit = getIntent().getStringExtra("id_abit");
         idEducation = getIntent().getStringExtra("id_education");
 
