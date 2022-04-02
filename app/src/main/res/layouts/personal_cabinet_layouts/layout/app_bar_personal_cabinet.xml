@@ -34,7 +34,7 @@
         android:layout_marginBottom="16dp"
         android:backgroundTint="?attr/colorPrimaryDark"
         android:scaleType="fitXY"
-        app:maxImageSize="40dip"
+        app:maxImageSize="35dip"
         app:layout_anchorGravity="center|bottom"
         app:backgroundTint="@android:color/transparent"
         app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
