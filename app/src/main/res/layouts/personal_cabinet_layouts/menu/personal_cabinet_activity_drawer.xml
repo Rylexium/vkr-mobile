@@ -33,4 +33,23 @@
             android:icon="@drawable/ic_baseline_login_24"
             android:title="Выйти" />
     </group>
+
+    <item android:title="Дополнительно">
+        <menu>
+            <item
+                android:id="@+id/nav_change_theme"
+                android:icon="@drawable/ic_baseline_color_lens_24"
+                android:title="Сменить тему" />
+            <item
+                android:id="@+id/nav_open_developer"
+                android:icon="@drawable/ic_baseline_self_improvement_24"
+                android:title="Связь с разработчиком" />
+            <item
+                android:id="@+id/nav_admissions_website"
+                android:icon="@drawable/ic_baseline_web_24"
+                android:title="Сайт приёмной комиссии" />
+            <item android:title="" />
+            <item android:title="" />
+        </menu>
+    </item>
 </menu>

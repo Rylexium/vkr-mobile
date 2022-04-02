@@ -220,6 +220,16 @@ public class PersonalCabinetActivity extends AppCompatActivity {
             onBackPressed();
             return true;
         });
+        navigationView.getMenu().findItem(R.id.nav_change_theme).setOnMenuItemClickListener(menuItem -> {
+            OpenActivity.openExamsResult(this, "1","s", "4");
+            return true;
+        });
+        navigationView.getMenu().findItem(R.id.nav_open_developer).setOnMenuItemClickListener(menuItem -> OpenActivity.openPageDeveloper(this));
+        navigationView.getMenu().findItem(R.id.nav_admissions_website).setOnMenuItemClickListener(menuItem -> {
+            startActivity(new Intent(Intent.ACTION_VIEW)
+                    .setData(Uri.parse("https://ssau.ru/priem")));
+            return true;
+        });
         View headerView = navigationView.getHeaderView(0);
         fio = headerView.findViewById(R.id.header_textView_FIO);
         emailPhone = headerView.findViewById(R.id.header_textView_email_phone);

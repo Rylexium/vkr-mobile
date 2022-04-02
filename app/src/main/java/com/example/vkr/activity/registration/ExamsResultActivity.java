@@ -54,7 +54,6 @@ public class ExamsResultActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(getSupportActionBar() != null) getSupportActionBar().hide(); //убираем action bar
-        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.blue_500));
         setContentView(R.layout.exams_result_activity);
         initComponents();
         appleEvents();
@@ -114,10 +113,10 @@ public class ExamsResultActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) { }
         });
+
+        rowView.findViewById(R.id.delete_button).setOnClickListener(view -> examsLayout.removeView(rowView));
+
         examsLayout.addView(rowView, examsLayout.getChildCount() - 1);
-    }
-    public void onDelete(View v) {
-        examsLayout.removeView((View) v.getParent().getParent());
     }
 
     @Override
