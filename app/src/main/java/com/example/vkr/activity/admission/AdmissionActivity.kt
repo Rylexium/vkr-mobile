@@ -1,9 +1,10 @@
 package com.example.vkr.activity.admission
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.example.vkr.R
+import com.example.vkr.activity.themes.Themes.Companion.getCustomTheme
 import com.google.android.material.tabs.TabLayout
 
 class AdmissionActivity : AppCompatActivity() {
@@ -13,6 +14,7 @@ class AdmissionActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(getCustomTheme())
         setContentView(R.layout.admission_activity)
         initComponents()
     }

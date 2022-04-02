@@ -9,6 +9,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 
+import com.example.vkr.activity.themes.Themes;
 import com.example.vkr.utils.dialogs.LoadingDialog;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -91,6 +92,7 @@ public class MoreAboutTheSpecialityActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(Themes.Companion.getCustomTheme());
         setContentView(R.layout.activity_more_about_the_speciality);
         setSupportActionBar(findViewById(R.id.toolbar_speciality));
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);

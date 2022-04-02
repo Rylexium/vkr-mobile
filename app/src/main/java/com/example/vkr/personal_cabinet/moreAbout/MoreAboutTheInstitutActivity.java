@@ -30,6 +30,7 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.example.vkr.R;
+import com.example.vkr.activity.themes.Themes;
 import com.example.vkr.personal_cabinet.PersonalCabinetActivity;
 import com.example.vkr.utils.dialogs.LoadingDialog;
 import com.example.vkr.utils.OpenActivity;
@@ -63,6 +64,7 @@ public class MoreAboutTheInstitutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(Themes.Companion.getCustomTheme());
         setContentView(R.layout.activity_more_about_the_institut);
         initComponents();
         applyEvents();
