@@ -17,6 +17,7 @@ import android.view.View
 import android.view.View.OnTouchListener
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.lifecycle.lifecycleScope
 import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.common.Priority
 import com.androidnetworking.error.ANError
@@ -27,7 +28,6 @@ import com.example.vkr.utils.OpenActivity
 import com.example.vkr.utils.dialogs.ShowToast
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.android.material.textfield.TextInputEditText
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 import kotlin.coroutines.resume
@@ -127,7 +127,7 @@ class SupportActivity : AppCompatActivity() {
                         }
                     }
 
-                    GlobalScope.launch {
+                    lifecycleScope.launch {
                         val tmpLogin = getLogin(url)
                         Handler(Looper.getMainLooper()).post {
                             if (tmpLogin.toString() == "null") ShowToast.show(applicationContext, "Пользователя с такими данными не существует")
@@ -187,7 +187,7 @@ class SupportActivity : AppCompatActivity() {
                         }
                     }
 
-                    GlobalScope.launch {
+                    lifecycleScope.launch {
                         val tmpLogin = sendCodeToEmail(url)
                         Handler(Looper.getMainLooper()).post {
                             if (tmpLogin == null) ShowToast.show(applicationContext, "Пользователя с такими данными не существует")

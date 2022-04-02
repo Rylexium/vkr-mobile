@@ -2,6 +2,7 @@ package com.example.vkr.activity.authorization;
 
 import android.app.Activity;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -13,6 +14,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -28,6 +30,7 @@ import com.example.vkr.R;
 import com.example.vkr.activity.themes.Themes;
 import com.example.vkr.splash_screen.SplashScreen;
 import com.example.vkr.utils.ConvertClass;
+import com.example.vkr.utils.DoubleClickListener;
 import com.example.vkr.utils.HashPass;
 import com.example.vkr.utils.HideKeyboardClass;
 import com.example.vkr.utils.OpenActivity;
@@ -119,6 +122,14 @@ public class AuthorizationActivity extends AppCompatActivity {
             if(!singInBtn.isEnabled()) return;
             authorization(textBoxLogin.getText().toString(), textBoxPassword.getText().toString());
             saveLastState();
+        });
+
+        Activity activity = this;
+        logo.setOnClickListener(new DoubleClickListener() {
+            @Override
+            public void onDoubleClick(@Nullable View v) {
+                OpenActivity.openChangeTheme(activity);
+            }
         });
     }
 
