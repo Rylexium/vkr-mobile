@@ -107,4 +107,5 @@
     <string name="frequently_asked_question"><u>Часто задаваемые вопросы</u></string>
     <string name="submit_an_application"><u>Подать заявление</u></string>
     <string name="restore_access"><u>Восстановить доступ</u></string>
+    <string name="link_to_agreement"><u>Согласие на обработку персональных данных</u></string>
 </resources>

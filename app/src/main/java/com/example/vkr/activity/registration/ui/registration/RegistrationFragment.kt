@@ -12,6 +12,7 @@ import com.example.vkr.R
 import com.example.vkr.activity.registration.RegistrationActivity.Companion.sharedPreferences
 import com.example.vkr.databinding.RegistrationFragmentBinding
 import com.example.vkr.utils.CorrectText
+import com.example.vkr.utils.OpenActivity
 import java.util.*
 import java.util.function.Consumer
 import java.util.regex.Pattern
@@ -66,6 +67,8 @@ class RegistrationFragment : Fragment() {
             setVisibleNavigationBottomView(true)
             binding.registrationLayout.requestFocus()
         }
+
+        binding.textViewLinkToAgreement.setOnClickListener { OpenActivity.openLinkToAgreement(activity) }
 
         binding.textboxPhone.setOnFocusChangeListener { _, isFocus ->
             setVisibleNavigationBottomView(!isFocus)

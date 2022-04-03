@@ -131,7 +131,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="9dp"
-            android:paddingLeft="9dp"
+            android:paddingStart="9dp"
+            android:paddingEnd="9dp"
             android:paddingBottom="9dp"
             android:orientation="horizontal">
 
@@ -173,7 +174,8 @@
                 android:text="Пол"
                 android:theme="@style/SwitchTheme"
                 android:textColor="@color/grey"
-                android:textSize="17sp" />
+                android:textSize="17sp"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
 
         </LinearLayout>
 

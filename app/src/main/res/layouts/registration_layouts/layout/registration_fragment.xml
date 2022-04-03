@@ -23,7 +23,7 @@
             android:text="Регистрация"
             android:textColor="@color/black_grey"
             android:gravity="center"
-            android:textSize="35dp"
+            android:textSize="35sp"
             android:paddingTop="35dp"
             />
         <com.fredporciuncula.phonemoji.PhonemojiTextInputLayout
@@ -82,16 +82,17 @@
             >
 
             <com.google.android.material.textfield.TextInputEditText
-                android:textCursorDrawable="@drawable/cursor_black"
-                android:textColorHighlight="?attr/colorPrimaryDark"
                 android:id="@+id/textbox_email"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:digits="@string/alfavit_for_email"
+                android:drawablePadding="8dp"
                 android:inputType="textPersonName"
                 android:maxLength="32"
                 android:textColor="@color/black_grey"
-                android:drawablePadding="8dp"
+                android:textColorHighlight="?attr/colorPrimaryDark"
+                android:textColorHint="#546E7A"
+                android:textCursorDrawable="@drawable/cursor_black"
                 android:textSize="17sp"
                 tools:ignore="TouchTargetSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -113,16 +114,17 @@
             app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:textCursorDrawable="@drawable/cursor_black"
-                android:textColorHighlight="?attr/colorPrimaryDark"
                 android:id="@+id/textbox_login_reg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:digits="@string/alfavit_for_login"
+                android:drawablePadding="8dp"
                 android:inputType="textPersonName"
                 android:maxLength="32"
                 android:textColor="@color/black_grey"
-                android:drawablePadding="8dp"
+                android:textColorHighlight="?attr/colorPrimaryDark"
+                android:textColorHint="#546E7A"
+                android:textCursorDrawable="@drawable/cursor_black"
                 android:textSize="17sp"
                 tools:ignore="TouchTargetSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -147,12 +149,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:digits="@string/alfavit_for_login"
+                android:drawablePadding="8dp"
                 android:inputType="textPassword"
                 android:maxLength="32"
                 android:textColor="@color/black_grey"
                 android:textColorHighlight="?attr/colorPrimaryDark"
+                android:textColorHint="#546E7A"
                 android:textCursorDrawable="@drawable/cursor_black"
-                android:drawablePadding="8dp"
                 android:textSize="17sp"
                 tools:ignore="TouchTargetSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -173,32 +176,52 @@
             >
 
             <com.google.android.material.textfield.TextInputEditText
-                android:textCursorDrawable="@drawable/cursor_black"
-                android:textColorHighlight="?attr/colorPrimaryDark"
                 android:id="@+id/textbox_pass2_reg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:digits="@string/alfavit_for_login"
+                android:drawablePadding="8dp"
                 android:inputType="textPassword"
                 android:maxLength="32"
                 android:textColor="@color/black_grey"
-                android:drawablePadding="8dp"
+                android:textColorHighlight="?attr/colorPrimaryDark"
+                android:textColorHint="#546E7A"
+                android:textCursorDrawable="@drawable/cursor_black"
                 android:textSize="17sp"
                 tools:ignore="TouchTargetSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <RadioButton
-            android:id="@+id/radioButton_isAgree"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:theme="@style/SwitchTheme"
-            android:layout_height="80dp"
-            android:layout_marginStart="60dp"
-            android:layout_marginEnd="60dp"
-            android:layout_marginTop="12dp"
-            android:gravity="center_vertical"
-            android:text="Согласие на обработку персональных данных"
-            android:textColor="@color/black_grey"
-            android:textSize="20sp" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp"
+            android:paddingStart="9dp"
+            android:paddingEnd="9dp"
+            android:gravity="center">
+            <CheckBox
+                android:id="@+id/radioButton_isAgree"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:button="@null"
+                android:background="?android:attr/listChoiceIndicatorMultiple"
+                android:gravity="center"
+                android:textColor="@color/black_grey"
+                android:textSize="20sp"
+                android:layout_gravity="center"
+                android:theme="@style/SwitchTheme" />
+            <TextView
+                android:id="@+id/textView_link_to_agreement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/link_to_agreement"
+                android:gravity="start"
+                android:textSize="16sp"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:textColor="@android:color/holo_blue_dark"
+                />
+        </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"

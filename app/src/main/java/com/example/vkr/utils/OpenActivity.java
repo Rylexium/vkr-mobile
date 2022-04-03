@@ -120,5 +120,10 @@ public class OpenActivity {
         return true;
     }
 
+    public static boolean openLinkToAgreement(Activity activity){
+        activity.startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse("https://ssau.ru/files/priem_doc/bachelor/soglasiePD.pdf")));
+        return true;
+    }
+
 
 }
