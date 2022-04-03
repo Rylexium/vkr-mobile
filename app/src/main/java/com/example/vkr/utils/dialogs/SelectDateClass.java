@@ -2,6 +2,11 @@ package com.example.vkr.utils.dialogs;
 
 import android.app.DatePickerDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.util.TypedValue;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
@@ -26,18 +31,12 @@ public class SelectDateClass {
         } catch (ParseException ignored) { }
 
         if(date != null) calendar.setTime(date);
-
         return new DatePickerDialog(
                 activity,
                 R.style.datePickerDialogTheme,
-                new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                        editDate.setText(new String(
-                                        (day<9 ? "0" + day : day) + "." +
-                                              (month<9 ? "0" + (month + 1): month + 1 ) + "." + year));
-                    }
-                },
+                (datePicker, year, month, day) -> editDate.setText(new String(
+                                (day<9 ? "0" + day : day) + "." +
+                                      (month<9 ? "0" + (month + 1): month + 1 ) + "." + year)),
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH));

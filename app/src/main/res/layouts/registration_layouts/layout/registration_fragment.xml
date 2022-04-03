@@ -198,7 +198,8 @@
             android:layout_marginTop="30dp"
             android:paddingStart="9dp"
             android:paddingEnd="9dp"
-            android:gravity="center">
+            android:gravity="center"
+            android:layout_gravity="center">
             <CheckBox
                 android:id="@+id/radioButton_isAgree"
                 android:layout_width="48dp"
@@ -212,13 +213,14 @@
                 android:theme="@style/SwitchTheme" />
             <TextView
                 android:id="@+id/textView_link_to_agreement"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/link_to_agreement"
                 android:gravity="start"
                 android:textSize="16sp"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
+                android:lineSpacingExtra="2sp"
                 android:textColor="@android:color/holo_blue_dark"
                 />
         </LinearLayout>

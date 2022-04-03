@@ -22,7 +22,7 @@ public class LoadingDialog {
         LayoutInflater inflater = activity.getLayoutInflater();
         builder.setView(inflater.inflate(R.layout.loading_dialog, null));
         builder.setCancelable(false);
-        builder.setOnKeyListener((DialogInterface.OnKeyListener) (dialogInterface, keyCode, keyEvent) -> {
+        builder.setOnKeyListener((dialogInterface, keyCode, keyEvent) -> {
             if (keyCode == KeyEvent.KEYCODE_BACK)
                 if (dialog.isShowing()) {
                     dialog.dismiss();

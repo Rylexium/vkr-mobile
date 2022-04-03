@@ -74,6 +74,11 @@ class SplashScreen : AppCompatActivity() {
                         delay(1000)
                     }
                 }
+                run initTheme@{
+                    repeat(1001) {
+                        if (awaitInitThemes()) return@initTheme
+                    }
+                }
                 delay(500)
                 Handler(Looper.getMainLooper()).post { viewLayout.removeView(progressBar) }
                 authorization()
@@ -81,6 +86,12 @@ class SplashScreen : AppCompatActivity() {
         }
     }
 
+    private suspend fun awaitInitThemes() : Boolean {
+        return suspendCoroutine {
+            if(Themes.sharedPreferences == null) it.resume(false)
+            else it.resume(true)
+        }
+    }
 
     private suspend fun awaitConnect() : Boolean {
         return suspendCoroutine {

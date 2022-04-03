@@ -8,13 +8,13 @@ import com.example.vkr.R
 
 class Themes {
     companion object {
-        lateinit var sharedPreferences: SharedPreferences
+        var sharedPreferences: SharedPreferences? = null
         fun init(activity : Activity){
             sharedPreferences = activity.getPreferences(MODE_PRIVATE)
         }
         fun getCustomTheme(): Int {
-            return if(sharedPreferences.all["color"] == null) R.style.Theme_VKR
-            else when(sharedPreferences.all["color"] as Int) {
+            return if(sharedPreferences!!.all["color"] == null) R.style.Theme_VKR
+            else when(sharedPreferences!!.all["color"] as Int) {
                 0 -> R.style.Theme_VKR
                 1 -> R.style.Theme_VKR_Red
                 2 -> R.style.Theme_VKR_Orange
@@ -25,7 +25,7 @@ class Themes {
             }
         }
         fun setColor(color : Int) {
-            sharedPreferences.edit()
+            sharedPreferences!!.edit()
                 .putInt("color", color)
                 .apply()
         }
