@@ -23,8 +23,8 @@
                 android:id="@+id/btn_download_agreement"
                 android:layout_width="250dp"
                 android:layout_height="80dp"
-                android:background="?attr/colorPrimary"
                 android:textColor="?attr/colorSurface"
+                android:background="@drawable/btn_agreement"
                 android:text="Сформировать и скачать согласие на зачисление"
                 android:gravity="center"
                 android:layout_gravity="center"
@@ -45,7 +45,7 @@
                 android:id="@+id/btn_load_agreement"
                 android:layout_width="250dp"
                 android:layout_height="80dp"
-                android:background="?attr/colorPrimary"
+                android:background="@drawable/btn_agreement"
                 android:textColor="?attr/colorSurface"
                 android:text="Загрузить согласие на зачисление"
                 />
