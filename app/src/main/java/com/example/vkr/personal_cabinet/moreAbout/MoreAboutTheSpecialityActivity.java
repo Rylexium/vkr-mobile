@@ -305,7 +305,7 @@ public class MoreAboutTheSpecialityActivity extends AppCompatActivity {
                                     studyingTimeOfSpeciality.setText(String.format("%s %s", jsonNode.get("speciality").get("studying_time"), //tyt
                                             jsonNode.get("speciality").get("studying_time").asInt() < 5 ? "года" : "лет"));
 
-                                typeOfStudyOfSpeciality.setText(jsonNode.get("typeOfStudy").get("name").asText());
+                                typeOfStudyOfSpeciality.setText(jsonNode.get("typeOfStudy").get("name").asText().replace(" ", "\n"));
                                 budgetOfSpeciality.setText(jsonNode.get("speciality").get("budget").toString());
 
                                 if (!jsonNode.get("speciality").get("pay_per_year").toString().equals("null"))
