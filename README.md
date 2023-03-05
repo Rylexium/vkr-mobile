@@ -53,12 +53,10 @@
     - ![image](https://user-images.githubusercontent.com/84678136/188450579-39ae44be-787b-4feb-a107-e6904716ff6d.png)
   - Окно с картой, где показано местоположение приемной комиссии ВУЗа (Если нет доступа к Google Service откроется Яндекс.Карты или браузер)
     - ![image](https://user-images.githubusercontent.com/84678136/188450610-88cf3513-0d16-4c92-90b1-0ab10b958e34.png)
-  - `
 
-    git status
-    git fetch
+`
+git status
 
-    `
-
+`
 
 
